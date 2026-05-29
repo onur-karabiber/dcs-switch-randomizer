@@ -61,7 +61,9 @@ local function cr_is_cold_start()
 end
 
 local function cr_randomize()
-    math.randomseed(os.time())
+    -- os.time() has 1-second resolution; rapid restarts can produce identical
+    -- seeds. os.clock() adds sub-second CPU time, making collisions negligible.
+    math.randomseed(os.time() + math.floor(os.clock() * 1e6))
     for _ = 1, math.random(5, 20) do math.random() end
 
     local ac = cr_get_aircraft()

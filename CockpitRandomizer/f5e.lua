@@ -4,7 +4,7 @@
 -- Switch table for: F-5E-3
 --
 -- Device IDs: devices.lua (counter order)
---   CONTROL_INTERFACE  =  2    ELEC_INTERFACE   =  3  (note: named "electric_commands")
+--   CONTROL_INTERFACE  =  2    ELEC_INTERFACE   =  3
 --   FUEL_INTERFACE     =  4    ENGINE_INTERFACE =  6
 --   GEAR_INTERFACE     =  7    OXYGEN_INTERFACE =  8
 --   ECS_INTERFACE      =  9    EXTLIGHTS_SYSTEM = 11
@@ -18,6 +18,20 @@
 -- Landing Gear and Canopy excluded per request.
 -- Momentary / spring-loaded positions excluded throughout.
 -- CB (circuit breaker) buttons excluded — not meaningful for cold-start immersion.
+--
+-- HOW vals WORK (delta semantics — not absolute positions):
+--   performClickableAction(cmd, val) applies val as a DELTA to the current
+--   arg value, clamped to arg_lim. It does NOT set an absolute position.
+--
+--   val = 0   → no movement, switch stays at cold-start default
+--   val = +1  → arg increases (moves toward upper limit)
+--   val = -1  → arg decreases (moves toward lower limit)
+--   val = +d  → multiposition: one step forward  (d = switch delta)
+--   val = -d  → multiposition: one step backward
+--
+-- DEFAULT WEIGHT POLICY:
+--   All fixed-position switches have their default delta (0 = stay) weighted
+--   at 85%–90% of the vals pool. Continuous axis knobs are exempt.
 -- =============================================================================
 
 CR.register("F-5E-3", {
@@ -26,359 +40,431 @@ CR.register("F-5E-3", {
     -- FLIGHT CONTROL SYSTEM   dev=2  (CONTROL_INTERFACE)
     -- =========================================================================
 
-    -- Yaw Damper Switch  (default_2_position_tumb2)  YAW=0 / OFF=1  |  arg 323
-    { dev=2, cmd=3001, vals={0, 1},         label="Yaw Damper Switch" },
+    -- Yaw Damper Switch | default_2_position_tumb2 | arg 323 | arg_lim={0,1}
+    -- YAW/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → YAW.
+    -- OFF=stay (chance: 90%, default) / YAW=-1 (chance: 10%)
+    { dev=2, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Yaw Damper Switch" },
 
-    -- Pitch Damper Switch  (default_2_position_tumb2)  PITCH=0 / OFF=1  |  arg 322
-    { dev=2, cmd=3002, vals={0, 1},         label="Pitch Damper Switch" },
+    -- Pitch Damper Switch | default_2_position_tumb2 | arg 322 | arg_lim={0,1}
+    -- PITCH/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → PITCH.
+    -- OFF=stay (chance: 90%, default) / PITCH=-1 (chance: 10%)
+    { dev=2, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Pitch Damper Switch" },
 
-    -- Rudder Trim Knob  (default_axis_limited, continuous {-1,1})  |  arg 324
+    -- Rudder Trim Knob | default_axis_limited, continuous | arg 324
+    -- Exempt: continuous axis, no fixed default position
     { dev=2, cmd=3003, vals={-1, -0.5, 0, 0.5, 1},  label="Rudder Trim Knob" },
 
-    -- Flaps Lever  (default_3_position_tumb)  EMER UP=-1 / THUMB SW=0 / FULL=1  |  arg 116
-    { dev=2, cmd=3005, vals={-1, 0, 1},     label="Flaps Lever" },
+    -- Flaps Lever | default_3_position_tumb | arg 116 | arg_lim={-1,1}
+    -- EMER UP=arg=-1 / THUMB SW=arg=0 (center, default) / FULL=arg=+1
+    -- Cold start: THUMB SW (arg=0). val=0 → stay (default). val=-1 → EMER UP. val=+1 → FULL.
+    -- THUMB SW=stay (chance: 88%, default) / EMER UP=-1 (chance: 6%) / FULL=+1 (chance: 6%)
+    { dev=2, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="Flaps Lever" },
 
-    -- Auto Flap System Thumb Switch  (default_3_position_tumb)  UP=-1 / FIXED=0 / AUTO=1  |  arg 115
-    { dev=2, cmd=3006, vals={-1, 0, 1},     label="Auto Flap System Thumb Switch" },
+    -- Auto Flap System Thumb Switch | default_3_position_tumb | arg 115 | arg_lim={-1,1}
+    -- UP=arg=-1 / FIXED=arg=0 (center, default) / AUTO=arg=+1
+    -- Cold start: FIXED (arg=0). val=0 → stay (default). val=-1 → UP. val=+1 → AUTO.
+    -- FIXED=stay (chance: 88%, default) / UP=-1 (chance: 6%) / AUTO=+1 (chance: 6%)
+    { dev=2, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="Auto Flap System Thumb Switch" },
 
-    -- Speed Brake Switch  (default_3_position_tumb)  OUT=-1 / OFF=0 / IN=1  |  arg 101
-    { dev=2, cmd=3007, vals={-1, 0, 1},     label="Speed Brake Switch" },
+    -- Speed Brake Switch | default_3_position_tumb | arg 101 | arg_lim={-1,1}
+    -- OUT=arg=-1 / OFF=arg=0 (center, default) / IN=arg=+1
+    -- Cold start: OFF (arg=0). val=0 → stay (default). val=-1 → OUT. val=+1 → IN.
+    -- OFF=stay (chance: 88%, default) / OUT=-1 (chance: 6%) / IN=+1 (chance: 6%)
+    { dev=2, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="Speed Brake Switch" },
 
     -- =========================================================================
     -- ELECTRICAL SYSTEM   dev=3  (ELEC_INTERFACE)
     -- =========================================================================
 
-    -- Battery Switch  (default_2_position_tumb2)  BATT=0 / OFF=1  |  arg 387
-    { dev=3, cmd=3001, vals={0, 1},         label="Battery Switch" },
-
-    -- Left Generator Switch  (default_button_tumb: BTN=RESET momentary, TUMB=L GEN/OFF)
-    -- TUMB side: L GEN=0 / OFF=1  |  arg 388
-    { dev=3, cmd=3002, vals={0, 1},         label="Left Generator Switch" },
-
-    -- Right Generator Switch  (default_button_tumb: BTN=RESET momentary, TUMB=R GEN/OFF)
-    -- TUMB side: R GEN=0 / OFF=1  |  arg 389
-    { dev=3, cmd=3004, vals={0, 1},         label="Right Generator Switch" },
-
-    -- Pitot Anti-Ice Switch  (default_2_position_tumb2)  PITOT=0 / OFF=1  |  arg 375
-    { dev=3, cmd=3006, vals={0, 1},         label="Pitot Anti-Ice Switch" },
+    -- Pitot Anti-Ice Switch | default_2_position_tumb2 | arg 375 | arg_lim={0,1}
+    -- PITOT/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → PITOT.
+    -- OFF=stay (chance: 90%, default) / PITOT=-1 (chance: 10%)
+    { dev=3, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Pitot Anti-Ice Switch" },
 
     -- =========================================================================
     -- FUEL SYSTEM   dev=4  (FUEL_INTERFACE)
     -- =========================================================================
 
-    -- Left Fuel Shutoff Switch Cover  (default_red_cover)  CLOSED=0 / OPEN=1  |  arg 359
-    { dev=4, cmd=3010, vals={0, 1},         label="Left Fuel Shutoff Switch Cover" },
+    -- Left Fuel Shutoff Switch Cover | default_red_cover | arg 359 | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 90%, default) / OPEN=+1 (chance: 10%)
+    { dev=4, cmd=3010, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Left Fuel Shutoff Switch Cover" },
 
-    -- Left Fuel Shutoff Switch  (default_2_position_tumb2)  OPEN=0 / CLOSED=1  |  arg 360
-    { dev=4, cmd=3001, vals={0, 1},         label="Left Fuel Shutoff Switch" },
+    -- Left Fuel Shutoff Switch | default_2_position_tumb2 | arg 360 | arg_lim={0,1}
+    -- OPEN/CLOSED. Cold start: OPEN (arg=0). val=0 → stay OPEN (default). val=+1 → CLOSED.
+    -- OPEN=stay (chance: 90%, default) / CLOSED=+1 (chance: 10%)
+    { dev=4, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Left Fuel Shutoff Switch" },
 
-    -- Right Fuel Shutoff Switch Cover  (default_red_cover)  CLOSED=0 / OPEN=1  |  arg 361
-    { dev=4, cmd=3011, vals={0, 1},         label="Right Fuel Shutoff Switch Cover" },
+    -- Right Fuel Shutoff Switch Cover | default_red_cover | arg 361 | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 90%, default) / OPEN=+1 (chance: 10%)
+    { dev=4, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Right Fuel Shutoff Switch Cover" },
 
-    -- Right Fuel Shutoff Switch  (default_2_position_tumb2)  OPEN=0 / CLOSED=1  |  arg 362
-    { dev=4, cmd=3002, vals={0, 1},         label="Right Fuel Shutoff Switch" },
+    -- Right Fuel Shutoff Switch | default_2_position_tumb2 | arg 362 | arg_lim={0,1}
+    -- OPEN/CLOSED. Cold start: OPEN (arg=0). val=0 → stay OPEN (default). val=+1 → CLOSED.
+    -- OPEN=stay (chance: 90%, default) / CLOSED=+1 (chance: 10%)
+    { dev=4, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Right Fuel Shutoff Switch" },
 
-    -- Ext Fuel Cl Switch  (default_2_position_tumb2)  ON=0 / OFF=1  |  arg 377
-    { dev=4, cmd=3004, vals={0, 1},         label="Ext Fuel Cl Switch" },
+    -- Ext Fuel Cl Switch | default_2_position_tumb2 | arg 377 | arg_lim={0,1}
+    -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
+    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
+    { dev=4, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Ext Fuel Cl Switch" },
 
-    -- Ext Fuel Pylons Switch  (default_2_position_tumb2)  ON=0 / OFF=1  |  arg 378
-    { dev=4, cmd=3003, vals={0, 1},         label="Ext Fuel Pylons Switch" },
+    -- Ext Fuel Pylons Switch | default_2_position_tumb2 | arg 378 | arg_lim={0,1}
+    -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
+    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
+    { dev=4, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Ext Fuel Pylons Switch" },
 
-    -- Left Boost Pump Switch  (default_2_position_tumb)  ON=0 / OFF=1  |  arg 380
-    { dev=4, cmd=3008, vals={0, 1},         label="Left Boost Pump Switch" },
+    -- Left Boost Pump Switch | default_2_position_tumb | arg 380 | arg_lim={0,1}
+    -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
+    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
+    { dev=4, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Left Boost Pump Switch" },
 
-    -- Crossfeed Switch  (default_2_position_tumb2)  OPEN=0 / CLOSED=1  |  arg 381
-    { dev=4, cmd=3005, vals={0, 1},         label="Crossfeed Switch" },
+    -- Crossfeed Switch | default_2_position_tumb2 | arg 381 | arg_lim={0,1}
+    -- OPEN/CLOSED. Cold start: CLOSED (arg=1). val=0 → stay CLOSED (default). val=-1 → OPEN.
+    -- CLOSED=stay (chance: 90%, default) / OPEN=-1 (chance: 10%)
+    { dev=4, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Crossfeed Switch" },
 
-    -- Right Boost Pump Switch  (default_2_position_tumb)  ON=0 / OFF=1  |  arg 382
-    { dev=4, cmd=3009, vals={0, 1},         label="Right Boost Pump Switch" },
+    -- Right Boost Pump Switch | default_2_position_tumb | arg 382 | arg_lim={0,1}
+    -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
+    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
+    { dev=4, cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Right Boost Pump Switch" },
 
     -- =========================================================================
     -- ENGINE SYSTEM   dev=6  (ENGINE_INTERFACE)
     -- =========================================================================
 
-    -- Engine Anti-Ice Switch  (default_2_position_tumb2)  ENGINE=0 / OFF=1  |  arg 376
-    { dev=6, cmd=3003, vals={0, 1},         label="Engine Anti-Ice Switch" },
+    -- Engine Anti-Ice Switch | default_2_position_tumb2 | arg 376 | arg_lim={0,1}
+    -- ENGINE/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ENGINE.
+    -- OFF=stay (chance: 90%, default) / ENGINE=-1 (chance: 10%)
+    { dev=6, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Engine Anti-Ice Switch" },
 
     -- =========================================================================
     -- OXYGEN SYSTEM   dev=8  (OXYGEN_INTERFACE)
     -- =========================================================================
 
-    -- Oxygen Supply Lever  (default_2_position_tumb)  ON=0 / OFF=1  |  arg 603
-    { dev=8, cmd=3001, vals={0, 1},         label="Oxygen Supply Lever" },
+    -- Oxygen Supply Lever | default_2_position_tumb | arg 603 | arg_lim={0,1}
+    -- ON/OFF. Cold start: ON (arg=0). val=0 → stay ON (default). val=+1 → OFF.
+    -- ON=stay (chance: 90%, default) / OFF=+1 (chance: 10%)
+    { dev=8, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Oxygen Supply Lever" },
 
-    -- Diluter Lever  (default_2_position_tumb)  |  arg 602
-    -- 100%=0 / NORM=1
-    { dev=8, cmd=3002, vals={0, 1},         label="Oxygen Diluter Lever" },
+    -- Oxygen Diluter Lever | default_2_position_tumb | arg 602 | arg_lim={0,1}
+    -- 100%/NORM. Cold start: NORM (arg=1). val=0 → stay NORM (default). val=-1 → 100%.
+    -- NORM=stay (chance: 90%, default) / 100%=-1 (chance: 10%)
+    { dev=8, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Oxygen Diluter Lever" },
 
-    -- Emergency Lever  (default_button_tumb: BTN=TEST MASK momentary, TUMB=EMERGENCY/NORMAL)
-    -- TUMB side: EMERGENCY=1 / NORMAL=0  |  arg 601
-    { dev=8, cmd=3003, vals={0, 1},         label="Oxygen Emergency Lever" },
+    -- Oxygen Emergency Lever | default_2_position_tumb | arg 601 | arg_lim={0,1}
+    -- NORMAL/EMERGENCY. Cold start: NORMAL (arg=0). val=0 → stay NORMAL (default). val=+1 → EMERGENCY.
+    -- NORMAL=stay (chance: 90%, default) / EMERGENCY=+1 (chance: 10%)
+    { dev=8, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Oxygen Emergency Lever" },
 
     -- =========================================================================
     -- ECS   dev=9  (ECS_INTERFACE)
     -- =========================================================================
 
-    -- Cabin Press Switch Cover  (default_red_cover)  CLOSED=0 / OPEN=1  |  arg 370
-    { dev=9, cmd=3002, vals={0, 1},         label="Cabin Press Switch Cover" },
+    -- Cabin Press Switch Cover | default_red_cover | arg 370 | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 90%, default) / OPEN=+1 (chance: 10%)
+    { dev=9, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Cabin Press Switch Cover" },
 
-    -- Cabin Press Switch  (default_3_position_tumb2)  DEFOG ONLY=-1 / NORMAL=0 / RAM DUMP=1  |  arg 371
-    -- arg_value uses 0.5 delta, lim {0,1}: DEFOG ONLY=0 / NORMAL=0.5 / RAM DUMP=1
-    { dev=9, cmd=3001, vals={0, 0.5, 1},    label="Cabin Press Switch" },
+    -- Cabin Press Switch | default_3_position_tumb2 | arg 371 | arg_value_=0.5, arg_lim={0,1}
+    -- DEFOG ONLY=0 / NORMAL=0.5 (center, default) / RAM DUMP=1.0
+    -- Cold start: NORMAL (arg=0.5). val=0 → stay NORMAL (default). val=-0.5 → DEFOG. val=+0.5 → RAM DUMP.
+    -- NORMAL=stay (chance: 88%, default) / DEFOG=-0.5 (chance: 6%) / RAM DUMP=+0.5 (chance: 6%)
+    { dev=9, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.5, 0.5},  label="Cabin Press Switch" },
 
-    -- Cabin Temp Switch  (multiposition_switch, count=7, delta=0.1)
-    -- AUTO=0 / positions up to MAN HOT=0.6  |  arg 372
-    { dev=9, cmd=3003, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6},  label="Cabin Temp Switch" },
+    -- Cabin Temp Switch | multiposition_switch_2_cl, count=7, delta=0.1, inversed_=true | arg 372
+    -- inversed: arg_value={+delta,-delta}. arg_lim={0,0.6}. Cold start: AUTO.
+    -- With inversed_=true, leftmost position (AUTO) corresponds to arg=0.6, rightmost to arg=0.
+    -- Cold start: AUTO (arg=0.6, leftmost visual). val=0 → stay AUTO (default). val=-0.1 → next step.
+    -- AUTO=stay (chance: 88%, default) / adjacent steps ~4% each / far steps ~1% each
+    { dev=9, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6},  label="Cabin Temp Switch" },
 
-    -- Cabin Temperature Knob  (default_axis_limited, {-1,1})  |  arg 373
+    -- Cabin Temperature Knob | default_axis_limited, continuous | arg 373
+    -- Exempt: continuous axis, no fixed default position
     { dev=9, cmd=3004, vals={-1, -0.5, 0, 0.5, 1},  label="Cabin Temperature Knob" },
 
-    -- Canopy Defog Knob  (default_axis_limited)  |  arg 374
+    -- Canopy Defog Knob | default_axis_limited, continuous | arg 374
+    -- Exempt: continuous axis, no fixed default position
     { dev=9, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1},  label="Canopy Defog Knob" },
 
     -- =========================================================================
     -- EXTERNAL LIGHTS   dev=11  (EXTLIGHTS_SYSTEM)
     -- =========================================================================
 
-    -- Exterior Lights Nav Knob  (default_axis_limited)  |  arg 227
+    -- Exterior Lights Nav Knob | default_axis_limited, continuous | arg 227
+    -- Exempt: continuous knob, no fixed default position
     { dev=11, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1},  label="Exterior Lights Nav Knob" },
 
-    -- Exterior Lights Formation Knob  (default_axis_limited)  |  arg 228
+    -- Exterior Lights Formation Knob | default_axis_limited, continuous | arg 228
+    -- Exempt: continuous knob, no fixed default position
     { dev=11, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1},  label="Exterior Lights Formation Knob" },
 
-    -- Exterior Lights Beacon Switch  (default_2_position_tumb2)  BEACON=0 / OFF=1  |  arg 229
-    { dev=11, cmd=3003, vals={0, 1},        label="Exterior Lights Beacon Switch" },
+    -- Exterior Lights Beacon Switch | default_2_position_tumb2 | arg 229 | arg_lim={0,1}
+    -- BEACON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → BEACON.
+    -- OFF=stay (chance: 90%, default) / BEACON=-1 (chance: 10%)
+    { dev=11, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Exterior Lights Beacon Switch" },
 
-    -- Landing & Taxi Light Switch  (default_2_position_tumb)  ON=0 / OFF=1  |  arg 353
-    { dev=11, cmd=3004, vals={0, 1},        label="Landing & Taxi Light Switch" },
+    -- Landing & Taxi Light Switch | default_2_position_tumb | arg 353 | arg_lim={0,1}
+    -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
+    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
+    { dev=11, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Landing & Taxi Light Switch" },
 
     -- =========================================================================
     -- INTERNAL LIGHTS   dev=12  (INTLIGHTS_SYSTEM)
     -- =========================================================================
 
-    -- Magnetic Compass Light Switch  (default_2_position_tumb)  LIGHT=0 / OFF=1  |  arg 613
-    { dev=12, cmd=3002, vals={0, 1},        label="Magnetic Compass Light Switch" },
+    -- Magnetic Compass Light Switch | default_2_position_tumb | arg 613 | arg_lim={0,1}
+    -- LIGHT/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → LIGHT.
+    -- OFF=stay (chance: 90%, default) / LIGHT=-1 (chance: 10%)
+    { dev=12, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Magnetic Compass Light Switch" },
 
-    -- Flood Lights Knob  (default_axis_limited)  |  arg 221
+    -- Continuous light knobs — exempt
     { dev=12, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1},  label="Flood Lights Knob" },
-
-    -- Flight Instruments Lights Knob  (default_axis_limited)  |  arg 222
     { dev=12, cmd=3004, vals={0, 0.25, 0.5, 0.75, 1},  label="Flight Instruments Lights Knob" },
-
-    -- Engine Instruments Lights Knob  (default_axis_limited)  |  arg 223
     { dev=12, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1},  label="Engine Instruments Lights Knob" },
-
-    -- Console Lights Knob  (default_axis_limited)  |  arg 224
     { dev=12, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1},  label="Console Lights Knob" },
-
-    -- Armament Panel Lights Knob  (default_axis_limited)  |  arg 363
     { dev=12, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1},  label="Armament Panel Lights Knob" },
 
     -- =========================================================================
     -- COUNTERMEASURES (AN/ALE-40V)   dev=13  (CMDS)
     -- =========================================================================
 
-    -- Chaff Mode Selector  (multiposition_switch, count=4, delta=0.1)
-    -- OFF=0 / SINGLE=0.1 / PRGM=0.2 / MULT=0.3  |  arg 400
-    { dev=13, cmd=3001, vals={0, 0.1, 0.2, 0.3},  label="Chaff Mode Selector" },
+    -- Chaff Mode Selector | multiposition_switch, count=4, delta=0.1 | arg 400 | arg_lim={0,0.3}
+    -- OFF=0 / SINGLE=0.1 / PRGM=0.2 / MULT=0.3
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+0.1 → SINGLE.
+    -- OFF=stay (chance: 88%, default) / SINGLE=+0.1 (chance: 7%) / PRGM=+0.2 (chance: 3%) / MULT=+0.3 (chance: 2%)
+    { dev=13, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.3},  label="Chaff Mode Selector" },
 
-    -- Flare Mode Selector  (multiposition_switch, count=3, delta=0.1)
-    -- OFF=0 / SINGLE=0.1 / PRGM=0.2  |  arg 404
-    { dev=13, cmd=3002, vals={0, 0.1, 0.2},  label="Flare Mode Selector" },
+    -- Flare Mode Selector | multiposition_switch, count=3, delta=0.1 | arg 404 | arg_lim={0,0.2}
+    -- OFF=0 / SINGLE=0.1 / PRGM=0.2
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+0.1 → SINGLE.
+    -- OFF=stay (chance: 88%, default) / SINGLE=+0.1 (chance: 8%) / PRGM=+0.2 (chance: 4%)
+    { dev=13, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.2},  label="Flare Mode Selector" },
 
-    -- Flare Jettison Switch Cover  (default_red_cover)  CLOSED=0 / OPEN=1  |  arg 408
-    { dev=13, cmd=3003, vals={0, 1},        label="Flare Jettison Switch Cover" },
+    -- Flare Jettison Switch Cover | default_red_cover | arg 408 | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 90%, default) / OPEN=+1 (chance: 10%)
+    { dev=13, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Flare Jettison Switch Cover" },
 
     -- =========================================================================
     -- WEAPONS CONTROL   dev=15  (WEAPONS_CONTROL)
     -- =========================================================================
 
-    -- Armament Position Selector — Left Wingtip  (default_2_position_tumb2)  ON=0 / OFF=1  |  arg 346
-    { dev=15, cmd=3001, vals={0, 1},        label="Armament Selector - Left Wingtip" },
+    -- Armament Position Selectors | default_2_position_tumb2 | arg_lim={0,1}
+    -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
+    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
+    { dev=15, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Wingtip" },
+    { dev=15, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Outbd" },
+    { dev=15, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Inbd" },
+    { dev=15, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Centerline" },
+    { dev=15, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Inbd" },
+    { dev=15, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Outbd" },
+    { dev=15, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Wingtip" },
 
-    -- Armament Position Selector — Left Outboard  (default_2_position_tumb2)  |  arg 347
-    { dev=15, cmd=3002, vals={0, 1},        label="Armament Selector - Left Outbd" },
+    -- Interval Switch | default_3_position_tumb | arg 340 | arg_lim={-1,1}
+    -- .06=arg=-1 / .10=arg=0 (center, default) / .14=arg=+1
+    -- Cold start: .10 (arg=0). val=0 → stay (default). val=-1 → .06. val=+1 → .14.
+    -- .10=stay (chance: 88%, default) / .06=-1 (chance: 6%) / .14=+1 (chance: 6%)
+    { dev=15, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="Interval Switch" },
 
-    -- Armament Position Selector — Left Inboard  (default_2_position_tumb2)  |  arg 348
-    { dev=15, cmd=3003, vals={0, 1},        label="Armament Selector - Left Inbd" },
+    -- Bombs Arm Switch | multiposition_switch, count=4, delta=0.2, min=0.2 | arg 341 | arg_lim={0.2,0.8}
+    -- SAFE=0.2 / TAIL=0.4 / NOSE&TAIL=0.6 / NOSE=0.8
+    -- Cold start: SAFE (arg=0.2, leftmost). val=0 → stay SAFE (default). val=+0.2 → TAIL.
+    -- SAFE=stay (chance: 88%, default) / TAIL=+0.2 (chance: 7%) / NOSE&TAIL=+0.4 (chance: 3%) / NOSE=+0.6 (chance: 2%)
+    { dev=15, cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.2, 0.4, 0.6},  label="Bombs Arm Switch" },
 
-    -- Armament Position Selector — Centerline  (default_2_position_tumb2)  |  arg 349
-    { dev=15, cmd=3004, vals={0, 1},        label="Armament Selector - Centerline" },
+    -- Guns/Missile/Camera Switch Cover | default_red_cover | arg 342 | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 90%, default) / OPEN=+1 (chance: 10%)
+    { dev=15, cmd=3010, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Guns/Missile/Camera Switch Cover" },
 
-    -- Armament Position Selector — Right Inboard  (default_2_position_tumb2)  |  arg 350
-    { dev=15, cmd=3005, vals={0, 1},        label="Armament Selector - Right Inbd" },
+    -- Guns/Missile/Camera Switch | default_3_position_tumb | arg 343 | arg_lim={-1,1}
+    -- GUNS MSL & CAMR=arg=-1 / OFF=arg=0 (center, default) / CAMR ONLY=arg=+1
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=-1 → GUNS. val=+1 → CAMR.
+    -- OFF=stay (chance: 88%, default) / GUNS=-1 (chance: 6%) / CAMR=+1 (chance: 6%)
+    { dev=15, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="Guns/Missile/Camera Switch" },
 
-    -- Armament Position Selector — Right Outboard  (default_2_position_tumb2)  |  arg 351
-    { dev=15, cmd=3006, vals={0, 1},        label="Armament Selector - Right Outbd" },
+    -- External Stores Selector | multiposition_switch, count=4, delta=0.1 | arg 344 | arg_lim={0,0.3}
+    -- RIPL=0 / BOMB=0.1 / SAFE=0.2 / RKT DISP=0.3
+    -- Cold start: SAFE (arg=0.2). val=0 → stay SAFE (default). val=-0.1 → BOMB. val=+0.1 → RKT DISP. val=-0.2 → RIPL.
+    -- SAFE=stay (chance: 88%, default) / BOMB=-0.1 (chance: 5%) / RKT DISP=+0.1 (chance: 3%) / RIPL=-0.2 (chance: 2%)
+    -- Note: val=+0.2 would exceed arg_lim and clamp to 0.3 (RKT DISP, 1 step).
+    { dev=15, cmd=3012, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -0.1, 0.1, -0.2},  label="External Stores Selector" },
 
-    -- Armament Position Selector — Right Wingtip  (default_2_position_tumb2)  |  arg 352
-    { dev=15, cmd=3007, vals={0, 1},        label="Armament Selector - Right Wingtip" },
-
-    -- Interval Switch  (default_3_position_tumb)  .06=-1 / .10=0 / .14=1  |  arg 340
-    { dev=15, cmd=3008, vals={-1, 0, 1},    label="Interval Switch" },
-
-    -- Bombs Arm Switch  (multiposition_switch, count=4, delta=0.2, min=0.2)
-    -- SAFE=0.2 / TAIL=0.4 / NOSE & TAIL=0.6 / NOSE=0.8  |  arg 341
-    { dev=15, cmd=3009, vals={0.2, 0.4, 0.6, 0.8},  label="Bombs Arm Switch" },
-
-    -- Guns, Missile and Camera Switch Cover  (default_red_cover)  CLOSED=0 / OPEN=1  |  arg 342
-    { dev=15, cmd=3010, vals={0, 1},        label="Guns/Missile/Camera Switch Cover" },
-
-    -- Guns, Missile and Camera Switch  (default_3_position_tumb)
-    -- GUNS MSL & CAMR=-1 / OFF=0 / CAMR ONLY=1  |  arg 343
-    { dev=15, cmd=3011, vals={-1, 0, 1},    label="Guns/Missile/Camera Switch" },
-
-    -- External Stores Selector  (multiposition_switch, count=4, delta=0.1)
-    -- RIPL=0 / BOMB=0.1 / SAFE=0.2 / RKT DISP=0.3  |  arg 344
-    { dev=15, cmd=3012, vals={0, 0.1, 0.2, 0.3},  label="External Stores Selector" },
-
-    -- Missile Volume Knob  (default_axis)  |  arg 345
+    -- Missile Volume Knob | default_axis, continuous | arg 345
+    -- Exempt: continuous axis, no fixed default position
     { dev=15, cmd=3015, vals={0, 0.25, 0.5, 0.75, 1},  label="Missile Volume Knob" },
 
     -- =========================================================================
     -- AHRS   dev=16  (AHRS)
     -- =========================================================================
 
-    -- Compass Switch  (default_button_tumb: BTN=FAST SLAVE momentary, TUMB=DIR GYRO/MAG)
-    -- TUMB side: DIR GYRO=1 / MAG=0  |  arg 220
-    { dev=16, cmd=3002, vals={0, 1},        label="Compass Switch" },
+    -- Compass Switch | default_button_tumb, TUMB side | arg 220 | arg_lim={0,1}
+    -- BTN side = FAST SLAVE (momentary) → excluded. TUMB side: DIR GYRO/MAG.
+    -- MAG/OFF. Cold start: MAG (arg=0). val=0 → stay MAG (default). val=+1 → DIR GYRO.
+    -- MAG=stay (chance: 88%, default) / DIR GYRO=+1 (chance: 12%)
+    { dev=16, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},  label="Compass Switch" },
 
-    -- Nav Mode Selector Switch  (default_2_position_tumb)  DF=0 / TACAN=0.1  |  arg 273
-    { dev=16, cmd=3004, vals={0, 0.1},      label="Nav Mode Selector Switch" },
+    -- Nav Mode Selector Switch | default_2_position_tumb | arg 273 | arg_lim={0,1}
+    -- DF=0 / TACAN=1. Cold start: DF (arg=0). val=0 → stay DF (default). val=+1 → TACAN.
+    -- DF=stay (chance: 88%, default) / TACAN=+1 (chance: 12%)
+    { dev=16, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},  label="Nav Mode Selector Switch" },
 
     -- =========================================================================
     -- AN/APQ-159 RADAR   dev=17  (AN_APQ159)
     -- =========================================================================
 
-    -- Radar Range Selector  (multiposition_switch, count=4, delta=0.1)
-    -- 5nm=0 / 10nm=0.1 / 20nm=0.2 / 40nm=0.3  |  arg 315
+    -- Radar Range Selector | multiposition_switch, count=4, delta=0.1 | arg 315 | arg_lim={0,0.3}
+    -- 5nm=0 / 10nm=0.1 / 20nm=0.2 / 40nm=0.3
+    -- Exempt: no operationally fixed cold-start default — uniform sampling
     { dev=17, cmd=3003, vals={0, 0.1, 0.2, 0.3},  label="Radar Range Selector" },
 
-    -- Radar Mode Selector  (multiposition_switch, count=4, delta=0.1)
-    -- OFF=0 / STBY=0.1 / OPER=0.2 / TEST=0.3  |  arg 316
-    { dev=17, cmd=3004, vals={0, 0.1, 0.2, 0.3},  label="Radar Mode Selector" },
+    -- Radar Mode Selector | multiposition_switch, count=4, delta=0.1 | arg 316 | arg_lim={0,0.3}
+    -- OFF=0 / STBY=0.1 / OPER=0.2 / TEST=0.3
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+0.1 → STBY.
+    -- OFF=stay (chance: 88%, default) / STBY=+0.1 (chance: 7%) / OPER=+0.2 (chance: 4%) / TEST=+0.3 (chance: 1%)
+    { dev=17, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.3},  label="Radar Mode Selector" },
 
-    -- Radar Bright Knob  (default_axis)  |  arg 70
+    -- Continuous radar knobs — exempt
     { dev=17, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1},  label="Radar Bright Knob" },
-
-    -- Radar Persistence Knob  (default_axis)  |  arg 69
     { dev=17, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1},  label="Radar Persistence Knob" },
-
-    -- Radar Video Knob  (default_axis)  |  arg 68
     { dev=17, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1},  label="Radar Video Knob" },
 
     -- =========================================================================
     -- AN/ASG-31 SIGHT   dev=18  (AN_ASG31)
     -- =========================================================================
 
-    -- Sight Mode Selector  (multiposition_switch, count=5, delta=0.1)
-    -- OFF=0 / MSL=0.1 / A/A1 GUNS=0.2 / A/A2 GUNS=0.3 / MAN=0.4  |  arg 40
-    { dev=18, cmd=3001, vals={0, 0.1, 0.2, 0.3, 0.4},  label="Sight Mode Selector" },
+    -- Sight Mode Selector | multiposition_switch, count=5, delta=0.1 | arg 40 | arg_lim={0,0.4}
+    -- OFF=0 / MSL=0.1 / A/A1 GUNS=0.2 / A/A2 GUNS=0.3 / MAN=0.4
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+0.1 → MSL.
+    -- OFF=stay (chance: 88%, default) / MSL=+0.1 (chance: 6%) / A/A1=+0.2 (chance: 3%) / others ~1-2%
+    { dev=18, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.3, 0.4},  label="Sight Mode Selector" },
 
-    -- Reticle Intensity Knob  (default_axis)  |  arg 41
+    -- Reticle Intensity Knob | default_axis, continuous | arg 41
+    -- Exempt: continuous axis, no fixed default position
     { dev=18, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1},  label="Reticle Intensity Knob" },
 
-    -- Sight BIT Switch  (default_3_position_tumb)  BIT 1=-1 / OFF=0 / BIT 2=1  |  arg 47
-    { dev=18, cmd=3004, vals={-1, 0, 1},    label="Sight BIT Switch" },
+    -- Sight BIT Switch | default_3_position_tumb | arg 47 | arg_lim={-1,1}
+    -- BIT 1=arg=-1 / OFF=arg=0 (center, default) / BIT 2=arg=+1
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=-1 → BIT 1. val=+1 → BIT 2.
+    -- OFF=stay (chance: 88%, default) / BIT 1=-1 (chance: 6%) / BIT 2=+1 (chance: 6%)
+    { dev=18, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="Sight BIT Switch" },
 
     -- =========================================================================
     -- RWR INDICATOR CONTROL   dev=19  (RWR_IC)
     -- =========================================================================
 
-    -- RWR ALTITUDE Button  (default_CB_button: latching ON/OFF)  |  arg 561
-    { dev=19, cmd=3004, vals={0, 1},        label="RWR Altitude Button" },
+    -- RWR ALTITUDE Button | default_CB_button, latching | arg 561 | arg_lim={0,1}
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+1 → ON.
+    -- OFF=stay (chance: 88%, default) / ON=+1 (chance: 12%)
+    { dev=19, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},  label="RWR Altitude Button" },
 
-    -- RWR POWER Button  (default_CB_button: latching ON/OFF)  |  arg 575
-    { dev=19, cmd=3008, vals={0, 1},        label="RWR Power Button" },
+    -- RWR POWER Button | default_CB_button, latching | arg 575 | arg_lim={0,1}
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+1 → ON.
+    -- OFF=stay (chance: 88%, default) / ON=+1 (chance: 12%)
+    { dev=19, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},  label="RWR Power Button" },
 
-    -- RWR Audio Knob  (default_axis_limited)  |  arg 577
+    -- Continuous RWR knobs — exempt
     { dev=19, cmd=3012, vals={0, 0.25, 0.5, 0.75, 1},  label="RWR Audio Knob" },
-
-    -- RWR DIM Knob  (default_axis_limited)  |  arg 578
     { dev=19, cmd=3011, vals={0, 0.25, 0.5, 0.75, 1},  label="RWR DIM Knob" },
 
     -- =========================================================================
     -- AN/ALR-87 RWR   dev=20  (AN_ALR87)
     -- =========================================================================
 
-    -- RWR INT Knob  (default_axis_limited, {0.15, 0.85})  |  arg 140
+    -- RWR INT Knob | default_axis_limited, continuous | arg 140
+    -- Exempt: continuous axis, no fixed default position
     { dev=20, cmd=3001, vals={0.15, 0.35, 0.55, 0.75, 0.85},  label="RWR INT Knob" },
 
     -- =========================================================================
     -- IFF   dev=22  (IFF)
     -- =========================================================================
 
-    -- IFF MASTER Control Selector  (multiposition: EMER/NORM/LOW/STBY/OFF)
-    -- OFF=0 / STBY=0.1 / LOW=0.2 / NORM=0.3 / EMER=0.4  |  arg 200
-    { dev=22, cmd=3008, vals={0, 0.1, 0.2, 0.3, 0.4},  label="IFF Master Control Selector" },
+    -- IFF MASTER Control Selector | multiposition, count=5, delta=0.1 | arg 200 | arg_lim={0,0.4}
+    -- OFF=0 / STBY=0.1 / LOW=0.2 / NORM=0.3 / EMER=0.4
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+0.1 → STBY.
+    -- OFF=stay (chance: 88%, default) / STBY=+0.1 (chance: 7%) / NORM=+0.3 (chance: 3%) / others ~1%
+    { dev=22, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.3, 0.2, 0.4},  label="IFF Master Control Selector" },
 
-    -- IFF MODE 4 Monitor Control Switch  (default_3_position_tumb2)
-    -- AUDIO=-1 / OUT=0 / LIGHT=1  |  arg 201
-    { dev=22, cmd=3009, vals={-1, 0, 1},    label="IFF MODE 4 Monitor Switch" },
+    -- IFF MODE 4 Monitor Switch | default_3_position_tumb2 | arg 201 | arg_lim={-1,1}
+    -- AUDIO=arg=-1 / OUT=arg=0 (center, default) / LIGHT=arg=+1
+    -- Cold start: OUT (arg=0). val=0 → stay OUT (default). val=-1 → AUDIO. val=+1 → LIGHT.
+    -- OUT=stay (chance: 88%, default) / AUDIO=-1 (chance: 6%) / LIGHT=+1 (chance: 6%)
+    { dev=22, cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="IFF MODE 4 Monitor Switch" },
 
-    -- IFF MODE 4 Control Switch  (default_2_position_tumb)  ON=0 / OUT=1  |  arg 208
-    { dev=22, cmd=3016, vals={0, 1},        label="IFF MODE 4 Control Switch" },
+    -- IFF MODE 4 Control Switch | default_2_position_tumb | arg 208 | arg_lim={0,1}
+    -- ON/OUT. Cold start: OUT (arg=1). val=0 → stay OUT (default). val=-1 → ON.
+    -- OUT=stay (chance: 90%, default) / ON=-1 (chance: 10%)
+    { dev=22, cmd=3016, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="IFF MODE 4 Control Switch" },
 
-    -- IFF MODE 1 Code Selector Wheel 1  (multiposition_switch3, count=8, delta=0.1)  |  arg 209
+    -- IFF Code Wheels — exempt: no operationally fixed default (mission-dependent)
     { dev=22, cmd=3001, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7},  label="IFF MODE 1 Code Wheel 1" },
-
-    -- IFF MODE 1 Code Selector Wheel 2  (multiposition_switch3, count=4, delta=0.1)  |  arg 210
-    { dev=22, cmd=3002, vals={0, 0.1, 0.2, 0.3},  label="IFF MODE 1 Code Wheel 2" },
-
-    -- IFF MODE 3/A Code Selector Wheel 1  (multiposition_switch3, count=8, delta=0.1)  |  arg 211
+    { dev=22, cmd=3002, vals={0, 0.1, 0.2, 0.3},                       label="IFF MODE 1 Code Wheel 2" },
     { dev=22, cmd=3003, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7},  label="IFF MODE 3/A Code Wheel 1" },
-
-    -- IFF MODE 3/A Code Selector Wheel 2  (multiposition_switch3, count=8, delta=0.1)  |  arg 212
     { dev=22, cmd=3004, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7},  label="IFF MODE 3/A Code Wheel 2" },
-
-    -- IFF MODE 3/A Code Selector Wheel 3  (multiposition_switch3, count=8, delta=0.1)  |  arg 213
     { dev=22, cmd=3005, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7},  label="IFF MODE 3/A Code Wheel 3" },
-
-    -- IFF MODE 3/A Code Selector Wheel 4  (multiposition_switch3, count=8, delta=0.1)  |  arg 214
     { dev=22, cmd=3006, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7},  label="IFF MODE 3/A Code Wheel 4" },
 
     -- =========================================================================
     -- UHF RADIO AN/ARC-164   dev=23  (UHF_RADIO)
     -- =========================================================================
 
-    -- UHF Frequency Mode Selector  (multiposition_switch, count=3, delta=0.1)
-    -- MANUAL=0 / PRESET=0.1 / GUARD=0.2  |  arg 307
-    { dev=23, cmd=3007, vals={0, 0.1, 0.2},  label="UHF Frequency Mode Selector" },
+    -- UHF Frequency Mode Selector | multiposition_switch, count=3, delta=0.1 | arg 307 | arg_lim={0,0.2}
+    -- MANUAL=0 / PRESET=0.1 / GUARD=0.2
+    -- Cold start: PRESET (arg=0.1). val=0 → stay PRESET (default). val=-0.1 → MANUAL. val=+0.1 → GUARD.
+    -- PRESET=stay (chance: 88%, default) / MANUAL=-0.1 (chance: 8%) / GUARD=+0.1 (chance: 4%)
+    { dev=23, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -0.1, 0.1, 0.1},  label="UHF Frequency Mode Selector" },
 
-    -- UHF Function Selector  (multiposition_switch, count=4, delta=0.1)
-    -- OFF=0 / MAIN=0.1 / BOTH=0.2 / ADF=0.3  |  arg 311
-    { dev=23, cmd=3008, vals={0, 0.1, 0.2, 0.3},  label="UHF Function Selector" },
+    -- UHF Function Selector | multiposition_switch, count=4, delta=0.1 | arg 311 | arg_lim={0,0.3}
+    -- OFF=0 / MAIN=0.1 / BOTH=0.2 / ADF=0.3
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+0.1 → MAIN.
+    -- OFF=stay (chance: 88%, default) / MAIN=+0.1 (chance: 7%) / BOTH=+0.2 (chance: 3%) / ADF=+0.3 (chance: 2%)
+    { dev=23, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.3},  label="UHF Function Selector" },
 
-    -- UHF Squelch Switch  (default_2_position_tumb)  ON=0 / OFF=1  |  arg 308
-    { dev=23, cmd=3010, vals={0, 1},        label="UHF Squelch Switch" },
+    -- UHF Squelch Switch | default_2_position_tumb | arg 308 | arg_lim={0,1}
+    -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
+    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
+    { dev=23, cmd=3010, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="UHF Squelch Switch" },
 
-    -- UHF Volume Knob  (default_axis)  |  arg 309
+    -- UHF Volume Knob | default_axis, continuous | arg 309
+    -- Exempt: continuous axis, no fixed default position
     { dev=23, cmd=3011, vals={0, 0.25, 0.5, 0.75, 1},  label="UHF Volume Knob" },
 
-    -- UHF Antenna Selector  (multiposition_switch, count=3, delta=0.5)
-    -- UPPER=0 / AUTO=0.5 / LOWER=1  |  arg 336
-    { dev=23, cmd=3016, vals={0, 0.5, 1},   label="UHF Antenna Selector" },
+    -- UHF Antenna Selector | multiposition_switch, count=3, delta=0.5 | arg 336 | arg_lim={0,1}
+    -- UPPER=0 / AUTO=0.5 (center, default) / LOWER=1.0
+    -- Cold start: AUTO (arg=0.5). val=0 → stay AUTO (default). val=-0.5 → UPPER. val=+0.5 → LOWER.
+    -- AUTO=stay (chance: 88%, default) / UPPER=-0.5 (chance: 6%) / LOWER=+0.5 (chance: 6%)
+    { dev=23, cmd=3016, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.5, 0.5},  label="UHF Antenna Selector" },
 
     -- =========================================================================
     -- TACAN   dev=41  (TACAN_CTRL_PANEL)
     -- =========================================================================
 
-    -- TACAN Mode Selector  (multiposition_switch, count=5, delta=0.1)
-    -- positions 0..0.4  |  arg 262
-    { dev=41, cmd=3006, vals={0, 0.1, 0.2, 0.3, 0.4},  label="TACAN Mode Selector" },
+    -- TACAN Mode Selector | multiposition_switch, count=5, delta=0.1 | arg 262 | arg_lim={0,0.4}
+    -- OFF=0 / REC=0.1 / T/R=0.2 / A/A=0.3 / BCN=0.4
+    -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+0.1 → REC.
+    -- OFF=stay (chance: 88%, default) / REC=+0.1 (chance: 6%) / T/R=+0.2 (chance: 3%) / others ~1-2%
+    { dev=41, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.3, 0.4},  label="TACAN Mode Selector" },
 
-    -- TACAN Signal Volume Knob  (default_axis_limited, {0,1})  |  arg 261
+    -- TACAN Signal Volume Knob | default_axis_limited, continuous | arg 261
+    -- Exempt: continuous knob, no fixed default position
     { dev=41, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1},  label="TACAN Volume Knob" },
 
     -- =========================================================================
     -- SIGHT CAMERA   dev=21  (SIGHT_CAMERA)
     -- =========================================================================
 
-    -- Sight Camera FPS Select Switch  (default_2_position_tumb)  24fps=0 / 48fps=1  |  arg 80
-    { dev=21, cmd=3001, vals={0, 1},        label="Sight Camera FPS Switch" },
+    -- Sight Camera FPS Select Switch | default_2_position_tumb | arg 80 | arg_lim={0,1}
+    -- 24fps/48fps. Cold start: 24fps (arg=0). val=0 → stay 24fps (default). val=+1 → 48fps.
+    -- 24fps=stay (chance: 88%, default) / 48fps=+1 (chance: 12%)
+    { dev=21, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},  label="Sight Camera FPS Switch" },
 
-    -- Sight Camera Overrun Selector  (multiposition_switch, count=4, delta=0.1, inversed)
-    -- 0=0.3 / 3=0.2 / 10=0.1 / 20=0  |  arg 84
-    { dev=21, cmd=3003, vals={0, 0.1, 0.2, 0.3},  label="Sight Camera Overrun Selector" },
+    -- Sight Camera Overrun Selector | multiposition_switch, count=4, delta=0.1, inversed_=true | arg 84
+    -- inversed: arg_value={+0.1,-0.1}. arg_lim={0,0.3}. leftmost visual = rightmost arg.
+    -- 0s=arg=0.3 / 3s=arg=0.2 / 10s=arg=0.1 / 20s=arg=0
+    -- Cold start: 0s (arg=0.3). val=0 → stay 0s (default). val=-0.1 → 3s. val=-0.2 → 10s. val=-0.3 → 20s.
+    -- 0s=stay (chance: 88%, default) / 3s=-0.1 (chance: 6%) / 10s=-0.2 (chance: 4%) / 20s=-0.3 (chance: 2%)
+    { dev=21, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -0.1, -0.2, -0.3},  label="Sight Camera Overrun Selector" },
 
 }, 3.0)
