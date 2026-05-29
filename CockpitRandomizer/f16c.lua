@@ -227,49 +227,73 @@ CR.register("F-16C_50", {
     -- SMS   dev=22  (SMS)
     -- =========================================================================
 
-    -- LEFT HDPT Switch (default_2_position_tumb)  ON=0 / OFF=1  |  arg 670
-    { dev=22, cmd=3001, vals={0, 1},                        label="LEFT HDPT Switch" },
+    -- LEFT HDPT Switch (default_2_position_tumb)  
+    -- ON=0 / OFF=1  |  arg 670
+    -- Randomization weights: ON=20%, OFF=80% (Default)
+    { dev=22, cmd=3001, vals={0, 1, 1, 1, 1},                        label="LEFT HDPT Switch" },
 
-    -- RIGHT HDPT Switch (default_2_position_tumb)  ON=0 / OFF=1  |  arg 671
-    { dev=22, cmd=3002, vals={0, 1},                        label="RIGHT HDPT Switch" },
+    -- RIGHT HDPT Switch (default_2_position_tumb)  
+    -- ON=0 / OFF=1  |  arg 671
+    -- Randomization weights: ON=20%, OFF=80% (Default)
+    { dev=22, cmd=3002, vals={0, 1, 1, 1},                        label="RIGHT HDPT Switch" },
 
-    -- ST STA Switch (default_2_position_tumb)  ST STA=0 / OFF=1  |  arg 716
-    { dev=22, cmd=3003, vals={0, 1},                        label="ST STA Switch" },
+    -- ST STA Switch (default_2_position_tumb)  
+    --ST STA=0 / OFF=1  |  arg 716
+    -- Randomization weights: ST STA=20%, OFF=80% (Default)
+    { dev=22, cmd=3003, vals={0, 1, 1, 1},                        label="ST STA Switch" },
 
-    -- LASER ARM Switch (default_2_position_tumb)  ARM=0 / OFF=1  |  arg 103
-    { dev=22, cmd=3004, vals={0, 1},                        label="LASER ARM Switch" },
+    -- LASER ARM Switch (default_2_position_tumb)  
+    --ARM=0 / OFF=1  |  arg 103
+    -- Randomization weights: ARM=20%, OFF=80% (Default)
+    { dev=22, cmd=3004, vals={0, 1, 1, 1},                        label="LASER ARM Switch" },
 
     -- =========================================================================
     -- FCR   dev=31  (FCR)
     -- =========================================================================
 
-    -- FCR Switch (default_2_position_tumb)  FCR=0 / OFF=1  |  arg 672
-    { dev=31, cmd=3001, vals={0, 1},                        label="FCR Switch" },
+    -- FCR Switch (default_2_position_tumb)  
+    -- FCR=0 / OFF=1  |  arg 672
+    -- Randomization weights: FCR=20%, OFF=80% (Default)
+    { dev=31, cmd=3001, vals={0, 1, 1, 1}},                        label="FCR Switch" },
 
     -- =========================================================================
     -- CMDS   dev=32  (CMDS)
     -- =========================================================================
 
-    -- Jammer Source Switch (default_2_position_tumb_small)  ON=0 / OFF=1  |  arg 374
-    { dev=32, cmd=3001, vals={0, 1},                        label="Jammer Source Switch" },
+    -- Jammer Source Switch (default_2_position_tumb_small)  
+    -- ON=0 / OFF=1  |  arg 374
+    -- Randomization weights: ON=25%, OFF=75% (Default)
+    { dev=32, cmd=3001, vals={0, 1, 1, 1},                        label="Jammer Source Switch" },
 
-    -- RWR 555 Switch (default_2_position_tumb_small)  ON=0 / OFF=1  |  arg 375
-    { dev=32, cmd=3002, vals={0, 1},                        label="RWR 555 Switch" },
+    -- RWR 555 Switch (default_2_position_tumb_small)  
+    -- ON=0 / OFF=1  |  arg 375
+    -- Randomization weights: ON=25%, OFF=75% (Default)
+    { dev=32, cmd=3002, vals={0, 1, 1, 1},                        label="RWR 555 Switch" },
 
-    -- MWS Source Switch (default_2_position_tumb_small)  ON=0 / OFF=1  |  arg 373
-    { dev=32, cmd=3003, vals={0, 1},                        label="MWS Source Switch" },
+    -- MWS Source Switch (default_2_position_tumb_small)  
+    --ON=0 / OFF=1  |  arg 373
+    -- Randomization weights: ON=25%, OFF=75% (Default)
+    { dev=32, cmd=3003, vals={0, 1, 1, 1},                        label="MWS Source Switch" },
 
-    -- O1 Expendable Category Switch (default_2_position_tumb_small)  ON=0 / OFF=1  |  arg 365
-    { dev=32, cmd=3004, vals={0, 1},                        label="O1 Expandable Category Switch" },
+    -- O1 Expendable Category Switch (default_2_position_tumb_small)  
+    --ON=0 / OFF=1  |  arg 365
+    -- Randomization weights: ON=25%, OFF=75% (Default)
+    { dev=32, cmd=3004, vals={0, 1, 1, 1},                        label="O1 Expandable Category Switch" },
 
-    -- O2 Expendable Category Switch (default_2_position_tumb_small)  ON=0 / OFF=1  |  arg 366
-    { dev=32, cmd=3005, vals={0, 1},                        label="O2 Expandable Category Switch" },
+    -- O2 Expendable Category Switch (default_2_position_tumb_small)  
+    -- ON=0 / OFF=1  |  arg 366
+    -- Randomization weights: ON=25%, OFF=75% (Default)
+    { dev=32, cmd=3005, vals={0, 1, 1, 1},                        label="O2 Expandable Category Switch" },
 
-    -- CH Expendable Category Switch (default_2_position_tumb_small)  ON=0 / OFF=1  |  arg 367
-    { dev=32, cmd=3006, vals={0, 1},                        label="CH Expandable Category Switch" },
+    -- CH Expendable Category Switch (default_2_position_tumb_small)  
+    -- ON=0 / OFF=1  |  arg 367
+    -- Randomization weights: ON=25%, OFF=75% (Default)
+    { dev=32, cmd=3006, vals={0, 1, 1, 1},                        label="CH Expandable Category Switch" },
 
-    -- FL Expendable Category Switch (default_2_position_tumb_small)  ON=0 / OFF=1  |  arg 368
-    { dev=32, cmd=3007, vals={0, 1},                        label="FL Expandable Category Switch" },
+    -- FL Expendable Category Switch (default_2_position_tumb_small)  
+    -- ON=0 / OFF=1  |  arg 368
+    -- Randomization weights: ON=25%, OFF=75% (Default)
+    { dev=32, cmd=3007, vals={0, 1, 1, 1},                        label="FL Expandable Category Switch" },
 
     -- PROGRAM Knob (multiposition_switch, count=5, delta=0.1)
     -- BIT=0 / 1=0.1 / 2=0.2 / 3=0.3 / 4=0.4  |  arg 377
@@ -277,7 +301,8 @@ CR.register("F-16C_50", {
 
     -- MODE Knob (multiposition_switch, count=6, delta=0.1)
     -- OFF=0 / STBY=0.1 / MAN=0.2 / SEMI=0.3 / AUTO=0.4 / BYP=0.5  |  arg 378
-    { dev=32, cmd=3009, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5}, label="MODE Knob" },
+    -- Randomization weights: OFF=40%, STBY=20% (Default), MAN=10%, SEMI=10%, AUTO=10%, BYP=10%
+    { dev=32, cmd=3009, vals={0, 0, 0, 0, 0.1, 0.1, 0.2, 0.3, 0.4, 0.5}, label="MODE Knob" },
 
     -- =========================================================================
     -- HMCS   dev=30  (HMCS)
@@ -292,11 +317,13 @@ CR.register("F-16C_50", {
 
     -- IFF MASTER Knob (multiposition_switch, count=5, delta=0.1)
     -- OFF=0 / STBY=0.1 / LOW=0.2 / NORM=0.3 / EMER=0.4  |  arg 539
-    { dev=35, cmd=3001, vals={0, 0.1, 0.2, 0.3, 0.4},      label="IFF Master Knob" },
+    -- Randomization weights: OFF=40% (Default), STBY=30%, LOW=10%, NORM=10%, EMER=10%
+    { dev=35, cmd=3001, vals={0, 0, 0, 0, 0.1, 0.1, 0.1, 0.2, 0.3, 0.4},      label="IFF Master Knob" },
 
     -- C & I Knob (multiposition_switch, count=2, delta=1)
     -- UFC=0 / BACKUP=1  |  arg 542
-    { dev=35, cmd=3005, vals={0, 1},                        label="C & I Knob" },
+    -- Randomization weights: UFC=75% (Default), BACKUP=25%
+    { dev=35, cmd=3005, vals={0, 0, 0, 1},                        label="C & I Knob" },
 
     -- =========================================================================
     -- INTERCOM   dev=39  (INTERCOM)
@@ -314,27 +341,31 @@ CR.register("F-16C_50", {
 
     -- MIDS LVT Knob (multiposition_switch, count=3, delta=0.1)
     -- ZERO=0 / OFF=0.1 / ON=0.2  |  arg 723
-    { dev=41, cmd=3001, vals={0, 0.1, 0.2},                 label="MIDS LVT Knob" },
+    -- Randomization weights: ZERO=10%, OFF=70% (Default), ON=20%
+    { dev=41, cmd=3001, vals={0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2},                 label="MIDS LVT Knob" },
 
     -- =========================================================================
     -- GPS   dev=59  (GPS)
     -- =========================================================================
 
-    -- GPS Switch (default_2_position_tumb)  GPS=0 / OFF=1  |  arg 720
-    { dev=59, cmd=3001, vals={0, 1},                        label="GPS Switch" },
+    -- GPS Switch (default_2_position_tumb)  
+    -- GPS=0 / OFF=1  |  arg 720
+    { dev=59, cmd=3001, vals={0, 1, 1, 1},                        label="GPS Switch" },
 
     -- =========================================================================
     -- IDM   dev=60  (IDM)
     -- =========================================================================
 
-    -- DL Switch (default_2_position_tumb)  DL=0 / OFF=1  |  arg 721
-    { dev=60, cmd=3001, vals={0, 1},                        label="DL Switch" },
+    -- DL Switch (default_2_position_tumb)  
+    -- DL=0 / OFF=1  |  arg 721
+    { dev=60, cmd=3001, vals={0, 1, 1, 1},                        label="DL Switch" },
 
     -- =========================================================================
     -- MAP   dev=61  (MAP)
     -- =========================================================================
 
-    -- MAP Switch (default_2_position_tumb)  MAP=0 / OFF=1  |  arg 722
-    { dev=61, cmd=3001, vals={0, 1},                        label="MAP Switch" },
+    -- MAP Switch (default_2_position_tumb)  
+    -- MAP=0 / OFF=1  |  arg 722
+    { dev=61, cmd=3001, vals={0, 1, 1, 1},                        label="MAP Switch" },
 
 }, 3.0)
