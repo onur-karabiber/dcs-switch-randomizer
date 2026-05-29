@@ -122,7 +122,7 @@ CR.register("F-16C_50", {
 
     -- LANDING TAXI LIGHTS Switch (default_3_position_tumb_small)
     -- LANDING=-1 / OFF=0 / TAXI=1  |  arg 360
-    -- Randomization weights: LANDING=10%, OFF=50% (Default), TAXI=30%
+    -- Randomization weights: LANDING=10%, OFF=50% (Default), TAXI=40%
     { dev=11, cmd=3006, vals={-1, 0, 0, 0, 0, 0, 1, 1, 1, 1},                    label="LANDING TAXI LIGHTS Switch" },
 
     -- =========================================================================
@@ -254,7 +254,7 @@ CR.register("F-16C_50", {
     -- FCR Switch (default_2_position_tumb)  
     -- FCR=0 / OFF=1  |  arg 672
     -- Randomization weights: FCR=20%, OFF=80% (Default)
-    { dev=31, cmd=3001, vals={0, 1, 1, 1}},                        label="FCR Switch" },
+    { dev=31, cmd=3001, vals={0, 1, 1, 1},                        label="FCR Switch" },
 
     -- =========================================================================
     -- CMDS   dev=32  (CMDS)
