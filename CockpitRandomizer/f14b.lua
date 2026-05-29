@@ -114,6 +114,40 @@ CR.register("F-14B", {
     { dev=22, cmd=3037, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1},  label="Autopilot - Vector / Automatic Carrier Landing" },
 
     -- -------------------------------------------------------------------------
+    -- COVERS (default CLOSED)
+    -- -------------------------------------------------------------------------
+
+    -- Asymmetric Thrust Limiter Cover | default_2_position_tumb | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 85%, default) / OPEN=+1 (chance: 15%)
+    { dev=20, cmd=3062, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Asymmetric Thrust Limiter Cover" },
+
+    -- Emergency Generator Switch Cover | default_flipcover | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 85%, default) / OPEN=+1 (chance: 15%)
+    { dev=16, cmd=3012, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Emergency Generator Switch Cover" },
+
+    -- Inboard Spoiler Override Cover | default_2_position_tumb | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 85%, default) / OPEN=+1 (chance: 15%)
+    { dev=16, cmd=3018, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Inboard Spoiler Override Cover" },
+
+    -- Outboard Spoiler Override Cover | default_2_position_tumb | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 85%, default) / OPEN=+1 (chance: 15%)
+    { dev=16, cmd=3019, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Outboard Spoiler Override Cover" },
+
+    -- ACM Cover | default_animated_lever | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 85%, default) / OPEN=+1 (chance: 15%)
+    { dev=55, cmd=3144, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="ACM Cover" },
+
+    -- Hydraulic Emergency Flight Control Switch Cover | default_flipcover | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
+    -- CLOSED=stay (chance: 85%, default) / OPEN=+1 (chance: 15%)
+    { dev=13, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Hydraulic Emergency Flight Control Switch Cover" },
+
+    -- -------------------------------------------------------------------------
     -- ENGINE   dev=20 (ENGINE)
     -- -------------------------------------------------------------------------
 
@@ -271,9 +305,14 @@ CR.register("F-14B", {
     { dev=12, cmd=3180, vals={0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0},  label="Console Light Intensity" },
     { dev=12, cmd=3181, vals={0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0},  label="Formation Light Intensity" },
 
-    -- Temperature | continuous 9-position knob
-    -- Exempt: continuous knob, no fixed default position
-    { dev=12, cmd=3651, vals={0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0},  label="Temperature" },
+-- Temperature (9 equal positions)
+{
+    dev=12,
+    cmd=3651,
+    steps={-4,-3,-2,-1,0,1,2,3,4},
+    step_size=0.125,
+    label="Temperature"
+},
 
     -- -------------------------------------------------------------------------
     -- HYDRAULICS   dev=13 (HYDRAULICS)
