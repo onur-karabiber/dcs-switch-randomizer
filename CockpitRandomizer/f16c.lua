@@ -24,50 +24,67 @@ CR.register("F-16C_50", {
     -- PROBE HEAT Switch (default_button_tumb)
     -- BTN side = TEST (momentary) → excluded
     -- TUMB side: OFF=0, PROBE HEAT=1  |  arg 578
-    { dev=3,  cmd=3002, vals={0, 1},                        label="PROBE HEAT Switch" },
+    -- Randomization weights: OFF=75% (Default), PROBE HEAT=25%
+    { dev=3,  cmd=3002, vals={0, 0, 0, 1},                        label="PROBE HEAT Switch" },
 
     -- FLCS PWR TEST Switch (default_tumb_button)
     -- BTN side = TEST (momentary) → excluded
     -- TUMB side: MAINT=-1, NORM=0  |  arg 585
-    { dev=3,  cmd=3003, vals={-1, 0},                       label="FLCS POWER Switch" },
+    -- Randomization weights: MAINT=10% , NORM=90% (Default)
+    { dev=3,  cmd=3003, vals={-1, 0, 0, 0, 0, 0, 0, 0, 0, 0},                       label="FLCS POWER Switch" },
 
     -- =========================================================================
     -- FLIGHT CONTROL PANEL   dev=2  (CONTROL_INTERFACE)
     -- =========================================================================
 
-    -- MANUAL TF FLYUP Switch (default_2_position_tumb)  ENABLE=0 / DISABLE=1  |  arg 568
-    { dev=2,  cmd=3029, vals={0, 1},                        label="MANUAL TF FLYUP Switch" },
+    -- MANUAL TF FLYUP Switch (default_2_position_tumb)  
+    -- ENABLE=0 / DISABLE=1 |  arg 568
+    -- Randomization weights: ENABLE=20% , DISABLE=80% (Default)
+    { dev=2,  cmd=3029, vals={0, 1, 1, 1, 1},                        label="MANUAL TF FLYUP Switch" },
 
-    -- DIGITAL BACKUP Switch (default_2_position_tumb)  OFF=0 / BACKUP=1  |  arg 566
-    { dev=2,  cmd=3027, vals={0, 1},                        label="DIGITAL BACKUP Switch" },
+    -- DIGITAL BACKUP Switch (default_2_position_tumb)  
+    -- OFF=0 / BACKUP=1  |  arg 566
+    -- Randomization weights: BACKUP=20% , OFF=80% (Default)
+    { dev=2,  cmd=3027, vals={0, 0, 0, 0, 1},                        label="DIGITAL BACKUP Switch" },
 
-    -- ALT FLAPS Switch (default_2_position_tumb)  NORM=0 / EXTEND=1  |  arg 567
-    { dev=2,  cmd=3028, vals={0, 1},                        label="ALT FLAPS Switch" },
+    -- ALT FLAPS Switch (default_2_position_tumb)
+    -- NORM=0 / EXTEND=1  |  arg 567
+    -- Randomization weights: EXTEND=5%, NORM=95% (Default)
+    { dev=2,  cmd=3028, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},                        label="ALT FLAPS Switch" },
 
     -- Autopilot ROLL Switch (default_3_position_tumb_small)
     -- STRG SEL=-1 / ATT HOLD=0 / HDG SEL=1  |  arg 108
-    { dev=2,  cmd=3006, vals={-1, 0, 1},                    label="Autopilot Roll Switch" },
+    -- Randomization weights: STRG SEL=20%, ATT HOLD=60% (Default), HDG SEL=20%
+    { dev=2,  cmd=3006, vals={-1, 0, 0, 0,1},                    label="Autopilot Roll Switch" },
 
-    -- STORES CONFIG Switch (default_2_position_tumb_small)  CAT III=0 / CAT I=1  |  arg 358
+    -- STORES CONFIG Switch (default_2_position_tumb_small)  
+    -- CAT III=0 / CAT I=1  |  arg 358
+    -- Randomization weights: CAT III=50%, CAT I=50%
     { dev=2,  cmd=3011, vals={0, 1},                        label="STORES CONFIG Switch" },
 
     -- =========================================================================
     -- FUEL SYSTEM   dev=4  (FUEL_INTERFACE)
     -- =========================================================================
 
-    -- FUEL MASTER Switch Cover (default_red_cover)  CLOSE=0 / OPEN=1  |  arg 558
-    { dev=4,  cmd=3002, vals={0, 1},                        label="Fuel Master Switch Cover" },
+    -- FUEL MASTER Switch Cover (default_red_cover)  
+    -- CLOSE=0 / OPEN=1  |  arg 558
+    -- Randomization weights: CLOSE=5% (Default), OPEN=95%
+    { dev=4,  cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},                        label="Fuel Master Switch Cover" },
 
     -- ENGINE FEED Knob (multiposition_switch, count=4, delta=0.1)
     -- OFF=0 / NORM=0.1 / AFT=0.2 / FWD=0.3  |  arg 556
-    { dev=4,  cmd=3001, vals={0, 0.1, 0.2, 0.3},           label="Engine Feed Knob" },
+    -- Randomization weights: OFF=50% (Default), NORM=30%, AFT=10%, FWD=10%
+    { dev=4,  cmd=3001, vals={0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.2, 0.3},           label="Engine Feed Knob" },
 
     -- FUEL QTY SEL Knob (custom multiposition, TEST momentary excluded)
     -- NORM=0.1 / RSVR=0.2 / INT WING=0.3 / EXT WING=0.4 / EXT CTR=0.5  |  arg 158
-    { dev=4,  cmd=3004, vals={0.1, 0.2, 0.3, 0.4, 0.5},    label="FUEL QTY SEL Knob" },
+    -- Randomization weights: NORM=60% (Default), RSVR=10%, INT WING=10%, EXT WING=10%, EXT CTR=10%
+    { dev=4,  cmd=3004, vals={0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.3, 0.4, 0.5},    label="FUEL QTY SEL Knob" },
 
-    -- AIR REFUEL Switch (default_2_position_tumb)  CLOSE=0 / OPEN=1  |  arg 555
-    { dev=4,  cmd=3005, vals={0, 1},                        label="AIR REFUELING Switch" },
+    -- AIR REFUEL Switch (default_2_position_tumb)  
+    -- CLOSE=0 / OPEN=1  |  arg 555
+    -- Randomization weights: CLOSE=80% (Default), OPEN=20%
+    { dev=4,  cmd=3005, vals={0, 0, 0, 0, 1},                        label="AIR REFUELING Switch" },
 
     -- =========================================================================
     -- GEAR / BRAKES   dev=7  (GEAR_INTERFACE)
@@ -91,7 +108,8 @@ CR.register("F-16C_50", {
 
     -- MASTER Switch (multiposition_switch, count=5, delta=0.1)
     -- OFF=0 / ALL=0.1 / A-C=0.2 / FORM=0.3 / NORM=0.4  |  arg 536
-    { dev=11, cmd=3006, vals={0, 0.1, 0.2, 0.3, 0.4},      label="MASTER Switch" },
+    -- Randomization weights: OFF=10%, ALL=10%, A-C=10%, FORM=10%, NORM=60% (Default)
+    { dev=11, cmd=3006, vals={0, 0.1, 0.2, 0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4},      label="MASTER Switch" },
 
     -- WING/TAIL Switch (default_3_position_tumb_small)  BRT=-1 / OFF=0 / DIM=1  |  arg 533
     { dev=11, cmd=3003, vals={-1, 0, 1},                    label="WING/TAIL Switch" },
@@ -104,7 +122,8 @@ CR.register("F-16C_50", {
 
     -- LANDING TAXI LIGHTS Switch (default_3_position_tumb_small)
     -- LANDING=-1 / OFF=0 / TAXI=1  |  arg 360
-    { dev=11, cmd=3006, vals={-1, 0, 1},                    label="LANDING TAXI LIGHTS Switch" },
+    -- Randomization weights: LANDING=10%, OFF=50% (Default), TAXI=30%
+    { dev=11, cmd=3006, vals={-1, 0, 0, 0, 0, 0, 1, 1, 1, 1},                    label="LANDING TAXI LIGHTS Switch" },
 
     -- =========================================================================
     -- INTERIOR LIGHTS   dev=12  (CPTLIGHTS_SYSTEM)
@@ -131,7 +150,8 @@ CR.register("F-16C_50", {
 
     -- AIR SOURCE Knob (multiposition_switch, count=4, delta=0.1)
     -- OFF=0 / NORM=0.1 / DUMP=0.2 / RAM=0.3  |  arg 693
-    { dev=13, cmd=3002, vals={0, 0.1, 0.2, 0.3},            label="AIR SOURCE Knob" },
+    -- Randomization weights: OFF=80%, NORM=0% (Default excluded), DUMP=10%, RAM=10%
+    { dev=13, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.3},            label="AIR SOURCE Knob" },
 
     -- =========================================================================
     -- INS   dev=14  (INS)
@@ -139,7 +159,8 @@ CR.register("F-16C_50", {
 
     -- INS Knob (multiposition_switch, count=7, delta=0.1)
     -- OFF=0 / STOR HDG=0.1 / NORM=0.2 / NAV=0.3 / CAL=0.4 / INFLT ALIGN=0.5 / ATT=0.6  |  arg 719
-    { dev=14, cmd=3001, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6},  label="INS Knob" },
+    -- Randomization weights: OFF=35% (Default), STOR HDG=5%, NORM=5%, NAV=40%, CAL=5%, INFLT ALIGN=5%, ATT=5%
+    { dev=14, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0.1, 0.2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.4, 0.5, 0.6},  label="INS Knob" },
 
     -- =========================================================================
     -- RALT   dev=15  (RALT)
@@ -147,48 +168,60 @@ CR.register("F-16C_50", {
 
     -- RDR ALT Switch (default_3_position_tumb)
     -- RDR ALT=-1 / STBY=0 / OFF=1  |  arg 673
-    { dev=15, cmd=3001, vals={-1, 0, 1},                    label="RDR ALT Switch" },
+    -- Randomization weights: RDR ALT=10%, STBY=30%, OFF=60% (Default)
+    { dev=15, cmd=3001, vals={-1, 0, 0, 0, 1, 1, 1, 1, 1, 1},                    label="RDR ALT Switch" },
 
     -- =========================================================================
     -- UFC   dev=17  (UFC)
     -- =========================================================================
 
-    -- UFC Switch (default_2_position_tumb)  UFC=0 / OFF=1  |  arg 718
-    { dev=17, cmd=3001, vals={0, 1},                        label="UFC Switch" },
+    -- UFC Switch (default_2_position_tumb)  
+    -- UFC=0 / OFF=1  |  arg 718
+    -- Randomization weights: UFC=25%, OFF=75% (Default)
+    { dev=17, cmd=3001, vals={0, 1, 1, 1},                        label="UFC Switch" },
 
     -- =========================================================================
     -- MMC   dev=19  (MMC)
     -- =========================================================================
 
-    -- MMC Switch (default_2_position_tumb)  MMC=0 / OFF=1  |  arg 715
-    { dev=19, cmd=3001, vals={0, 1},                        label="MMC Switch" },
+    -- MMC Switch (default_2_position_tumb)  
+    -- MMC=0 / OFF=1  |  arg 715
+    -- Randomization weights: MMC=25%, OFF=75% (Default)
+    { dev=19, cmd=3001, vals={0, 1, 1, 1},                        label="MMC Switch" },
 
     -- MFD Switch (default_2_position_tumb)  MFD=0 / OFF=1  |  arg 717
-    { dev=19, cmd=3002, vals={0, 1},                        label="MFD Switch" },
+    -- Randomization weights: MFD=25%, OFF=75% (Default)
+    { dev=19, cmd=3002, vals={0, 1, 1, 1},                        label="MFD Switch" },
 
     -- MASTER ARM Switch (default_3_position_tumb)
     -- MASTER ARM=-1 / OFF=0 / SIMULATE=1  |  arg 105
-    { dev=19, cmd=3003, vals={-1, 0, 0, 1},                 label="MASTER ARM Switch" },
+    -- Randomization weights: MASTER ARM=10%, OFF=60% (Default), SIMULATE=30%
+    { dev=19, cmd=3003, vals={-1, 0, 0, 0, 0, 0, 0, 1, 1, 1},                 label="MASTER ARM Switch" },
 
     -- HUD Scales Switch (default_3_position_tumb_small)
     -- VV/VAH=-1 / VAH=0 / OFF=1  |  arg 675
-    { dev=19, cmd=3006, vals={-1, 0, 1},                    label="HUD Scales Switch" },
+    -- Randomization weights: VV/VAH=25%, VAH=50% (Default), OFF=25%
+    { dev=19, cmd=3006, vals={-1, 0, 0, 1},                    label="HUD Scales Switch" },
 
     -- HUD Flightpath Marker Switch (default_3_position_tumb_small)
     -- ATT/FPM=-1 / FPM=0 / OFF=1  |  arg 676
-    { dev=19, cmd=3007, vals={-1, 0, 1},                    label="HUD Flightpath Marker Switch" },
+    -- Randomization weights: ATT/FPM=50% (Default), FPM=25%, OFF=25%
+    { dev=19, cmd=3007, vals={-1, -1, 0, 1},                    label="HUD Flightpath Marker Switch" },
 
     -- HUD DED/PFLD Data Switch (default_3_position_tumb_small)
     -- DED=-1 / PFL=0 / OFF=1  |  arg 677
-    { dev=19, cmd=3008, vals={-1, 0, 1},                    label="HUD DED/PFLD Data Switch" },
+    -- Randomization weights: DED=25%, PFL=50%, OFF=25% (Default)
+    { dev=19, cmd=3008, vals={-1, 0, 0, 1},                    label="HUD DED/PFLD Data Switch" },
 
     -- HUD Altitude Switch (default_3_position_tumb_small)
     -- RADAR=-1 / BARO=0 / AUTO=1  |  arg 680
-    { dev=19, cmd=3011, vals={-1, 0, 1},                    label="HUD Altitude Switch" },
+    -- Randomization weights: RADAR=25%, BARO=50% (Default), AUTO=25%
+    { dev=19, cmd=3011, vals={-1, 0, 0, 1},                    label="HUD Altitude Switch" },
 
     -- HUD Brightness Control Switch (default_3_position_tumb_small)
     -- DAY=-1 / AUTO BRT=0 / NIGHT=1  |  arg 681
-    { dev=19, cmd=3012, vals={-1, 0, 1},                    label="HUD Brightness Control Switch" },
+    -- Randomization weights: DAY=10%, AUTO BRT=80% (Default), NIGHT=10%
+    { dev=19, cmd=3012, vals={-1, 0, 0, 0, 0, 0, 0, 0, 0, 1},                    label="HUD Brightness Control Switch" },
 
     -- =========================================================================
     -- SMS   dev=22  (SMS)
