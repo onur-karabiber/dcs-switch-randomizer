@@ -217,14 +217,49 @@ CR.register("F-4E-45MC", {
     -- -------------------------------------------------------------------------
 
     -- ARI CB | default_circuit_breaker | arg_lim={0,1}
-    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=-1 → PULL/disabled.
-    -- IN=stay (chance: 90%, default) / PULL=-1 (chance: 10%)
-    { dev=84, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="ARI CB" },
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/disabled (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="ARI CB" },
 
     -- SAI CB | default_circuit_breaker | arg_lim={0,1}
-    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=-1 → PULL/off.
-    -- IN=stay (chance: 90%, default) / PULL=-1 (chance: 10%)
-    { dev=84, cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="SAI CB" },
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/off (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="SAI CB" },
+
+    -- Landing Gear CB | default_circuit_breaker | arg_lim={0,1}
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/disabled (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Landing Gear CB" },
+
+    -- Speed Brake CB | default_circuit_breaker | arg_lim={0,1}
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/disabled (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Speed Brake CB" },
+
+    -- STAB Feel-Trim CB | default_circuit_breaker | arg_lim={0,1}
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/disabled (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="STAB Feel-Trim CB" },
+
+    -- AIL Feel-Trim CB | default_circuit_breaker | arg_lim={0,1}
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/disabled (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="AIL Feel-Trim CB" },
+
+    -- Rudder Trim CB | default_circuit_breaker | arg_lim={0,1}
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/disabled (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Rudder Trim CB" },
+
+    -- Trim Controls CB | default_circuit_breaker | arg_lim={0,1}
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/disabled (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Trim Controls CB" },
+
+    -- Flaps CB | default_circuit_breaker | arg_lim={0,1}
+    -- Cold start: IN/active (arg=1). val=0 → stay IN (default). val=+1 → PULL/disabled (toggle test).
+    -- IN=stay (chance: 90%, default) / PULL=+1 (chance: 10%)
+    { dev=84, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Flaps CB" },
 
     -- -------------------------------------------------------------------------
     -- EXTERIOR LIGHTS   dev=69 (EXTERIOR_LIGHTS)
@@ -279,6 +314,35 @@ CR.register("F-4E-45MC", {
     -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=+1 → ON.
     -- OFF=stay (chance: 90%, default) / ON=+1 (chance: 10%)
     { dev=87, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},   label="Toggle Rain Removal" },
+
+    -- -------------------------------------------------------------------------
+    -- DCU ARM STATIONS   dev=87 (TODO)
+    -- -------------------------------------------------------------------------
+
+    -- Arm Left/Outer Station | default_2_position_tumb | arg_lim={0,1}
+    -- Cold start: SAFE (arg=0). val=0 → stay SAFE (default). val=+1 → ARMED.
+    -- SAFE=stay (chance: 90%, default) / ARMED=+1 (chance: 10%)
+    { dev=87, cmd=3021, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Arm Left/Outer Station" },
+
+    -- Arm Left/Inner Station | default_2_position_tumb | arg_lim={0,1}
+    -- Cold start: SAFE (arg=0). val=0 → stay SAFE (default). val=+1 → ARMED.
+    -- SAFE=stay (chance: 90%, default) / ARMED=+1 (chance: 10%)
+    { dev=87, cmd=3022, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Arm Left/Inner Station" },
+
+    -- Arm Center Station | default_2_position_tumb | arg_lim={0,1}
+    -- Cold start: SAFE (arg=0). val=0 → stay SAFE (default). val=+1 → ARMED.
+    -- SAFE=stay (chance: 90%, default) / ARMED=+1 (chance: 10%)
+    { dev=87, cmd=3023, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Arm Center Station" },
+
+    -- Arm Right/Inner Station | default_2_position_tumb | arg_lim={0,1}
+    -- Cold start: SAFE (arg=0). val=0 → stay SAFE (default). val=+1 → ARMED.
+    -- SAFE=stay (chance: 90%, default) / ARMED=+1 (chance: 10%)
+    { dev=87, cmd=3024, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Arm Right/Inner Station" },
+
+    -- Arm Right/Outer Station | default_2_position_tumb | arg_lim={0,1}
+    -- Cold start: SAFE (arg=0). val=0 → stay SAFE (default). val=+1 → ARMED.
+    -- SAFE=stay (chance: 90%, default) / ARMED=+1 (chance: 10%)
+    { dev=87, cmd=3025, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Arm Right/Outer Station" },
 
     -- Change Temperature | default_axis, continuous (not yet simulated)
     -- Exempt: continuous knob, no fixed default position
