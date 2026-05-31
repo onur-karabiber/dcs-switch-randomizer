@@ -55,6 +55,12 @@ A real aircraft coming from a previous sortie would rarely be left in a perfectl
 
 CockpitRandomizer brings some of that uncertainty back.
 
+There is one more thing — perhaps an obsession, if we are being honest.
+
+Some cockpits are so exquisitely designed, so carefully implemented, and so lovingly textured that spending time inside them is a pleasure in its own right. Look at what Heatblur has done with the F-4E Phantom. Every switch, every panel, every worn surface tells a story. This mod exists, in part, as an excuse to linger in those cockpits a little longer — to touch more switches, to look more carefully, to be present in that craftsmanship rather than rushing past it.
+
+If we are being fully honest, that may have been the primary motivation all along.
+
 ---
 
 ## How the randomization works
