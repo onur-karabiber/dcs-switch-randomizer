@@ -78,8 +78,8 @@ CR.register("F-5E-3", {
 
     -- Pitot Anti-Ice Switch | default_2_position_tumb2 | arg 375 | arg_lim={0,1}
     -- PITOT/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → PITOT.
-    -- OFF=stay (chance: 90%, default) / PITOT=-1 (chance: 10%)
-    { dev=3, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Pitot Anti-Ice Switch" },
+    -- OFF=stay (chance: 95%, default) / PITOT=-1 (chance: 5%)
+    { dev=3, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Pitot Anti-Ice Switch" },
 
     -- =========================================================================
     -- FUEL SYSTEM   dev=4  (FUEL_INTERFACE)
@@ -87,23 +87,23 @@ CR.register("F-5E-3", {
 
     -- Left Fuel Shutoff Switch Cover | default_red_cover | arg 359 | arg_lim={0,1}
     -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
-    -- CLOSED=stay (chance: 90%, default) / OPEN=+1 (chance: 10%)
-    { dev=4, cmd=3010, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Left Fuel Shutoff Switch Cover" },
+    -- CLOSED=stay (chance: 95%, default) / OPEN=+1 (chance: 5%)
+    { dev=4, cmd=3010, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Left Fuel Shutoff Switch Cover" },
 
     -- Left Fuel Shutoff Switch | default_2_position_tumb2 | arg 360 | arg_lim={0,1}
     -- OPEN/CLOSED. Cold start: OPEN (arg=0). val=0 → stay OPEN (default). val=+1 → CLOSED.
     -- OPEN=stay (chance: 90%, default) / CLOSED=+1 (chance: 10%)
-    { dev=4, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Left Fuel Shutoff Switch" },
+    -- { dev=4, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Left Fuel Shutoff Switch" },
 
     -- Right Fuel Shutoff Switch Cover | default_red_cover | arg 361 | arg_lim={0,1}
     -- Cold start: CLOSED (arg=0). val=0 → stay CLOSED (default). val=+1 → OPEN.
-    -- CLOSED=stay (chance: 90%, default) / OPEN=+1 (chance: 10%)
-    { dev=4, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Right Fuel Shutoff Switch Cover" },
+    -- CLOSED=stay (chance: 95%, default) / OPEN=+1 (chance: 5%)
+    { dev=4, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Right Fuel Shutoff Switch Cover" },
 
     -- Right Fuel Shutoff Switch | default_2_position_tumb2 | arg 362 | arg_lim={0,1}
     -- OPEN/CLOSED. Cold start: OPEN (arg=0). val=0 → stay OPEN (default). val=+1 → CLOSED.
     -- OPEN=stay (chance: 90%, default) / CLOSED=+1 (chance: 10%)
-    { dev=4, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Right Fuel Shutoff Switch" },
+    -- { dev=4, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="Right Fuel Shutoff Switch" },
 
     -- Ext Fuel Cl Switch | default_2_position_tumb2 | arg 377 | arg_lim={0,1}
     -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
@@ -117,8 +117,8 @@ CR.register("F-5E-3", {
 
     -- Left Boost Pump Switch | default_2_position_tumb | arg 380 | arg_lim={0,1}
     -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
-    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
-    { dev=4, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Left Boost Pump Switch" },
+    -- OFF=stay (chance: 95%, default) / ON=-1 (chance: 5%)
+    { dev=4, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Left Boost Pump Switch" },
 
     -- Crossfeed Switch | default_2_position_tumb2 | arg 381 | arg_lim={0,1}
     -- OPEN/CLOSED. Cold start: CLOSED (arg=1). val=0 → stay CLOSED (default). val=-1 → OPEN.
@@ -136,8 +136,8 @@ CR.register("F-5E-3", {
 
     -- Engine Anti-Ice Switch | default_2_position_tumb2 | arg 376 | arg_lim={0,1}
     -- ENGINE/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ENGINE.
-    -- OFF=stay (chance: 90%, default) / ENGINE=-1 (chance: 10%)
-    { dev=6, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Engine Anti-Ice Switch" },
+    -- OFF=stay (chance: 95%, default) / ENGINE=-1 (chance: 5%)
+    { dev=6, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Engine Anti-Ice Switch" },
 
     -- =========================================================================
     -- OXYGEN SYSTEM   dev=8  (OXYGEN_INTERFACE)
@@ -253,14 +253,14 @@ CR.register("F-5E-3", {
 
     -- Armament Position Selectors | default_2_position_tumb2 | arg_lim={0,1}
     -- ON/OFF. Cold start: OFF (arg=1). val=0 → stay OFF (default). val=-1 → ON.
-    -- OFF=stay (chance: 90%, default) / ON=-1 (chance: 10%)
-    { dev=15, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Wingtip" },
-    { dev=15, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Outbd" },
-    { dev=15, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Inbd" },
-    { dev=15, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Centerline" },
-    { dev=15, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Inbd" },
-    { dev=15, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Outbd" },
-    { dev=15, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Wingtip" },
+    -- OFF=stay (chance: 95%, default) / ON=-1 (chance: 5%)
+    { dev=15, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Wingtip" },
+    { dev=15, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Outbd" },
+    { dev=15, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Left Inbd" },
+    { dev=15, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Centerline" },
+    { dev=15, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Inbd" },
+    { dev=15, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Outbd" },
+    { dev=15, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},  label="Armament Selector - Right Wingtip" },
 
     -- Interval Switch | default_3_position_tumb | arg 340 | arg_lim={-1,1}
     -- .06=arg=-1 / .10=arg=0 (center, default) / .14=arg=+1
@@ -283,14 +283,14 @@ CR.register("F-5E-3", {
     -- GUNS MSL & CAMR=arg=-1 / OFF=arg=0 (center, default) / CAMR ONLY=arg=+1
     -- Cold start: OFF (arg=0). val=0 → stay OFF (default). val=-1 → GUNS. val=+1 → CAMR.
     -- OFF=stay (chance: 88%, default) / GUNS=-1 (chance: 6%) / CAMR=+1 (chance: 6%)
-    { dev=15, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="Guns/Missile/Camera Switch" },
+    -- { dev=15, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},  label="Guns/Missile/Camera Switch" },
 
     -- External Stores Selector | multiposition_switch, count=4, delta=0.1 | arg 344 | arg_lim={0,0.3}
     -- RIPL=0 / BOMB=0.1 / SAFE=0.2 / RKT DISP=0.3
     -- Cold start: SAFE (arg=0.2). val=0 → stay SAFE (default). val=-0.1 → BOMB. val=+0.1 → RKT DISP. val=-0.2 → RIPL.
-    -- SAFE=stay (chance: 88%, default) / BOMB=-0.1 (chance: 5%) / RKT DISP=+0.1 (chance: 3%) / RIPL=-0.2 (chance: 2%)
+    -- SAFE=stay (chance: 60%, default) / BOMB=-0.1 (chance: 10%) / RKT DISP=+0.1 (chance: 10%) / RIPL=-0.2 (chance: 10%)
     -- Note: val=+0.2 would exceed arg_lim and clamp to 0.3 (RKT DISP, 1 step).
-    { dev=15, cmd=3012, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -0.1, 0.1, -0.2},  label="External Stores Selector" },
+    { dev=15, cmd=3012, vals={0, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3},  label="External Stores Selector" },
 
     -- Missile Volume Knob | default_axis, continuous | arg 345
     -- Exempt: continuous axis, no fixed default position
