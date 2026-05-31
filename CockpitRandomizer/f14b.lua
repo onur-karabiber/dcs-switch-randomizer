@@ -79,14 +79,14 @@ CR.register("F-14B", {
     { dev=22, cmd=3037, vals={1,-1}, label="Autopilot - Vector / Automatic Carrier Landing" },
 
 -- -------------------------------------------------------------------------
-    -- COVER SWITCHES — 70% kapalı / 30% açık
+    -- COVER SWITCHES — 70% closed / 30% open
     --
-    -- Tüm cover'ların soğuk başlangıç konumu KAPALI (arg=0).
-    -- val=0 → KAPALI kalır (delta uygulanmaz)
-    -- val=+1 → AÇIK (arg'ı +1 artırır, üst limite ulaşır)
-    -- 10 elemanlı vals dizisi: 7×0 + 3×1 → %70 kapalı / %30 açık
+    -- All covers default to CLOSED at cold start (arg=0).
+    -- val=0 → stays CLOSED (no delta applied)
+    -- val=+1 → OPEN (increments arg by +1, clamped to upper limit)
+    -- 10-element vals array: 7×0 + 3×1 → 70% closed / 30% open
     --
-    -- Element tipleri (clickabledata.lua):
+    -- Element types (clickabledata.lua):
     --   default_2_position_tumb : Asymmetric Thrust Limiter Cover (PNT_16005)
     --                             Inboard Spoiler Override Cover   (PNT_902)
     --                             Outboard Spoiler Override Cover  (PNT_903)
@@ -95,29 +95,29 @@ CR.register("F-14B", {
     --                             Control Switch Cover
     --   default_animated_lever  : ACM Cover                        (PNT_1049)
     --
-    -- Device/Command ID doğrulaması (command_defs.lua, start_command=3000):
-    --   ENGINE (dev=20) | ENGINE_Asym_LimiterCover     sıra 55  → cmd=3055
-    --   ELECTRICS (dev=15) | ELEC_EMERG_GEN_SwitchCover sıra 11 → cmd=3011
-    --   ELECTRICS (dev=15) | SPOIL_Inboard_Override_Cover sıra 431 → cmd=3431
-    --   ELECTRICS (dev=15) | SPOIL_Outboard_Override_Cover sıra 432 → cmd=3432
-    --   WEAPONS (dev=55)   | WEAP_ACM_Cover              sıra 133 → cmd=3133
-    --   HYDRAULICS (dev=13)| HYD_EMERG_FLT_SwitchCover   sıra 4   → cmd=3004
+    -- Device/Command ID verification (command_defs.lua, start_command=3000):
+    --   ENGINE (dev=20) | ENGINE_Asym_LimiterCover     index 55  → cmd=3055
+    --   ELECTRICS (dev=15) | ELEC_EMERG_GEN_SwitchCover index 11 → cmd=3011
+    --   ELECTRICS (dev=15) | SPOIL_Inboard_Override_Cover index 431 → cmd=3431
+    --   ELECTRICS (dev=15) | SPOIL_Outboard_Override_Cover index 432 → cmd=3432
+    --   WEAPONS (dev=55)   | WEAP_ACM_Cover              index 133 → cmd=3133
+    --   HYDRAULICS (dev=13)| HYD_EMERG_FLT_SwitchCover   index 4   → cmd=3004
     -- -------------------------------------------------------------------------
 
     -- Asymmetric Thrust Limiter Cover | default_2_position_tumb | arg_lim={0,1}
-    -- Cold start: KAPALI (arg=0). val=0 → KAPALI. val=+1 → AÇIK.
+    -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
     { dev=20, cmd=3055, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Asymmetric Thrust Limiter Cover" },
 
     -- Emergency Generator Switch Cover | default_flipcover | arg_lim={0,1}
-    -- Cold start: KAPALI (arg=0). val=0 → KAPALI. val=+1 → AÇIK.
+    -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
     { dev=15, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Emergency Generator Switch Cover" },
 
     -- ACM Cover | default_animated_lever | arg_lim={0,1}
-    -- Cold start: KAPALI (arg=0). val=0 → KAPALI. val=+1 → AÇIK.
+    -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
     { dev=55, cmd=3133, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="ACM Cover" },
 
     -- Hydraulic Emergency Flight Control Switch Cover | default_flipcover | arg_lim={0,1}
-    -- Cold start: KAPALI (arg=0). val=0 → KAPALI. val=+1 → AÇIK.
+    -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
     { dev=13, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Hydraulic Emergency Flight Control Switch Cover" },
 
     -- -------------------------------------------------------------------------
