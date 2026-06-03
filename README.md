@@ -113,6 +113,72 @@ A switch's default state usually has somewhere between **75% and 95% probability
 
 ## Installation
 
+### Option A — Installer (recommended)
+
+1. Go to the [Releases](../../releases) page and download the latest
+   `dcs-cockpit-randomizer-vX.X.zip`.
+
+2. Extract the zip anywhere you like (Desktop, Downloads, etc.).
+   You will get a folder like this:
+
+   ```
+   dcs-cockpit-randomizer-v1.0\
+       dcs-cockpit-randomizer-v1.0.exe
+       version.txt
+       CockpitRandomizer\
+           core.lua
+           f4e.lua
+           fa18c.lua
+           f14b.lua
+           f16c.lua
+           f5e.lua
+   ```
+
+3. Double-click `dcs-cockpit-randomizer-v1.0.exe`.
+
+4. The installer will automatically locate your DCS Saved Games folder.
+   If it cannot find it, click **Browse...** and point it to your
+   `Saved Games\DCS\Scripts` folder manually.
+
+5. Click **Install**. The installer will:
+   - Create `Saved Games\DCS\Scripts\` if it does not exist.
+   - Copy all Lua scripts to `Saved Games\DCS\Scripts\CockpitRandomizer\`.
+
+6. Click **Apply**. The installer will write the required block to
+   `Saved Games\DCS\Scripts\Export.lua`.
+
+   - If an `Export.lua` already exists (DCS-BIOS, SRS, Tacview, etc.),
+     you will be asked to confirm before it is modified. Your original file
+     will be backed up as `Export.lua.stock_backup`. The CockpitRandomizer
+     block will be added to the **top** of your existing file; your other
+     tools' content will be preserved below it.
+
+   > **Recommendation:** As an extra precaution, manually back up your
+   > `Saved Games\DCS\Scripts\Export.lua` before clicking Apply,
+   > regardless of whether the installer creates a backup automatically.
+
+7. Select which aircraft you want to randomize, then click **Apply**.
+   You can change your selection at any time by running the exe again.
+
+#### Updating
+
+When a new version is released, download the new zip, extract it, and run
+the exe. If a newer version is detected, a **"New version available"**
+banner will appear. Click **Update now** to overwrite the Lua scripts with
+the new versions. Your aircraft selection is preserved. Click **Apply**
+afterwards to refresh `Export.lua`.
+
+#### Uninstalling
+
+Run the exe and click **Uninstall** at the bottom of the main screen.
+This will remove the `CockpitRandomizer\` folder and restore your original
+`Export.lua` from the backup. If no backup exists (e.g. it was deleted
+manually), you will be informed and `Export.lua` will be cleaned instead.
+
+---
+
+### Option B — Manual installation
+
 > **Before you begin:** CockpitRandomizer is installed entirely inside your `Saved Games\DCS\` folder. It does not touch your DCS installation directory. That said, you are responsible for following these instructions carefully, taking any backups you consider appropriate (particularly of an existing `Export.lua`), and understanding what the mod does before using it. Install at your own discretion.
 
 **Step 1 — Locate your Saved Games folder**
@@ -140,28 +206,30 @@ Saved Games\DCS\
 
 **Step 3 — Copy the files**
 
-From this repository, copy each file under `CockpitRandomizer\` to the corresponding path under `Saved Games\DCS\Scripts\CockpitRandomizer\`, and copy `Export.lua` to `Saved Games\DCS\Scripts\Export.lua`.
+From this repository, copy each file under `CockpitRandomizer\` to the corresponding path under `Saved Games\DCS\Scripts\CockpitRandomizer\`.
 
 Only copy the aircraft files for modules you own.
 
 **Step 4 — If Export.lua already exists**
 
-If you already have an `Export.lua` (DCS-BIOS, SRS, Tacview, etc.), do **not** replace it. Instead, add the CockpitRandomizer block from the provided `Export.lua` to the **top** of your existing file:
+If you already have an `Export.lua` (DCS-BIOS, SRS, Tacview, etc.), do **not** replace it. Instead, add the CockpitRandomizer block to the **top** of your existing file:
 
 ```lua
+-- [CockpitRandomizer:begin]
 local cr_status, cr_err = pcall(function()
     local lfs = require('lfs')
     local base = lfs.writedir() .. "Scripts\\CockpitRandomizer\\"
     dofile(base .. "core.lua")
-    dofile(base .. "f4e.lua")
-    dofile(base .. "fa18c.lua")
-    dofile(base .. "f14b.lua")
-    dofile(base .. "f16c.lua")
-    dofile(base .. "f5e.lua")
+    dofile(base .. "f4e.lua")      -- remove if you don't own this module
+    dofile(base .. "fa18c.lua")    -- remove if you don't own this module
+    dofile(base .. "f14b.lua")     -- remove if you don't own this module
+    dofile(base .. "f16c.lua")     -- remove if you don't own this module
+    dofile(base .. "f5e.lua")      -- remove if you don't own this module
 end)
 if not cr_status then
     log.write("COCKPIT_RANDOMIZER", log.ERROR, "Load failed: " .. tostring(cr_err))
 end
+-- [CockpitRandomizer:end]
 ```
 
 Remove any `dofile` lines for aircraft you do not own.
@@ -172,14 +240,11 @@ Remove any `dofile` lines for aircraft you do not own.
 
 Launch DCS and fly any supported cold-start mission. After ~3 seconds in the cockpit, switches will randomize. Check `Saved Games\DCS\Logs\dcs.log` and search for `COCKPIT_RANDOMIZER` to confirm the script is running.
 
----
+#### Uninstalling (manual)
 
-## Uninstallation
-
-**Full removal:**
-
-1. Delete the `Saved Games\DCS\Scripts\CockpitRandomizer\` folder.
-2. Open `Saved Games\DCS\Scripts\Export.lua` and remove the CockpitRandomizer block.
+1. Delete `Saved Games\DCS\Scripts\CockpitRandomizer\`.
+2. Open `Saved Games\DCS\Scripts\Export.lua` and remove the block between
+   `-- [CockpitRandomizer:begin]` and `-- [CockpitRandomizer:end]`.
 3. If `Export.lua` is now empty, delete it as well.
 
 **Temporary disable** (without uninstalling):
