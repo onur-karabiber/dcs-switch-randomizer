@@ -1,0 +1,62 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "v*"          # v1.0, v1.2.3 gibi tag push edilince tetiklenir
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyInstaller
+        run: pip install pyinstaller
+
+      - name: Extract version from tag
+        id: version
+        shell: bash
+        run: |
+          TAG=${GITHUB_REF_NAME}          # v1.0
+          VER=${TAG#v}                    # 1.0
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "ver=$VER" >> $GITHUB_OUTPUT
+
+      - name: Write version.txt
+        shell: bash
+        run: echo -n "${{ steps.version.outputs.ver }}" > version.txt
+
+      - name: Build EXE
+        shell: pwsh
+        run: |
+          pyinstaller `
+            --onefile `
+            --windowed `
+            --name "dcs-cockpit-randomizer-${{ steps.version.outputs.tag }}" `
+            --clean `
+            CockpitRandomizer.pyw
+
+      - name: Create ZIP
+        shell: pwsh
+        run: |
+          $ver = "${{ steps.version.outputs.tag }}"
+          $zipName = "dcs-cockpit-randomizer-$ver"
+          New-Item -ItemType Directory -Path $zipName
+          Copy-Item "dist\dcs-cockpit-randomizer-$ver.exe" "$zipName\"
+          Copy-Item "version.txt" "$zipName\"
+          Copy-Item "CockpitRandomizer" "$zipName\" -Recurse
+          Compress-Archive -Path "$zipName" -DestinationPath "$zipName.zip"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dcs-cockpit-randomizer-${{ steps.version.outputs.tag }}.zip
+          generate_release_notes: true
