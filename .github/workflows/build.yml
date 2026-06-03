@@ -21,8 +21,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install PyInstaller
-        run: pip install pyinstaller
+      - name: Install dependencies
+        run: pip install pyinstaller PyQt5
 
       - name: Extract version from tag
         id: version
@@ -45,7 +45,7 @@ jobs:
             --windowed `
             --name "dcs-cockpit-randomizer-${{ steps.version.outputs.tag }}" `
             --clean `
-            dcs-cockpit-randomizer.pyw
+            dcs-cockpit-randomizer-qt.py
 
       - name: Create ZIP
         shell: pwsh
