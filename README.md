@@ -1,4 +1,4 @@
-# CockpitRandomizer
+# dcs-cockpit-randomizer
 
 A DCS World Export script that randomizes cockpit switch positions on every cold start, forcing a proper interior check before doing anything else.
 
