@@ -437,15 +437,10 @@ The DCS aircraft name string is what `LoGetSelfData().Name` returns in-game. Con
 
 ---
 
-## License and use
+## License
 
-This project is free to use and free to share.
-
-The scripts are original work. There are no third-party licenses or intellectual property claims involved.
-
-**Credit:** You are not required to credit this project to use or share it, but doing so is the ethical thing to do if you redistribute or build on it.
-
-**Commercial use:** This project may not be used for commercial purposes in any form.
+CockpitRandomizer is a hobby DCS mod distributed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+Use it, modify it, share it — but not for commercial purposes. Credit required: please link back to this repository.
 
 **No warranty:** This software is provided as-is, without any warranty, express or implied. The author is not responsible for any issues arising from its use, including but not limited to data loss, save file corruption, or unexpected behavior in DCS World. You install and use this mod at your own risk.
 
