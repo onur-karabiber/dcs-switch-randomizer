@@ -42,7 +42,7 @@ jobs:
             --windowed `
             --name "dcs-cockpit-randomizer-${{ steps.version.outputs.tag }}" `
             --clean `
-            CockpitRandomizer.pyw
+            dcs-cockpit-randomizer.pyw
 
       - name: Create ZIP
         shell: pwsh
