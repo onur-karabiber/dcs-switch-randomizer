@@ -1,6 +1,6 @@
 # dcs-cockpit-randomizer
 
-A DCS World Export script that randomizes cockpit switch positions on every cold start, forcing a proper interior check before doing anything else.
+A DCS World Export script that randomizes selected cockpit controls during cold starts, restoring the need for genuine cockpit inspections instead of memorized routines.
 
 Currently supports:
 
