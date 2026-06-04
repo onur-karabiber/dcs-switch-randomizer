@@ -13,27 +13,29 @@ from fractions import Fraction
 from PyQt5.QtWidgets import (
     QApplication, QDialog, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QFrame, QScrollArea, QSpinBox,
-    QCheckBox, QSizePolicy, QMessageBox
+    QCheckBox, QSizePolicy, QMessageBox, QGraphicsDropShadowEffect
 )
-from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtCore import Qt, QTimer, QPoint
 from PyQt5.QtGui import QFont, QColor
 
 # ── Palette (mevcut uygulamayla aynı) ────────────────────────────────────────
-BG    = "#1a1d2e"
-PANEL = "#16213e"
-TB    = "#0d0f1e"
-HL    = "#e05c7a"
-ACC   = "#2d5fa0"
-FG    = "#c0c8f0"
-MUTED = "#5a6080"
-GREEN = "#2e7d32"
-DARK  = "#0d1020"
+BG         = "#0d1117"
+PANEL      = "#111820"
+TB         = "#0a0e14"
+BORDER_WIN = "#2a3040"
+HL         = "#FF5F56"
+ACC        = "#4A9EFF"
+FG         = "#c8d0e8"
+MUTED      = "#4a5270"
+GREEN      = "#28C840"
+AMBER      = "#FEBC2E"
+DARK       = "#070a0f"
 
 # ── Tip renkleri ──────────────────────────────────────────────────────────────
 TYPE_COLOR = {
-    "discrete":   "#2d5fa0",
-    "continuous": "#4a6a3a",
-    "run":        "#6a4a2a",
+    "discrete":   "#1a3a6a",
+    "continuous": "#1a3a2a",
+    "run":        "#3a2a1a",
 }
 TYPE_LABEL = {
     "discrete":   "SWITCH",
@@ -96,7 +98,7 @@ def style_msgbox(dlg: QMessageBox) -> None:
     """QMessageBox'a tutarlı stil uygula."""
     dlg.setStyleSheet(f"""
         QMessageBox {{
-            background-color: #2a2d3e;
+            background-color: #161c28;
         }}
         QMessageBox QLabel {{
             color: {FG};
@@ -104,14 +106,15 @@ def style_msgbox(dlg: QMessageBox) -> None:
             font-family: Consolas;
         }}
         QMessageBox QPushButton {{
-            background: {ACC}; color: white;
+            background: rgba(74,158,255,0.12); color: {ACC};
             font-size: 11pt; font-family: Consolas;
-            border: none; border-radius: 6px;
+            border: 1px solid rgba(74,158,255,0.25);
+            border-radius: 6px;
             padding: 6px 20px; min-width: 70px;
         }}
-        QMessageBox QPushButton:hover {{ background: #1e5799; }}
-        QMessageBox QPushButton:default {{ background: {HL}; }}
-        QMessageBox QPushButton:default:hover {{ background: #c73652; }}
+        QMessageBox QPushButton:hover {{ background: rgba(74,158,255,0.2); }}
+        QMessageBox QPushButton:default {{ background: {HL}; color: white; border: none; }}
+        QMessageBox QPushButton:default:hover {{ background: #ff7a73; }}
     """)
 
 
@@ -291,7 +294,7 @@ class PositionRow(QWidget):
         # Default işareti
         def_lbl = QLabel("★" if is_default else "  ")
         def_lbl.setFixedWidth(18)
-        def_lbl.setStyleSheet(f"color: #f9a825; font-size: 11pt; background: transparent;")
+        def_lbl.setStyleSheet(f"color: {AMBER}; font-size: 11pt; background: transparent;")
         lay.addWidget(def_lbl)
 
         # Pozisyon adı
@@ -317,7 +320,7 @@ class PositionRow(QWidget):
         if is_default:
             spin_border_color = MUTED
         else:
-            spin_border_color = ACC
+            spin_border_color = "rgba(74,158,255,0.45)"
 
         self.spin.setStyleSheet(f"""
             QSpinBox {{
@@ -335,15 +338,15 @@ class PositionRow(QWidget):
 
         btn_style = f"""
             QPushButton {{
-                background: {ACC};
-                color: {FG};
+                background: rgba(74,158,255,0.15);
+                color: {ACC};
                 border: none;
                 border-radius: 3px;
                 font-size: 10pt;
                 padding: 0px;
             }}
-            QPushButton:hover   {{ background: #1e5799; }}
-            QPushButton:pressed {{ background: #1a4a80; }}
+            QPushButton:hover   {{ background: rgba(74,158,255,0.28); }}
+            QPushButton:pressed {{ background: rgba(74,158,255,0.08); }}
         """
 
         spin_grp = QHBoxLayout()
@@ -428,8 +431,8 @@ class PositionRow(QWidget):
         """Tüm non-default kardeşlerin ▲ butonunu görsel olarak kilitle veya aç."""
         btn_style_disabled = f"""
             QPushButton {{
-                background: {MUTED};
-                color: #3a3a5a;
+                background: rgba(255,255,255,0.04);
+                color: {MUTED};
                 border: none;
                 border-radius: 3px;
                 font-size: 10pt;
@@ -438,15 +441,15 @@ class PositionRow(QWidget):
         """
         btn_style_normal = f"""
             QPushButton {{
-                background: {ACC};
-                color: {FG};
+                background: rgba(74,158,255,0.15);
+                color: {ACC};
                 border: none;
                 border-radius: 3px;
                 font-size: 10pt;
                 padding: 0px;
             }}
-            QPushButton:hover   {{ background: #1e5799; }}
-            QPushButton:pressed {{ background: #1a4a80; }}
+            QPushButton:hover   {{ background: rgba(74,158,255,0.28); }}
+            QPushButton:pressed {{ background: rgba(74,158,255,0.08); }}
         """
         for row in self._rows:
             if row._btn_up is not None:
@@ -474,7 +477,13 @@ class ControlCard(QFrame):
         self._pos_rows: list[PositionRow] = []
 
         self.setObjectName("panel")
-        self.setStyleSheet(f"QFrame#panel {{ background: {PANEL}; border-radius: 6px; }}")
+        self.setStyleSheet(
+            f"QFrame#panel {{"
+            f"  background: {PANEL};"
+            f"  border: 1px solid rgba(255,255,255,0.05);"
+            f"  border-radius: 8px;"
+            f"}}"
+        )
 
         outer = QVBoxLayout(self)
         outer.setContentsMargins(10, 8, 6, 8)
@@ -490,18 +499,18 @@ class ControlCard(QFrame):
         self.chk.setStyleSheet(f"""
             QCheckBox::indicator {{
                 width: 18px; height: 18px;
-                border: 2px solid {MUTED};
-                border-radius: 3px;
+                border: 1px solid {MUTED};
+                border-radius: 4px;
                 background: {DARK};
             }}
             QCheckBox::indicator:checked {{
-                background: #1b5e20;
-                border: 2px solid #43a047;
+                background: rgba(40,200,64,0.18);
+                border: 1px solid {GREEN};
                 image: none;
             }}
             QCheckBox::indicator:unchecked {{
-                background: #3a0a0a;
-                border: 2px solid #c0392b;
+                background: rgba(255,95,86,0.10);
+                border: 1px solid rgba(255,95,86,0.3);
                 image: none;
             }}
         """)
@@ -515,13 +524,18 @@ class ControlCard(QFrame):
         top.addWidget(lbl)
         top.addStretch()
 
-        # Tip badge
         t = ctrl["type"]
+        badge_bg = TYPE_COLOR.get(t, "rgba(74,158,255,0.15)")
+        badge_fg = {
+            "discrete":   ACC,
+            "continuous": GREEN,
+            "run":        AMBER,
+        }.get(t, FG)
         badge = QLabel(TYPE_LABEL.get(t, t.upper()))
         badge.setStyleSheet(
-            f"background: {TYPE_COLOR.get(t, ACC)}; color: white; "
+            f"background: {badge_bg}; color: {badge_fg}; "
             f"font-size: 9pt; font-family: Consolas; font-weight: bold; "
-            f"border-radius: 3px; padding: 2px 6px;")
+            f"border-radius: 4px; padding: 2px 8px;")
         top.addWidget(badge)
 
         outer.addLayout(top)
@@ -592,21 +606,49 @@ class AircraftSettingsDialog(QDialog):
         self._key        = aircraft_key
         self._scripts_dir = scripts_dir
         self._cards: list[ControlCard] = []
+        self._drag_pos   = QPoint()
 
         self.setWindowTitle(f"CockpitRandomizer — Settings")
-        self.setFixedWidth(800)
-        # Mantıksal piksel cinsinden ekran yüksekliği (DPI scaling dahil)
+        self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+
+        SHADOW_MARGIN = 24
+        WIN_W = 820
         _screen = QApplication.desktop().availableGeometry()
         _dpr    = QApplication.instance().devicePixelRatio()
         screen_h = int(_screen.height() / _dpr)
-        print(f"[DEBUG dialog] screen_h(logical)={screen_h}, dpr={_dpr}")
-        target_h = min(920, screen_h - 60)
-        self.setMinimumHeight(400)
-        self.setMaximumHeight(screen_h - 60)
-        self.resize(620, target_h)
-        self.resize(620, min(960, screen_h - 80))
-        self.setStyleSheet(f"QDialog {{ background: {BG}; }}")
-        self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
+        target_h = min(900, screen_h - 60)
+        WIN_H = target_h
+        TOTAL_W = WIN_W + SHADOW_MARGIN * 2
+        TOTAL_H = WIN_H + SHADOW_MARGIN * 2
+
+        self.setFixedWidth(TOTAL_W)
+        self.setMinimumHeight(400 + SHADOW_MARGIN * 2)
+        self.setMaximumHeight(TOTAL_H)
+        self.resize(TOTAL_W, TOTAL_H)
+
+        # ── Outer shell (transparent) ──
+        shell_lay = QVBoxLayout(self)
+        shell_lay.setContentsMargins(SHADOW_MARGIN, SHADOW_MARGIN,
+                                     SHADOW_MARGIN, SHADOW_MARGIN)
+        shell_lay.setSpacing(0)
+
+        # ── Rounded frame ──
+        self._frame = QWidget(self)
+        self._frame.setFixedSize(WIN_W, WIN_H)
+        self._frame.setStyleSheet(
+            f"QWidget {{ background: {BG};"
+            f"  border: 1px solid {BORDER_WIN};"
+            f"  border-radius: 12px; }}"
+        )
+
+        shadow = QGraphicsDropShadowEffect(self._frame)
+        shadow.setBlurRadius(48)
+        shadow.setOffset(0, 12)
+        shadow.setColor(QColor(0, 0, 0, 180))
+        self._frame.setGraphicsEffect(shadow)
+
+        shell_lay.addWidget(self._frame)
 
         # Metadata yükle
         self._meta = load_metadata(aircraft_key)
@@ -619,10 +661,10 @@ class AircraftSettingsDialog(QDialog):
     # ── No metadata ───────────────────────────────────────────────────────────
 
     def _show_no_metadata(self):
-        lay = QVBoxLayout(self)
+        lay = QVBoxLayout(self._frame)
         lbl = QLabel(f"No metadata found for '{self._key}'.\n\n"
                      f"Expected: {self._key}.json next to this script.")
-        lbl.setStyleSheet(f"color: {HL}; font-family: Consolas; font-size: 12pt;")
+        lbl.setStyleSheet(f"color: {HL}; font-family: Consolas; font-size: 12pt; border: none;")
         lbl.setAlignment(Qt.AlignCenter)
         lay.addWidget(lbl)
         btn = QPushButton("Close")
@@ -632,50 +674,61 @@ class AircraftSettingsDialog(QDialog):
     # ── UI build ──────────────────────────────────────────────────────────────
 
     def _build_ui(self):
-        root = QVBoxLayout(self)
+        root = QVBoxLayout(self._frame)
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
 
         # ── Başlık çubuğu ──────────────────────────────────────────────────
         tb = QWidget()
-        tb.setFixedHeight(40)
-        tb.setStyleSheet(f"background: {TB};")
+        tb.setFixedHeight(42)
+        tb.setStyleSheet(
+            f"QWidget {{ background: {TB};"
+            f"  border-top-left-radius: 12px;"
+            f"  border-top-right-radius: 12px;"
+            f"  border-bottom: 1px solid {BORDER_WIN}; }}"
+        )
         tb_lay = QHBoxLayout(tb)
-        tb_lay.setContentsMargins(16, 0, 8, 0)
+        tb_lay.setContentsMargins(14, 0, 14, 0)
+        tb_lay.setSpacing(8)
+
+        # macOS dots
+        for color, hover, slot in [
+            ("#FF5F56", "#ff7a73", self.reject),
+            ("#FEBC2E", "#ffd060", lambda: None),
+            ("#28C840", "#34d946", lambda: None),
+        ]:
+            dot = QLabel()
+            dot.setFixedSize(12, 12)
+            dot.setStyleSheet(
+                f"QLabel {{ background: {color}; border-radius: 6px; border: none; }}"
+                f"QLabel:hover {{ background: {hover}; }}"
+            )
+            dot.setCursor(Qt.PointingHandCursor)
+            dot.mousePressEvent = lambda e, s=slot: s()
+            tb_lay.addWidget(dot)
+        tb_lay.addSpacing(8)
 
         title_lbl = QLabel(
             f"{self._meta.get('display_name', self._key)}  —  Switch Settings")
         title_lbl.setStyleSheet(
-            f"color: {FG}; font-family: Consolas; font-size: 11pt; background: transparent;")
+            f"color: rgba(255,255,255,0.28); font-family: Consolas; font-size: 10pt;"
+            f" background: transparent; border: none; letter-spacing: 1px;")
+        tb_lay.addStretch()
         tb_lay.addWidget(title_lbl)
         tb_lay.addStretch()
-
-        cls_btn = QPushButton("✕")
-        cls_btn.setFixedSize(32, 32)
-        cls_btn.setStyleSheet(f"""
-            QPushButton {{ background: transparent; color: {MUTED};
-                          font-size: 13pt; border: none; }}
-            QPushButton:hover {{ background: #3a0a0a; color: #e74c3c; }}
-        """)
-        cls_btn.setCursor(Qt.PointingHandCursor)
-        cls_btn.clicked.connect(self.reject)
-        tb_lay.addWidget(cls_btn)
+        # Balance for the 3 dots + spacing
+        tb_lay.addSpacing(12 * 3 + 8 * 2 + 8)
 
         # Drag
-        self._drag_pos = None
-        tb.mousePressEvent  = lambda e: setattr(self, "_drag_pos",
-            e.globalPos() - self.frameGeometry().topLeft()) \
-            if e.button() == Qt.LeftButton else None
-        tb.mouseMoveEvent   = lambda e: self.move(
-            e.globalPos() - self._drag_pos) \
-            if e.buttons() == Qt.LeftButton and self._drag_pos else None
+        tb.mousePressEvent  = lambda e: (
+            setattr(self, "_drag_pos",
+                    e.globalPos() - self.frameGeometry().topLeft())
+            if e.button() == Qt.LeftButton else None)
+        tb.mouseMoveEvent   = lambda e: (
+            self.move(e.globalPos() - self._drag_pos)
+            if e.buttons() == Qt.LeftButton and not self._drag_pos.isNull() else None)
 
         root.addWidget(tb)
-
-        # Divider
-        div = QFrame(); div.setFixedHeight(1)
-        div.setStyleSheet(f"background: #2e3250;")
-        root.addWidget(div)
 
         # ── Scroll area ────────────────────────────────────────────────────
         scroll = QScrollArea()
@@ -684,10 +737,15 @@ class AircraftSettingsDialog(QDialog):
         scroll.setStyleSheet(f"""
             QScrollArea {{ border: none; background: {BG}; }}
             QScrollBar:vertical {{
-                background: {TB}; width: 8px; border-radius: 4px;
+                background: rgba(255,255,255,0.03);
+                width: 6px; border-radius: 3px;
             }}
             QScrollBar::handle:vertical {{
-                background: {MUTED}; border-radius: 4px; min-height: 20px;
+                background: rgba(255,255,255,0.12);
+                border-radius: 3px; min-height: 20px;
+            }}
+            QScrollBar::handle:vertical:hover {{
+                background: rgba(255,255,255,0.22);
             }}
             QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{
                 height: 0px;
@@ -695,13 +753,12 @@ class AircraftSettingsDialog(QDialog):
         """)
 
         inner = QWidget()
-        inner.setMinimumWidth(740)
-        inner.setStyleSheet(f"background: {BG};")
+        inner.setMinimumWidth(760)
+        inner.setStyleSheet(f"background: {BG}; border: none;")
         inner_lay = QVBoxLayout(inner)
-        inner_lay.setContentsMargins(8, 12, 8, 12)
+        inner_lay.setContentsMargins(10, 14, 10, 14)
         inner_lay.setSpacing(6)
 
-        # Kontrol kartları — discrete (switch) önce, continuous (knob) sonra, run en alta
         TYPE_ORDER = {"discrete": 0, "continuous": 1, "run": 2}
         sorted_controls = sorted(
             self._meta["controls"],
@@ -718,44 +775,51 @@ class AircraftSettingsDialog(QDialog):
 
         # Divider
         div2 = QFrame(); div2.setFixedHeight(1)
-        div2.setStyleSheet(f"background: #2e3250;")
+        div2.setStyleSheet(f"background: {BORDER_WIN}; border: none;")
         root.addWidget(div2)
 
         # ── Alt butonlar ───────────────────────────────────────────────────
         bottom = QWidget()
-        bottom.setStyleSheet(f"background: {TB};")
+        bottom.setStyleSheet(
+            f"QWidget {{ background: {TB};"
+            f"  border-bottom-left-radius: 12px;"
+            f"  border-bottom-right-radius: 12px; }}"
+        )
         bot_lay = QHBoxLayout(bottom)
-        bot_lay.setContentsMargins(16, 10, 16, 10)
+        bot_lay.setContentsMargins(16, 12, 16, 12)
         bot_lay.setSpacing(8)
 
         self._status_lbl = QLabel("")
         self._status_lbl.setStyleSheet(
-            f"color: {MUTED}; font-family: Consolas; font-size: 10pt; background: transparent;")
+            f"color: {MUTED}; font-family: Consolas; font-size: 10pt;"
+            f" background: transparent; border: none;")
         bot_lay.addWidget(self._status_lbl)
         bot_lay.addStretch()
 
-        for text, style, slot in [
-            ("Cancel",         "secbtn", self.reject),
-            ("Save and Apply", "apply",  self._save),
+        for text, is_primary, slot in [
+            ("Cancel",         False, self.reject),
+            ("Save and Apply", True,  self._save),
         ]:
             btn = QPushButton(text)
-            btn.setFixedHeight(40)
+            btn.setFixedHeight(38)
             btn.setMinimumWidth(150)
             btn.setCursor(Qt.PointingHandCursor)
-            if style == "apply":
+            if is_primary:
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: {GREEN}; color: white;
+                    QPushButton {{ background: {GREEN}; color: #001a00;
                         font-family: Consolas; font-size: 12pt; font-weight: bold;
-                        border: none; border-radius: 6px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: #43a047; }}
-                    QPushButton:pressed {{ background: #1b5e20; }}
+                        border: none; border-radius: 7px; padding: 0 16px; }}
+                    QPushButton:hover {{ background: #34d946; }}
+                    QPushButton:pressed {{ background: #1da32a; }}
                 """)
             else:
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: #1e2a3a; color: {FG};
+                    QPushButton {{ background: rgba(255,255,255,0.05); color: {FG};
                         font-family: Consolas; font-size: 12pt;
-                        border: none; border-radius: 6px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: #243040; }}
+                        border: 1px solid rgba(255,255,255,0.08);
+                        border-radius: 7px; padding: 0 16px; }}
+                    QPushButton:hover {{ background: rgba(255,255,255,0.09); }}
+                    QPushButton:pressed {{ background: rgba(255,255,255,0.03); }}
                 """)
             btn.clicked.connect(slot)
             bot_lay.addWidget(btn)
@@ -845,6 +909,5 @@ if __name__ == "__main__":
 
     # Test: fa18c.json bu dosyayla aynı dizinde olmalı
     dlg = AircraftSettingsDialog("fa18c", scripts_dir=None)
-    dlg.resize(620, 800)
     dlg.show()
     sys.exit(app.exec_())

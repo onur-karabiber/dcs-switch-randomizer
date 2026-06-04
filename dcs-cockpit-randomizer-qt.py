@@ -7,10 +7,10 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QFrame, QSizePolicy,
     QFileDialog, QMessageBox, QProgressBar, QToolButton,
-    QDialog, QCheckBox
+    QDialog, QCheckBox, QGraphicsDropShadowEffect
 )
 from PyQt5.QtCore import Qt, QPoint, QPropertyAnimation, QEasingCurve, QTimer
-from PyQt5.QtGui import QColor, QFont
+from PyQt5.QtGui import QColor, QFont, QPainter, QPainterPath, QRegion
 
 # ── DPI awareness ─────────────────────────────────────────────────────────────
 try:
@@ -40,14 +40,17 @@ else:
 LUA_SRC_DIR = os.path.join(THIS_DIR, "CockpitRandomizer")
 
 # ── Palette ───────────────────────────────────────────────────────────────────
-BG    = "#1a1d2e"
-PANEL = "#16213e"
-TB    = "#0d0f1e"
-HL    = "#e05c7a"
-ACC   = "#2d5fa0"
-FG    = "#c0c8f0"
-MUTED = "#5a6080"
-GREEN = "#2e7d32"
+BG         = "#0d1117"
+PANEL      = "#111820"
+TB         = "#0a0e14"
+BORDER_WIN = "#2a3040"
+HL         = "#FF5F56"
+ACC        = "#4A9EFF"
+FG         = "#c8d0e8"
+MUTED      = "#4a5270"
+GREEN      = "#28C840"
+AMBER      = "#FEBC2E"
+SHADOW_CLR = "#000000"
 
 # ── Version helpers ───────────────────────────────────────────────────────────
 def read_version(path):
@@ -173,126 +176,253 @@ def save_config(scripts_dir, selected_keys):
 # ── QSS ──────────────────────────────────────────────────────────────────────
 STYLE = f"""
 * {{ font-family: Consolas; }}
+
+/* ── Outer shell (transparent — shadow lives here) ── */
+QWidget#shell  {{ background: transparent; }}
+
+/* ── Window frame border ring ── */
+QWidget#frame  {{
+    background-color: {BG};
+    border: 1px solid {BORDER_WIN};
+    border-radius: 12px;
+}}
+
+/* ── Title bar ── */
+QWidget#tb     {{
+    background-color: {TB};
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom: 1px solid {BORDER_WIN};
+}}
+
+/* ── Main body ── */
 QWidget#main   {{ background-color: {BG}; }}
-QWidget#tb     {{ background-color: {TB}; }}
-QFrame#panel   {{ background-color: {PANEL}; border-radius: 6px; }}
-QFrame#div     {{ background-color: #2e3250; }}
+QFrame#panel   {{
+    background-color: {PANEL};
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+}}
+QFrame#div     {{ background-color: {BORDER_WIN}; }}
 QFrame#content {{ background-color: {BG}; }}
 
-QLabel          {{ background-color: transparent; color: {FG}; }}
-QLabel#title    {{ color: {HL};    font-size: 19pt; font-weight: bold; }}
-QLabel#ver      {{ color: {MUTED}; font-size: 10pt; }}
-QLabel#sel      {{ color: {MUTED}; font-size: 14pt; }}
-QLabel#appname  {{ color: #7b8cde; font-size: 10pt; }}
-QLabel#status   {{ color: {MUTED}; font-size: 10pt; }}
-QLabel#body     {{ color: {FG};    font-size: 13pt; }}
-QLabel#head     {{ color: {FG};    font-size: 15pt; font-weight: bold; }}
+/* ── Labels ── */
+QLabel                  {{ background-color: transparent; color: {FG}; }}
+QLabel#title            {{ color: {HL}; font-size: 18pt; font-weight: bold; letter-spacing: 2px; }}
+QLabel#ver              {{ color: {MUTED}; font-size: 10pt; }}
+QLabel#sel              {{ color: {MUTED}; font-size: 14pt; }}
+QLabel#appname          {{ color: rgba(255,255,255,0.28); font-size: 10pt; letter-spacing: 1px; }}
+QLabel#status           {{ color: {MUTED}; font-size: 10pt; }}
+QLabel#body             {{ color: {FG}; font-size: 13pt; }}
+QLabel#head             {{ color: {FG}; font-size: 15pt; font-weight: bold; }}
 
-QPushButton#apply   {{ background:#2e7d32; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#apply:hover    {{ background:#43a047; }}
-QPushButton#apply:pressed  {{ background:#1b5e20; }}
+/* ── Dot indicators ── */
+QLabel#dot_red    {{ background: #FF5F56; border-radius: 6px; }}
+QLabel#dot_yellow {{ background: {AMBER}; border-radius: 6px; }}
+QLabel#dot_green  {{ background: {GREEN}; border-radius: 6px; }}
 
-QPushButton#reset   {{ background:{ACC}; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#reset:hover    {{ background:#1e5799; }}
-QPushButton#reset:pressed  {{ background:#1a4a80; }}
-
-QPushButton#update  {{ background:#f9a825; color:#1a1a00; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#update:hover   {{ background:#ffe082; }}
-QPushButton#update:pressed {{ background:#f57f17; }}
-
-QPushButton#uninst  {{ background:#c0392b; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#uninst:hover   {{ background:#e74c3c; }}
-QPushButton#uninst:pressed {{ background:#922b21; }}
-
-QPushButton#closebtn {{ background:#808080; color:white; font-size:10pt; border:none; border-radius:6px; padding:8px 24px; }}
-QPushButton#closebtn:hover {{ background:#8f8b8b; }}
-
-QPushButton#export {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#export:hover   {{ background:#1e4a5e; }}
-QPushButton#export:pressed {{ background:#152e3a; }}
-
-QPushButton#import {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#import:hover   {{ background:#1e4a5e; }}
-QPushButton#import:pressed {{ background:#152e3a; }}
-
-QPushButton#rdefault {{ background:#3a2a1a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#rdefault:hover   {{ background:#4a3520; }}
-QPushButton#rdefault:pressed {{ background:#2a1e10; }}
-
-QPushButton#actbtn  {{ background:{ACC}; color:white; font-size:13pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#actbtn:hover   {{ background:#1e5799; }}
-QPushButton#actbtn:pressed {{ background:#1a4a80; }}
-
-QPushButton#secbtn  {{ background:#1e2a3a; color:{FG}; font-size:13pt; border:none; border-radius:8px; padding:10px; }}
-QPushButton#secbtn:hover   {{ background:#243040; }}
-QPushButton#secbtn:pressed {{ background:#1a2030; }}
-
-QPushButton#tb_min {{ background:transparent; color:#8890b8; font-size:13pt; border:none; padding:4px 14px; }}
-QPushButton#tb_min:hover {{ background:#1e2238; color:{FG}; }}
-
-QPushButton#tb_cls {{ background:transparent; color:#8890b8; font-size:13pt; border:none; padding:4px 14px; }}
-QPushButton#tb_cls:hover {{ background:#3a0a0a; color:#e74c3c; }}
-
-QProgressBar {{ background:#0d0f1e; border:none; border-radius:5px; height:10px; }}
-QProgressBar::chunk {{ background:{GREEN}; border-radius:5px; }}
-
-QMessageBox {{ background-color: #2a2d3e; }}
-QMessageBox QLabel {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
-QMessageBox QPushButton {{
-    background: {ACC}; color: white;
-    font-size: 11pt; font-family: Consolas;
-    border: none; border-radius: 6px;
-    padding: 6px 20px; min-width: 70px;
+/* ── Apply button ── */
+QPushButton#apply  {{
+    background: {GREEN}; color: #001a00;
+    font-size: 14pt; font-weight: bold;
+    border: none; border-radius: 8px; padding: 10px;
 }}
-QMessageBox QPushButton:hover {{ background: #1e5799; }}
-QMessageBox QPushButton:default {{ background: {HL}; }}
-QMessageBox QPushButton:default:hover {{ background: #c73652; }}
+QPushButton#apply:hover   {{ background: #34d946; }}
+QPushButton#apply:pressed {{ background: #1da32a; }}
 
-QToolTip {{
-    background-color: #0d0f1e;
+/* ── Reset button ── */
+QPushButton#reset  {{
+    background: {ACC}; color: white;
+    font-size: 14pt; font-weight: bold;
+    border: none; border-radius: 8px; padding: 10px;
+}}
+QPushButton#reset:hover   {{ background: #6ab4ff; }}
+QPushButton#reset:pressed {{ background: #2d7fd4; }}
+
+/* ── Update button ── */
+QPushButton#update  {{
+    background: {AMBER}; color: #1a1000;
+    font-size: 14pt; font-weight: bold;
+    border: none; border-radius: 8px; padding: 10px;
+}}
+QPushButton#update:hover   {{ background: #ffd060; }}
+QPushButton#update:pressed {{ background: #d4991e; }}
+
+/* ── Uninstall button ── */
+QPushButton#uninst  {{
+    background: {HL}; color: white;
+    font-size: 14pt; font-weight: bold;
+    border: none; border-radius: 8px; padding: 10px;
+}}
+QPushButton#uninst:hover   {{ background: #ff7a73; }}
+QPushButton#uninst:pressed {{ background: #cc3a33; }}
+
+/* ── Close button ── */
+QPushButton#closebtn  {{
+    background: rgba(255,255,255,0.06);
+    color: {MUTED};
+    font-size: 10pt;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px; padding: 8px 28px;
+}}
+QPushButton#closebtn:hover  {{ background: rgba(255,255,255,0.10); color: {FG}; }}
+QPushButton#closebtn:pressed {{ background: rgba(255,255,255,0.04); }}
+
+/* ── Export / Import / Defaults ── */
+QPushButton#export, QPushButton#import  {{
+    background: rgba(74,158,255,0.08);
+    color: {ACC};
+    font-size: 14pt; font-weight: bold;
+    border: 1px solid rgba(74,158,255,0.18);
+    border-radius: 8px; padding: 10px;
+}}
+QPushButton#export:hover, QPushButton#import:hover  {{
+    background: rgba(74,158,255,0.14);
+}}
+QPushButton#export:pressed, QPushButton#import:pressed  {{
+    background: rgba(74,158,255,0.06);
+}}
+
+QPushButton#rdefault  {{
+    background: rgba(254,188,46,0.08);
+    color: {AMBER};
+    font-size: 14pt; font-weight: bold;
+    border: 1px solid rgba(254,188,46,0.18);
+    border-radius: 8px; padding: 10px;
+}}
+QPushButton#rdefault:hover   {{ background: rgba(254,188,46,0.14); }}
+QPushButton#rdefault:pressed {{ background: rgba(254,188,46,0.05); }}
+
+/* ── Action / Secondary buttons ── */
+QPushButton#actbtn  {{
+    background: {ACC}; color: white;
+    font-size: 13pt; font-weight: bold;
+    border: none; border-radius: 8px; padding: 10px;
+}}
+QPushButton#actbtn:hover   {{ background: #6ab4ff; }}
+QPushButton#actbtn:pressed {{ background: #2d7fd4; }}
+
+QPushButton#secbtn  {{
+    background: rgba(255,255,255,0.04);
     color: {FG};
-    border: 1px solid {ACC};
-    border-radius: 4px;
-    padding: 4px 8px;
+    font-size: 13pt;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 10px;
+}}
+QPushButton#secbtn:hover   {{ background: rgba(255,255,255,0.08); }}
+QPushButton#secbtn:pressed {{ background: rgba(255,255,255,0.02); }}
+
+/* ── Title bar buttons ── */
+QPushButton#tb_min  {{
+    background: transparent; color: rgba(255,255,255,0.25);
+    font-size: 11pt; border: none; padding: 4px 12px;
+    border-top-right-radius: 0px;
+}}
+QPushButton#tb_min:hover {{ background: rgba(255,255,255,0.06); color: {FG}; }}
+
+QPushButton#tb_cls  {{
+    background: transparent; color: rgba(255,255,255,0.25);
+    font-size: 11pt; border: none; padding: 4px 12px;
+    border-top-right-radius: 11px;
+}}
+QPushButton#tb_cls:hover {{ background: rgba(255,95,86,0.25); color: {HL}; }}
+
+/* ── Progress bar ── */
+QProgressBar  {{
+    background: rgba(255,255,255,0.05);
+    border: none; border-radius: 4px; height: 6px;
+}}
+QProgressBar::chunk  {{ background: {GREEN}; border-radius: 4px; }}
+
+/* ── Message boxes ── */
+QMessageBox  {{ background-color: #161c28; }}
+QMessageBox QLabel  {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
+QMessageBox QPushButton  {{
+    background: rgba(74,158,255,0.12); color: {ACC};
+    font-size: 11pt; font-family: Consolas;
+    border: 1px solid rgba(74,158,255,0.25);
+    border-radius: 6px; padding: 6px 20px; min-width: 70px;
+}}
+QMessageBox QPushButton:hover  {{ background: rgba(74,158,255,0.2); }}
+QMessageBox QPushButton:default  {{ background: {HL}; color: white; border: none; }}
+QMessageBox QPushButton:default:hover  {{ background: #ff7a73; }}
+
+/* ── Tooltip ── */
+QToolTip  {{
+    background-color: #161c28;
+    color: {FG};
+    border: 1px solid rgba(74,158,255,0.35);
+    border-radius: 6px;
+    padding: 5px 10px;
     font-family: Consolas;
     font-size: 10pt;
 }}
 """
 
 # ── Title bar ─────────────────────────────────────────────────────────────────
+class DotButton(QWidget):
+    """macOS-style circular dot button."""
+    def __init__(self, color, hover_color, slot, parent=None):
+        super().__init__(parent)
+        self._color       = QColor(color)
+        self._hover_color = QColor(hover_color)
+        self._hovered     = False
+        self.setFixedSize(12, 12)
+        self.setCursor(Qt.PointingHandCursor)
+        self._slot = slot
+
+    def enterEvent(self, e):
+        self._hovered = True;  self.update()
+    def leaveEvent(self, e):
+        self._hovered = False; self.update()
+    def mousePressEvent(self, e):
+        if e.button() == Qt.LeftButton:
+            self._slot()
+
+    def paintEvent(self, e):
+        from PyQt5.QtGui import QPainter
+        p = QPainter(self)
+        p.setRenderHint(QPainter.Antialiasing)
+        c = self._hover_color if self._hovered else self._color
+        p.setBrush(c)
+        p.setPen(Qt.NoPen)
+        p.drawEllipse(0, 0, 12, 12)
+
+
 class TitleBar(QWidget):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
         self.setObjectName("tb")
-        self.setFixedHeight(36)
+        self.setFixedHeight(38)
         self._drag_pos = QPoint()
 
         lay = QHBoxLayout(self)
-        lay.setContentsMargins(12, 0, 0, 0)
-        lay.setSpacing(0)
+        lay.setContentsMargins(14, 0, 14, 0)
+        lay.setSpacing(8)
+
+        # macOS dots
+        self._dot_close = DotButton("#FF5F56", "#ff7a73", parent.close)
+        self._dot_min   = DotButton("#FEBC2E", "#ffd060", parent.showMinimized)
+        self._dot_max   = DotButton("#28C840", "#34d946", lambda: None)
+        for dot in (self._dot_close, self._dot_min, self._dot_max):
+            lay.addWidget(dot)
+
+        lay.addStretch()
 
         lbl = QLabel(APP_TITLE)
         lbl.setObjectName("appname")
         lay.addWidget(lbl)
-        lay.addStretch()
 
-        for text, obj, slot, tip in [("─", "tb_min", parent.showMinimized, "Minimize"),
-                                 ("✕", "tb_cls", parent.close, "Close")]:
-            btn = QPushButton(text)
-            btn.setObjectName(obj)
-            btn.setFixedHeight(36)
-            btn.setCursor(Qt.PointingHandCursor)
-            btn.setToolTip(tip)
-            btn.clicked.connect(slot)
-            lay.addWidget(btn)
+        lay.addStretch()
+        # Right side spacer to balance dot width
+        lay.addSpacing(12 * 3 + 8 * 2)
 
     def mousePressEvent(self, e):
         if e.button() == Qt.LeftButton:
             self._drag_pos = e.globalPos() - self.parent.frameGeometry().topLeft()
 
     def mouseMoveEvent(self, e):
-        if e.buttons() == Qt.LeftButton:
+        if e.buttons() == Qt.LeftButton and not self._drag_pos.isNull():
             self.parent.move(e.globalPos() - self._drag_pos)
 
 # ── Aircraft row ──────────────────────────────────────────────────────────────
@@ -325,24 +455,24 @@ class AircraftRow(QWidget):
         # Çark (settings) butonu
         self._gear_btn = QToolButton()
         self._gear_btn.setText("⚙")
-        self._gear_btn.setFixedSize(36, 36)
+        self._gear_btn.setFixedSize(32, 32)
         self._gear_btn.setCursor(Qt.PointingHandCursor)
         self._gear_btn.setToolTip(f"Configure {label} switches")
         self._gear_btn.setStyleSheet(f"""
             QToolButton {{
                 background: transparent;
                 color: {MUTED};
-                font-size: 16pt;
+                font-size: 14pt;
                 border: none;
                 border-radius: 6px;
             }}
             QToolButton:hover {{
-                background: #1e2a4a;
-                color: {FG};
+                background: rgba(74,158,255,0.12);
+                color: {ACC};
             }}
             QToolButton:pressed {{
-                background: {ACC};
-                color: white;
+                background: rgba(74,158,255,0.06);
+                color: {ACC};
             }}
         """)
         self._gear_btn.clicked.connect(self._open_settings)
@@ -355,7 +485,8 @@ class AircraftRow(QWidget):
 
     def _refresh_bg(self, hover):
         p = self.palette()
-        p.setColor(self.backgroundRole(), QColor("#1e2a4a" if hover else PANEL))
+        p.setColor(self.backgroundRole(),
+                   QColor("rgba(74,158,255,20)" if hover else PANEL))
         self.setAutoFillBackground(True)
         self.setPalette(p)
 
@@ -410,30 +541,54 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(APP_TITLE)
-        self.setFixedSize(560, 856)
-        self.setObjectName("main")
+        # Extra margin around the frame for the drop shadow
+        SHADOW_MARGIN = 28
+        WIN_W, WIN_H = 540, 840
+        TOTAL_W = WIN_W + SHADOW_MARGIN * 2
+        TOTAL_H = WIN_H + SHADOW_MARGIN * 2
+        self.setFixedSize(TOTAL_W, TOTAL_H)
+        self.setObjectName("shell")
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.Window)
+        self.setAttribute(Qt.WA_TranslucentBackground)
 
         scr = QApplication.desktop().screenGeometry()
-        self.move((scr.width() - 560) // 2, (scr.height() - 856) // 2)
+        self.move((scr.width() - TOTAL_W) // 2, (scr.height() - TOTAL_H) // 2)
 
         self.scripts_dir = None
-        self._rows = []       # AircraftRow list (populated in main screen)
+        self._rows = []
 
-        # Persistent layout skeleton
-        root = QVBoxLayout(self)
-        root.setContentsMargins(0, 0, 0, 0)
-        root.setSpacing(0)
+        # ── Outer shell layout (transparent, holds frame + shadow) ──
+        shell_lay = QVBoxLayout(self)
+        shell_lay.setContentsMargins(SHADOW_MARGIN, SHADOW_MARGIN,
+                                     SHADOW_MARGIN, SHADOW_MARGIN)
+        shell_lay.setSpacing(0)
 
-        root.addWidget(TitleBar(self))
+        # ── Rounded frame widget ──
+        self._frame = QWidget(self)
+        self._frame.setObjectName("frame")
+        self._frame.setFixedSize(WIN_W, WIN_H)
 
-        div = QFrame(); div.setObjectName("div"); div.setFixedHeight(1)
-        root.addWidget(div)
+        # Drop shadow on the frame
+        shadow = QGraphicsDropShadowEffect(self._frame)
+        shadow.setBlurRadius(48)
+        shadow.setOffset(0, 12)
+        shadow.setColor(QColor(0, 0, 0, 180))
+        self._frame.setGraphicsEffect(shadow)
 
-        # Fixed header
+        shell_lay.addWidget(self._frame)
+
+        # ── Frame inner layout ──
+        frame_lay = QVBoxLayout(self._frame)
+        frame_lay.setContentsMargins(0, 0, 0, 0)
+        frame_lay.setSpacing(0)
+
+        # Title bar
+        frame_lay.addWidget(TitleBar(self))
+
+        # Header
         hdr = QWidget(); hdr.setObjectName("main")
         hdr_lay = QVBoxLayout(hdr)
-        hdr_lay.setContentsMargins(20, 28, 20, 0)
+        hdr_lay.setContentsMargins(20, 24, 20, 0)
         hdr_lay.setSpacing(0)
         self.lbl_title = QLabel("DCS-COCKPIT-RANDOMIZER")
         self.lbl_title.setObjectName("title")
@@ -443,22 +598,21 @@ class MainWindow(QWidget):
         lbl_ver.setObjectName("ver")
         lbl_ver.setAlignment(Qt.AlignCenter)
         hdr_lay.addWidget(lbl_ver)
-        hdr_lay.addSpacing(12)
-        root.addWidget(hdr)
+        hdr_lay.addSpacing(10)
+        frame_lay.addWidget(hdr)
 
         # Swappable content area
         self.content = QVBoxLayout()
-        self.content.setContentsMargins(20, 0, 20, 0)
+        self.content.setContentsMargins(18, 0, 18, 0)
         self.content.setSpacing(0)
-        root.addLayout(self.content)
+        frame_lay.addLayout(self.content)
 
         # Persistent bottom bar
         bottom = QWidget(); bottom.setObjectName("main")
         bot_lay = QVBoxLayout(bottom)
-        bot_lay.setContentsMargins(20, 8, 20, 16)
+        bot_lay.setContentsMargins(18, 6, 18, 14)
         bot_lay.setSpacing(6)
 
-        # status ve progress main screen'de enjekte edilir
         self.status_lbl = QLabel("")
         self.status_lbl.setObjectName("status")
         self.status_lbl.setAlignment(Qt.AlignCenter)
@@ -466,7 +620,7 @@ class MainWindow(QWidget):
         self.status_lbl.setFixedHeight(20)
 
         self.progress = QProgressBar()
-        self.progress.setFixedHeight(10)
+        self.progress.setFixedHeight(6)
         self.progress.setRange(0, 100)
         self.progress.setTextVisible(False)
         self.progress.hide()
@@ -480,15 +634,15 @@ class MainWindow(QWidget):
         crow = QHBoxLayout()
         crow.addStretch(); crow.addWidget(btn_close); crow.addStretch()
         bot_lay.addLayout(crow)
-        root.addWidget(bottom)
+        frame_lay.addWidget(bottom)
 
         # Fade-in
         self.setWindowOpacity(0.0)
         anim = QPropertyAnimation(self, b"windowOpacity", self)
-        anim.setDuration(300)
+        anim.setDuration(320)
         anim.setStartValue(0.0)
         anim.setEndValue(1.0)
-        anim.setEasingCurve(QEasingCurve.InOutQuad)
+        anim.setEasingCurve(QEasingCurve.OutCubic)
         anim.start()
         self._anim = anim
 
@@ -523,7 +677,7 @@ class MainWindow(QWidget):
         btn = QPushButton(text)
         btn.setObjectName(obj)
         btn.setCursor(Qt.PointingHandCursor)
-        btn.setFixedHeight(52)
+        btn.setFixedHeight(48)
         btn.clicked.connect(slot)
         return btn
 
@@ -632,7 +786,7 @@ class MainWindow(QWidget):
         self.content.addSpacing(16)
         btn = QPushButton("Browse...")
         btn.setObjectName("actbtn"); btn.setCursor(Qt.PointingHandCursor)
-        btn.setFixedHeight(52); btn.clicked.connect(self._browse_scripts_dir)
+        btn.setFixedHeight(48); btn.clicked.connect(self._browse_scripts_dir)
         self.content.addWidget(btn)
         self.content.addStretch()
 
@@ -664,7 +818,7 @@ class MainWindow(QWidget):
         for text, obj, slot in [("Install", "actbtn", self._do_install),
                                  ("Change location...", "secbtn", self._browse_scripts_dir)]:
             btn = QPushButton(text); btn.setObjectName(obj)
-            btn.setCursor(Qt.PointingHandCursor); btn.setFixedHeight(52)
+            btn.setCursor(Qt.PointingHandCursor); btn.setFixedHeight(48)
             btn.clicked.connect(slot)
             self.content.addWidget(btn)
             self.content.addSpacing(4)
@@ -747,11 +901,17 @@ class MainWindow(QWidget):
         inst_ver = installed_version(self.scripts_dir)
         exe_ver  = exe_version()
         if inst_ver and inst_ver != exe_ver:
-            banner = QFrame(); banner.setStyleSheet("background:#2a1a0e; border-radius:6px;")
-            bl = QHBoxLayout(banner); bl.setContentsMargins(10, 6, 10, 6)
-            bl.addWidget(QLabel(
-                f"New version available: v{exe_ver}  (installed: v{inst_ver})",
-            ))
+            banner = QFrame()
+            banner.setStyleSheet(
+                f"background: rgba(254,188,46,0.08);"
+                f"border: 1px solid rgba(254,188,46,0.2);"
+                f"border-radius: 8px;"
+            )
+            bl = QHBoxLayout(banner); bl.setContentsMargins(12, 8, 12, 8)
+            banner_lbl = QLabel(
+                f"New version available: v{exe_ver}  (installed: v{inst_ver})")
+            banner_lbl.setStyleSheet(f"color: {AMBER}; font-size: 10pt;")
+            bl.addWidget(banner_lbl)
             upd = QPushButton("Update now")
             upd.setObjectName("secbtn"); upd.setCursor(Qt.PointingHandCursor)
             upd.clicked.connect(self._do_update)
@@ -957,7 +1117,7 @@ class MainWindow(QWidget):
         dlg.setWindowTitle("Reset to Defaults")
         dlg.setWindowFlags(Qt.Dialog)
         dlg.setFixedWidth(340)
-        dlg.setStyleSheet(f"QDialog {{ background: #2a2d3e; }} "
+        dlg.setStyleSheet(f"QDialog {{ background: #161c28; border: 1px solid {BORDER_WIN}; border-radius: 10px; }} "
                           f"QLabel {{ color: {FG}; font-family: Consolas; }} "
                           f"QCheckBox {{ color: {FG}; font-family: Consolas; font-size: 11pt; }}")
         lay = QVBoxLayout(dlg)
@@ -983,7 +1143,7 @@ class MainWindow(QWidget):
         btn_row = QHBoxLayout()
         btn_cancel = QPushButton("Cancel")
         btn_ok     = QPushButton("Reset Selected")
-        for btn, style in [(btn_cancel, f"background:#1e2a3a; color:{FG}; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas;"),
+        for btn, style in [(btn_cancel, f"background: rgba(255,255,255,0.05); color:{FG}; border: 1px solid rgba(255,255,255,0.1); border-radius:6px; padding:6px 16px; font-family:Consolas;"),
                            (btn_ok,     f"background:{HL}; color:white; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas; font-weight:bold;")]:
             btn.setStyleSheet(style)
             btn.setCursor(Qt.PointingHandCursor)
