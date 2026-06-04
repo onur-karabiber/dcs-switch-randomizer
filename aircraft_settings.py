@@ -1,9 +1,4 @@
 # aircraft_settings.py — CockpitRandomizer Aircraft Settings Dialog
-# Prototype: JSON metadata → PyQt5 UI → .lua generator
-#
-# Entegrasyon notu: Bu dosya mevcut dcs-cockpit-randomizer-qt.py ile
-# birlikte çalışır. AircraftRow'daki çark ikonuna tıklanınca
-# AircraftSettingsDialog(key, scripts_dir, parent) çağrılır.
 
 import sys, os, json, copy
 from math import gcd
@@ -13,29 +8,26 @@ from fractions import Fraction
 from PyQt5.QtWidgets import (
     QApplication, QDialog, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QFrame, QScrollArea, QSpinBox,
-    QCheckBox, QSizePolicy, QMessageBox, QGraphicsDropShadowEffect
+    QCheckBox, QSizePolicy, QMessageBox
 )
-from PyQt5.QtCore import Qt, QTimer, QPoint
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QFont, QColor
 
-# ── Palette (mevcut uygulamayla aynı) ────────────────────────────────────────
-BG         = "#0d1117"
-PANEL      = "#111820"
-TB         = "#0a0e14"
-BORDER_WIN = "#2a3040"
-HL         = "#FF5F56"
-ACC        = "#4A9EFF"
-FG         = "#c8d0e8"
-MUTED      = "#4a5270"
-GREEN      = "#28C840"
-AMBER      = "#FEBC2E"
-DARK       = "#070a0f"
+# ── Palette ───────────────────────────────────────────────────────────────────
+BG    = "#1a1d2e"
+PANEL = "#16213e"
+TB    = "#0d0f1e"
+HL    = "#e05c7a"
+ACC   = "#2d5fa0"
+FG    = "#c0c8f0"
+MUTED = "#5a6080"
+GREEN = "#2e7d32"
+DARK  = "#0d1020"
 
-# ── Tip renkleri ──────────────────────────────────────────────────────────────
 TYPE_COLOR = {
-    "discrete":   "#1a3a6a",
-    "continuous": "#1a3a2a",
-    "run":        "#3a2a1a",
+    "discrete":   "#2d5fa0",
+    "continuous": "#4a6a3a",
+    "run":        "#6a4a2a",
 }
 TYPE_LABEL = {
     "discrete":   "SWITCH",
@@ -45,37 +37,40 @@ TYPE_LABEL = {
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
-def load_metadata(key: str) -> dict | None:
+def load_metadata(key: str, scripts_dir: str | None = None) -> dict | None:
     """
     JSON metadata'yı yükler.
-    Arama sırası:
-      1. Bu .py dosyasıyla aynı dizinde <key>.json
-      2. CockpitRandomizer/<key>.json  (Lua dosyalarıyla aynı yer)
-      3. metadata/<key>.json
+    Arama sırası (DÜZELTME: scripts_dir öncelikli):
+      1. scripts_dir/CockpitRandomizer/<key>.json  ← kaydedilmiş ayarlar burada
+      2. Bu .py dosyasıyla aynı dizinde <key>.json
+      3. THIS_DIR/CockpitRandomizer/<key>.json
+      4. THIS_DIR/metadata/<key>.json
     """
     here = os.path.dirname(os.path.abspath(__file__))
-    print(f"[DEBUG load_metadata] key={key!r}")
-    print(f"[DEBUG load_metadata] here={here!r}")
-    for path in [
-        os.path.join(here, f"{key}.json"),
-        os.path.join(here, "CockpitRandomizer", f"{key}.json"),
-        os.path.join(here, "metadata", f"{key}.json"),
-    ]:
+
+    search_paths = []
+
+    # 1. Önce scripts_dir içine bak (Save & Apply buraya yazar)
+    if scripts_dir:
+        search_paths.append(os.path.join(scripts_dir, "CockpitRandomizer", f"{key}.json"))
+
+    # 2. exe/script yanı
+    search_paths.append(os.path.join(here, f"{key}.json"))
+    search_paths.append(os.path.join(here, "CockpitRandomizer", f"{key}.json"))
+    search_paths.append(os.path.join(here, "metadata", f"{key}.json"))
+
+    for path in search_paths:
         print(f"[DEBUG load_metadata] araniyor: {path!r}")
         if os.path.isfile(path):
             print(f"[DEBUG load_metadata] BULUNDU: {path!r}")
             with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
+
     print("[DEBUG load_metadata] BULUNAMADI")
     return None
 
 
 def weights_to_vals(positions: list) -> list:
-    """
-    [{"delta": 0, "weight": 90}, {"delta": -1, "weight": 10}]
-    → [0, 0, 0, 0, 0, 0, 0, 0, 0, -1]
-    Fraction ile tam sayı GCD — 0.5 gibi weight'leri de destekler.
-    """
     fracs = [Fraction(p["weight"]).limit_denominator(10000) for p in positions]
     denoms = [fr.denominator for fr in fracs]
     lcm_d = reduce(lambda a, b: a * b // gcd(a, b), denoms)
@@ -88,42 +83,28 @@ def weights_to_vals(positions: list) -> list:
 
 
 def format_delta(v) -> str:
-    """Lua'da yazılacak delta değerini formatla."""
     if isinstance(v, float) and v == int(v):
         return str(int(v))
     return str(v)
 
 
 def style_msgbox(dlg: QMessageBox) -> None:
-    """QMessageBox'a tutarlı stil uygula."""
     dlg.setStyleSheet(f"""
-        QMessageBox {{
-            background-color: #161c28;
-        }}
-        QMessageBox QLabel {{
-            color: {FG};
-            font-size: 11pt;
-            font-family: Consolas;
-        }}
+        QMessageBox {{ background-color: #2a2d3e; }}
+        QMessageBox QLabel {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
         QMessageBox QPushButton {{
-            background: rgba(74,158,255,0.12); color: {ACC};
+            background: {ACC}; color: white;
             font-size: 11pt; font-family: Consolas;
-            border: 1px solid rgba(74,158,255,0.25);
-            border-radius: 6px;
+            border: none; border-radius: 6px;
             padding: 6px 20px; min-width: 70px;
         }}
-        QMessageBox QPushButton:hover {{ background: rgba(74,158,255,0.2); }}
-        QMessageBox QPushButton:default {{ background: {HL}; color: white; border: none; }}
-        QMessageBox QPushButton:default:hover {{ background: #ff7a73; }}
+        QMessageBox QPushButton:hover {{ background: #1e5799; }}
+        QMessageBox QPushButton:default {{ background: {HL}; }}
+        QMessageBox QPushButton:default:hover {{ background: #c73652; }}
     """)
 
 
 def generate_lua(metadata: dict) -> str:
-    """
-    JSON metadata → fa18c.lua içeriği.
-    run ve continuous tipler template'ten olduğu gibi gelir;
-    disabled olanlar yorum satırına alınır.
-    """
     lines = []
     lines.append(f'-- Generated by CockpitRandomizer GUI')
     lines.append(f'-- Aircraft: {metadata["display_name"]}')
@@ -131,7 +112,6 @@ def generate_lua(metadata: dict) -> str:
     lines.append(f'CR.register("{metadata["aircraft"]}", {{')
     lines.append('')
 
-    # Continuous kontroller için sabit vals
     CONTINUOUS_VALS = "{0, 0.25, 0.5, 0.75, 1.0}"
 
     for ctrl in metadata["controls"]:
@@ -158,11 +138,10 @@ def generate_lua(metadata: dict) -> str:
                 lines.append(f"        dev={dev}, cmd={cmd_str}, label=\"{label}\",")
                 lines.append(f"        run=function(device)")
                 if lua_body:
-                    # Her satırı olduğu gibi yaz (girinti lua_body içinde saklı)
                     for body_line in lua_body.splitlines():
                         lines.append(body_line)
                 else:
-                    lines.append(f"            -- [lua_body tanımsız — bu kontrol için run() gövdesi eksik]")
+                    lines.append(f"            -- [lua_body tanımsız]")
                 lines.append(f"        end")
                 lines.append(f"    }},")
             lines.append('')
@@ -183,7 +162,6 @@ def generate_lua(metadata: dict) -> str:
             positions = ctrl.get("positions", [])
             vals = weights_to_vals(positions)
             vals_str = "{" + ", ".join(format_delta(v) for v in vals) + "}"
-            # Pozisyon açıklaması
             pos_comment = " / ".join(
                 f"{p['label']}={p['weight']}%{'(default)' if p.get('is_default') else ''}"
                 for p in positions
@@ -206,23 +184,18 @@ def generate_lua(metadata: dict) -> str:
     return "\n".join(lines)
 
 
-# ── Basılı tutma + ivme destekli buton ───────────────────────────────────────
+# ── RepeatButton ──────────────────────────────────────────────────────────────
 
 class RepeatButton(QPushButton):
-    """
-    Tek tıkta bir adım uygular.
-    Basılı tutulduğunda INITIAL_DELAY ms sonra tekrar modu başlar;
-    her adımda interval MIN_INTERVAL'a doğru kısalır (ivmelenme).
-    """
-    INITIAL_DELAY = 400   # ms — ilk tekrar başlamadan önceki bekleme
-    START_INTERVAL = 80   # ms — tekrar modunun başlangıç aralığı
-    MIN_INTERVAL   = 25   # ms — en hızlı tekrar aralığı
-    ACCEL_STEP     = 4    # ms — her adımda interval ne kadar azalsın
+    INITIAL_DELAY  = 400
+    START_INTERVAL = 80
+    MIN_INTERVAL   = 25
+    ACCEL_STEP     = 4
 
     def __init__(self, text: str, callback, **kwargs):
         super().__init__(text, **kwargs)
         self._callback   = callback
-        self._locked     = False   # setEnabled yerine bu flag kullanılır
+        self._locked     = False
         self._timer      = QTimer(self)
         self._timer.setSingleShot(False)
         self._timer.timeout.connect(self._on_tick)
@@ -230,21 +203,17 @@ class RepeatButton(QPushButton):
         self._hold_steps = 0
 
     def set_locked(self, locked: bool, style_locked: str, style_normal: str):
-        """
-        Qt event mekanizmasını bozmadan görsel kilitleme.
-        setEnabled() yerine bu metod kullanılır.
-        """
         self._locked = locked
         self.setStyleSheet(style_locked if locked else style_normal)
         if locked:
-            self._timer.stop()   # basılı tutarken kilitlenirse timer'ı durdur
+            self._timer.stop()
 
     def mousePressEvent(self, e):
         if e.button() == Qt.LeftButton and not self._locked:
-            self._callback()                        # ilk anında adım
+            self._callback()
             self._interval   = self.START_INTERVAL
             self._hold_steps = 0
-            self._timer.start(self.INITIAL_DELAY)   # ilk gecikme
+            self._timer.start(self.INITIAL_DELAY)
         super().mousePressEvent(e)
 
     def mouseReleaseEvent(self, e):
@@ -255,35 +224,23 @@ class RepeatButton(QPushButton):
         if self._locked:
             self._timer.stop()
             return
-        # İlk tick'ten sonra normal aralığa geç
         if self._timer.interval() == self.INITIAL_DELAY:
             self._timer.setInterval(self._interval)
         self._callback()
         self._hold_steps += 1
-        # İvmelenme: her adımda interval kısalt
-        new_interval = max(self.MIN_INTERVAL,
-                           self._interval - self.ACCEL_STEP)
+        new_interval = max(self.MIN_INTERVAL, self._interval - self.ACCEL_STEP)
         if new_interval != self._interval:
             self._interval = new_interval
             self._timer.setInterval(self._interval)
 
 
-# ── Widget: tek pozisyon satırı ───────────────────────────────────────────────
+# ── PositionRow ───────────────────────────────────────────────────────────────
 
 class PositionRow(QWidget):
-    """
-    Tek bir switch pozisyonu: [LABEL]  [SpinBox %]
-
-    Davranış kuralları:
-      - is_default=True olan satır read-only'dir; değeri diğer satırların
-        toplamına göre otomatik olarak hesaplanır (100 - diğerleri).
-      - is_default=False olan satırlar düzenlenebilir.
-      - Herhangi bir satır değiştiğinde, default satır anında güncellenir.
-    """
     def __init__(self, pos_data: dict, all_rows_ref: list, is_default: bool):
         super().__init__()
         self._pos        = pos_data
-        self._rows       = all_rows_ref  # kardeş satırlar (dışarıdan set edilir)
+        self._rows       = all_rows_ref
         self._is_default = is_default
         self._updating   = False
 
@@ -291,13 +248,11 @@ class PositionRow(QWidget):
         lay.setContentsMargins(0, 2, 0, 2)
         lay.setSpacing(8)
 
-        # Default işareti
         def_lbl = QLabel("★" if is_default else "  ")
         def_lbl.setFixedWidth(18)
-        def_lbl.setStyleSheet(f"color: {AMBER}; font-size: 11pt; background: transparent;")
+        def_lbl.setStyleSheet(f"color: #f9a825; font-size: 11pt; background: transparent;")
         lay.addWidget(def_lbl)
 
-        # Pozisyon adı
         name_lbl = QLabel(pos_data["label"])
         name_lbl.setMinimumWidth(60)
         name_lbl.setStyleSheet(f"color: {FG}; font-size: 12pt; "
@@ -306,22 +261,16 @@ class PositionRow(QWidget):
 
         lay.addStretch()
 
-        # % spinbox + ▲▼ butonları
         self.spin = QSpinBox()
         self.spin.setRange(0, 100)
         self.spin.setValue(int(pos_data["weight"]))
         self.spin.setFixedWidth(56)
         self.spin.setFixedHeight(32)
         self.spin.setAlignment(Qt.AlignRight)
-
-        # Her iki tip de read-only — giriş sadece ▲▼ butonlarıyla
         self.spin.setReadOnly(True)
         self.spin.setButtonSymbols(QSpinBox.NoButtons)
-        if is_default:
-            spin_border_color = MUTED
-        else:
-            spin_border_color = "rgba(74,158,255,0.45)"
 
+        spin_border_color = MUTED if is_default else ACC
         self.spin.setStyleSheet(f"""
             QSpinBox {{
                 background: {DARK};
@@ -338,15 +287,12 @@ class PositionRow(QWidget):
 
         btn_style = f"""
             QPushButton {{
-                background: rgba(74,158,255,0.15);
-                color: {ACC};
-                border: none;
-                border-radius: 3px;
-                font-size: 10pt;
-                padding: 0px;
+                background: {ACC}; color: {FG};
+                border: none; border-radius: 3px;
+                font-size: 10pt; padding: 0px;
             }}
-            QPushButton:hover   {{ background: rgba(74,158,255,0.28); }}
-            QPushButton:pressed {{ background: rgba(74,158,255,0.08); }}
+            QPushButton:hover   {{ background: #1e5799; }}
+            QPushButton:pressed {{ background: #1a4a80; }}
         """
 
         spin_grp = QHBoxLayout()
@@ -354,8 +300,7 @@ class PositionRow(QWidget):
         spin_grp.setSpacing(3)
         spin_grp.addWidget(self.spin)
 
-        # Default satıra ▲▼ buton ekleme
-        self._btn_up = None  # non-default satırlarda set edilir
+        self._btn_up = None
         if not is_default:
             self._btn_up = RepeatButton("▲", lambda: self.spin.setValue(min(100, self.spin.value() + 1)))
             self._btn_up.setFixedSize(22, 15)
@@ -374,16 +319,13 @@ class PositionRow(QWidget):
             btn_col.addWidget(btn_dn)
             spin_grp.addLayout(btn_col)
         else:
-            # Default satır için boş alan — hizalamayı koru
             spacer = QWidget()
-            spacer.setFixedSize(22 + 3, 32)  # btn_col genişliği kadar
+            spacer.setFixedSize(22 + 3, 32)
             spin_grp.addWidget(spacer)
 
         lay.addLayout(spin_grp)
-
         self.spin.valueChanged.connect(self._on_change)
 
-        # İlk açılışta default rengi uygula
         if is_default:
             self._update_color()
 
@@ -391,11 +333,9 @@ class PositionRow(QWidget):
         if self._updating:
             return
         if self._is_default:
-            # Default satırın değeri programatik olarak set edildi; sadece veriyi güncelle
             self._pos["weight"] = val
             return
 
-        # Non-default satır değişti: default kardeşi güncelle
         self._pos["weight"] = val
         default_row = next((r for r in self._rows if r._is_default), None)
         if default_row is not None:
@@ -405,22 +345,17 @@ class PositionRow(QWidget):
             default_row.spin.setValue(new_default)
             default_row._pos["weight"] = new_default
             default_row._updating = False
-            # Default rengi güncelle: 100 ise yeşil (etkisiz switch uyarısı), değilse normal
             default_row._update_color()
-            # Default 0'a düştüyse tüm ▲ butonlarını kilitle, yükseldiyse aç
             self._sync_up_buttons(locked=(new_default == 0))
 
     def _update_color(self):
-        """Default spin rengini değerine göre güncelle: 100 → yeşil, diğer → normal."""
         color = GREEN if self.spin.value() == 100 else FG
         self.spin.setStyleSheet(f"""
             QSpinBox {{
-                background: {DARK};
-                color: {color};
+                background: {DARK}; color: {color};
                 border: 1px solid {MUTED};
                 border-radius: 4px;
-                font-family: Consolas;
-                font-size: 12pt;
+                font-family: Consolas; font-size: 12pt;
                 padding: 2px 6px;
             }}
             QSpinBox::up-button   {{ width: 0px; }}
@@ -428,28 +363,21 @@ class PositionRow(QWidget):
         """)
 
     def _sync_up_buttons(self, locked: bool):
-        """Tüm non-default kardeşlerin ▲ butonunu görsel olarak kilitle veya aç."""
         btn_style_disabled = f"""
             QPushButton {{
-                background: rgba(255,255,255,0.04);
-                color: {MUTED};
-                border: none;
-                border-radius: 3px;
-                font-size: 10pt;
-                padding: 0px;
+                background: {MUTED}; color: #3a3a5a;
+                border: none; border-radius: 3px;
+                font-size: 10pt; padding: 0px;
             }}
         """
         btn_style_normal = f"""
             QPushButton {{
-                background: rgba(74,158,255,0.15);
-                color: {ACC};
-                border: none;
-                border-radius: 3px;
-                font-size: 10pt;
-                padding: 0px;
+                background: {ACC}; color: {FG};
+                border: none; border-radius: 3px;
+                font-size: 10pt; padding: 0px;
             }}
-            QPushButton:hover   {{ background: rgba(74,158,255,0.28); }}
-            QPushButton:pressed {{ background: rgba(74,158,255,0.08); }}
+            QPushButton:hover   {{ background: #1e5799; }}
+            QPushButton:pressed {{ background: #1a4a80; }}
         """
         for row in self._rows:
             if row._btn_up is not None:
@@ -459,65 +387,47 @@ class PositionRow(QWidget):
         return self.spin.value()
 
 
-# ── Widget: tek kontrol kartı ─────────────────────────────────────────────────
+# ── ControlCard ───────────────────────────────────────────────────────────────
 
 class ControlCard(QFrame):
-    """
-    Bir switch/knob/run kontrolünü temsil eden kart.
-    ┌──────────────────────────────────────────────┐
-    │ ☑  Master Arm Switch          [SWITCH]        │
-    │    SAFE ★  [90 %]  (read-only, auto)         │
-    │    ARM     [10 %]                            │
-    │    toplam: 100 %  ✓                          │
-    └──────────────────────────────────────────────┘
-    """
     def __init__(self, ctrl: dict):
         super().__init__()
         self._ctrl = ctrl
         self._pos_rows: list[PositionRow] = []
 
         self.setObjectName("panel")
-        self.setStyleSheet(
-            f"QFrame#panel {{"
-            f"  background: {PANEL};"
-            f"  border: 1px solid rgba(255,255,255,0.05);"
-            f"  border-radius: 8px;"
-            f"}}"
-        )
+        self.setStyleSheet(f"QFrame#panel {{ background: {PANEL}; border-radius: 6px; }}")
 
         outer = QVBoxLayout(self)
         outer.setContentsMargins(10, 8, 6, 8)
         outer.setSpacing(4)
 
-        # ── Başlık satırı ──────────────────────────────────────────────────
         top = QHBoxLayout()
         top.setSpacing(8)
 
-        # Enable checkbox
         self.chk = QCheckBox()
         self.chk.setChecked(ctrl.get("enabled", True))
         self.chk.setStyleSheet(f"""
             QCheckBox::indicator {{
                 width: 18px; height: 18px;
-                border: 1px solid {MUTED};
-                border-radius: 4px;
+                border: 2px solid {MUTED};
+                border-radius: 3px;
                 background: {DARK};
             }}
             QCheckBox::indicator:checked {{
-                background: rgba(40,200,64,0.18);
-                border: 1px solid {GREEN};
+                background: #1b5e20;
+                border: 2px solid #43a047;
                 image: none;
             }}
             QCheckBox::indicator:unchecked {{
-                background: rgba(255,95,86,0.10);
-                border: 1px solid rgba(255,95,86,0.3);
+                background: #3a0a0a;
+                border: 2px solid #c0392b;
                 image: none;
             }}
         """)
         self.chk.stateChanged.connect(self._on_toggle)
         top.addWidget(self.chk)
 
-        # Label
         lbl = QLabel(ctrl["label"])
         lbl.setStyleSheet(f"color: {FG}; font-size: 12pt; "
                            f"font-family: Consolas; font-weight: bold; background: transparent;")
@@ -525,22 +435,15 @@ class ControlCard(QFrame):
         top.addStretch()
 
         t = ctrl["type"]
-        badge_bg = TYPE_COLOR.get(t, "rgba(74,158,255,0.15)")
-        badge_fg = {
-            "discrete":   ACC,
-            "continuous": GREEN,
-            "run":        AMBER,
-        }.get(t, FG)
         badge = QLabel(TYPE_LABEL.get(t, t.upper()))
         badge.setStyleSheet(
-            f"background: {badge_bg}; color: {badge_fg}; "
+            f"background: {TYPE_COLOR.get(t, ACC)}; color: white; "
             f"font-size: 9pt; font-family: Consolas; font-weight: bold; "
-            f"border-radius: 4px; padding: 2px 8px;")
+            f"border-radius: 3px; padding: 2px 6px;")
         top.addWidget(badge)
 
         outer.addLayout(top)
 
-        # ── Alt içerik ─────────────────────────────────────────────────────
         self._body = QVBoxLayout()
         self._body.setContentsMargins(26, 0, 0, 0)
         self._body.setSpacing(2)
@@ -548,13 +451,11 @@ class ControlCard(QFrame):
 
         if t == "discrete":
             self._build_discrete()
-        # continuous ve run: badge yeterli, ek içerik gerekmez
 
         self._set_body_enabled(ctrl.get("enabled", True))
 
     def _build_discrete(self):
         positions = self._ctrl.get("positions", [])
-        # non-default pozisyonlar üste, default alta
         non_defaults = [p for p in positions if not p.get("is_default", False)]
         defaults     = [p for p in positions if p.get("is_default", False)]
         for pos in non_defaults + defaults:
@@ -562,8 +463,6 @@ class ControlCard(QFrame):
             row = PositionRow(pos, self._pos_rows, is_def)
             self._pos_rows.append(row)
             self._body.addWidget(row)
-
-        # Her non-default spinbox değişince _sync_up_buttons tetiklenir (total label yok)
 
     def _on_toggle(self, state):
         enabled = bool(state)
@@ -575,10 +474,9 @@ class ControlCard(QFrame):
             item = self._body.itemAt(i)
             if item and item.widget():
                 item.widget().setEnabled(enabled)
-                item.widget().setStyleSheet(item.widget().styleSheet())  # repaint
+                item.widget().setStyleSheet(item.widget().styleSheet())
 
     def is_valid(self) -> tuple[bool, str]:
-        """Discrete kontrolün weight toplamı 100 mü?"""
         if self._ctrl["type"] != "discrete" or not self._ctrl.get("enabled", True):
             return True, ""
         total = sum(r.get_weight() for r in self._pos_rows)
@@ -587,184 +485,120 @@ class ControlCard(QFrame):
         return True, ""
 
     def flush_to_data(self):
-        """UI değerlerini ctrl dict'e yaz."""
         if self._ctrl["type"] == "discrete":
             for i, row in enumerate(self._pos_rows):
                 self._ctrl["positions"][i]["weight"] = row.get_weight()
 
 
-# ── Ana dialog ────────────────────────────────────────────────────────────────
+# ── AircraftSettingsDialog ────────────────────────────────────────────────────
 
 class AircraftSettingsDialog(QDialog):
-    """
-    Bir aircraft için settings ekranı.
-    Kullanım: AircraftSettingsDialog("fa18c", scripts_dir, parent).exec_()
-    """
     def __init__(self, aircraft_key: str, scripts_dir: str | None = None,
                  parent=None):
         super().__init__(parent)
-        self._key        = aircraft_key
+        self._key         = aircraft_key
         self._scripts_dir = scripts_dir
         self._cards: list[ControlCard] = []
-        self._drag_pos   = QPoint()
 
-        self.setWindowTitle(f"CockpitRandomizer — Settings")
-        self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
-        self.setAttribute(Qt.WA_TranslucentBackground)
-
-        SHADOW_MARGIN = 24
-        WIN_W = 820
-        _screen = QApplication.desktop().availableGeometry()
-        _dpr    = QApplication.instance().devicePixelRatio()
+        self.setWindowTitle("CockpitRandomizer — Settings")
+        self.setFixedWidth(800)
+        _screen  = QApplication.desktop().availableGeometry()
+        _dpr     = QApplication.instance().devicePixelRatio()
         screen_h = int(_screen.height() / _dpr)
-        target_h = min(900, screen_h - 60)
-        WIN_H = target_h
-        TOTAL_W = WIN_W + SHADOW_MARGIN * 2
-        TOTAL_H = WIN_H + SHADOW_MARGIN * 2
+        print(f"[DEBUG dialog] screen_h(logical)={screen_h}, dpr={_dpr}")
+        self.setMinimumHeight(400)
+        self.setMaximumHeight(screen_h - 60)
+        self.resize(620, min(960, screen_h - 80))
+        self.setStyleSheet(f"QDialog {{ background: {BG}; }}")
+        self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
 
-        self.setFixedWidth(TOTAL_W)
-        self.setMinimumHeight(400 + SHADOW_MARGIN * 2)
-        self.setMaximumHeight(TOTAL_H)
-        self.resize(TOTAL_W, TOTAL_H)
-
-        # ── Outer shell (transparent) ──
-        shell_lay = QVBoxLayout(self)
-        shell_lay.setContentsMargins(SHADOW_MARGIN, SHADOW_MARGIN,
-                                     SHADOW_MARGIN, SHADOW_MARGIN)
-        shell_lay.setSpacing(0)
-
-        # ── Rounded frame ──
-        self._frame = QWidget(self)
-        self._frame.setFixedSize(WIN_W, WIN_H)
-        self._frame.setStyleSheet(
-            f"QWidget {{ background: {BG};"
-            f"  border: 1px solid {BORDER_WIN};"
-            f"  border-radius: 12px; }}"
-        )
-
-        shadow = QGraphicsDropShadowEffect(self._frame)
-        shadow.setBlurRadius(48)
-        shadow.setOffset(0, 12)
-        shadow.setColor(QColor(0, 0, 0, 180))
-        self._frame.setGraphicsEffect(shadow)
-
-        shell_lay.addWidget(self._frame)
-
-        # Metadata yükle
-        self._meta = load_metadata(aircraft_key)
+        # DÜZELTME: scripts_dir'i load_metadata'ya ilet — kaydedilmiş ayarlar orada
+        self._meta = load_metadata(aircraft_key, scripts_dir)
         if self._meta is None:
             self._show_no_metadata()
             return
 
         self._build_ui()
 
-    # ── No metadata ───────────────────────────────────────────────────────────
-
     def _show_no_metadata(self):
-        lay = QVBoxLayout(self._frame)
+        lay = QVBoxLayout(self)
         lbl = QLabel(f"No metadata found for '{self._key}'.\n\n"
                      f"Expected: {self._key}.json next to this script.")
-        lbl.setStyleSheet(f"color: {HL}; font-family: Consolas; font-size: 12pt; border: none;")
+        lbl.setStyleSheet(f"color: {HL}; font-family: Consolas; font-size: 12pt;")
         lbl.setAlignment(Qt.AlignCenter)
         lay.addWidget(lbl)
         btn = QPushButton("Close")
         btn.clicked.connect(self.reject)
         lay.addWidget(btn)
 
-    # ── UI build ──────────────────────────────────────────────────────────────
-
     def _build_ui(self):
-        root = QVBoxLayout(self._frame)
+        root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
 
-        # ── Başlık çubuğu ──────────────────────────────────────────────────
+        # ── Başlık çubuğu ─────────────────────────────────────────────────
         tb = QWidget()
-        tb.setFixedHeight(42)
-        tb.setStyleSheet(
-            f"QWidget {{ background: {TB};"
-            f"  border-top-left-radius: 12px;"
-            f"  border-top-right-radius: 12px;"
-            f"  border-bottom: 1px solid {BORDER_WIN}; }}"
-        )
+        tb.setFixedHeight(40)
+        tb.setStyleSheet(f"background: {TB};")
         tb_lay = QHBoxLayout(tb)
-        tb_lay.setContentsMargins(14, 0, 14, 0)
-        tb_lay.setSpacing(8)
-
-        # macOS dots
-        for color, hover, slot in [
-            ("#FF5F56", "#ff7a73", self.reject),
-            ("#FEBC2E", "#ffd060", lambda: None),
-            ("#28C840", "#34d946", lambda: None),
-        ]:
-            dot = QLabel()
-            dot.setFixedSize(12, 12)
-            dot.setStyleSheet(
-                f"QLabel {{ background: {color}; border-radius: 6px; border: none; }}"
-                f"QLabel:hover {{ background: {hover}; }}"
-            )
-            dot.setCursor(Qt.PointingHandCursor)
-            dot.mousePressEvent = lambda e, s=slot: s()
-            tb_lay.addWidget(dot)
-        tb_lay.addSpacing(8)
+        tb_lay.setContentsMargins(16, 0, 8, 0)
 
         title_lbl = QLabel(
             f"{self._meta.get('display_name', self._key)}  —  Switch Settings")
         title_lbl.setStyleSheet(
-            f"color: rgba(255,255,255,0.28); font-family: Consolas; font-size: 10pt;"
-            f" background: transparent; border: none; letter-spacing: 1px;")
-        tb_lay.addStretch()
+            f"color: {FG}; font-family: Consolas; font-size: 11pt; background: transparent;")
         tb_lay.addWidget(title_lbl)
         tb_lay.addStretch()
-        # Balance for the 3 dots + spacing
-        tb_lay.addSpacing(12 * 3 + 8 * 2 + 8)
 
-        # Drag
-        tb.mousePressEvent  = lambda e: (
-            setattr(self, "_drag_pos",
-                    e.globalPos() - self.frameGeometry().topLeft())
-            if e.button() == Qt.LeftButton else None)
-        tb.mouseMoveEvent   = lambda e: (
-            self.move(e.globalPos() - self._drag_pos)
-            if e.buttons() == Qt.LeftButton and not self._drag_pos.isNull() else None)
+        cls_btn = QPushButton("✕")
+        cls_btn.setFixedSize(32, 32)
+        cls_btn.setStyleSheet(f"""
+            QPushButton {{ background: transparent; color: {MUTED};
+                          font-size: 13pt; border: none; }}
+            QPushButton:hover {{ background: #3a0a0a; color: #e74c3c; }}
+        """)
+        cls_btn.setCursor(Qt.PointingHandCursor)
+        cls_btn.clicked.connect(self.reject)
+        tb_lay.addWidget(cls_btn)
+
+        self._drag_pos = None
+        tb.mousePressEvent = lambda e: setattr(self, "_drag_pos",
+            e.globalPos() - self.frameGeometry().topLeft()) \
+            if e.button() == Qt.LeftButton else None
+        tb.mouseMoveEvent = lambda e: self.move(
+            e.globalPos() - self._drag_pos) \
+            if e.buttons() == Qt.LeftButton and self._drag_pos else None
 
         root.addWidget(tb)
+
+        # Divider
+        div1 = QFrame(); div1.setFixedHeight(1)
+        div1.setStyleSheet(f"background: #2e3250;")
+        root.addWidget(div1)
 
         # ── Scroll area ────────────────────────────────────────────────────
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
-        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll.setFrameShape(QFrame.NoFrame)
         scroll.setStyleSheet(f"""
-            QScrollArea {{ border: none; background: {BG}; }}
+            QScrollArea {{ background: {BG}; border: none; }}
             QScrollBar:vertical {{
-                background: rgba(255,255,255,0.03);
-                width: 6px; border-radius: 3px;
+                background: {TB}; width: 8px; margin: 0;
             }}
             QScrollBar::handle:vertical {{
-                background: rgba(255,255,255,0.12);
-                border-radius: 3px; min-height: 20px;
+                background: {MUTED}; border-radius: 4px; min-height: 20px;
             }}
-            QScrollBar::handle:vertical:hover {{
-                background: rgba(255,255,255,0.22);
-            }}
-            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{
-                height: 0px;
-            }}
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{ height: 0px; }}
         """)
 
         inner = QWidget()
-        inner.setMinimumWidth(760)
-        inner.setStyleSheet(f"background: {BG}; border: none;")
+        inner.setStyleSheet(f"background: {BG};")
         inner_lay = QVBoxLayout(inner)
-        inner_lay.setContentsMargins(10, 14, 10, 14)
-        inner_lay.setSpacing(6)
+        inner_lay.setContentsMargins(16, 12, 16, 12)
+        inner_lay.setSpacing(8)
 
-        TYPE_ORDER = {"discrete": 0, "continuous": 1, "run": 2}
-        sorted_controls = sorted(
-            self._meta["controls"],
-            key=lambda c: TYPE_ORDER.get(c.get("type", "run"), 2)
-        )
-        for ctrl in sorted_controls:
+        controls = self._meta.get("controls", [])
+        for ctrl in controls:
             card = ControlCard(ctrl)
             self._cards.append(card)
             inner_lay.addWidget(card)
@@ -775,51 +609,44 @@ class AircraftSettingsDialog(QDialog):
 
         # Divider
         div2 = QFrame(); div2.setFixedHeight(1)
-        div2.setStyleSheet(f"background: {BORDER_WIN}; border: none;")
+        div2.setStyleSheet(f"background: #2e3250;")
         root.addWidget(div2)
 
         # ── Alt butonlar ───────────────────────────────────────────────────
         bottom = QWidget()
-        bottom.setStyleSheet(
-            f"QWidget {{ background: {TB};"
-            f"  border-bottom-left-radius: 12px;"
-            f"  border-bottom-right-radius: 12px; }}"
-        )
+        bottom.setStyleSheet(f"background: {TB};")
         bot_lay = QHBoxLayout(bottom)
-        bot_lay.setContentsMargins(16, 12, 16, 12)
+        bot_lay.setContentsMargins(16, 10, 16, 10)
         bot_lay.setSpacing(8)
 
         self._status_lbl = QLabel("")
         self._status_lbl.setStyleSheet(
-            f"color: {MUTED}; font-family: Consolas; font-size: 10pt;"
-            f" background: transparent; border: none;")
+            f"color: {MUTED}; font-family: Consolas; font-size: 10pt; background: transparent;")
         bot_lay.addWidget(self._status_lbl)
         bot_lay.addStretch()
 
-        for text, is_primary, slot in [
-            ("Cancel",         False, self.reject),
-            ("Save and Apply", True,  self._save),
+        for text, style, slot in [
+            ("Cancel",        "secbtn", self.reject),
+            ("Save && Apply", "apply",  self._save),   # [3] && = literal &
         ]:
             btn = QPushButton(text)
-            btn.setFixedHeight(38)
+            btn.setFixedHeight(40)
             btn.setMinimumWidth(150)
             btn.setCursor(Qt.PointingHandCursor)
-            if is_primary:
+            if style == "apply":
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: {GREEN}; color: #001a00;
+                    QPushButton {{ background: {GREEN}; color: white;
                         font-family: Consolas; font-size: 12pt; font-weight: bold;
-                        border: none; border-radius: 7px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: #34d946; }}
-                    QPushButton:pressed {{ background: #1da32a; }}
+                        border: none; border-radius: 6px; padding: 0 16px; }}
+                    QPushButton:hover {{ background: #43a047; }}
+                    QPushButton:pressed {{ background: #1b5e20; }}
                 """)
             else:
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: rgba(255,255,255,0.05); color: {FG};
+                    QPushButton {{ background: #1e2a3a; color: {FG};
                         font-family: Consolas; font-size: 12pt;
-                        border: 1px solid rgba(255,255,255,0.08);
-                        border-radius: 7px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: rgba(255,255,255,0.09); }}
-                    QPushButton:pressed {{ background: rgba(255,255,255,0.03); }}
+                        border: none; border-radius: 6px; padding: 0 16px; }}
+                    QPushButton:hover {{ background: #243040; }}
                 """)
             btn.clicked.connect(slot)
             bot_lay.addWidget(btn)
@@ -833,15 +660,13 @@ class AircraftSettingsDialog(QDialog):
             self._save_impl()
         except Exception as e:
             import traceback
-            tb = traceback.format_exc()
-            print(f"[SAVE ERROR]\n{tb}")
+            print(f"[SAVE ERROR]\n{traceback.format_exc()}")
             try:
                 self._status(f"Error: {e}", HL)
             except Exception:
                 pass
 
     def _save_impl(self):
-        # ── Validation: tüm kartları flush et, hatalıları topla ──────────
         errors = []
         for card in self._cards:
             card.flush_to_data()
@@ -850,43 +675,34 @@ class AircraftSettingsDialog(QDialog):
                 errors.append(label)
 
         if errors:
-            # Hard block: hatalı switch'leri listeleyen QMessageBox
             msg = QMessageBox(self)
             msg.setWindowTitle("Cannot Save — Weight Errors")
             msg.setIcon(QMessageBox.Warning)
             style_msgbox(msg)
-
             detail_lines = "\n".join(f"  • {name}" for name in errors)
             msg.setText(
                 "The weights for the following switches do not add up to 100 %.\n"
-                "Correct them before saving.\n\n"
-                + detail_lines
+                "Correct them before saving.\n\n" + detail_lines
             )
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec_()
-            # Status bar'da da kısa özet göster
             self._status(
                 f"⚠  {len(errors)} switch{'es' if len(errors) > 1 else ''} with invalid weights — not saved.",
                 HL)
             return
 
-        # ── Lua üret ─────────────────────────────────────────────────────
-        print("[DEBUG _save] generate_lua baslıyor")
         lua_content = generate_lua(self._meta)
-        print(f"[DEBUG _save] lua_content: {len(lua_content)} karakter")
 
         if self._scripts_dir:
             cr_dir    = os.path.join(self._scripts_dir, "CockpitRandomizer")
             lua_path  = os.path.join(cr_dir, f"{self._key}.lua")
             json_path = os.path.join(cr_dir, f"{self._key}.json")
-            print(f"[DEBUG _save] lua_path: {lua_path}")
-            print(f"[DEBUG _save] json_path: {json_path}")
+            print(f"[DEBUG _save] lua_path:  {lua_path!r}")
+            print(f"[DEBUG _save] json_path: {json_path!r}")
             with open(lua_path, "w", encoding="utf-8") as f:
                 f.write(lua_content)
-            print("[DEBUG _save] lua yazıldı")
             with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(self._meta, f, indent=2, ensure_ascii=False)
-            print("[DEBUG _save] json yazıldı")
             self._status("Saved.", GREEN)
             QTimer.singleShot(1200, self.accept)
         else:
@@ -906,8 +722,7 @@ class AircraftSettingsDialog(QDialog):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle("Fusion")
-
-    # Test: fa18c.json bu dosyayla aynı dizinde olmalı
     dlg = AircraftSettingsDialog("fa18c", scripts_dir=None)
+    dlg.resize(620, 800)
     dlg.show()
     sys.exit(app.exec_())
