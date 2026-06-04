@@ -814,15 +814,7 @@ class AircraftSettingsDialog(QDialog):
         if self._scripts_dir:
             cr_dir    = os.path.join(self._scripts_dir, "CockpitRandomizer")
             lua_path  = os.path.join(cr_dir, f"{self._key}.lua")
-            _here = os.path.dirname(os.path.abspath(__file__))
-            json_path = next(
-                (p for p in [
-                    os.path.join(_here, f"{self._key}.json"),
-                    os.path.join(_here, "CockpitRandomizer", f"{self._key}.json"),
-                    os.path.join(_here, "metadata", f"{self._key}.json"),
-                ] if os.path.isfile(p)),
-                os.path.join(cr_dir, f"{self._key}.json")
-            )
+            json_path = os.path.join(cr_dir, f"{self._key}.json")
             print(f"[DEBUG _save] lua_path: {lua_path}")
             print(f"[DEBUG _save] json_path: {json_path}")
             with open(lua_path, "w", encoding="utf-8") as f:
