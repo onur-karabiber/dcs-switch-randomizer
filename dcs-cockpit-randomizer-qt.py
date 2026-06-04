@@ -1,4 +1,4 @@
-# dcs-cockpit-randomizer-qt.py v1.0
+# dcs-cockpit-randomizer-qt.py v3.0.0
 # PyQt5 port of dcs-cockpit-randomizer
 # Place this file next to the CockpitRandomizer\ folder.
 
@@ -7,10 +7,10 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QFrame, QSizePolicy,
     QFileDialog, QMessageBox, QProgressBar, QToolButton,
-    QDialog, QCheckBox, QGraphicsDropShadowEffect
+    QDialog, QCheckBox
 )
 from PyQt5.QtCore import Qt, QPoint, QPropertyAnimation, QEasingCurve, QTimer
-from PyQt5.QtGui import QColor, QFont, QPainter, QPainterPath, QRegion
+from PyQt5.QtGui import QColor, QFont
 
 # ── DPI awareness ─────────────────────────────────────────────────────────────
 try:
@@ -21,7 +21,7 @@ except Exception:
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 APP_TITLE            = "dcs-cockpit-randomizer"
-APP_VERSION_FALLBACK = "1.0"
+APP_VERSION_FALLBACK = "3.0.0"  # [6] v3.0.0
 
 AIRCRAFT = [
     ("F-4E Phantom II", "f4e"),
@@ -40,17 +40,17 @@ else:
 LUA_SRC_DIR = os.path.join(THIS_DIR, "CockpitRandomizer")
 
 # ── Palette ───────────────────────────────────────────────────────────────────
-BG         = "#0d1117"
-PANEL      = "#111820"
-TB         = "#0a0e14"
-BORDER_WIN = "#2a3040"
-HL         = "#FF5F56"
-ACC        = "#4A9EFF"
-FG         = "#c8d0e8"
-MUTED      = "#4a5270"
-GREEN      = "#28C840"
-AMBER      = "#FEBC2E"
-SHADOW_CLR = "#000000"
+BG    = "#1a1d2e"
+PANEL = "#16213e"
+TB    = "#0d0f1e"
+HL    = "#e05c7a"
+ACC   = "#2d5fa0"
+FG    = "#c0c8f0"
+MUTED = "#5a6080"
+GREEN = "#2e7d32"
+
+# [10] Hover rengi — Reset butonuyla aynı mavi (ACC)
+HOVER_ROW = ACC  # "#2d5fa0"
 
 # ── Version helpers ───────────────────────────────────────────────────────────
 def read_version(path):
@@ -176,262 +176,138 @@ def save_config(scripts_dir, selected_keys):
 # ── QSS ──────────────────────────────────────────────────────────────────────
 STYLE = f"""
 * {{ font-family: Consolas; }}
-
-/* ── Outer shell (transparent — shadow lives here) ── */
-QWidget#shell  {{ background: transparent; }}
-
-/* ── Window frame border ring ── */
-QWidget#frame  {{
-    background-color: {BG};
-    border: 1px solid {BORDER_WIN};
-    border-radius: 12px;
-}}
-
-/* ── Title bar ── */
-QWidget#tb     {{
-    background-color: {TB};
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    border-bottom: 1px solid {BORDER_WIN};
-}}
-
-/* ── Main body ── */
 QWidget#main   {{ background-color: {BG}; }}
-QFrame#panel   {{
-    background-color: {PANEL};
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 8px;
-}}
-QFrame#div     {{ background-color: {BORDER_WIN}; }}
+QWidget#tb     {{ background-color: {TB}; }}
+QFrame#panel   {{ background-color: {PANEL}; border-radius: 6px; }}
+QFrame#div     {{ background-color: #2e3250; }}
 QFrame#content {{ background-color: {BG}; }}
 
-/* ── Labels ── */
-QLabel                  {{ background-color: transparent; color: {FG}; }}
-QLabel#title            {{ color: {HL}; font-size: 18pt; font-weight: bold; letter-spacing: 2px; }}
-QLabel#ver              {{ color: {MUTED}; font-size: 10pt; }}
-QLabel#sel              {{ color: {MUTED}; font-size: 14pt; }}
-QLabel#appname          {{ color: rgba(255,255,255,0.28); font-size: 10pt; letter-spacing: 1px; }}
-QLabel#status           {{ color: {MUTED}; font-size: 10pt; }}
-QLabel#body             {{ color: {FG}; font-size: 13pt; }}
-QLabel#head             {{ color: {FG}; font-size: 15pt; font-weight: bold; }}
+QLabel          {{ background-color: transparent; color: {FG}; }}
+QLabel#title    {{ color: {HL};    font-size: 19pt; font-weight: bold; }}
+QLabel#ver      {{ color: {MUTED}; font-size: 10pt; }}
+QLabel#sel      {{ color: {MUTED}; font-size: 14pt; }}
+QLabel#appname  {{ color: #7b8cde; font-size: 10pt; }}
+QLabel#status   {{ color: {MUTED}; font-size: 10pt; }}
+QLabel#body     {{ color: {FG};    font-size: 13pt; }}
+QLabel#head     {{ color: {FG};    font-size: 15pt; font-weight: bold; }}
 
-/* ── Dot indicators ── */
-QLabel#dot_red    {{ background: #FF5F56; border-radius: 6px; }}
-QLabel#dot_yellow {{ background: {AMBER}; border-radius: 6px; }}
-QLabel#dot_green  {{ background: {GREEN}; border-radius: 6px; }}
+QPushButton#apply   {{ background:#2e7d32; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#apply:hover    {{ background:#43a047; }}
+QPushButton#apply:pressed  {{ background:#1b5e20; }}
 
-/* ── Apply button ── */
-QPushButton#apply  {{
-    background: {GREEN}; color: #001a00;
-    font-size: 14pt; font-weight: bold;
-    border: none; border-radius: 8px; padding: 10px;
-}}
-QPushButton#apply:hover   {{ background: #34d946; }}
-QPushButton#apply:pressed {{ background: #1da32a; }}
+QPushButton#reset   {{ background:{ACC}; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#reset:hover    {{ background:#1e5799; }}
+QPushButton#reset:pressed  {{ background:#1a4a80; }}
 
-/* ── Reset button ── */
-QPushButton#reset  {{
+QPushButton#update  {{ background:#f9a825; color:#1a1a00; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#update:hover   {{ background:#ffe082; }}
+QPushButton#update:pressed {{ background:#f57f17; }}
+
+QPushButton#uninst  {{ background:#c0392b; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#uninst:hover   {{ background:#e74c3c; }}
+QPushButton#uninst:pressed {{ background:#922b21; }}
+
+QPushButton#closebtn {{ background:#808080; color:white; font-size:10pt; border:none; border-radius:6px; padding:8px 24px; }}
+QPushButton#closebtn:hover {{ background:#8f8b8b; }}
+
+QPushButton#export {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#export:hover   {{ background:#1e4a5e; }}
+QPushButton#export:pressed {{ background:#152e3a; }}
+
+QPushButton#import {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#import:hover   {{ background:#1e4a5e; }}
+QPushButton#import:pressed {{ background:#152e3a; }}
+
+QPushButton#rdefault {{ background:#3a2a1a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#rdefault:hover   {{ background:#4a3520; }}
+QPushButton#rdefault:pressed {{ background:#2a1e10; }}
+
+QPushButton#actbtn  {{ background:{ACC}; color:white; font-size:13pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#actbtn:hover   {{ background:#1e5799; }}
+QPushButton#actbtn:pressed {{ background:#1a4a80; }}
+
+QPushButton#secbtn  {{ background:#1e2a3a; color:{FG}; font-size:13pt; border:none; border-radius:8px; padding:10px; }}
+QPushButton#secbtn:hover   {{ background:#243040; }}
+QPushButton#secbtn:pressed {{ background:#1a2030; }}
+
+QPushButton#tb_min {{ background:transparent; color:#8890b8; font-size:15pt; font-weight:bold; border:none; padding:4px 18px; }}
+QPushButton#tb_min:hover {{ background:#1e2238; color:{FG}; }}
+
+QPushButton#tb_cls {{ background:transparent; color:#8890b8; font-size:15pt; font-weight:bold; border:none; padding:4px 18px; }}
+QPushButton#tb_cls:hover {{ background:#3a0a0a; color:#e74c3c; }}
+
+QProgressBar {{ background:#0d0f1e; border:none; border-radius:5px; height:10px; }}
+QProgressBar::chunk {{ background:{GREEN}; border-radius:5px; }}
+
+QMessageBox {{ background-color: #2a2d3e; }}
+QMessageBox QLabel {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
+QMessageBox QPushButton {{
     background: {ACC}; color: white;
-    font-size: 14pt; font-weight: bold;
-    border: none; border-radius: 8px; padding: 10px;
-}}
-QPushButton#reset:hover   {{ background: #6ab4ff; }}
-QPushButton#reset:pressed {{ background: #2d7fd4; }}
-
-/* ── Update button ── */
-QPushButton#update  {{
-    background: {AMBER}; color: #1a1000;
-    font-size: 14pt; font-weight: bold;
-    border: none; border-radius: 8px; padding: 10px;
-}}
-QPushButton#update:hover   {{ background: #ffd060; }}
-QPushButton#update:pressed {{ background: #d4991e; }}
-
-/* ── Uninstall button ── */
-QPushButton#uninst  {{
-    background: {HL}; color: white;
-    font-size: 14pt; font-weight: bold;
-    border: none; border-radius: 8px; padding: 10px;
-}}
-QPushButton#uninst:hover   {{ background: #ff7a73; }}
-QPushButton#uninst:pressed {{ background: #cc3a33; }}
-
-/* ── Close button ── */
-QPushButton#closebtn  {{
-    background: rgba(255,255,255,0.06);
-    color: {MUTED};
-    font-size: 10pt;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 6px; padding: 8px 28px;
-}}
-QPushButton#closebtn:hover  {{ background: rgba(255,255,255,0.10); color: {FG}; }}
-QPushButton#closebtn:pressed {{ background: rgba(255,255,255,0.04); }}
-
-/* ── Export / Import / Defaults ── */
-QPushButton#export, QPushButton#import  {{
-    background: rgba(74,158,255,0.08);
-    color: {ACC};
-    font-size: 14pt; font-weight: bold;
-    border: 1px solid rgba(74,158,255,0.18);
-    border-radius: 8px; padding: 10px;
-}}
-QPushButton#export:hover, QPushButton#import:hover  {{
-    background: rgba(74,158,255,0.14);
-}}
-QPushButton#export:pressed, QPushButton#import:pressed  {{
-    background: rgba(74,158,255,0.06);
-}}
-
-QPushButton#rdefault  {{
-    background: rgba(254,188,46,0.08);
-    color: {AMBER};
-    font-size: 14pt; font-weight: bold;
-    border: 1px solid rgba(254,188,46,0.18);
-    border-radius: 8px; padding: 10px;
-}}
-QPushButton#rdefault:hover   {{ background: rgba(254,188,46,0.14); }}
-QPushButton#rdefault:pressed {{ background: rgba(254,188,46,0.05); }}
-
-/* ── Action / Secondary buttons ── */
-QPushButton#actbtn  {{
-    background: {ACC}; color: white;
-    font-size: 13pt; font-weight: bold;
-    border: none; border-radius: 8px; padding: 10px;
-}}
-QPushButton#actbtn:hover   {{ background: #6ab4ff; }}
-QPushButton#actbtn:pressed {{ background: #2d7fd4; }}
-
-QPushButton#secbtn  {{
-    background: rgba(255,255,255,0.04);
-    color: {FG};
-    font-size: 13pt;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 8px; padding: 10px;
-}}
-QPushButton#secbtn:hover   {{ background: rgba(255,255,255,0.08); }}
-QPushButton#secbtn:pressed {{ background: rgba(255,255,255,0.02); }}
-
-/* ── Title bar buttons ── */
-QPushButton#tb_min  {{
-    background: transparent; color: rgba(255,255,255,0.25);
-    font-size: 11pt; border: none; padding: 4px 12px;
-    border-top-right-radius: 0px;
-}}
-QPushButton#tb_min:hover {{ background: rgba(255,255,255,0.06); color: {FG}; }}
-
-QPushButton#tb_cls  {{
-    background: transparent; color: rgba(255,255,255,0.25);
-    font-size: 11pt; border: none; padding: 4px 12px;
-    border-top-right-radius: 11px;
-}}
-QPushButton#tb_cls:hover {{ background: rgba(255,95,86,0.25); color: {HL}; }}
-
-/* ── Progress bar ── */
-QProgressBar  {{
-    background: rgba(255,255,255,0.05);
-    border: none; border-radius: 4px; height: 6px;
-}}
-QProgressBar::chunk  {{ background: {GREEN}; border-radius: 4px; }}
-
-/* ── Message boxes ── */
-QMessageBox  {{ background-color: #161c28; }}
-QMessageBox QLabel  {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
-QMessageBox QPushButton  {{
-    background: rgba(74,158,255,0.12); color: {ACC};
     font-size: 11pt; font-family: Consolas;
-    border: 1px solid rgba(74,158,255,0.25);
-    border-radius: 6px; padding: 6px 20px; min-width: 70px;
+    border: none; border-radius: 6px;
+    padding: 6px 20px; min-width: 70px;
 }}
-QMessageBox QPushButton:hover  {{ background: rgba(74,158,255,0.2); }}
-QMessageBox QPushButton:default  {{ background: {HL}; color: white; border: none; }}
-QMessageBox QPushButton:default:hover  {{ background: #ff7a73; }}
+QMessageBox QPushButton:hover {{ background: #1e5799; }}
+QMessageBox QPushButton:default {{ background: {HL}; }}
+QMessageBox QPushButton:default:hover {{ background: #c73652; }}
 
-/* ── Tooltip ── */
-QToolTip  {{
-    background-color: #161c28;
+QToolTip {{
+    background-color: #0d0f1e;
     color: {FG};
-    border: 1px solid rgba(74,158,255,0.35);
-    border-radius: 6px;
-    padding: 5px 10px;
+    border: 1px solid {ACC};
+    border-radius: 4px;
+    padding: 4px 8px;
     font-family: Consolas;
     font-size: 10pt;
 }}
 """
 
 # ── Title bar ─────────────────────────────────────────────────────────────────
-class DotButton(QWidget):
-    """macOS-style circular dot button."""
-    def __init__(self, color, hover_color, slot, parent=None):
-        super().__init__(parent)
-        self._color       = QColor(color)
-        self._hover_color = QColor(hover_color)
-        self._hovered     = False
-        self.setFixedSize(12, 12)
-        self.setCursor(Qt.PointingHandCursor)
-        self._slot = slot
-
-    def enterEvent(self, e):
-        self._hovered = True;  self.update()
-    def leaveEvent(self, e):
-        self._hovered = False; self.update()
-    def mousePressEvent(self, e):
-        if e.button() == Qt.LeftButton:
-            self._slot()
-
-    def paintEvent(self, e):
-        from PyQt5.QtGui import QPainter
-        p = QPainter(self)
-        p.setRenderHint(QPainter.Antialiasing)
-        c = self._hover_color if self._hovered else self._color
-        p.setBrush(c)
-        p.setPen(Qt.NoPen)
-        p.drawEllipse(0, 0, 12, 12)
-
-
 class TitleBar(QWidget):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
         self.setObjectName("tb")
-        self.setFixedHeight(38)
+        self.setFixedHeight(44)  # [5] biraz daha yüksek titlebar
         self._drag_pos = QPoint()
 
         lay = QHBoxLayout(self)
-        lay.setContentsMargins(14, 0, 14, 0)
-        lay.setSpacing(8)
-
-        # macOS dots
-        self._dot_close = DotButton("#FF5F56", "#ff7a73", parent.close)
-        self._dot_min   = DotButton("#FEBC2E", "#ffd060", parent.showMinimized)
-        self._dot_max   = DotButton("#28C840", "#34d946", lambda: None)
-        for dot in (self._dot_close, self._dot_min, self._dot_max):
-            lay.addWidget(dot)
-
-        lay.addStretch()
+        lay.setContentsMargins(12, 0, 0, 0)
+        lay.setSpacing(0)
 
         lbl = QLabel(APP_TITLE)
         lbl.setObjectName("appname")
         lay.addWidget(lbl)
-
         lay.addStretch()
-        # Right side spacer to balance dot width
-        lay.addSpacing(12 * 3 + 8 * 2)
+
+        # [5] Daha büyük min/close butonlar — fixedSize ile garantile
+        for text, obj, slot, tip in [
+            ("─", "tb_min", parent.showMinimized, "Minimize"),
+            ("✕", "tb_cls", parent.close,         "Close"),
+        ]:
+            btn = QPushButton(text)
+            btn.setObjectName(obj)
+            btn.setFixedSize(48, 44)   # [5] genişlik+yükseklik artırıldı
+            btn.setCursor(Qt.PointingHandCursor)
+            btn.setToolTip(tip)
+            btn.clicked.connect(slot)
+            lay.addWidget(btn)
 
     def mousePressEvent(self, e):
         if e.button() == Qt.LeftButton:
             self._drag_pos = e.globalPos() - self.parent.frameGeometry().topLeft()
 
     def mouseMoveEvent(self, e):
-        if e.buttons() == Qt.LeftButton and not self._drag_pos.isNull():
+        if e.buttons() == Qt.LeftButton:
             self.parent.move(e.globalPos() - self._drag_pos)
 
 # ── Aircraft row ──────────────────────────────────────────────────────────────
 class AircraftRow(QWidget):
     def __init__(self, label, key, checked=True, scripts_dir=None, parent_win=None):
         super().__init__()
-        self.key         = key
-        self.label       = label
-        self._checked    = checked
+        self.key          = key
+        self.label        = label
+        self._checked     = checked
         self._scripts_dir = scripts_dir
         self._parent_win  = parent_win
         self.setFixedHeight(52)
@@ -440,12 +316,12 @@ class AircraftRow(QWidget):
         lay.setContentsMargins(16, 0, 8, 0)
         lay.setSpacing(0)
 
-        # Tik + isim — tıklanabilir alan
+        # [12] Modern tik: ✔ / boş daire ○ — seçili daha koyu, pasif daha silik
         self.lbl = QLabel(self._text())
         font = QFont("Consolas", 15)
         font.setBold(True)
         self.lbl.setFont(font)
-        self.lbl.setStyleSheet(f"color: {FG}; background: transparent;")
+        self.lbl.setStyleSheet(self._label_style())
         self.lbl.setCursor(Qt.PointingHandCursor)
         self.lbl.mousePressEvent = lambda e: self._toggle()
         lay.addWidget(self.lbl)
@@ -455,24 +331,24 @@ class AircraftRow(QWidget):
         # Çark (settings) butonu
         self._gear_btn = QToolButton()
         self._gear_btn.setText("⚙")
-        self._gear_btn.setFixedSize(32, 32)
+        self._gear_btn.setFixedSize(36, 36)
         self._gear_btn.setCursor(Qt.PointingHandCursor)
         self._gear_btn.setToolTip(f"Configure {label} switches")
         self._gear_btn.setStyleSheet(f"""
             QToolButton {{
                 background: transparent;
                 color: {MUTED};
-                font-size: 14pt;
+                font-size: 16pt;
                 border: none;
                 border-radius: 6px;
             }}
             QToolButton:hover {{
-                background: rgba(74,158,255,0.12);
-                color: {ACC};
+                background: #1e2a4a;
+                color: {FG};
             }}
             QToolButton:pressed {{
-                background: rgba(74,158,255,0.06);
-                color: {ACC};
+                background: {ACC};
+                color: white;
             }}
         """)
         self._gear_btn.clicked.connect(self._open_settings)
@@ -481,12 +357,20 @@ class AircraftRow(QWidget):
         self._refresh_bg(False)
 
     def _text(self):
-        return f"{'☑' if self._checked else '☐'}  {self.label}"
+        # [12] Modern tik stili: ✔ seçili, ○ seçisiz
+        return f"{'✔' if self._checked else '○'}  {self.label}"
+
+    def _label_style(self):
+        # [11] Seçili: tam parlak renk; pasif: soluk
+        if self._checked:
+            return f"color: {FG}; background: transparent;"
+        else:
+            return f"color: {MUTED}; background: transparent;"
 
     def _refresh_bg(self, hover):
         p = self.palette()
-        p.setColor(self.backgroundRole(),
-                   QColor("rgba(74,158,255,20)" if hover else PANEL))
+        # [10] hover rengi = ACC (Reset butonuyla aynı mavi)
+        p.setColor(self.backgroundRole(), QColor(HOVER_ROW if hover else PANEL))
         self.setAutoFillBackground(True)
         self.setPalette(p)
 
@@ -494,15 +378,15 @@ class AircraftRow(QWidget):
     def leaveEvent(self, e): self._refresh_bg(False)
 
     def mousePressEvent(self, e):
-        # Row'a tıklanınca toggle — ama çark butonuna tıklanınca buraya düşmez
         self._toggle()
 
     def _toggle(self):
         self._checked = not self._checked
         self.lbl.setText(self._text())
+        # [11] Font rengini güncelle
+        self.lbl.setStyleSheet(self._label_style())
 
     def _open_settings(self):
-        # aircraft_settings.py'deki AircraftSettingsDialog'u aç
         try:
             from aircraft_settings import AircraftSettingsDialog
         except ImportError:
@@ -520,18 +404,32 @@ class AircraftRow(QWidget):
             parent=self._parent_win,
         )
         dlg.setWindowModality(Qt.ApplicationModal)
-        # Ekran merkezine göre ortala (DPI-safe)
+
+        # [4] Dialog ana pencerenin YANINDA açılsın (sağında), üstünde değil
+        parent_geo = self._parent_win.frameGeometry()
+        dlg.show()
+        dlg.adjustSize()
+        dlg_w = dlg.width()
+        dlg_h = dlg.height()
+
+        # Önce sağına koymayı dene
         screen = QApplication.desktop().availableGeometry()
-        dlg_w, dlg_h = 800, dlg.height()
-        dlg.move(
-            screen.x() + (screen.width()  - dlg_w) // 2,
-            screen.y() + (screen.height() - dlg_h) // 2,
-        )
+        x = parent_geo.right() + 10
+        y = parent_geo.top() + (parent_geo.height() - dlg_h) // 2
+
+        # Ekran sınırı kontrolü — sağa sığmıyorsa soluna
+        if x + dlg_w > screen.right():
+            x = parent_geo.left() - dlg_w - 10
+
+        # Y sınırı
+        y = max(screen.top(), min(y, screen.bottom() - dlg_h))
+        dlg.move(x, y)
         dlg.exec_()
 
     def set_checked(self, val):
         self._checked = val
         self.lbl.setText(self._text())
+        self.lbl.setStyleSheet(self._label_style())
 
     def is_checked(self):
         return self._checked
@@ -541,54 +439,30 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(APP_TITLE)
-        # Extra margin around the frame for the drop shadow
-        SHADOW_MARGIN = 28
-        WIN_W, WIN_H = 540, 840
-        TOTAL_W = WIN_W + SHADOW_MARGIN * 2
-        TOTAL_H = WIN_H + SHADOW_MARGIN * 2
-        self.setFixedSize(TOTAL_W, TOTAL_H)
-        self.setObjectName("shell")
+        # [7] Ana arayüz yüksekliği aircraft_settings.py ile uyumlu (856→880)
+        self.setFixedSize(560, 880)
+        self.setObjectName("main")
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.Window)
-        self.setAttribute(Qt.WA_TranslucentBackground)
 
         scr = QApplication.desktop().screenGeometry()
-        self.move((scr.width() - TOTAL_W) // 2, (scr.height() - TOTAL_H) // 2)
+        self.move((scr.width() - 560) // 2, (scr.height() - 880) // 2)
 
         self.scripts_dir = None
         self._rows = []
 
-        # ── Outer shell layout (transparent, holds frame + shadow) ──
-        shell_lay = QVBoxLayout(self)
-        shell_lay.setContentsMargins(SHADOW_MARGIN, SHADOW_MARGIN,
-                                     SHADOW_MARGIN, SHADOW_MARGIN)
-        shell_lay.setSpacing(0)
+        root = QVBoxLayout(self)
+        root.setContentsMargins(0, 0, 0, 0)
+        root.setSpacing(0)
 
-        # ── Rounded frame widget ──
-        self._frame = QWidget(self)
-        self._frame.setObjectName("frame")
-        self._frame.setFixedSize(WIN_W, WIN_H)
+        root.addWidget(TitleBar(self))
 
-        # Drop shadow on the frame
-        shadow = QGraphicsDropShadowEffect(self._frame)
-        shadow.setBlurRadius(48)
-        shadow.setOffset(0, 12)
-        shadow.setColor(QColor(0, 0, 0, 180))
-        self._frame.setGraphicsEffect(shadow)
+        div = QFrame(); div.setObjectName("div"); div.setFixedHeight(1)
+        root.addWidget(div)
 
-        shell_lay.addWidget(self._frame)
-
-        # ── Frame inner layout ──
-        frame_lay = QVBoxLayout(self._frame)
-        frame_lay.setContentsMargins(0, 0, 0, 0)
-        frame_lay.setSpacing(0)
-
-        # Title bar
-        frame_lay.addWidget(TitleBar(self))
-
-        # Header
+        # Fixed header
         hdr = QWidget(); hdr.setObjectName("main")
         hdr_lay = QVBoxLayout(hdr)
-        hdr_lay.setContentsMargins(20, 24, 20, 0)
+        hdr_lay.setContentsMargins(20, 28, 20, 0)
         hdr_lay.setSpacing(0)
         self.lbl_title = QLabel("DCS-COCKPIT-RANDOMIZER")
         self.lbl_title.setObjectName("title")
@@ -598,19 +472,19 @@ class MainWindow(QWidget):
         lbl_ver.setObjectName("ver")
         lbl_ver.setAlignment(Qt.AlignCenter)
         hdr_lay.addWidget(lbl_ver)
-        hdr_lay.addSpacing(10)
-        frame_lay.addWidget(hdr)
+        hdr_lay.addSpacing(12)
+        root.addWidget(hdr)
 
         # Swappable content area
         self.content = QVBoxLayout()
-        self.content.setContentsMargins(18, 0, 18, 0)
+        self.content.setContentsMargins(20, 0, 20, 0)
         self.content.setSpacing(0)
-        frame_lay.addLayout(self.content)
+        root.addLayout(self.content)
 
         # Persistent bottom bar
         bottom = QWidget(); bottom.setObjectName("main")
         bot_lay = QVBoxLayout(bottom)
-        bot_lay.setContentsMargins(18, 6, 18, 14)
+        bot_lay.setContentsMargins(20, 8, 20, 16)
         bot_lay.setSpacing(6)
 
         self.status_lbl = QLabel("")
@@ -620,7 +494,7 @@ class MainWindow(QWidget):
         self.status_lbl.setFixedHeight(20)
 
         self.progress = QProgressBar()
-        self.progress.setFixedHeight(6)
+        self.progress.setFixedHeight(10)
         self.progress.setRange(0, 100)
         self.progress.setTextVisible(False)
         self.progress.hide()
@@ -634,15 +508,15 @@ class MainWindow(QWidget):
         crow = QHBoxLayout()
         crow.addStretch(); crow.addWidget(btn_close); crow.addStretch()
         bot_lay.addLayout(crow)
-        frame_lay.addWidget(bottom)
+        root.addWidget(bottom)
 
         # Fade-in
         self.setWindowOpacity(0.0)
         anim = QPropertyAnimation(self, b"windowOpacity", self)
-        anim.setDuration(320)
+        anim.setDuration(300)
         anim.setStartValue(0.0)
         anim.setEndValue(1.0)
-        anim.setEasingCurve(QEasingCurve.OutCubic)
+        anim.setEasingCurve(QEasingCurve.InOutQuad)
         anim.start()
         self._anim = anim
 
@@ -677,9 +551,31 @@ class MainWindow(QWidget):
         btn = QPushButton(text)
         btn.setObjectName(obj)
         btn.setCursor(Qt.PointingHandCursor)
-        btn.setFixedHeight(48)
+        btn.setFixedHeight(52)
         btn.clicked.connect(slot)
         return btn
+
+    # [1] _ask, _err, _info — style_msgbox ile tutarlı stil, "Defaults" QDialog gibi görünür
+    def _style_msgbox(self, dlg: QMessageBox):
+        dlg.setStyleSheet(f"""
+            QMessageBox {{
+                background-color: #2a2d3e;
+            }}
+            QMessageBox QLabel {{
+                color: {FG};
+                font-size: 11pt;
+                font-family: Consolas;
+            }}
+            QMessageBox QPushButton {{
+                background: {ACC}; color: white;
+                font-size: 11pt; font-family: Consolas;
+                border: none; border-radius: 6px;
+                padding: 6px 20px; min-width: 70px;
+            }}
+            QMessageBox QPushButton:hover {{ background: #1e5799; }}
+            QMessageBox QPushButton:default {{ background: {HL}; }}
+            QMessageBox QPushButton:default:hover {{ background: #c73652; }}
+        """)
 
     def _ask(self, title, msg, icon=QMessageBox.Warning):
         dlg = QMessageBox(self)
@@ -688,6 +584,7 @@ class MainWindow(QWidget):
         dlg.setIcon(icon)
         dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         dlg.setDefaultButton(QMessageBox.No)
+        self._style_msgbox(dlg)  # [1] tutarlı stil
         dlg.show()
         dlg.adjustSize()
         geo = self.frameGeometry()
@@ -696,6 +593,7 @@ class MainWindow(QWidget):
 
     def _err(self, title, msg):
         dlg = QMessageBox(QMessageBox.Critical, title, msg, QMessageBox.Ok, self)
+        self._style_msgbox(dlg)  # [1] tutarlı stil
         dlg.show(); dlg.adjustSize()
         geo = self.frameGeometry()
         dlg.move(geo.right() + 16, geo.top() + (geo.height() - dlg.height()) // 2)
@@ -703,6 +601,7 @@ class MainWindow(QWidget):
 
     def _info(self, title, msg):
         dlg = QMessageBox(QMessageBox.Information, title, msg, QMessageBox.Ok, self)
+        self._style_msgbox(dlg)  # [1] tutarlı stil
         dlg.show(); dlg.adjustSize()
         geo = self.frameGeometry()
         dlg.move(geo.right() + 16, geo.top() + (geo.height() - dlg.height()) // 2)
@@ -746,38 +645,13 @@ class MainWindow(QWidget):
         self.content.addStretch()
         self.set_status("Lua source folder missing.", color=HL)
 
-    # ── Screen: pick install ──────────────────────────────────────────────────
-
-    def _show_pick_install_screen(self, candidates):
-        self._clear_content()
-        lbl = QLabel("Multiple DCS installations found.\nSelect one:")
-        lbl.setObjectName("body"); lbl.setAlignment(Qt.AlignCenter)
-        self.content.addSpacing(10)
-        self.content.addWidget(lbl)
-        self.content.addSpacing(12)
-        for path in candidates:
-            display = path.replace(os.environ.get("USERPROFILE", ""), "%USERPROFILE%")
-            btn = QPushButton(display)
-            btn.setObjectName("secbtn")
-            btn.setCursor(Qt.PointingHandCursor)
-            btn.clicked.connect(lambda _, p=path: self._select_and_route(p))
-            self.content.addWidget(btn)
-            self.content.addSpacing(4)
-        sep = QLabel("— or —"); sep.setObjectName("ver"); sep.setAlignment(Qt.AlignCenter)
-        self.content.addWidget(sep)
-        browse = QPushButton("Browse manually...")
-        browse.setObjectName("secbtn"); browse.setCursor(Qt.PointingHandCursor)
-        browse.clicked.connect(self._browse_scripts_dir)
-        self.content.addWidget(browse)
-        self.content.addStretch()
-
     # ── Screen: browse ────────────────────────────────────────────────────────
 
     def _show_browse_screen(self):
         self._clear_content()
         lbl = QLabel(
-            "DCS installation not found automatically.\n\n"
-            "Please locate your DCS Saved Games folder\n"
+            "DCS Scripts folder not found automatically.\n\n"
+            "Please browse to your DCS Scripts folder\n"
             "(e.g. Saved Games\\DCS\\Scripts).")
         lbl.setObjectName("body"); lbl.setAlignment(Qt.AlignCenter)
         lbl.setWordWrap(True)
@@ -786,7 +660,7 @@ class MainWindow(QWidget):
         self.content.addSpacing(16)
         btn = QPushButton("Browse...")
         btn.setObjectName("actbtn"); btn.setCursor(Qt.PointingHandCursor)
-        btn.setFixedHeight(48); btn.clicked.connect(self._browse_scripts_dir)
+        btn.setFixedHeight(52); btn.clicked.connect(self._browse_scripts_dir)
         self.content.addWidget(btn)
         self.content.addStretch()
 
@@ -799,6 +673,30 @@ class MainWindow(QWidget):
     def _select_and_route(self, path):
         self.scripts_dir = path
         self._route()
+
+    # ── Screen: pick install ──────────────────────────────────────────────────
+
+    def _show_pick_install_screen(self, candidates):
+        self._clear_content()
+        lbl = QLabel("Multiple DCS installations found.\nChoose one:")
+        lbl.setObjectName("body"); lbl.setAlignment(Qt.AlignCenter)
+        self.content.addStretch()
+        self.content.addWidget(lbl)
+        self.content.addSpacing(12)
+        for path in candidates:
+            display = path.replace(os.environ.get("USERPROFILE", ""), "%USERPROFILE%")
+            btn = QPushButton(display)
+            btn.setObjectName("actbtn"); btn.setCursor(Qt.PointingHandCursor)
+            btn.setFixedHeight(52)
+            btn.clicked.connect(lambda _, p=path: self._select_and_route(p))
+            self.content.addWidget(btn)
+            self.content.addSpacing(4)
+        self.content.addSpacing(8)
+        btn_browse = QPushButton("Browse other location...")
+        btn_browse.setObjectName("secbtn"); btn_browse.setCursor(Qt.PointingHandCursor)
+        btn_browse.setFixedHeight(52); btn_browse.clicked.connect(self._browse_scripts_dir)
+        self.content.addWidget(btn_browse)
+        self.content.addStretch()
 
     # ── Screen: install ───────────────────────────────────────────────────────
 
@@ -818,7 +716,7 @@ class MainWindow(QWidget):
         for text, obj, slot in [("Install", "actbtn", self._do_install),
                                  ("Change location...", "secbtn", self._browse_scripts_dir)]:
             btn = QPushButton(text); btn.setObjectName(obj)
-            btn.setCursor(Qt.PointingHandCursor); btn.setFixedHeight(48)
+            btn.setCursor(Qt.PointingHandCursor); btn.setFixedHeight(52)
             btn.clicked.connect(slot)
             self.content.addWidget(btn)
             self.content.addSpacing(4)
@@ -840,7 +738,7 @@ class MainWindow(QWidget):
             self.set_status("Installation complete. Press Apply to activate.", color=GREEN)
             self._show_main_screen()
         except Exception as e:
-            self._err("Installation failed", str(e))
+            self._err("Install failed", str(e))
             self.set_status(f"Error: {e}", color=HL)
 
     # ── Screen: update ────────────────────────────────────────────────────────
@@ -848,17 +746,16 @@ class MainWindow(QWidget):
     def _show_update_screen(self):
         self._clear_content()
         head = QLabel("Update"); head.setObjectName("head"); head.setAlignment(Qt.AlignCenter)
-        info = QLabel("An existing CockpitRandomizer installation\nwas found.\n\n"
-                      "Updating will overwrite the Lua scripts.\n"
-                      "Your aircraft selection and Export.lua\nwill not be changed.")
-        info.setObjectName("body"); info.setAlignment(Qt.AlignCenter)
+        info = QLabel("Update Lua scripts in your DCS installation.\n\n"
+                      "Your switch settings will be preserved.")
+        info.setObjectName("body"); info.setAlignment(Qt.AlignCenter); info.setWordWrap(True)
         self.content.addSpacing(6)
         self.content.addWidget(head)
         self.content.addSpacing(10)
         self.content.addWidget(info)
         self.content.addSpacing(16)
-        for text, obj, slot in [("Update", "actbtn", self._do_update),
-                                 ("Skip", "secbtn", self._show_main_screen)]:
+        for text, obj, slot in [("Update now", "actbtn", self._do_update),
+                                 ("Back", "secbtn", self._show_main_screen)]:
             btn = QPushButton(text); btn.setObjectName(obj)
             btn.setCursor(Qt.PointingHandCursor); btn.setFixedHeight(52)
             btn.clicked.connect(slot)
@@ -870,7 +767,7 @@ class MainWindow(QWidget):
         try:
             copy_lua_files(self.scripts_dir)
             save_json_defaults(self.scripts_dir)
-            self.set_status("Lua scripts updated. Press Apply to refresh Export.lua.", color=GREEN)
+            self.set_status("Update complete. Press Apply to refresh Export.lua.", color=GREEN)
             self._show_main_screen()
         except Exception as e:
             self._err("Update failed", str(e))
@@ -884,6 +781,9 @@ class MainWindow(QWidget):
 
         cfg = load_config(self.scripts_dir)
         saved = set(cfg.get("selected", [key for _, key in AIRCRAFT]))
+
+        # [8] Başlık ile uçak listesi arasına boşluk
+        self.content.addSpacing(12)
 
         # Aircraft panel
         panel = QFrame(); panel.setObjectName("panel")
@@ -901,17 +801,11 @@ class MainWindow(QWidget):
         inst_ver = installed_version(self.scripts_dir)
         exe_ver  = exe_version()
         if inst_ver and inst_ver != exe_ver:
-            banner = QFrame()
-            banner.setStyleSheet(
-                f"background: rgba(254,188,46,0.08);"
-                f"border: 1px solid rgba(254,188,46,0.2);"
-                f"border-radius: 8px;"
-            )
-            bl = QHBoxLayout(banner); bl.setContentsMargins(12, 8, 12, 8)
-            banner_lbl = QLabel(
-                f"New version available: v{exe_ver}  (installed: v{inst_ver})")
-            banner_lbl.setStyleSheet(f"color: {AMBER}; font-size: 10pt;")
-            bl.addWidget(banner_lbl)
+            banner = QFrame(); banner.setStyleSheet("background:#2a1a0e; border-radius:6px;")
+            bl = QHBoxLayout(banner); bl.setContentsMargins(10, 6, 10, 6)
+            bl.addWidget(QLabel(
+                f"New version available: v{exe_ver}  (installed: v{inst_ver})",
+            ))
             upd = QPushButton("Update now")
             upd.setObjectName("secbtn"); upd.setCursor(Qt.PointingHandCursor)
             upd.clicked.connect(self._do_update)
@@ -919,7 +813,7 @@ class MainWindow(QWidget):
             self.content.addSpacing(8)
             self.content.addWidget(banner)
 
-        # Status + progress — liste ile butonlar arasında
+        # Status + progress
         self.content.addSpacing(8)
         self.content.addWidget(self.status_lbl)
         self.content.addSpacing(4)
@@ -932,7 +826,8 @@ class MainWindow(QWidget):
         _TIPS = {
             "Apply":           "Write selected aircraft to Export.lua and activate the randomizer.",
             "Update":          "Copy updated Lua scripts to your DCS Scripts folder.",
-            "Reset":           "Deselect all aircraft and restore the original Export.lua.",
+            # [2] Reset tooltip güncellemesi
+            "Reset":           "Return to your own original Export.lua file.",
             "Import Settings": "Import aircraft switch settings from a backup folder.",
             "Export Settings": "Export current aircraft switch settings to a backup folder.",
             "Defaults":        "Reset switch settings to factory defaults for selected aircraft.",
@@ -959,6 +854,9 @@ class MainWindow(QWidget):
             self.content.addLayout(row_lay)
             self.content.addSpacing(4)
 
+        # [9] Close butonu ile 6'lı buton grubu arasına mesafe
+        self.content.addSpacing(10)
+
     def _selected_keys(self):
         return {row.key for row in self._rows if row.is_checked()}
 
@@ -978,49 +876,38 @@ class MainWindow(QWidget):
                 elif os.path.isfile(export):
                     os.remove(export)
                     self.set_status("No aircraft selected — Export.lua removed.", color=MUTED)
+                else:
+                    self.set_status("No aircraft selected.", color=MUTED)
                 return
+
+            bak = backup_path(self.scripts_dir)
+            if not os.path.isfile(bak) and os.path.isfile(export):
+                with open(export, "r", encoding="utf-8", errors="ignore") as f:
+                    c = f.read()
+                if not has_cr_block(c):
+                    shutil.copy2(export, bak)
 
             if os.path.isfile(export):
                 with open(export, "r", encoding="utf-8", errors="ignore") as f:
                     c = f.read()
-                if has_cr_block(c):
-                    cleaned = remove_cr_block(c).strip()
-                    new_content = (build_cr_block(selected) + "\n\n" + cleaned + "\n"
-                                   if cleaned else build_fresh_export_lua(selected))
-                else:
-                    bak = backup_path(self.scripts_dir)
-                    if not os.path.isfile(bak):
-                        if not self._ask(
-                            "Existing Export.lua detected",
-                            "An Export.lua already exists (possibly from DCS-BIOS, SRS, or Tacview).\n\n"
-                            "The CockpitRandomizer block will be added to the top.\n"
-                            "Your existing content will be preserved below it.\n\n"
-                            "A backup will be saved as Export.lua.stock_backup.\n\nContinue?"
-                        ):
-                            self.set_status("Cancelled — Export.lua not modified.", color=MUTED)
-                            return
-                        shutil.copy2(export, bak)
-                    lines = c.splitlines(keepends=True)
-                    if lines and lines[0].strip().startswith("-- Saved Games"):
-                        c = "".join(lines[1:]).lstrip("\n")
-                    new_content = build_cr_block(selected) + "\n\n" + c
+                cleaned = remove_cr_block(c).strip()
+                new_block = build_cr_block(selected)
+                content = (cleaned + "\n\n" + new_block + "\n") if cleaned else (new_block + "\n")
             else:
-                new_content = build_fresh_export_lua(selected)
+                content = build_fresh_export_lua(selected)
 
             with open(export, "w", encoding="utf-8") as f:
-                f.write(new_content)
+                f.write(content)
 
-            n = len(selected)
-            # Animate progress then show status
             self.progress.show()
             self.progress.setValue(0)
-            self._progress_step(0, done_msg=f"Applied — {n} aircraft active.", done_color=GREEN)
+            self._progress_step(0, f"Export.lua updated — {len(selected)} aircraft active.", GREEN)
 
         except Exception as e:
-            self._err("Error", str(e))
+            self._err("Apply failed", str(e))
             self.set_status(f"Error: {e}", color=HL)
 
-    def _progress_step(self, val, done_msg="Done.", done_color=GREEN):
+    def _progress_step(self, val, done_msg, done_color=GREEN):
         val += 10
         self.progress.setValue(min(val, 100))
         if val < 100:
@@ -1095,8 +982,7 @@ class MainWindow(QWidget):
             self._err("Uninstall failed", str(e))
             self.set_status(f"Error: {e}", color=HL)
 
-
-    # ── Export / Import Settings ─────────────────────────────────────────────────
+    # ── Export / Import / Defaults ────────────────────────────────────────────
 
     def _do_reset_settings(self):
         ddir = json_defaults_dir(self.scripts_dir)
@@ -1112,14 +998,40 @@ class MainWindow(QWidget):
             self._err("Reset to Defaults", "Defaults folder is empty.")
             return
 
-        # Aircraft seçim dialogu
+        # [1] Aircraft seçim dialogu — tutarlı stil (QSS global stil ile çalışır)
         dlg = QDialog(self)
         dlg.setWindowTitle("Reset to Defaults")
-        dlg.setWindowFlags(Qt.Dialog)
+        dlg.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
         dlg.setFixedWidth(340)
-        dlg.setStyleSheet(f"QDialog {{ background: #161c28; border: 1px solid {BORDER_WIN}; border-radius: 10px; }} "
-                          f"QLabel {{ color: {FG}; font-family: Consolas; }} "
-                          f"QCheckBox {{ color: {FG}; font-family: Consolas; font-size: 11pt; }}")
+        dlg.setStyleSheet(f"""
+            QDialog {{
+                background-color: #2a2d3e;
+                border: 1px solid {ACC};
+                border-radius: 8px;
+            }}
+            QLabel {{
+                color: {FG};
+                font-family: Consolas;
+                font-size: 11pt;
+                background: transparent;
+            }}
+            QCheckBox {{
+                color: {FG};
+                font-family: Consolas;
+                font-size: 11pt;
+                spacing: 8px;
+            }}
+            QCheckBox::indicator {{
+                width: 16px; height: 16px;
+                border: 2px solid {MUTED};
+                border-radius: 3px;
+                background: #1a1d2e;
+            }}
+            QCheckBox::indicator:checked {{
+                background: {ACC};
+                border: 2px solid {ACC};
+            }}
+        """)
         lay = QVBoxLayout(dlg)
         lay.setContentsMargins(20, 16, 20, 16)
         lay.setSpacing(8)
@@ -1129,7 +1041,6 @@ class MainWindow(QWidget):
         lay.addWidget(lbl)
         lay.addSpacing(6)
 
-        # Aircraft adı → json dosya adı eşleşmesi
         aircraft_map = {label: key for label, key in AIRCRAFT if key in available}
         checkboxes = {}
         for label, key in AIRCRAFT:
@@ -1143,8 +1054,10 @@ class MainWindow(QWidget):
         btn_row = QHBoxLayout()
         btn_cancel = QPushButton("Cancel")
         btn_ok     = QPushButton("Reset Selected")
-        for btn, style in [(btn_cancel, f"background: rgba(255,255,255,0.05); color:{FG}; border: 1px solid rgba(255,255,255,0.1); border-radius:6px; padding:6px 16px; font-family:Consolas;"),
-                           (btn_ok,     f"background:{HL}; color:white; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas; font-weight:bold;")]:
+        for btn, style in [
+            (btn_cancel, f"background:#1e2a3a; color:{FG}; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas; font-size:11pt;"),
+            (btn_ok,     f"background:{HL}; color:white; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas; font-size:11pt; font-weight:bold;"),
+        ]:
             btn.setStyleSheet(style)
             btn.setCursor(Qt.PointingHandCursor)
         btn_cancel.clicked.connect(dlg.reject)
@@ -1177,7 +1090,6 @@ class MainWindow(QWidget):
             self.set_status(f"Reset error: {e}", color=HL)
 
     def _json_search_dirs(self):
-        """JSON ayar dosyalarının bulunabileceği dizinleri döndür (öncelik sırasıyla)."""
         dirs = [THIS_DIR]
         if self.scripts_dir:
             dirs.append(os.path.join(self.scripts_dir, "CockpitRandomizer"))
@@ -1194,7 +1106,6 @@ class MainWindow(QWidget):
             backup_dir  = os.path.join(chosen, backup_name)
             os.makedirs(backup_dir, exist_ok=True)
 
-            # Her iki dizinden de JSON topla; aynı isimli dosyada THIS_DIR öncelikli
             collected = {}
             for search_dir in reversed(self._json_search_dirs()):
                 if os.path.isdir(search_dir):
@@ -1232,7 +1143,6 @@ class MainWindow(QWidget):
                 "in your CockpitRandomizer installation.\n\nContinue?"
             ):
                 return
-            # Her iki dizine de kopyala
             for dest_dir in self._json_search_dirs():
                 if os.path.isdir(dest_dir):
                     for fname in json_files:
