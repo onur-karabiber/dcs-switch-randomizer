@@ -6,7 +6,7 @@ import sys, os, shutil, json
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QFrame, QSizePolicy,
-    QFileDialog, QMessageBox, QProgressBar
+    QFileDialog, QMessageBox, QProgressBar, QToolButton
 )
 from PyQt5.QtCore import Qt, QPoint, QPropertyAnimation, QEasingCurve, QTimer
 from PyQt5.QtGui import QColor, QFont
@@ -258,24 +258,57 @@ class TitleBar(QWidget):
 
 # ── Aircraft row ──────────────────────────────────────────────────────────────
 class AircraftRow(QWidget):
-    def __init__(self, label, key, checked=True):
+    def __init__(self, label, key, checked=True, scripts_dir=None, parent_win=None):
         super().__init__()
-        self.key     = key
-        self.label   = label
-        self._checked = checked
-        self.setCursor(Qt.PointingHandCursor)
+        self.key         = key
+        self.label       = label
+        self._checked    = checked
+        self._scripts_dir = scripts_dir
+        self._parent_win  = parent_win
         self.setFixedHeight(52)
 
         lay = QHBoxLayout(self)
-        lay.setContentsMargins(16, 0, 16, 0)
+        lay.setContentsMargins(16, 0, 8, 0)
+        lay.setSpacing(0)
 
+        # Tik + isim — tıklanabilir alan
         self.lbl = QLabel(self._text())
         font = QFont("Consolas", 15)
         font.setBold(True)
         self.lbl.setFont(font)
         self.lbl.setStyleSheet(f"color: {FG}; background: transparent;")
+        self.lbl.setCursor(Qt.PointingHandCursor)
+        self.lbl.mousePressEvent = lambda e: self._toggle()
         lay.addWidget(self.lbl)
+
         lay.addStretch()
+
+        # Çark (settings) butonu
+        self._gear_btn = QToolButton()
+        self._gear_btn.setText("⚙")
+        self._gear_btn.setFixedSize(36, 36)
+        self._gear_btn.setCursor(Qt.PointingHandCursor)
+        self._gear_btn.setToolTip(f"Configure {label} switches")
+        self._gear_btn.setStyleSheet(f"""
+            QToolButton {{
+                background: transparent;
+                color: {MUTED};
+                font-size: 16pt;
+                border: none;
+                border-radius: 6px;
+            }}
+            QToolButton:hover {{
+                background: #1e2a4a;
+                color: {FG};
+            }}
+            QToolButton:pressed {{
+                background: {ACC};
+                color: white;
+            }}
+        """)
+        self._gear_btn.clicked.connect(self._open_settings)
+        lay.addWidget(self._gear_btn)
+
         self._refresh_bg(False)
 
     def _text(self):
@@ -291,8 +324,40 @@ class AircraftRow(QWidget):
     def leaveEvent(self, e): self._refresh_bg(False)
 
     def mousePressEvent(self, e):
+        # Row'a tıklanınca toggle — ama çark butonuna tıklanınca buraya düşmez
+        self._toggle()
+
+    def _toggle(self):
         self._checked = not self._checked
         self.lbl.setText(self._text())
+
+    def _open_settings(self):
+        # aircraft_settings.py'deki AircraftSettingsDialog'u aç
+        try:
+            from aircraft_settings import AircraftSettingsDialog
+        except ImportError:
+            QMessageBox.warning(
+                self, "Settings unavailable",
+                "aircraft_settings.py not found next to this executable.\n"
+                "Place aircraft_settings.py and the metadata JSON files\n"
+                "in the same folder as this application."
+            )
+            return
+
+        dlg = AircraftSettingsDialog(
+            aircraft_key=self.key,
+            scripts_dir=self._scripts_dir,
+            parent=self._parent_win,
+        )
+        dlg.setWindowModality(Qt.ApplicationModal)
+        # Ekran merkezine göre ortala (DPI-safe)
+        screen = QApplication.desktop().availableGeometry()
+        dlg_w, dlg_h = 800, dlg.height()
+        dlg.move(
+            screen.x() + (screen.width()  - dlg_w) // 2,
+            screen.y() + (screen.height() - dlg_h) // 2,
+        )
+        dlg.exec_()
 
     def set_checked(self, val):
         self._checked = val
@@ -624,7 +689,8 @@ class MainWindow(QWidget):
         pl.setContentsMargins(0, 4, 0, 4)
         pl.setSpacing(2)
         for label, key in AIRCRAFT:
-            row = AircraftRow(label, key, checked=(key in saved))
+            row = AircraftRow(label, key, checked=(key in saved),
+                              scripts_dir=self.scripts_dir, parent_win=self)
             self._rows.append(row)
             pl.addWidget(row)
         self.content.addWidget(panel)
