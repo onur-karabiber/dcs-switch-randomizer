@@ -6,7 +6,8 @@ import sys, os, shutil, json
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QFrame, QSizePolicy,
-    QFileDialog, QMessageBox, QProgressBar, QToolButton
+    QFileDialog, QMessageBox, QProgressBar, QToolButton,
+    QDialog, QCheckBox
 )
 from PyQt5.QtCore import Qt, QPoint, QPropertyAnimation, QEasingCurve, QTimer
 from PyQt5.QtGui import QColor, QFont
@@ -137,6 +138,21 @@ def config_path(scripts_dir):
 def backup_path(scripts_dir):
     return os.path.join(scripts_dir, "Export.lua.stock_backup")
 
+def json_defaults_dir(scripts_dir):
+    """Fabrika JSON ayarlarının saklandığı dizin."""
+    return os.path.join(scripts_dir, "CockpitRandomizer", "json_defaults")
+
+def save_json_defaults(scripts_dir):
+    """LUA_SRC_DIR'deki orijinal JSON'ları json_defaults klasörüne kopyalar."""
+    src_dir = LUA_SRC_DIR
+    dst_dir = json_defaults_dir(scripts_dir)
+    os.makedirs(dst_dir, exist_ok=True)
+    json_files = [f for f in os.listdir(src_dir)
+                  if f.endswith(".json") and f != "gui_config.json"]
+    for fname in json_files:
+        shutil.copy2(os.path.join(src_dir, fname), os.path.join(dst_dir, fname))
+    return len(json_files)
+
 def export_lua_path(scripts_dir):
     return os.path.join(scripts_dir, "Export.lua")
 
@@ -191,6 +207,18 @@ QPushButton#uninst:pressed {{ background:#922b21; }}
 QPushButton#closebtn {{ background:#808080; color:white; font-size:10pt; border:none; border-radius:6px; padding:8px 24px; }}
 QPushButton#closebtn:hover {{ background:#8f8b8b; }}
 
+QPushButton#export {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#export:hover   {{ background:#1e4a5e; }}
+QPushButton#export:pressed {{ background:#152e3a; }}
+
+QPushButton#import {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#import:hover   {{ background:#1e4a5e; }}
+QPushButton#import:pressed {{ background:#152e3a; }}
+
+QPushButton#rdefault {{ background:#3a2a1a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#rdefault:hover   {{ background:#4a3520; }}
+QPushButton#rdefault:pressed {{ background:#2a1e10; }}
+
 QPushButton#actbtn  {{ background:{ACC}; color:white; font-size:13pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
 QPushButton#actbtn:hover   {{ background:#1e5799; }}
 QPushButton#actbtn:pressed {{ background:#1a4a80; }}
@@ -208,7 +236,7 @@ QPushButton#tb_cls:hover {{ background:#3a0a0a; color:#e74c3c; }}
 QProgressBar {{ background:#0d0f1e; border:none; border-radius:5px; height:10px; }}
 QProgressBar::chunk {{ background:{GREEN}; border-radius:5px; }}
 
-QMessageBox {{ background-color: {BG}; }}
+QMessageBox {{ background-color: #2a2d3e; }}
 QMessageBox QLabel {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
 QMessageBox QPushButton {{
     background: {ACC}; color: white;
@@ -371,12 +399,12 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(APP_TITLE)
-        self.setFixedSize(560, 800)
+        self.setFixedSize(560, 856)
         self.setObjectName("main")
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.Window)
 
         scr = QApplication.desktop().screenGeometry()
-        self.move((scr.width() - 560) // 2, (scr.height() - 800) // 2)
+        self.move((scr.width() - 560) // 2, (scr.height() - 856) // 2)
 
         self.scripts_dir = None
         self._rows = []       # AircraftRow list (populated in main screen)
@@ -574,8 +602,9 @@ class MainWindow(QWidget):
             "Please locate your DCS Saved Games folder\n"
             "(e.g. Saved Games\\DCS\\Scripts).")
         lbl.setObjectName("body"); lbl.setAlignment(Qt.AlignCenter)
+        lbl.setWordWrap(True)
         self.content.addStretch()
-        self.content.addWidget(lbl)
+        self.content.addWidget(lbl, alignment=Qt.AlignHCenter)
         self.content.addSpacing(16)
         btn = QPushButton("Browse...")
         btn.setObjectName("actbtn"); btn.setCursor(Qt.PointingHandCursor)
@@ -628,6 +657,7 @@ class MainWindow(QWidget):
                     self._do_update(); return
             os.makedirs(scripts, exist_ok=True)
             copy_lua_files(scripts)
+            save_json_defaults(scripts)
             save_config(scripts, {key for _, key in AIRCRAFT})
             self.set_status("Installation complete. Press Apply to activate.", color=GREEN)
             self._show_main_screen()
@@ -661,6 +691,7 @@ class MainWindow(QWidget):
     def _do_update(self):
         try:
             copy_lua_files(self.scripts_dir)
+            save_json_defaults(self.scripts_dir)
             self.set_status("Lua scripts updated. Press Apply to refresh Export.lua.", color=GREEN)
             self._show_main_screen()
         except Exception as e:
@@ -720,10 +751,11 @@ class MainWindow(QWidget):
         # Spacer
         self.content.addStretch()
 
-        # 2x2 buttons
+        # 2x2 + 1x2 + 1 satır butonlar
         for pairs in [
             [("Apply", "apply", self._do_apply), ("Reset", "reset", self._do_reset)],
             [("Update", "update", self._show_update_screen), ("Uninstall", "uninst", self._confirm_uninstall)],
+            [("Export Settings", "export", self._do_export_settings), ("Import Settings", "import", self._do_import_settings)],
         ]:
             row_lay = QHBoxLayout(); row_lay.setSpacing(4)
             for text, obj, slot in pairs:
@@ -731,6 +763,11 @@ class MainWindow(QWidget):
                 row_lay.addWidget(btn)
             self.content.addLayout(row_lay)
             self.content.addSpacing(4)
+
+        # Reset to Defaults — tek buton, tam genişlik
+        btn_rdef = self._make_btn("Reset to Defaults", "rdefault", self._do_reset_settings)
+        self.content.addWidget(btn_rdef)
+        self.content.addSpacing(4)
 
     def _selected_keys(self):
         return {row.key for row in self._rows if row.is_checked()}
@@ -867,6 +904,156 @@ class MainWindow(QWidget):
         except Exception as e:
             self._err("Uninstall failed", str(e))
             self.set_status(f"Error: {e}", color=HL)
+
+
+    # ── Export / Import Settings ─────────────────────────────────────────────────
+
+    def _do_reset_settings(self):
+        ddir = json_defaults_dir(self.scripts_dir)
+        if not os.path.isdir(ddir):
+            self._err("Reset to Defaults",
+                      "No factory defaults found.\n\n"
+                      "Defaults are saved during installation or update.\n"
+                      "Re-run the installer to restore them.")
+            return
+        available = {f[:-5]: f for f in os.listdir(ddir)
+                     if f.endswith(".json") and f != "gui_config.json"}
+        if not available:
+            self._err("Reset to Defaults", "Defaults folder is empty.")
+            return
+
+        # Aircraft seçim dialogu
+        dlg = QDialog(self)
+        dlg.setWindowTitle("Reset to Defaults")
+        dlg.setWindowFlags(Qt.Dialog)
+        dlg.setFixedWidth(340)
+        dlg.setStyleSheet(f"QDialog {{ background: #2a2d3e; }} "
+                          f"QLabel {{ color: {FG}; font-family: Consolas; }} "
+                          f"QCheckBox {{ color: {FG}; font-family: Consolas; font-size: 11pt; }}")
+        lay = QVBoxLayout(dlg)
+        lay.setContentsMargins(20, 16, 20, 16)
+        lay.setSpacing(8)
+
+        lbl = QLabel("Select aircraft to reset to factory defaults:")
+        lbl.setWordWrap(True)
+        lay.addWidget(lbl)
+        lay.addSpacing(6)
+
+        # Aircraft adı → json dosya adı eşleşmesi
+        aircraft_map = {label: key for label, key in AIRCRAFT if key in available}
+        checkboxes = {}
+        for label, key in AIRCRAFT:
+            if key in available:
+                cb = QCheckBox(label)
+                cb.setChecked(True)
+                lay.addWidget(cb)
+                checkboxes[key] = cb
+
+        lay.addSpacing(10)
+        btn_row = QHBoxLayout()
+        btn_cancel = QPushButton("Cancel")
+        btn_ok     = QPushButton("Reset Selected")
+        for btn, style in [(btn_cancel, f"background:#1e2a3a; color:{FG}; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas;"),
+                           (btn_ok,     f"background:{HL}; color:white; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas; font-weight:bold;")]:
+            btn.setStyleSheet(style)
+            btn.setCursor(Qt.PointingHandCursor)
+        btn_cancel.clicked.connect(dlg.reject)
+        btn_ok.clicked.connect(dlg.accept)
+        btn_row.addWidget(btn_cancel)
+        btn_row.addWidget(btn_ok)
+        lay.addLayout(btn_row)
+
+        if dlg.exec_() != QDialog.Accepted:
+            return
+
+        selected_keys = [key for key, cb in checkboxes.items() if cb.isChecked()]
+        if not selected_keys:
+            return
+
+        try:
+            count = 0
+            for key in selected_keys:
+                fname = available[key]
+                for dest_dir in self._json_search_dirs():
+                    if os.path.isdir(dest_dir):
+                        shutil.copy2(os.path.join(ddir, fname),
+                                     os.path.join(dest_dir, fname))
+                count += 1
+            self.set_status(f"Reset to defaults — {count} aircraft restored.", color=GREEN)
+            self._info("Reset complete",
+                       f"{count} aircraft settings restored to factory defaults.")
+        except Exception as e:
+            self._err("Reset failed", str(e))
+            self.set_status(f"Reset error: {e}", color=HL)
+
+    def _json_search_dirs(self):
+        """JSON ayar dosyalarının bulunabileceği dizinleri döndür (öncelik sırasıyla)."""
+        dirs = [THIS_DIR]
+        if self.scripts_dir:
+            dirs.append(os.path.join(self.scripts_dir, "CockpitRandomizer"))
+        return dirs
+
+    def _do_export_settings(self):
+        chosen = QFileDialog.getExistingDirectory(
+            self, "Select folder to export settings into")
+        if not chosen:
+            return
+        try:
+            from datetime import date
+            backup_name = f"CockpitRandomizer_Backup_{date.today().isoformat()}"
+            backup_dir  = os.path.join(chosen, backup_name)
+            os.makedirs(backup_dir, exist_ok=True)
+
+            # Her iki dizinden de JSON topla; aynı isimli dosyada THIS_DIR öncelikli
+            collected = {}
+            for search_dir in reversed(self._json_search_dirs()):
+                if os.path.isdir(search_dir):
+                    for fname in os.listdir(search_dir):
+                        if fname.endswith(".json") and fname != "gui_config.json":
+                            collected[fname] = os.path.join(search_dir, fname)
+
+            if not collected:
+                self._info("Export", "No JSON settings files found to export.")
+                return
+            for fname, fpath in collected.items():
+                shutil.copy2(fpath, os.path.join(backup_dir, fname))
+
+            self.set_status(f"Exported {len(collected)} file(s) to {backup_name}.", color=GREEN)
+            self._info("Export complete",
+                       "Settings exported to:\n" + backup_dir)
+        except Exception as e:
+            self._err("Export failed", str(e))
+            self.set_status(f"Export error: {e}", color=HL)
+
+    def _do_import_settings(self):
+        chosen = QFileDialog.getExistingDirectory(
+            self, "Select backup folder to import settings from")
+        if not chosen:
+            return
+        try:
+            json_files = [f for f in os.listdir(chosen)
+                          if f.endswith(".json") and f != "gui_config.json"]
+            if not json_files:
+                self._info("Import", "No JSON settings files found in selected folder.")
+                return
+            if not self._ask(
+                "Import Settings",
+                f"This will overwrite {len(json_files)} settings file(s) "
+                "in your CockpitRandomizer installation.\n\nContinue?"
+            ):
+                return
+            # Her iki dizine de kopyala
+            for dest_dir in self._json_search_dirs():
+                if os.path.isdir(dest_dir):
+                    for fname in json_files:
+                        shutil.copy2(os.path.join(chosen, fname),
+                                     os.path.join(dest_dir, fname))
+            self.set_status(f"Imported {len(json_files)} file(s).", color=GREEN)
+            self._info("Import complete",
+                       f"{len(json_files)} settings file(s) imported successfully.")
+        except Exception as e:
+            self._err("Import failed", str(e))
+            self.set_status(f"Import error: {e}", color=HL)
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────

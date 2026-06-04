@@ -92,6 +92,29 @@ def format_delta(v) -> str:
     return str(v)
 
 
+def style_msgbox(dlg: QMessageBox) -> None:
+    """QMessageBox'a tutarlı stil uygula."""
+    dlg.setStyleSheet(f"""
+        QMessageBox {{
+            background-color: #2a2d3e;
+        }}
+        QMessageBox QLabel {{
+            color: {FG};
+            font-size: 11pt;
+            font-family: Consolas;
+        }}
+        QMessageBox QPushButton {{
+            background: {ACC}; color: white;
+            font-size: 11pt; font-family: Consolas;
+            border: none; border-radius: 6px;
+            padding: 6px 20px; min-width: 70px;
+        }}
+        QMessageBox QPushButton:hover {{ background: #1e5799; }}
+        QMessageBox QPushButton:default {{ background: {HL}; }}
+        QMessageBox QPushButton:default:hover {{ background: #c73652; }}
+    """)
+
+
 def generate_lua(metadata: dict) -> str:
     """
     JSON metadata → fa18c.lua içeriği.
@@ -180,18 +203,86 @@ def generate_lua(metadata: dict) -> str:
     return "\n".join(lines)
 
 
+# ── Basılı tutma + ivme destekli buton ───────────────────────────────────────
+
+class RepeatButton(QPushButton):
+    """
+    Tek tıkta bir adım uygular.
+    Basılı tutulduğunda INITIAL_DELAY ms sonra tekrar modu başlar;
+    her adımda interval MIN_INTERVAL'a doğru kısalır (ivmelenme).
+    """
+    INITIAL_DELAY = 400   # ms — ilk tekrar başlamadan önceki bekleme
+    START_INTERVAL = 80   # ms — tekrar modunun başlangıç aralığı
+    MIN_INTERVAL   = 25   # ms — en hızlı tekrar aralığı
+    ACCEL_STEP     = 4    # ms — her adımda interval ne kadar azalsın
+
+    def __init__(self, text: str, callback, **kwargs):
+        super().__init__(text, **kwargs)
+        self._callback   = callback
+        self._locked     = False   # setEnabled yerine bu flag kullanılır
+        self._timer      = QTimer(self)
+        self._timer.setSingleShot(False)
+        self._timer.timeout.connect(self._on_tick)
+        self._interval   = self.START_INTERVAL
+        self._hold_steps = 0
+
+    def set_locked(self, locked: bool, style_locked: str, style_normal: str):
+        """
+        Qt event mekanizmasını bozmadan görsel kilitleme.
+        setEnabled() yerine bu metod kullanılır.
+        """
+        self._locked = locked
+        self.setStyleSheet(style_locked if locked else style_normal)
+        if locked:
+            self._timer.stop()   # basılı tutarken kilitlenirse timer'ı durdur
+
+    def mousePressEvent(self, e):
+        if e.button() == Qt.LeftButton and not self._locked:
+            self._callback()                        # ilk anında adım
+            self._interval   = self.START_INTERVAL
+            self._hold_steps = 0
+            self._timer.start(self.INITIAL_DELAY)   # ilk gecikme
+        super().mousePressEvent(e)
+
+    def mouseReleaseEvent(self, e):
+        self._timer.stop()
+        super().mouseReleaseEvent(e)
+
+    def _on_tick(self):
+        if self._locked:
+            self._timer.stop()
+            return
+        # İlk tick'ten sonra normal aralığa geç
+        if self._timer.interval() == self.INITIAL_DELAY:
+            self._timer.setInterval(self._interval)
+        self._callback()
+        self._hold_steps += 1
+        # İvmelenme: her adımda interval kısalt
+        new_interval = max(self.MIN_INTERVAL,
+                           self._interval - self.ACCEL_STEP)
+        if new_interval != self._interval:
+            self._interval = new_interval
+            self._timer.setInterval(self._interval)
+
+
 # ── Widget: tek pozisyon satırı ───────────────────────────────────────────────
 
 class PositionRow(QWidget):
     """
     Tek bir switch pozisyonu: [LABEL]  [SpinBox %]
-    Tüm pozisyonların toplamı 100 olacak şekilde otomatik güncellenir.
+
+    Davranış kuralları:
+      - is_default=True olan satır read-only'dir; değeri diğer satırların
+        toplamına göre otomatik olarak hesaplanır (100 - diğerleri).
+      - is_default=False olan satırlar düzenlenebilir.
+      - Herhangi bir satır değiştiğinde, default satır anında güncellenir.
     """
     def __init__(self, pos_data: dict, all_rows_ref: list, is_default: bool):
         super().__init__()
-        self._pos    = pos_data
-        self._rows   = all_rows_ref  # kardeş satırlar (dışarıdan set edilir)
-        self._updating = False
+        self._pos        = pos_data
+        self._rows       = all_rows_ref  # kardeş satırlar (dışarıdan set edilir)
+        self._is_default = is_default
+        self._updating   = False
 
         lay = QHBoxLayout(self)
         lay.setContentsMargins(0, 2, 0, 2)
@@ -210,6 +301,8 @@ class PositionRow(QWidget):
                                 f"font-family: Consolas; background: transparent;")
         lay.addWidget(name_lbl)
 
+        lay.addStretch()
+
         # % spinbox + ▲▼ butonları
         self.spin = QSpinBox()
         self.spin.setRange(0, 100)
@@ -217,11 +310,20 @@ class PositionRow(QWidget):
         self.spin.setFixedWidth(56)
         self.spin.setFixedHeight(32)
         self.spin.setAlignment(Qt.AlignRight)
+
+        # Her iki tip de read-only — giriş sadece ▲▼ butonlarıyla
+        self.spin.setReadOnly(True)
+        self.spin.setButtonSymbols(QSpinBox.NoButtons)
+        if is_default:
+            spin_border_color = MUTED
+        else:
+            spin_border_color = ACC
+
         self.spin.setStyleSheet(f"""
             QSpinBox {{
                 background: {DARK};
                 color: {FG};
-                border: 1px solid {ACC};
+                border: 1px solid {spin_border_color};
                 border-radius: 4px;
                 font-family: Consolas;
                 font-size: 12pt;
@@ -243,49 +345,112 @@ class PositionRow(QWidget):
             QPushButton:hover   {{ background: #1e5799; }}
             QPushButton:pressed {{ background: #1a4a80; }}
         """
-        btn_up = QPushButton("▲")
-        btn_up.setFixedSize(22, 15)
-        btn_up.setStyleSheet(btn_style)
-        btn_up.setCursor(Qt.PointingHandCursor)
-        btn_up.clicked.connect(lambda: self.spin.setValue(min(100, self.spin.value() + 1)))
-
-        btn_dn = QPushButton("▼")
-        btn_dn.setFixedSize(22, 15)
-        btn_dn.setStyleSheet(btn_style)
-        btn_dn.setCursor(Qt.PointingHandCursor)
-        btn_dn.clicked.connect(lambda: self.spin.setValue(max(0, self.spin.value() - 1)))
-
-        btn_col = QVBoxLayout()
-        btn_col.setContentsMargins(0, 0, 0, 0)
-        btn_col.setSpacing(2)
-        btn_col.addWidget(btn_up)
-        btn_col.addWidget(btn_dn)
 
         spin_grp = QHBoxLayout()
         spin_grp.setContentsMargins(0, 0, 0, 0)
         spin_grp.setSpacing(3)
         spin_grp.addWidget(self.spin)
-        spin_grp.addLayout(btn_col)
+
+        # Default satıra ▲▼ buton ekleme
+        self._btn_up = None  # non-default satırlarda set edilir
+        if not is_default:
+            self._btn_up = RepeatButton("▲", lambda: self.spin.setValue(min(100, self.spin.value() + 1)))
+            self._btn_up.setFixedSize(22, 15)
+            self._btn_up.setStyleSheet(btn_style)
+            self._btn_up.setCursor(Qt.PointingHandCursor)
+
+            btn_dn = RepeatButton("▼", lambda: self.spin.setValue(max(0, self.spin.value() - 1)))
+            btn_dn.setFixedSize(22, 15)
+            btn_dn.setStyleSheet(btn_style)
+            btn_dn.setCursor(Qt.PointingHandCursor)
+
+            btn_col = QVBoxLayout()
+            btn_col.setContentsMargins(0, 0, 0, 0)
+            btn_col.setSpacing(2)
+            btn_col.addWidget(self._btn_up)
+            btn_col.addWidget(btn_dn)
+            spin_grp.addLayout(btn_col)
+        else:
+            # Default satır için boş alan — hizalamayı koru
+            spacer = QWidget()
+            spacer.setFixedSize(22 + 3, 32)  # btn_col genişliği kadar
+            spin_grp.addWidget(spacer)
+
         lay.addLayout(spin_grp)
 
         self.spin.valueChanged.connect(self._on_change)
 
+        # İlk açılışta default rengi uygula
+        if is_default:
+            self._update_color()
+
     def _on_change(self, val):
         if self._updating:
             return
-        # Sadece bu spin değiştiyse diğerlerine dokunma —
-        # toplam kontrolünü parent ControlCard yapar
+        if self._is_default:
+            # Default satırın değeri programatik olarak set edildi; sadece veriyi güncelle
+            self._pos["weight"] = val
+            return
+
+        # Non-default satır değişti: default kardeşi güncelle
         self._pos["weight"] = val
-        # Kardeşleri bul ve toplamı hesapla
-        total = sum(r.spin.value() for r in self._rows)
-        # Renk feedback
-        ok = abs(total - 100) < 1
-        for r in self._rows:
-            r.spin.setStyleSheet(r.spin.styleSheet().replace(
-                f"border: 1px solid {HL};", f"border: 1px solid {ACC};"))
-        if not ok:
-            self.spin.setStyleSheet(self.spin.styleSheet().replace(
-                f"border: 1px solid {ACC};", f"border: 1px solid {HL};"))
+        default_row = next((r for r in self._rows if r._is_default), None)
+        if default_row is not None:
+            others_sum = sum(r.spin.value() for r in self._rows if r is not default_row)
+            new_default = max(0, 100 - others_sum)
+            default_row._updating = True
+            default_row.spin.setValue(new_default)
+            default_row._pos["weight"] = new_default
+            default_row._updating = False
+            # Default rengi güncelle: 100 ise yeşil (etkisiz switch uyarısı), değilse normal
+            default_row._update_color()
+            # Default 0'a düştüyse tüm ▲ butonlarını kilitle, yükseldiyse aç
+            self._sync_up_buttons(locked=(new_default == 0))
+
+    def _update_color(self):
+        """Default spin rengini değerine göre güncelle: 100 → yeşil, diğer → normal."""
+        color = GREEN if self.spin.value() == 100 else FG
+        self.spin.setStyleSheet(f"""
+            QSpinBox {{
+                background: {DARK};
+                color: {color};
+                border: 1px solid {MUTED};
+                border-radius: 4px;
+                font-family: Consolas;
+                font-size: 12pt;
+                padding: 2px 6px;
+            }}
+            QSpinBox::up-button   {{ width: 0px; }}
+            QSpinBox::down-button {{ width: 0px; }}
+        """)
+
+    def _sync_up_buttons(self, locked: bool):
+        """Tüm non-default kardeşlerin ▲ butonunu görsel olarak kilitle veya aç."""
+        btn_style_disabled = f"""
+            QPushButton {{
+                background: {MUTED};
+                color: #3a3a5a;
+                border: none;
+                border-radius: 3px;
+                font-size: 10pt;
+                padding: 0px;
+            }}
+        """
+        btn_style_normal = f"""
+            QPushButton {{
+                background: {ACC};
+                color: {FG};
+                border: none;
+                border-radius: 3px;
+                font-size: 10pt;
+                padding: 0px;
+            }}
+            QPushButton:hover   {{ background: #1e5799; }}
+            QPushButton:pressed {{ background: #1a4a80; }}
+        """
+        for row in self._rows:
+            if row._btn_up is not None:
+                row._btn_up.set_locked(locked, btn_style_disabled, btn_style_normal)
 
     def get_weight(self) -> float:
         return self.spin.value()
@@ -298,9 +463,9 @@ class ControlCard(QFrame):
     Bir switch/knob/run kontrolünü temsil eden kart.
     ┌──────────────────────────────────────────────┐
     │ ☑  Master Arm Switch          [SWITCH]        │
-    │    SAFE ★  [90 %]                            │
+    │    SAFE ★  [90 %]  (read-only, auto)         │
     │    ARM     [10 %]                            │
-    │    toplam: 100 %                             │
+    │    toplam: 100 %  ✓                          │
     └──────────────────────────────────────────────┘
     """
     def __init__(self, ctrl: dict):
@@ -369,15 +534,13 @@ class ControlCard(QFrame):
 
         if t == "discrete":
             self._build_discrete()
-        # continuous ve run: badge yeterli, ek icerik gerekmez
-
+        # continuous ve run: badge yeterli, ek içerik gerekmez
 
         self._set_body_enabled(ctrl.get("enabled", True))
 
     def _build_discrete(self):
         positions = self._ctrl.get("positions", [])
-        # default (delta=0, "yerinde kal") sona koy — kullanici degistirmek
-        # istedigi pozisyonlari uste gorur, mevcut durumu alta
+        # non-default pozisyonlar üste, default alta
         non_defaults = [p for p in positions if not p.get("is_default", False)]
         defaults     = [p for p in positions if p.get("is_default", False)]
         for pos in non_defaults + defaults:
@@ -386,31 +549,7 @@ class ControlCard(QFrame):
             self._pos_rows.append(row)
             self._body.addWidget(row)
 
-        # Toplam satırı
-        self._total_lbl = QLabel(self._total_text())
-        self._total_lbl.setStyleSheet(
-            f"color: {MUTED}; font-size: 10pt; font-family: Consolas; background: transparent;")
-        self._body.addWidget(self._total_lbl)
-
-        # Her spinbox değişince toplamı güncelle
-        for row in self._pos_rows:
-            row.spin.valueChanged.connect(self._update_total)
-
-    def _total_text(self) -> str:
-        if not self._pos_rows:
-            return ""
-        total = sum(r.get_weight() for r in self._pos_rows)
-        ok    = abs(total - 100) < 1
-        return f"total: {int(total)} %  {'✓' if ok else '⚠ must be 100'}"
-
-    def _update_total(self):
-        if hasattr(self, "_total_lbl"):
-            total = sum(r.get_weight() for r in self._pos_rows)
-            ok    = abs(total - 100) < 1
-            self._total_lbl.setText(self._total_text())
-            self._total_lbl.setStyleSheet(
-                f"color: {GREEN if ok else HL}; font-size: 10pt; "
-                f"font-family: Consolas; background: transparent;")
+        # Her non-default spinbox değişince _sync_up_buttons tetiklenir (total label yok)
 
     def _on_toggle(self, state):
         enabled = bool(state)
@@ -418,13 +557,11 @@ class ControlCard(QFrame):
         self._set_body_enabled(enabled)
 
     def _set_body_enabled(self, enabled: bool):
-        opacity = "1.0" if enabled else "0.4"
         for i in range(self._body.count()):
             item = self._body.itemAt(i)
             if item and item.widget():
                 item.widget().setEnabled(enabled)
-                item.widget().setStyleSheet(
-                    item.widget().styleSheet())  # repaint
+                item.widget().setStyleSheet(item.widget().styleSheet())  # repaint
 
     def is_valid(self) -> tuple[bool, str]:
         """Discrete kontrolün weight toplamı 100 mü?"""
@@ -432,7 +569,7 @@ class ControlCard(QFrame):
             return True, ""
         total = sum(r.get_weight() for r in self._pos_rows)
         if abs(total - 100) > 1:
-            return False, f"{self._ctrl['label']}: weights sum to {int(total)}, must be 100"
+            return False, self._ctrl["label"]
         return True, ""
 
     def flush_to_data(self):
@@ -467,7 +604,7 @@ class AircraftSettingsDialog(QDialog):
         self.setMinimumHeight(400)
         self.setMaximumHeight(screen_h - 60)
         self.resize(620, target_h)
-        self.resize(620, min(820, screen_h - 80))
+        self.resize(620, min(960, screen_h - 80))
         self.setStyleSheet(f"QDialog {{ background: {BG}; }}")
         self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
 
@@ -564,8 +701,13 @@ class AircraftSettingsDialog(QDialog):
         inner_lay.setContentsMargins(8, 12, 8, 12)
         inner_lay.setSpacing(6)
 
-        # Kontrol kartları
-        for ctrl in self._meta["controls"]:
+        # Kontrol kartları — discrete (switch) önce, continuous (knob) sonra, run en alta
+        TYPE_ORDER = {"discrete": 0, "continuous": 1, "run": 2}
+        sorted_controls = sorted(
+            self._meta["controls"],
+            key=lambda c: TYPE_ORDER.get(c.get("type", "run"), 2)
+        )
+        for ctrl in sorted_controls:
             card = ControlCard(ctrl)
             self._cards.append(card)
             inner_lay.addWidget(card)
@@ -593,7 +735,7 @@ class AircraftSettingsDialog(QDialog):
         bot_lay.addStretch()
 
         for text, style, slot in [
-            ("Cancel",       "secbtn", self.reject),
+            ("Cancel",         "secbtn", self.reject),
             ("Save and Apply", "apply",  self._save),
         ]:
             btn = QPushButton(text)
@@ -635,21 +777,36 @@ class AircraftSettingsDialog(QDialog):
                 pass
 
     def _save_impl(self):
-        # Validation
+        # ── Validation: tüm kartları flush et, hatalıları topla ──────────
         errors = []
         for card in self._cards:
             card.flush_to_data()
-            ok, msg = card.is_valid()
+            ok, label = card.is_valid()
             if not ok:
-                errors.append(msg)
+                errors.append(label)
 
         if errors:
+            # Hard block: hatalı switch'leri listeleyen QMessageBox
+            msg = QMessageBox(self)
+            msg.setWindowTitle("Cannot Save — Weight Errors")
+            msg.setIcon(QMessageBox.Warning)
+            style_msgbox(msg)
+
+            detail_lines = "\n".join(f"  • {name}" for name in errors)
+            msg.setText(
+                "The weights for the following switches do not add up to 100 %.\n"
+                "Correct them before saving.\n\n"
+                + detail_lines
+            )
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec_()
+            # Status bar'da da kısa özet göster
             self._status(
-                f"⚠  {errors[0]}" + (f" (+{len(errors)-1} more)" if len(errors) > 1 else ""),
+                f"⚠  {len(errors)} switch{'es' if len(errors) > 1 else ''} with invalid weights — not saved.",
                 HL)
             return
 
-        # Lua üret
+        # ── Lua üret ─────────────────────────────────────────────────────
         print("[DEBUG _save] generate_lua baslıyor")
         lua_content = generate_lua(self._meta)
         print(f"[DEBUG _save] lua_content: {len(lua_content)} karakter")

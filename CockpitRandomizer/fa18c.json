@@ -8,7 +8,7 @@
       "label": "OXY Flow Knob",
       "dev": 10,
       "cmd": 3005,
-      "enabled": true,
+      "enabled": false,
       "type": "continuous"
     },
     {
@@ -23,13 +23,13 @@
           "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 99
+          "weight": 0
         },
         {
           "label": "OFF",
           "delta": 1,
           "is_default": false,
-          "weight": 1
+          "weight": 100
         }
       ]
     },
@@ -38,7 +38,7 @@
       "label": "POSITION Lights Dimmer",
       "dev": 8,
       "cmd": 3006,
-      "enabled": false,
+      "enabled": true,
       "type": "continuous"
     },
     {
@@ -61,13 +61,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 69
         },
         {
           "label": "ON",
           "delta": -1,
           "is_default": false,
-          "weight": 99
+          "weight": 31
         }
       ]
     },
@@ -83,13 +83,13 @@
           "label": "FIELD",
           "delta": 0,
           "is_default": true,
-          "weight": 0
+          "weight": 93
         },
         {
           "label": "CARRIER",
           "delta": 1,
           "is_default": false,
-          "weight": 100
+          "weight": 7
         }
       ]
     },
@@ -129,13 +129,13 @@
           "label": "DAY",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 89
         },
         {
           "label": "NITE",
           "delta": -1,
           "is_default": false,
-          "weight": 99
+          "weight": 11
         }
       ]
     },
@@ -167,13 +167,13 @@
           "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 82
         },
         {
           "label": "OFF",
           "delta": 1,
           "is_default": false,
-          "weight": 99
+          "weight": 18
         }
       ]
     },
@@ -189,13 +189,13 @@
           "label": "BARO",
           "delta": 0,
           "is_default": true,
-          "weight": 99
+          "weight": 76
         },
         {
           "label": "RDR",
           "delta": 1,
           "is_default": false,
-          "weight": 1
+          "weight": 24
         }
       ]
     },
@@ -211,13 +211,13 @@
           "label": "DAY",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 99
         },
         {
           "label": "NIGHT",
           "delta": -0.1,
           "is_default": false,
-          "weight": 99
+          "weight": 1
         }
       ]
     },
@@ -249,13 +249,13 @@
           "label": "DAY",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 99
         },
         {
           "label": "NIGHT",
           "delta": -0.1,
           "is_default": false,
-          "weight": 99
+          "weight": 1
         }
       ]
     },
@@ -271,13 +271,13 @@
           "label": "DAY",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 90
         },
         {
           "label": "NIGHT",
           "delta": -0.1,
           "is_default": false,
-          "weight": 99
+          "weight": 10
         }
       ]
     },
@@ -301,13 +301,13 @@
           "label": "SAFE",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 99
         },
         {
           "label": "ARM",
           "delta": -1,
           "is_default": false,
-          "weight": 99
+          "weight": 1
         }
       ]
     },
@@ -323,13 +323,13 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 10
+          "weight": 90
         },
         {
           "label": "OFF",
           "delta": 1,
           "is_default": false,
-          "weight": 90
+          "weight": 10
         }
       ]
     },
@@ -345,13 +345,13 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 10
+          "weight": 90
         },
         {
           "label": "OFF",
           "delta": 1,
           "is_default": false,
-          "weight": 90
+          "weight": 10
         }
       ]
     },
@@ -360,20 +360,20 @@
       "label": "CB LAUNCH BAR",
       "dev": 3,
       "cmd": 3020,
-      "enabled": true,
+      "enabled": false,
       "type": "discrete",
       "positions": [
         {
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 10
+          "weight": 0
         },
         {
           "label": "OPEN",
           "delta": 1,
           "is_default": false,
-          "weight": 90
+          "weight": 100
         }
       ]
     },
@@ -389,13 +389,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 10
+          "weight": 90
         },
         {
           "label": "OPEN",
           "delta": 1,
           "is_default": false,
-          "weight": 90
+          "weight": 10
         }
       ]
     },
@@ -411,13 +411,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 5
+          "weight": 95
         },
         {
           "label": "OPEN",
           "delta": 1,
           "is_default": false,
-          "weight": 95
+          "weight": 5
         }
       ]
     },
@@ -433,13 +433,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 5
+          "weight": 95
         },
         {
           "label": "OPEN",
           "delta": 1,
           "is_default": false,
-          "weight": 95
+          "weight": 5
         }
       ]
     },
@@ -495,13 +495,13 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 80
+          "weight": 20
         },
         {
           "label": "OFF",
           "delta": -1,
           "is_default": false,
-          "weight": 20
+          "weight": 80
         }
       ]
     },
@@ -517,19 +517,19 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 88
+          "weight": 0
         },
         {
           "label": "ON",
           "delta": -0.1,
           "is_default": false,
-          "weight": 10
+          "weight": 0
         },
         {
           "label": "BYPASS",
           "delta": -0.2,
           "is_default": false,
-          "weight": 2
+          "weight": 100
         }
       ]
     },
@@ -545,31 +545,31 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 61
         },
         {
           "label": "STBY",
           "delta": 0.1,
           "is_default": false,
-          "weight": 1
+          "weight": 5
         },
         {
           "label": "BIT",
           "delta": 0.2,
           "is_default": false,
-          "weight": 88
+          "weight": 14
         },
         {
           "label": "REC",
           "delta": 0.3,
           "is_default": false,
-          "weight": 8
+          "weight": 14
         },
         {
           "label": "XMIT",
           "delta": 0.4,
           "is_default": false,
-          "weight": 2
+          "weight": 6
         }
       ]
     },
@@ -585,25 +585,25 @@
           "label": "STBY",
           "delta": 0,
           "is_default": true,
-          "weight": 1
+          "weight": 91
         },
         {
           "label": "OFF",
           "delta": -0.1,
           "is_default": false,
-          "weight": 88
+          "weight": 7
         },
         {
           "label": "OPR",
           "delta": 0.1,
           "is_default": false,
-          "weight": 7
+          "weight": 1
         },
         {
           "label": "EMERG",
           "delta": 0.2,
           "is_default": false,
-          "weight": 4
+          "weight": 1
         }
       ]
     },
@@ -619,49 +619,49 @@
           "label": "NAV",
           "delta": 0,
           "is_default": true,
-          "weight": 3
+          "weight": 88
         },
         {
           "label": "GND",
           "delta": -0.1,
           "is_default": false,
-          "weight": 2
+          "weight": 3
         },
         {
           "label": "CV",
           "delta": -0.2,
           "is_default": false,
-          "weight": 1
+          "weight": 4
         },
         {
           "label": "OFF",
           "delta": -0.3,
           "is_default": false,
-          "weight": 0
+          "weight": 2
         },
         {
           "label": "IFA",
           "delta": 0.1,
           "is_default": false,
-          "weight": 0
+          "weight": 2
         },
         {
           "label": "GYRO",
           "delta": 0.2,
           "is_default": false,
-          "weight": 87
+          "weight": 1
         },
         {
           "label": "GB",
           "delta": 0.3,
           "is_default": false,
-          "weight": 3
+          "weight": 0
         },
         {
           "label": "TEST",
           "delta": 0.4,
           "is_default": false,
-          "weight": 3
+          "weight": 0
         }
       ]
     },
@@ -719,13 +719,13 @@
           "label": "L FUS MSL",
           "delta": -0.1,
           "is_default": false,
-          "weight": 1
+          "weight": 95
         },
         {
           "label": "R FUS MSL",
           "delta": 0.1,
           "is_default": false,
-          "weight": 95
+          "weight": 1
         },
         {
           "label": "RACK/LCHR",
@@ -777,13 +777,13 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 10
+          "weight": 90
         },
         {
           "label": "ORIDE",
           "delta": 1,
           "is_default": false,
-          "weight": 90
+          "weight": 10
         }
       ]
     },
@@ -865,13 +865,13 @@
           "label": "UFC",
           "delta": 0,
           "is_default": true,
-          "weight": 10
+          "weight": 90
         },
         {
           "label": "MAN",
           "delta": 1,
           "is_default": false,
-          "weight": 90
+          "weight": 10
         }
       ]
     },
@@ -887,13 +887,13 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 10
+          "weight": 90
         },
         {
           "label": "EMER",
           "delta": 1,
           "is_default": false,
-          "weight": 90
+          "weight": 10
         }
       ]
     },
@@ -909,19 +909,19 @@
           "label": "AUD+DIS",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 84
         },
         {
           "label": "DIS",
           "delta": -1,
           "is_default": false,
-          "weight": 5
+          "weight": 7
         },
         {
           "label": "OFF",
           "delta": 1,
           "is_default": false,
-          "weight": 5
+          "weight": 9
         }
       ]
     },
@@ -993,19 +993,19 @@
           "label": "LOCKED",
           "delta": -1,
           "is_default": false,
-          "weight": 34
+          "weight": 26
         },
         {
           "label": "NEUTRAL",
           "delta": 0,
           "is_default": true,
-          "weight": 33
+          "weight": 8
         },
         {
           "label": "UNLOCKED",
           "delta": 1,
           "is_default": false,
-          "weight": 33
+          "weight": 66
         }
       ]
     }
