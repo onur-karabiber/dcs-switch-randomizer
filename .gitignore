@@ -12,3 +12,4 @@ gui_config.json
 # Kök klasördeki kullanıcı JSON'ları (aircraft_settings.py tarafından yazılır)
 # CockpitRandomizer/ içindekiler repo'da kalır
 /*.json
+dcs-cockpit-randomizer-qt1.py
