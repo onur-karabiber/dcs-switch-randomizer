@@ -247,6 +247,16 @@ QMessageBox QPushButton {{
 QMessageBox QPushButton:hover {{ background: #1e5799; }}
 QMessageBox QPushButton:default {{ background: {HL}; }}
 QMessageBox QPushButton:default:hover {{ background: #c73652; }}
+
+QToolTip {{
+    background-color: #0d0f1e;
+    color: {FG};
+    border: 1px solid {ACC};
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: Consolas;
+    font-size: 10pt;
+}}
 """
 
 # ── Title bar ─────────────────────────────────────────────────────────────────
@@ -267,12 +277,13 @@ class TitleBar(QWidget):
         lay.addWidget(lbl)
         lay.addStretch()
 
-        for text, obj, slot in [("─", "tb_min", parent.showMinimized),
-                                 ("✕", "tb_cls", parent.close)]:
+        for text, obj, slot, tip in [("─", "tb_min", parent.showMinimized, "Minimize"),
+                                 ("✕", "tb_cls", parent.close, "Close")]:
             btn = QPushButton(text)
             btn.setObjectName(obj)
             btn.setFixedHeight(36)
             btn.setCursor(Qt.PointingHandCursor)
+            btn.setToolTip(tip)
             btn.clicked.connect(slot)
             lay.addWidget(btn)
 
@@ -463,6 +474,7 @@ class MainWindow(QWidget):
         btn_close = QPushButton("Close")
         btn_close.setObjectName("closebtn")
         btn_close.setCursor(Qt.PointingHandCursor)
+        btn_close.setToolTip("Close the application")
         btn_close.clicked.connect(self.close)
         btn_close.setFixedWidth(130)
         crow = QHBoxLayout()
@@ -522,13 +534,25 @@ class MainWindow(QWidget):
         dlg.setIcon(icon)
         dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         dlg.setDefaultButton(QMessageBox.No)
+        dlg.show()
+        dlg.adjustSize()
+        geo = self.frameGeometry()
+        dlg.move(geo.right() + 16, geo.top() + (geo.height() - dlg.height()) // 2)
         return dlg.exec_() == QMessageBox.Yes
 
     def _err(self, title, msg):
-        QMessageBox.critical(self, title, msg)
+        dlg = QMessageBox(QMessageBox.Critical, title, msg, QMessageBox.Ok, self)
+        dlg.show(); dlg.adjustSize()
+        geo = self.frameGeometry()
+        dlg.move(geo.right() + 16, geo.top() + (geo.height() - dlg.height()) // 2)
+        dlg.exec_()
 
     def _info(self, title, msg):
-        QMessageBox.information(self, title, msg)
+        dlg = QMessageBox(QMessageBox.Information, title, msg, QMessageBox.Ok, self)
+        dlg.show(); dlg.adjustSize()
+        geo = self.frameGeometry()
+        dlg.move(geo.right() + 16, geo.top() + (geo.height() - dlg.height()) // 2)
+        dlg.exec_()
 
     # ── Routing ───────────────────────────────────────────────────────────────
 
@@ -707,13 +731,6 @@ class MainWindow(QWidget):
         cfg = load_config(self.scripts_dir)
         saved = set(cfg.get("selected", [key for _, key in AIRCRAFT]))
 
-        # Select label
-        sel = QLabel("Select aircraft to randomize:")
-        sel.setObjectName("sel")
-        sel.setContentsMargins(16, 0, 0, 0)
-        self.content.addWidget(sel)
-        self.content.addSpacing(6)
-
         # Aircraft panel
         panel = QFrame(); panel.setObjectName("panel")
         pl = QVBoxLayout(panel)
@@ -751,8 +768,20 @@ class MainWindow(QWidget):
         # Spacer
         self.content.addStretch()
 
+        # Tooltip metinleri
+        _TIPS = {
+            "Apply":           "Write selected aircraft to Export.lua and activate the randomizer.",
+            "Update":          "Copy updated Lua scripts to your DCS Scripts folder.",
+            "Reset":           "Deselect all aircraft and restore the original Export.lua.",
+            "Import Settings": "Import aircraft switch settings from a backup folder.",
+            "Export Settings": "Export current aircraft switch settings to a backup folder.",
+            "Defaults":        "Reset switch settings to factory defaults for selected aircraft.",
+            "Uninstall":       "Remove CockpitRandomizer completely from your DCS installation.",
+        }
+
         # Apply — tam genişlik
         btn_apply = self._make_btn("Apply", "apply", self._do_apply)
+        btn_apply.setToolTip(_TIPS["Apply"])
         self.content.addWidget(btn_apply)
         self.content.addSpacing(4)
 
@@ -765,6 +794,7 @@ class MainWindow(QWidget):
             row_lay = QHBoxLayout(); row_lay.setSpacing(4)
             for text, obj, slot in pairs:
                 btn = self._make_btn(text, obj, slot)
+                btn.setToolTip(_TIPS.get(text, ""))
                 row_lay.addWidget(btn)
             self.content.addLayout(row_lay)
             self.content.addSpacing(4)
@@ -843,7 +873,7 @@ class MainWindow(QWidget):
 
     def _do_reset(self):
         if not self._ask("Reset",
-                         "All selections will be cleared and the stock Export.lua will be restored.\n\nContinue?"):
+                         "All selections will be cleared and your original Export.lua will be restored.\n\nContinue?"):
             return
         try:
             bak    = backup_path(self.scripts_dir)
