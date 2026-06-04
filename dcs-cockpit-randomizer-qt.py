@@ -751,11 +751,16 @@ class MainWindow(QWidget):
         # Spacer
         self.content.addStretch()
 
-        # 2x2 + 1x2 + 1 satır butonlar
+        # Apply — tam genişlik
+        btn_apply = self._make_btn("Apply", "apply", self._do_apply)
+        self.content.addWidget(btn_apply)
+        self.content.addSpacing(4)
+
+        # Satır: Update | Reset
         for pairs in [
-            [("Apply", "apply", self._do_apply), ("Reset", "reset", self._do_reset)],
-            [("Update", "update", self._show_update_screen), ("Uninstall", "uninst", self._confirm_uninstall)],
-            [("Export Settings", "export", self._do_export_settings), ("Import Settings", "import", self._do_import_settings)],
+            [("Update", "update", self._show_update_screen), ("Reset", "reset", self._do_reset)],
+            [("Import Settings", "import", self._do_import_settings), ("Export Settings", "export", self._do_export_settings)],
+            [("Defaults", "rdefault", self._do_reset_settings), ("Uninstall", "uninst", self._confirm_uninstall)],
         ]:
             row_lay = QHBoxLayout(); row_lay.setSpacing(4)
             for text, obj, slot in pairs:
@@ -763,11 +768,6 @@ class MainWindow(QWidget):
                 row_lay.addWidget(btn)
             self.content.addLayout(row_lay)
             self.content.addSpacing(4)
-
-        # Reset to Defaults — tek buton, tam genişlik
-        btn_rdef = self._make_btn("Reset to Defaults", "rdefault", self._do_reset_settings)
-        self.content.addWidget(btn_rdef)
-        self.content.addSpacing(4)
 
     def _selected_keys(self):
         return {row.key for row in self._rows if row.is_checked()}
