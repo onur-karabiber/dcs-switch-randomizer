@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (
     QDialog, QCheckBox
 )
 from PyQt5.QtCore import Qt, QPoint, QPropertyAnimation, QEasingCurve, QTimer
-from PyQt5.QtGui import QColor, QFont
+from PyQt5.QtGui import QColor, QFont, QPainter, QPixmap
 
 # ── DPI awareness ─────────────────────────────────────────────────────────────
 try:
@@ -176,12 +176,11 @@ def save_config(scripts_dir, selected_keys):
 # ── QSS ──────────────────────────────────────────────────────────────────────
 STYLE = f"""
 * {{ font-family: Consolas; }}
-QWidget#main   {{ background-color: {BG}; }}
+QWidget#main   {{ background-color: transparent; }}
 QWidget#tb     {{ background-color: {TB}; }}
-QFrame#panel   {{ background-color: {PANEL}; border-radius: 6px; }}
+QFrame#panel   {{ background-color: rgba(17, 17, 17, 77); border-radius: 6px; }}
 QFrame#div     {{ background-color: #222222; }}
-QFrame#div     {{ background-color: #222222; }}
-QFrame#content {{ background-color: {BG}; }}
+QFrame#content {{ background-color: transparent; }}
 
 QLabel          {{ background-color: transparent; color: {FG}; }}
 QLabel#title    {{ color: {HL};    font-size: 19pt; font-weight: bold; }}
@@ -385,8 +384,13 @@ class AircraftRow(QWidget):
 
     def _refresh_bg(self, hover):
         p = self.palette()
-        # [10] hover rengi = ACC (Reset butonuyla aynı mavi)
-        p.setColor(self.backgroundRole(), QColor(HOVER_ROW if hover else PANEL))
+        if hover:
+            c = QColor(HOVER_ROW)
+            c.setAlpha(200)
+        else:
+            c = QColor(PANEL)
+            c.setAlpha(77)  # 30% opak = 70% transparan
+        p.setColor(self.backgroundRole(), c)
         self.setAutoFillBackground(True)
         self.setPalette(p)
 
@@ -462,6 +466,10 @@ class MainWindow(QWidget):
         scr = QApplication.desktop().screenGeometry()
         self.move((scr.width() - 560) // 2, (scr.height() - 1080) // 2)
 
+        # Arka plan görseli
+        bg_path = os.path.join(THIS_DIR, "CockpitRandomizer", "left-side-bg.png")
+        self._bg_pixmap = QPixmap(bg_path) if os.path.isfile(bg_path) else None
+
         self.scripts_dir = None
         self._rows = []
 
@@ -477,7 +485,7 @@ class MainWindow(QWidget):
         # Fixed header
         hdr = QWidget(); hdr.setObjectName("main")
         hdr_lay = QVBoxLayout(hdr)
-        hdr_lay.setContentsMargins(20, 40, 20, 0)
+        hdr_lay.setContentsMargins(20, 76, 20, 0)
         hdr_lay.setSpacing(0)
         self.lbl_title = QLabel("DCS-COCKPIT-RANDOMIZER")
         self.lbl_title.setObjectName("title")
@@ -487,7 +495,7 @@ class MainWindow(QWidget):
         lbl_ver.setObjectName("ver")
         lbl_ver.setAlignment(Qt.AlignCenter)
         hdr_lay.addWidget(lbl_ver)
-        hdr_lay.addSpacing(24)
+        hdr_lay.addSpacing(36)
         root.addWidget(hdr)
 
         # Swappable content area
@@ -538,6 +546,18 @@ class MainWindow(QWidget):
         self._detect_and_route()
 
     # ── Helpers ───────────────────────────────────────────────────────────────
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        if self._bg_pixmap and not self._bg_pixmap.isNull():
+            scaled = self._bg_pixmap.scaled(
+                self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+            x = (scaled.width()  - self.width())  // 2
+            y = (scaled.height() - self.height()) // 2
+            painter.setOpacity(0.3)
+            painter.drawPixmap(-x, -y, scaled)
+            painter.setOpacity(1.0)
+        super().paintEvent(event)
 
     def _clear_content(self):
         protected = {self.status_lbl, self.progress}

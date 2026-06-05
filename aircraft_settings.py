@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (
     QCheckBox, QSizePolicy, QMessageBox
 )
 from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QFont, QColor
+from PyQt5.QtGui import QFont, QColor, QPainter, QPixmap
 
 # ── Palette ───────────────────────────────────────────────────────────────────
 BG    = "#111111"
@@ -433,7 +433,7 @@ class ControlCard(QFrame):
         self._pos_rows: list[PositionRow] = []
 
         self.setObjectName("panel")
-        self.setStyleSheet(f"QFrame#panel {{ background: {PANEL}; border-radius: 6px; }}")
+        self.setStyleSheet(f"QFrame#panel {{ background: rgba(34, 34, 34, 77); border-radius: 6px; }}")
 
         outer = QVBoxLayout(self)
         outer.setContentsMargins(10, 8, 6, 8)
@@ -558,8 +558,13 @@ class AircraftSettingsDialog(QDialog):
 
         self.setWindowTitle("CockpitRandomizer — Settings")
         self.setFixedSize(800, 1280)
-        self.setStyleSheet(f"QDialog {{ background: {BG}; }}")
+        self.setStyleSheet(f"QDialog {{ background: transparent; }}")
         self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
+
+        # Arka plan görseli
+        _this_dir = os.path.dirname(os.path.abspath(__file__))
+        bg_path = os.path.join(_this_dir, "CockpitRandomizer", "right-side-bg.png")
+        self._bg_pixmap = QPixmap(bg_path) if os.path.isfile(bg_path) else None
 
         # Placeholder modu — uygulama açılışında hiçbir uçak seçilmemiş
         if aircraft_key is None:
@@ -573,6 +578,18 @@ class AircraftSettingsDialog(QDialog):
             return
 
         self._build_ui()
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        if self._bg_pixmap and not self._bg_pixmap.isNull():
+            scaled = self._bg_pixmap.scaled(
+                self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+            x = (scaled.width()  - self.width())  // 2
+            y = (scaled.height() - self.height()) // 2
+            painter.setOpacity(0.3)
+            painter.drawPixmap(-x, -y, scaled)
+            painter.setOpacity(1.0)
+        super().paintEvent(event)
 
     def load_aircraft(self, aircraft_key: str | None, scripts_dir: str | None = None):
         """Mevcut dialog penceresini yeni uçakla yeniden doldur. None → placeholder."""
@@ -641,7 +658,7 @@ class AircraftSettingsDialog(QDialog):
 
         # Ortalanmış mesaj
         body = QWidget()
-        body.setStyleSheet(f"background: {BG};")
+        body.setStyleSheet(f"background: transparent;")
         body_lay = QVBoxLayout(body)
         body_lay.setContentsMargins(32, 0, 32, 0)
 
@@ -724,8 +741,9 @@ class AircraftSettingsDialog(QDialog):
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setFrameShape(QFrame.NoFrame)
+        scroll.viewport().setStyleSheet("background: transparent;")
         scroll.setStyleSheet(f"""
-            QScrollArea {{ background: {BG}; border: none; }}
+            QScrollArea {{ background: transparent; border: none; }}
             QScrollBar:vertical {{
                 background: {TB}; width: 8px; margin: 0;
             }}
@@ -736,7 +754,8 @@ class AircraftSettingsDialog(QDialog):
         """)
 
         inner = QWidget()
-        inner.setStyleSheet(f"background: {BG};")
+        inner.setStyleSheet(f"background: transparent;")
+        inner.setAttribute(Qt.WA_TranslucentBackground)
         inner_lay = QVBoxLayout(inner)
         inner_lay.setContentsMargins(16, 12, 16, 12)
         inner_lay.setSpacing(8)
