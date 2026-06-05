@@ -439,13 +439,13 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(APP_TITLE)
-        # [7] Ana arayüz yüksekliği aircraft_settings.py ile uyumlu (856→880)
-        self.setFixedSize(560, 880)
+        # [7] Ana arayüz yüksekliği aircraft_settings.py ile uyumlu (856→1080)
+        self.setFixedSize(560, 1280)
         self.setObjectName("main")
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.Window)
 
         scr = QApplication.desktop().screenGeometry()
-        self.move((scr.width() - 560) // 2, (scr.height() - 880) // 2)
+        self.move((scr.width() - 560) // 2, (scr.height() - 1080) // 2)
 
         self.scripts_dir = None
         self._rows = []
@@ -551,7 +551,7 @@ class MainWindow(QWidget):
         btn = QPushButton(text)
         btn.setObjectName(obj)
         btn.setCursor(Qt.PointingHandCursor)
-        btn.setFixedHeight(52)
+        btn.setFixedHeight(104)
         btn.clicked.connect(slot)
         return btn
 
@@ -998,16 +998,13 @@ class MainWindow(QWidget):
             self._err("Reset to Defaults", "Defaults folder is empty.")
             return
 
-        # [1] Aircraft seçim dialogu — tutarlı stil (QSS global stil ile çalışır)
+        # [1] Aircraft seçim dialogu — Uninstall (_ask) penceresi ile aynı stil
         dlg = QDialog(self)
         dlg.setWindowTitle("Reset to Defaults")
-        dlg.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
         dlg.setFixedWidth(340)
         dlg.setStyleSheet(f"""
             QDialog {{
                 background-color: #2a2d3e;
-                border: 1px solid {ACC};
-                border-radius: 8px;
             }}
             QLabel {{
                 color: {FG};
@@ -1055,8 +1052,8 @@ class MainWindow(QWidget):
         btn_cancel = QPushButton("Cancel")
         btn_ok     = QPushButton("Reset Selected")
         for btn, style in [
-            (btn_cancel, f"background:#1e2a3a; color:{FG}; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas; font-size:11pt;"),
-            (btn_ok,     f"background:{HL}; color:white; border:none; border-radius:6px; padding:6px 16px; font-family:Consolas; font-size:11pt; font-weight:bold;"),
+            (btn_cancel, f"background:#1e2a3a; color:{FG}; border:none; border-radius:6px; padding:6px 10px; font-family:Consolas; font-size:11pt;"),
+            (btn_ok,     f"background:{HL}; color:white; border:none; border-radius:6px; padding:6px 10px; font-family:Consolas; font-size:11pt; font-weight:bold;"),
         ]:
             btn.setStyleSheet(style)
             btn.setCursor(Qt.PointingHandCursor)
@@ -1065,6 +1062,12 @@ class MainWindow(QWidget):
         btn_row.addWidget(btn_cancel)
         btn_row.addWidget(btn_ok)
         lay.addLayout(btn_row)
+
+        # [1] Uninstall (_ask) ile aynı açılma konumu: ana pencerenin sağında
+        dlg.show()
+        dlg.adjustSize()
+        geo = self.frameGeometry()
+        dlg.move(geo.right() + 16, geo.top() + (geo.height() - dlg.height()) // 2)
 
         if dlg.exec_() != QDialog.Accepted:
             return

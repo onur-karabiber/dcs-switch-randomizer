@@ -501,14 +501,7 @@ class AircraftSettingsDialog(QDialog):
         self._cards: list[ControlCard] = []
 
         self.setWindowTitle("CockpitRandomizer — Settings")
-        self.setFixedWidth(800)
-        _screen  = QApplication.desktop().availableGeometry()
-        _dpr     = QApplication.instance().devicePixelRatio()
-        screen_h = int(_screen.height() / _dpr)
-        print(f"[DEBUG dialog] screen_h(logical)={screen_h}, dpr={_dpr}")
-        self.setMinimumHeight(400)
-        self.setMaximumHeight(screen_h - 60)
-        self.resize(620, min(960, screen_h - 80))
+        self.setFixedSize(800, 1280)
         self.setStyleSheet(f"QDialog {{ background: {BG}; }}")
         self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
 
@@ -723,6 +716,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle("Fusion")
     dlg = AircraftSettingsDialog("fa18c", scripts_dir=None)
-    dlg.resize(620, 800)
     dlg.show()
     sys.exit(app.exec_())
