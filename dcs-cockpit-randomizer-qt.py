@@ -46,7 +46,7 @@ TB    = "#0a0a0a"
 HL    = "#9ae69b"
 ACC   = "#9ae69b"
 FG    = "#ffffff"
-MUTED = "#666666"
+MUTED = "#777777"
 GREEN = "#9ae69b"
 
 # [10] Hover rengi — neon yeşil vurgu
@@ -193,7 +193,7 @@ QLabel#body     {{ color: {FG};    font-size: 13pt; }}
 QLabel#head     {{ color: {FG};    font-size: 15pt; font-weight: bold; }}
 
 QPushButton#apply   {{ background:{ACC}; color:#111111; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#apply:hover    {{ background:#55ff2a; }}
+QPushButton#apply:hover    {{ background:#eae8eb; }}
 QPushButton#apply:pressed  {{ background:#22cc00; }}
 
 QPushButton#reset   {{ background:#1a1a1a; color:{FG}; font-size:15pt; font-weight:bold; border:1px solid #333333; border-radius:8px; padding:10px; }}
@@ -244,7 +244,7 @@ QPushButton#rdefault:hover   {{ background:#222222; border:1px solid {ACC}; }}
 QPushButton#rdefault:pressed {{ background:#0a0a0a; }}
 
 QPushButton#actbtn  {{ background:{ACC}; color:#111111; font-size:13pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#actbtn:hover   {{ background:#55ff2a; }}
+QPushButton#actbtn:hover   {{ background:#eae8eb; }}
 QPushButton#actbtn:pressed {{ background:#22cc00; }}
 
 QPushButton#secbtn  {{ background:#1a1a1a; color:{FG}; font-size:13pt; border:1px solid #333333; border-radius:8px; padding:10px; }}
@@ -267,7 +267,7 @@ QMessageBox QPushButton {{
 }}
 QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
 QMessageBox QPushButton:default {{ background: {ACC}; color: #111111; border: none; }}
-QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
+QMessageBox QPushButton:default:hover {{ background: #eae8eb; }}
 
 QToolTip {{
     background-color: #222222;
@@ -589,7 +589,7 @@ class MainWindow(QWidget):
             }}
             QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
             QMessageBox QPushButton:default {{ background: {ACC}; color: #111111; border: none; }}
-            QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
+            QMessageBox QPushButton:default:hover {{ background: #eae8eb; }}
         """)
 
     def _ask(self, title, msg, icon=QMessageBox.Warning):

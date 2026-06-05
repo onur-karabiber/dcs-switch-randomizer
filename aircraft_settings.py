@@ -26,8 +26,8 @@ DARK  = "#111111"
 
 TYPE_COLOR = {
     "discrete":   "#9ae69b",
-    "continuous": "#9ae69b",
-    "run":        "#9ae69b",
+    "continuous": "#c9be24",
+    "run":        "#8c00ff",
     "select_one": "#9ae69b",
 }
 TYPE_LABEL = {
@@ -102,7 +102,7 @@ def style_msgbox(dlg: QMessageBox) -> None:
         }}
         QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
         QMessageBox QPushButton:default {{ background: {ACC}; color: #111111; border: none; }}
-        QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
+        QMessageBox QPushButton:default:hover {{ background: #eae8eb; }}
     """)
 
 
@@ -328,7 +328,7 @@ class PositionRow(QWidget):
                 border: none; border-radius: 3px;
                 font-size: 10pt; padding: 0px;
             }}
-            QPushButton:hover   {{ background: #55ff2a; }}
+            QPushButton:hover   {{ background: #eae8eb; }}
             QPushButton:pressed {{ background: #22cc00; }}
         """
 
@@ -413,7 +413,7 @@ class PositionRow(QWidget):
                 border: none; border-radius: 3px;
                 font-size: 10pt; padding: 0px;
             }}
-            QPushButton:hover   {{ background: #55ff2a; }}
+            QPushButton:hover   {{ background: #eae8eb; }}
             QPushButton:pressed {{ background: #22cc00; }}
         """
         for row in self._rows:
@@ -613,7 +613,7 @@ class AircraftSettingsDialog(QDialog):
 
         title_lbl = QLabel("Switch Settings")
         title_lbl.setStyleSheet(
-            f"color: {FG}; font-family: Consolas; font-size: 11pt; background: transparent;")
+            f"color: {FG}; font-family: Consolas; font-size: 10pt; background: transparent;")
         tb_lay.addWidget(title_lbl)
         tb_lay.addStretch()
 
@@ -782,7 +782,7 @@ class AircraftSettingsDialog(QDialog):
                     QPushButton {{ background: {ACC}; color: #111111;
                         font-family: Consolas; font-size: 12pt; font-weight: bold;
                         border: none; border-radius: 6px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: #55ff2a; }}
+                    QPushButton:hover {{ background: #eae8eb; }}
                     QPushButton:pressed {{ background: #22cc00; }}
                 """)
             else:
