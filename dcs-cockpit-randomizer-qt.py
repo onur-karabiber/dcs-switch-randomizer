@@ -477,7 +477,7 @@ class MainWindow(QWidget):
         # Fixed header
         hdr = QWidget(); hdr.setObjectName("main")
         hdr_lay = QVBoxLayout(hdr)
-        hdr_lay.setContentsMargins(20, 28, 20, 0)
+        hdr_lay.setContentsMargins(20, 40, 20, 0)
         hdr_lay.setSpacing(0)
         self.lbl_title = QLabel("DCS-COCKPIT-RANDOMIZER")
         self.lbl_title.setObjectName("title")
@@ -487,7 +487,7 @@ class MainWindow(QWidget):
         lbl_ver.setObjectName("ver")
         lbl_ver.setAlignment(Qt.AlignCenter)
         hdr_lay.addWidget(lbl_ver)
-        hdr_lay.addSpacing(12)
+        hdr_lay.addSpacing(24)
         root.addWidget(hdr)
 
         # Swappable content area
