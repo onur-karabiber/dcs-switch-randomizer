@@ -549,7 +549,7 @@ class ControlCard(QFrame):
 # ── AircraftSettingsDialog ────────────────────────────────────────────────────
 
 class AircraftSettingsDialog(QDialog):
-    def __init__(self, aircraft_key: str, scripts_dir: str | None = None,
+    def __init__(self, aircraft_key: str | None, scripts_dir: str | None = None,
                  parent=None):
         super().__init__(parent)
         self._key         = aircraft_key
@@ -561,6 +561,11 @@ class AircraftSettingsDialog(QDialog):
         self.setStyleSheet(f"QDialog {{ background: {BG}; }}")
         self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint)
 
+        # Placeholder modu — uygulama açılışında hiçbir uçak seçilmemiş
+        if aircraft_key is None:
+            self._build_placeholder_ui()
+            return
+
         # DÜZELTME: scripts_dir'i load_metadata'ya ilet — kaydedilmiş ayarlar orada
         self._meta = load_metadata(aircraft_key, scripts_dir)
         if self._meta is None:
@@ -568,6 +573,89 @@ class AircraftSettingsDialog(QDialog):
             return
 
         self._build_ui()
+
+    def load_aircraft(self, aircraft_key: str | None, scripts_dir: str | None = None):
+        """Mevcut dialog penceresini yeni uçakla yeniden doldur. None → placeholder."""
+        self._key         = aircraft_key
+        self._scripts_dir = scripts_dir if scripts_dir is not None else self._scripts_dir
+        self._cards       = []
+
+        # Mevcut layout'u temizle
+        old_layout = self.layout()
+        if old_layout:
+            while old_layout.count():
+                item = old_layout.takeAt(0)
+                if item.widget():
+                    item.widget().deleteLater()
+            QWidget().setLayout(old_layout)
+
+        if aircraft_key is None:
+            self._build_placeholder_ui()
+            return
+
+        self._meta = load_metadata(aircraft_key, self._scripts_dir)
+        if self._meta is None:
+            self._show_no_metadata()
+            return
+        self._build_ui()
+
+    def _build_placeholder_ui(self):
+        root = QVBoxLayout(self)
+        root.setContentsMargins(0, 0, 0, 0)
+        root.setSpacing(0)
+
+        # Başlık çubuğu
+        tb = QWidget()
+        tb.setFixedHeight(40)
+        tb.setStyleSheet(f"background: {TB};")
+        tb_lay = QHBoxLayout(tb)
+        tb_lay.setContentsMargins(16, 0, 8, 0)
+
+        title_lbl = QLabel("Switch Settings")
+        title_lbl.setStyleSheet(
+            f"color: {FG}; font-family: Consolas; font-size: 11pt; background: transparent;")
+        tb_lay.addWidget(title_lbl)
+        tb_lay.addStretch()
+
+        self._drag_pos = None
+        def _tb_press_ph(e):
+            if e.button() == Qt.LeftButton:
+                self._drag_pos = e.globalPos() - self.frameGeometry().topLeft()
+        def _tb_move_ph(e):
+            if e.buttons() == Qt.LeftButton and self._drag_pos:
+                self.move(e.globalPos() - self._drag_pos)
+                p = self.parent()
+                if p is not None and hasattr(p, "width"):
+                    geo = self.frameGeometry()
+                    p.move(geo.left() - p.width() - 10,
+                           geo.top() + (geo.height() - p.height()) // 2)
+        tb.mousePressEvent = _tb_press_ph
+        tb.mouseMoveEvent  = _tb_move_ph
+
+        root.addWidget(tb)
+
+        # Divider
+        div = QFrame(); div.setFixedHeight(1)
+        div.setStyleSheet(f"background: #2e3250;")
+        root.addWidget(div)
+
+        # Ortalanmış mesaj
+        body = QWidget()
+        body.setStyleSheet(f"background: {BG};")
+        body_lay = QVBoxLayout(body)
+        body_lay.setContentsMargins(32, 0, 32, 0)
+
+        hint = QLabel("Click the gear icon next to an aircraft\nto configure its switch settings.")
+        hint.setStyleSheet(
+            f"color: {MUTED}; font-family: Consolas; font-size: 13pt; background: transparent;")
+        hint.setAlignment(Qt.AlignCenter)
+        hint.setWordWrap(True)
+
+        body_lay.addStretch()
+        body_lay.addWidget(hint)
+        body_lay.addStretch()
+
+        root.addWidget(body, stretch=1)
 
     def _show_no_metadata(self):
         lay = QVBoxLayout(self)
@@ -607,16 +695,23 @@ class AircraftSettingsDialog(QDialog):
             QPushButton:hover {{ background: #3a0a0a; color: #e74c3c; }}
         """)
         cls_btn.setCursor(Qt.PointingHandCursor)
-        cls_btn.clicked.connect(self.reject)
+        cls_btn.clicked.connect(self._cancel)
         tb_lay.addWidget(cls_btn)
 
         self._drag_pos = None
-        tb.mousePressEvent = lambda e: setattr(self, "_drag_pos",
-            e.globalPos() - self.frameGeometry().topLeft()) \
-            if e.button() == Qt.LeftButton else None
-        tb.mouseMoveEvent = lambda e: self.move(
-            e.globalPos() - self._drag_pos) \
-            if e.buttons() == Qt.LeftButton and self._drag_pos else None
+        def _tb_press(e):
+            if e.button() == Qt.LeftButton:
+                self._drag_pos = e.globalPos() - self.frameGeometry().topLeft()
+        def _tb_move(e):
+            if e.buttons() == Qt.LeftButton and self._drag_pos:
+                self.move(e.globalPos() - self._drag_pos)
+                p = self.parent()
+                if p is not None and hasattr(p, "width"):
+                    geo = self.frameGeometry()
+                    p.move(geo.left() - p.width() - 10,
+                           geo.top() + (geo.height() - p.height()) // 2)
+        tb.mousePressEvent = _tb_press
+        tb.mouseMoveEvent  = _tb_move
 
         root.addWidget(tb)
 
@@ -675,7 +770,7 @@ class AircraftSettingsDialog(QDialog):
         bot_lay.addStretch()
 
         for text, style, slot in [
-            ("Cancel",        "secbtn", self.reject),
+            ("Cancel",        "secbtn", self._cancel),
             ("Save && Apply", "apply",  self._save),   # [3] && = literal &
         ]:
             btn = QPushButton(text)
@@ -753,12 +848,31 @@ class AircraftSettingsDialog(QDialog):
             with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(self._meta, f, indent=2, ensure_ascii=False)
             self._status("Saved.", GREEN)
-            QTimer.singleShot(1200, self.accept)
+            QTimer.singleShot(1200, self._after_save)
         else:
             print("\n" + "="*60)
             print(lua_content)
             print("="*60)
             self._status("Generated (test mode)", MUTED)
+
+    def reject(self):
+        p = self.parent()
+        if p is not None and hasattr(p, "_persistent_settings_dlg"):
+            self.load_aircraft(None)
+        else:
+            super().reject()
+
+    def _cancel(self):
+        self.reject()
+
+    def _after_save(self):
+        # Kalıcı mod: parent MainWindow — placeholder'a dön
+        from PyQt5.QtWidgets import QWidget as _QW
+        p = self.parent()
+        if p is not None and hasattr(p, "_persistent_settings_dlg"):
+            self.load_aircraft(None)
+        else:
+            self.accept()
 
     def _status(self, msg: str, color: str = MUTED):
         self._status_lbl.setStyleSheet(

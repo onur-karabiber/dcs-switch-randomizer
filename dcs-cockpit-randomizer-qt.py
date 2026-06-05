@@ -292,6 +292,7 @@ class TitleBar(QWidget):
     def mouseMoveEvent(self, e):
         if e.buttons() == Qt.LeftButton:
             self.parent.move(e.globalPos() - self._drag_pos)
+            self.parent._reposition_settings_dialog()
 
 # ── Aircraft row ──────────────────────────────────────────────────────────────
 class AircraftRow(QWidget):
@@ -333,6 +334,7 @@ class AircraftRow(QWidget):
                 font-size: 16pt;
                 border: none;
                 border-radius: 6px;
+                outline: none;
             }}
             QToolButton:hover {{
                 background: #1e2a4a;
@@ -343,6 +345,7 @@ class AircraftRow(QWidget):
                 color: white;
             }}
         """)
+        self._gear_btn.setFocusPolicy(Qt.NoFocus)
         self._gear_btn.clicked.connect(self._open_settings)
         lay.addWidget(self._gear_btn)
 
@@ -379,7 +382,6 @@ class AircraftRow(QWidget):
         self.lbl.setStyleSheet(self._label_style())
 
     def _open_settings(self):
-        
         try:
             from aircraft_settings import AircraftSettingsDialog
         except ImportError:
@@ -391,33 +393,32 @@ class AircraftRow(QWidget):
             )
             return
 
-        dlg = AircraftSettingsDialog(
-            aircraft_key=self.key,
-            scripts_dir=self._scripts_dir,
-            parent=self._parent_win,
-        )
-        dlg.setWindowModality(Qt.ApplicationModal)
-
-        # [4] Dialog ana pencerenin YANINDA açılsın (sağında), üstünde değil
-        parent_geo = self._parent_win.frameGeometry()
-        dlg.show()
-        dlg.adjustSize()
-        dlg_w = dlg.width()
-        dlg_h = dlg.height()
-
-        # Önce sağına koymayı dene
-        screen = QApplication.desktop().availableGeometry()
-        x = parent_geo.right() + 10
-        y = parent_geo.top() + (parent_geo.height() - dlg_h) // 2
-
-        # Ekran sınırı kontrolü — sağa sığmıyorsa soluna
-        if x + dlg_w > screen.right():
-            x = parent_geo.left() - dlg_w - 10
-
-        # Y sınırı
-        y = max(screen.top(), min(y, screen.bottom() - dlg_h))
-        dlg.move(x, y)
-        dlg.exec_()
+        # Mevcut kalıcı dialog varsa içini yenile, yoksa modal aç
+        pw = self._parent_win
+        if hasattr(pw, "_persistent_settings_dlg") and pw._persistent_settings_dlg is not None:
+            dlg = pw._persistent_settings_dlg
+            dlg.load_aircraft(self.key, self._scripts_dir)
+            dlg.raise_()
+            dlg.activateWindow()
+        else:
+            dlg = AircraftSettingsDialog(
+                aircraft_key=self.key,
+                scripts_dir=self._scripts_dir,
+                parent=pw,
+            )
+            dlg.setWindowModality(Qt.ApplicationModal)
+            parent_geo = pw.frameGeometry()
+            dlg.show()
+            dlg_w = dlg.width()
+            dlg_h = dlg.height()
+            screen = QApplication.desktop().availableGeometry()
+            x = parent_geo.right() + 10
+            y = parent_geo.top() + (parent_geo.height() - dlg_h) // 2
+            if x + dlg_w > screen.right():
+                x = parent_geo.left() - dlg_w - 10
+            y = max(screen.top(), min(y, screen.bottom() - dlg_h))
+            dlg.move(x, y)
+            dlg.exec_()
 
     def set_checked(self, val):
         self._checked = val
@@ -850,6 +851,50 @@ class MainWindow(QWidget):
         # [9] Close butonu ile 6'lı buton grubu arasına mesafe
         self.content.addSpacing(10)
 
+        # Kalıcı settings dialog — ilk açılışta placeholder, çark'a tıklanınca dolar
+        self._open_persistent_settings_dialog()
+
+    def _open_persistent_settings_dialog(self):
+        """Ana pencereyle birlikte sağında duran, kalıcı settings dialog'unu aç."""
+        try:
+            from aircraft_settings import AircraftSettingsDialog
+        except ImportError:
+            return
+
+        # Zaten açıksa tekrar açma
+        if hasattr(self, "_persistent_settings_dlg") and self._persistent_settings_dlg is not None:
+            return
+
+        dlg = AircraftSettingsDialog(aircraft_key=None, scripts_dir=self.scripts_dir, parent=self)
+        dlg.setWindowModality(Qt.NonModal)
+        self._persistent_settings_dlg = dlg
+
+        dlg.show()
+        self._reposition_settings_dialog()
+
+    def _reposition_settings_dialog(self):
+        dlg = getattr(self, "_persistent_settings_dlg", None)
+        if dlg is None:
+            return
+        geo = self.frameGeometry()
+        screen = QApplication.desktop().availableGeometry()
+        x = geo.right() + 10
+        y = geo.top() + (geo.height() - dlg.height()) // 2
+        if x + dlg.width() > screen.right():
+            x = geo.left() - dlg.width() - 10
+        y = max(screen.top(), min(y, screen.bottom() - dlg.height()))
+        dlg.move(x, y)
+
+    def closeEvent(self, e):
+        dlg = getattr(self, "_persistent_settings_dlg", None)
+        if dlg is not None:
+            dlg.close()
+        super().closeEvent(e)
+
+    def moveEvent(self, e):
+        self._reposition_settings_dialog()
+        super().moveEvent(e)
+
     def _selected_keys(self):
         return {row.key for row in self._rows if row.is_checked()}
 
@@ -1036,7 +1081,7 @@ class MainWindow(QWidget):
         for label, key in AIRCRAFT:
             if key in available:
                 cb = QCheckBox(label)
-                cb.setChecked(True)
+                cb.setChecked(False)
                 lay.addWidget(cb)
                 checkboxes[key] = cb
 
@@ -1071,12 +1116,10 @@ class MainWindow(QWidget):
 
         try:
             count = 0
+            cr_dir = os.path.join(self.scripts_dir, "CockpitRandomizer")
             for key in selected_keys:
                 fname = available[key]
-                for dest_dir in self._json_search_dirs():
-                    if os.path.isdir(dest_dir):
-                        shutil.copy2(os.path.join(ddir, fname),
-                                     os.path.join(dest_dir, fname))
+                shutil.copy2(os.path.join(ddir, fname), os.path.join(cr_dir, fname))
                 count += 1
             self.set_status(f"Reset to defaults — {count} aircraft restored.", color=GREEN)
             self._info("Reset complete",
