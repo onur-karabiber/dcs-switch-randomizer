@@ -210,6 +210,26 @@ QPushButton#uninst:pressed {{ background:#922b21; }}
 QPushButton#closebtn {{ background:#808080; color:white; font-size:10pt; border:none; border-radius:6px; padding:8px 24px; }}
 QPushButton#closebtn:hover {{ background:#8f8b8b; }}
 
+QPushButton#iconbtn_update,
+QPushButton#iconbtn_reset,
+QPushButton#iconbtn_import,
+QPushButton#iconbtn_export,
+QPushButton#iconbtn_defaults {{ background:{ACC}; color:white; border:none; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
+QPushButton#iconbtn_update:hover,
+QPushButton#iconbtn_reset:hover,
+QPushButton#iconbtn_import:hover,
+QPushButton#iconbtn_export:hover,
+QPushButton#iconbtn_defaults:hover {{ background:#1e5799; }}
+QPushButton#iconbtn_update:pressed,
+QPushButton#iconbtn_reset:pressed,
+QPushButton#iconbtn_import:pressed,
+QPushButton#iconbtn_export:pressed,
+QPushButton#iconbtn_defaults:pressed {{ background:#1a4a80; }}
+
+QPushButton#iconbtn_uninst  {{ background:#c0392b; color:white; border:none; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
+QPushButton#iconbtn_uninst:hover   {{ background:#e74c3c; }}
+QPushButton#iconbtn_uninst:pressed {{ background:#922b21; }}
+
 QPushButton#export {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
 QPushButton#export:hover   {{ background:#1e4a5e; }}
 QPushButton#export:pressed {{ background:#152e3a; }}
@@ -816,40 +836,37 @@ class MainWindow(QWidget):
         # Spacer
         self.content.addStretch()
 
-        # Tooltip metinleri
-        _TIPS = {
-            "Apply":           "Write selected aircraft to Export.lua and activate the randomizer.",
-            "Update":          "Copy updated Lua scripts to your DCS Scripts folder.",
-            # [2] Reset tooltip güncellemesi
-            "Reset":           "Return to your own original Export.lua file.",
-            "Import Settings": "Import aircraft switch settings from a backup folder.",
-            "Export Settings": "Export current aircraft switch settings to a backup folder.",
-            "Defaults":        "Reset switch settings to factory defaults for selected aircraft.",
-            "Uninstall":       "Remove CockpitRandomizer completely from your DCS installation.",
-        }
-
-        # Apply — tam genişlik
+        # Apply — tam genişlik, büyük
         btn_apply = self._make_btn("Apply", "apply", self._do_apply)
-        btn_apply.setToolTip(_TIPS["Apply"])
+        btn_apply.setFixedHeight(72)
+        btn_apply.setToolTip("Write selected aircraft to Export.lua and activate the randomizer.")
         self.content.addWidget(btn_apply)
-        self.content.addSpacing(4)
+        self.content.addSpacing(6)
 
-        # Satır: Update | Reset
-        for pairs in [
-            [("Update", "update", self._show_update_screen), ("Reset", "reset", self._do_reset)],
-            [("Import Settings", "import", self._do_import_settings), ("Export Settings", "export", self._do_export_settings)],
-            [("Defaults", "rdefault", self._do_reset_settings), ("Uninstall", "uninst", self._confirm_uninstall)],
-        ]:
-            row_lay = QHBoxLayout(); row_lay.setSpacing(4)
-            for text, obj, slot in pairs:
-                btn = self._make_btn(text, obj, slot)
-                btn.setToolTip(_TIPS.get(text, ""))
-                row_lay.addWidget(btn)
-            self.content.addLayout(row_lay)
-            self.content.addSpacing(4)
-
-        # [9] Close butonu ile 6'lı buton grubu arasına mesafe
-        self.content.addSpacing(10)
+        # 6 ikon butonu — tek satır
+        _ICON_BTNS = [
+            ("\uE72C", "iconbtn_update",   self._show_update_screen, "Update: copy updated Lua scripts to DCS."),
+            ("\uE7A7", "iconbtn_reset",    self._do_reset,           "Reset: restore your original Export.lua."),
+            ("\uE896", "iconbtn_import",   self._do_import_settings, "Import Settings from a backup folder."),
+            ("\uE898", "iconbtn_export",   self._do_export_settings, "Export Settings to a backup folder."),
+            ("\uE734", "iconbtn_defaults", self._do_reset_settings,  "Defaults: reset switches to factory defaults."),
+            ("\uE107", "iconbtn_uninst",   self._confirm_uninstall,  "Uninstall: remove CockpitRandomizer completely."),
+        ]
+        mdl2_font = QFont("Segoe MDL2 Assets", 18)
+        icon_row = QHBoxLayout()
+        icon_row.setSpacing(4)
+        for icon, obj, slot, tip in _ICON_BTNS:
+            btn = QPushButton(icon)
+            btn.setFont(mdl2_font)
+            btn.setObjectName(obj)
+            btn.setCursor(Qt.PointingHandCursor)
+            btn.setToolTip(tip)
+            btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+            btn.setFixedHeight(56)
+            btn.clicked.connect(slot)
+            icon_row.addWidget(btn)
+        self.content.addLayout(icon_row)
+        self.content.addSpacing(8)
 
         # Kalıcı settings dialog — ilk açılışta placeholder, çark'a tıklanınca dolar
         self._open_persistent_settings_dialog()
