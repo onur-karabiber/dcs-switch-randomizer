@@ -211,17 +211,17 @@ QPushButton#closebtn {{ background:#808080; color:white; font-size:10pt; border:
 QPushButton#closebtn:hover {{ background:#8f8b8b; }}
 
 QPushButton#iconbtn_update,
-QPushButton#iconbtn_reset,
+QPushButton#iconbtn_deactivate,
 QPushButton#iconbtn_import,
 QPushButton#iconbtn_export,
 QPushButton#iconbtn_defaults {{ background:{ACC}; color:white; border:none; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
 QPushButton#iconbtn_update:hover,
-QPushButton#iconbtn_reset:hover,
+QPushButton#iconbtn_deactivate:hover,
 QPushButton#iconbtn_import:hover,
 QPushButton#iconbtn_export:hover,
 QPushButton#iconbtn_defaults:hover {{ background:#1e5799; }}
 QPushButton#iconbtn_update:pressed,
-QPushButton#iconbtn_reset:pressed,
+QPushButton#iconbtn_deactivate:pressed,
 QPushButton#iconbtn_import:pressed,
 QPushButton#iconbtn_export:pressed,
 QPushButton#iconbtn_defaults:pressed {{ background:#1a4a80; }}
@@ -846,7 +846,7 @@ class MainWindow(QWidget):
         # 6 ikon butonu — tek satır
         _ICON_BTNS = [
             ("\uE72C", "iconbtn_update",   self._show_update_screen, "Update: copy updated Lua scripts to DCS."),
-            ("\uE7A7", "iconbtn_reset",    self._do_reset,           "Reset: restore your original Export.lua."),
+            ("\uE7A7", "iconbtn_deactivate", self._do_reset, "Deactivate Randomizer: Deactivates the randomizer and restores your own Export.lua."),
             ("\uE896", "iconbtn_import",   self._do_import_settings, "Import Settings from a backup folder."),
             ("\uE898", "iconbtn_export",   self._do_export_settings, "Export Settings to a backup folder."),
             ("\uE734", "iconbtn_defaults", self._do_reset_settings,  "Defaults: reset switches to factory defaults."),
