@@ -28,11 +28,13 @@ TYPE_COLOR = {
     "discrete":   "#2d5fa0",
     "continuous": "#4a6a3a",
     "run":        "#6a4a2a",
+    "select_one": "#2d5fa0",
 }
 TYPE_LABEL = {
     "discrete":   "SWITCH",
     "continuous": "KNOB",
     "run":        "SPECIAL",
+    "select_one": "SWITCH",
 }
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -119,7 +121,7 @@ def generate_lua(metadata: dict) -> str:
         t       = ctrl["type"]
         label   = ctrl["label"]
         dev     = ctrl["dev"]
-        cmd     = ctrl["cmd"]
+        cmd     = ctrl.get("cmd")
         comment = f"    -- {label}"
 
         if t == "run":
@@ -156,6 +158,41 @@ def generate_lua(metadata: dict) -> str:
                 lines.append(
                     f"    {{ dev={dev}, cmd={cmd}, "
                     f"vals={CONTINUOUS_VALS}, label=\"{label}\" }},")
+            lines.append('')
+
+        elif t == "select_one":
+            # Radio-group: each position has its own cmd.
+            # Build a weighted vals list of cmd indices, then emit a run block.
+            positions = ctrl.get("positions", [])
+            if not enabled:
+                lines.append(f"    -- [DISABLED] {label} (select_one, dev={dev})")
+            else:
+                lines.append(comment)
+                pos_comment = " / ".join(
+                    f"{p['label']}={p['weight']}%{'(default)' if p.get('is_default') else ''}"
+                    for p in positions
+                )
+                lines.append(f"    -- {pos_comment}")
+                # Build weighted cmd list
+                from math import gcd
+                from functools import reduce
+                from fractions import Fraction
+                fracs = [Fraction(p["weight"]).limit_denominator(10000) for p in positions]
+                denoms = [fr.denominator for fr in fracs]
+                lcm_d = reduce(lambda a, b: a * b // gcd(a, b), denoms)
+                ints  = [int(fr * lcm_d) for fr in fracs]
+                g     = reduce(gcd, ints)
+                weighted_cmds = []
+                for i, p in enumerate(positions):
+                    weighted_cmds += [p["cmd"]] * (ints[i] // g)
+                cmds_str = "{" + ", ".join(str(c) for c in weighted_cmds) + "}"
+                lines.append(f"    {{")
+                lines.append(f"        dev={dev}, cmd=nil, label=\"{label}\",")
+                lines.append(f"        run=function(device)")
+                lines.append(f"            local cmds = {cmds_str}")
+                lines.append(f"            device:performClickableAction(cmds[math.random(#cmds)], 1)")
+                lines.append(f"        end")
+                lines.append(f"    }},")
             lines.append('')
 
         elif t == "discrete":
@@ -451,10 +488,24 @@ class ControlCard(QFrame):
 
         if t == "discrete":
             self._build_discrete()
+        elif t == "select_one":
+            self._build_select_one()
 
         self._set_body_enabled(ctrl.get("enabled", True))
 
     def _build_discrete(self):
+        positions = self._ctrl.get("positions", [])
+        non_defaults = [p for p in positions if not p.get("is_default", False)]
+        defaults     = [p for p in positions if p.get("is_default", False)]
+        for pos in non_defaults + defaults:
+            is_def = pos.get("is_default", False)
+            row = PositionRow(pos, self._pos_rows, is_def)
+            self._pos_rows.append(row)
+            self._body.addWidget(row)
+
+    def _build_select_one(self):
+        # Same visual as discrete — positions shown with weights.
+        # Default position is last (bottom), non-defaults first.
         positions = self._ctrl.get("positions", [])
         non_defaults = [p for p in positions if not p.get("is_default", False)]
         defaults     = [p for p in positions if p.get("is_default", False)]
@@ -477,7 +528,7 @@ class ControlCard(QFrame):
                 item.widget().setStyleSheet(item.widget().styleSheet())
 
     def is_valid(self) -> tuple[bool, str]:
-        if self._ctrl["type"] != "discrete" or not self._ctrl.get("enabled", True):
+        if self._ctrl["type"] not in ("discrete", "select_one") or not self._ctrl.get("enabled", True):
             return True, ""
         total = sum(r.get_weight() for r in self._pos_rows)
         if abs(total - 100) > 1:
@@ -485,9 +536,14 @@ class ControlCard(QFrame):
         return True, ""
 
     def flush_to_data(self):
-        if self._ctrl["type"] == "discrete":
-            for i, row in enumerate(self._pos_rows):
-                self._ctrl["positions"][i]["weight"] = row.get_weight()
+        if self._ctrl["type"] in ("discrete", "select_one"):
+            positions = self._ctrl["positions"]
+            # _pos_rows are ordered non-defaults first, then defaults.
+            # Match by label to avoid index mismatch.
+            label_to_weight = {r._pos["label"]: r.get_weight() for r in self._pos_rows}
+            for p in positions:
+                if p["label"] in label_to_weight:
+                    p["weight"] = label_to_weight[p["label"]]
 
 
 # ── AircraftSettingsDialog ────────────────────────────────────────────────────

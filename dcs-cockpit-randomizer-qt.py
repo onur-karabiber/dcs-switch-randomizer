@@ -379,6 +379,7 @@ class AircraftRow(QWidget):
         self.lbl.setStyleSheet(self._label_style())
 
     def _open_settings(self):
+        
         try:
             from aircraft_settings import AircraftSettingsDialog
         except ImportError:

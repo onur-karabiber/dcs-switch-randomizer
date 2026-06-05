@@ -145,22 +145,30 @@ CR.register("F-14B", {
     { dev=55, cmd=3135, vals={0,0,0,0,0,0,0,0,0,1}, label="Master Arm Cover" },
 
     -- -------------------------------------------------------------------------
-    -- HUD MODES   dev=40 (HUD) -- momentary, always activated
+    -- HUD MODE   dev=40 (HUD)
+    -- Radio group: one of 5 momentary buttons activates the mode, others deactivate.
+    -- Landing=54% (default) / Take-off=12% / Cruise=12% / Air-to-Air=12% / Air-to-Ground=10%
     -- -------------------------------------------------------------------------
-    { dev=40, cmd=3216, vals={1}, label="HUD Take-off Mode" },
-    { dev=40, cmd=3217, vals={1}, label="HUD Cruise Mode" },
-    { dev=40, cmd=3218, vals={1}, label="HUD Air-to-Air Mode" },
-    { dev=40, cmd=3219, vals={1}, label="HUD Air-to-Ground Mode" },
-    { dev=40, cmd=3220, vals={1}, label="HUD Landing Mode" },
+    {
+        dev=40, cmd=nil, label="HUD Mode",
+        run=function(device)
+            local cmds = {3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3220,3216,3216,3216,3216,3216,3216,3217,3217,3217,3217,3217,3217,3218,3218,3218,3218,3218,3218,3219,3219,3219,3219,3219}
+            device:performClickableAction(cmds[math.random(#cmds)], 1)
+        end
+    },
 
     -- -------------------------------------------------------------------------
-    -- NAVIGATION STEER COMMANDS   dev=46 (NAV_INTERFACE) -- momentary
+    -- NAVIGATION STEER COMMANDS   dev=46 (NAV_INTERFACE)
+    -- Radio group: one of 5 momentary buttons sets the steer source, others deactivate.
+    -- TACAN=54% (default) / Destination=12% / Vector=12% / Manual=12% / AWL PCD=10%
     -- -------------------------------------------------------------------------
-    { dev=46, cmd=3317, vals={1}, label="Navigation Steer Commands: TACAN" },
-    { dev=46, cmd=3318, vals={1}, label="Navigation Steer Commands: Destination" },
-    { dev=46, cmd=3321, vals={1}, label="Navigation Steer Commands: AWL PCD" },
-    { dev=46, cmd=3319, vals={1}, label="Navigation Steer Commands: Vector" },
-    { dev=46, cmd=3320, vals={1}, label="Navigation Steer Commands: Manual" },
+    {
+        dev=46, cmd=nil, label="Navigation Steer Commands",
+        run=function(device)
+            local cmds = {3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3317,3318,3318,3318,3318,3318,3318,3321,3321,3321,3321,3321,3319,3319,3319,3319,3319,3319,3320,3320,3320,3320,3320,3320}
+            device:performClickableAction(cmds[math.random(#cmds)], 1)
+        end
+    },
 
     -- -------------------------------------------------------------------------
     -- HUD / VDI / HSD   dev=40/42/41

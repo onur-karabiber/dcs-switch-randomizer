@@ -3,7 +3,6 @@
   "display_name": "F-14B Tomcat",
   "delay": 3.1,
   "controls": [
-
     {
       "id": "pilot_oxygen_on",
       "label": "Pilot Oxygen On",
@@ -12,11 +11,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON",  "delta":  0, "is_default": true,  "weight": 90 },
-        { "label": "OFF", "delta": -1, "is_default": false, "weight": 10 }
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "sidewinder_volume",
       "label": "Sidewinder Volume",
@@ -25,7 +33,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "alr67_volume",
       "label": "ALR-67 Volume",
@@ -34,7 +41,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "arc182_volume_pilot",
       "label": "VHF/UHF ARC-182 Volume Pilot",
@@ -43,7 +49,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "arc159_volume_pilot",
       "label": "UHF ARC-159 Volume Pilot",
@@ -52,7 +57,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "afcs_sas_yaw",
       "label": "AFCS Stability Augmentation - Yaw",
@@ -61,11 +65,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 33 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 67 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 33
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 67
+        }
       ]
     },
-
     {
       "id": "afcs_sas_roll",
       "label": "AFCS Stability Augmentation - Roll",
@@ -74,11 +87,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 33 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 67 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 33
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 67
+        }
       ]
     },
-
     {
       "id": "afcs_sas_pitch",
       "label": "AFCS Stability Augmentation - Pitch",
@@ -87,11 +109,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 33 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 67 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 33
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 67
+        }
       ]
     },
-
     {
       "id": "autopilot_engage",
       "label": "Autopilot - Engage",
@@ -100,11 +131,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "autopilot_altitude_hold",
       "label": "Autopilot - Altitude Hold",
@@ -113,11 +153,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "autopilot_heading_gt",
       "label": "Autopilot - Heading / Ground Track",
@@ -126,12 +175,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF",  "delta":  0, "is_default": true,  "weight": 87 },
-        { "label": "HDG",  "delta":  1, "is_default": false, "weight": 7  },
-        { "label": "GT",   "delta": -1, "is_default": false, "weight": 6  }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "HDG",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "GT",
+          "delta": -1,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "autopilot_vector_acl",
       "label": "Autopilot - Vector / Automatic Carrier Landing",
@@ -140,12 +203,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF",    "delta":  0, "is_default": true,  "weight": 87 },
-        { "label": "VECTOR", "delta":  1, "is_default": false, "weight": 7  },
-        { "label": "ACL",    "delta": -1, "is_default": false, "weight": 6  }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "VECTOR",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "ACL",
+          "delta": -1,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "asym_thrust_limiter_cover",
       "label": "Asymmetric Thrust Limiter Cover",
@@ -154,11 +231,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true,  "weight": 70 },
-        { "label": "OPEN",   "delta": 1, "is_default": false, "weight": 30 }
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
       ]
     },
-
     {
       "id": "emerg_gen_switch_cover",
       "label": "Emergency Generator Switch Cover",
@@ -167,11 +253,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true,  "weight": 70 },
-        { "label": "OPEN",   "delta": 1, "is_default": false, "weight": 30 }
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
       ]
     },
-
     {
       "id": "acm_cover",
       "label": "ACM Cover",
@@ -180,11 +275,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true,  "weight": 70 },
-        { "label": "OPEN",   "delta": 1, "is_default": false, "weight": 30 }
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
       ]
     },
-
     {
       "id": "hyd_emerg_flt_cover",
       "label": "Hydraulic Emergency Flight Control Switch Cover",
@@ -193,11 +297,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true,  "weight": 70 },
-        { "label": "OPEN",   "delta": 1, "is_default": false, "weight": 30 }
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
       ]
     },
-
     {
       "id": "left_engine_mode",
       "label": "Left Engine Mode",
@@ -206,11 +319,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORM",     "delta":  0, "is_default": true,  "weight": 90 },
-        { "label": "OFF-IDLE", "delta": -1, "is_default": false, "weight": 10 }
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF-IDLE",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "right_engine_mode",
       "label": "Right Engine Mode",
@@ -219,11 +341,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORM",     "delta":  0, "is_default": true,  "weight": 90 },
-        { "label": "OFF-IDLE", "delta": -1, "is_default": false, "weight": 10 }
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF-IDLE",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "anti_skid_spoiler_bk",
       "label": "Anti-Skid Spoiler BK Switch",
@@ -232,12 +363,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "BOTH",       "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "OFF",        "delta": 1, "is_default": false, "weight": 10 },
-        { "label": "SPOILER BK", "delta": 2, "is_default": false, "weight": 3  }
+        {
+          "label": "BOTH",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "SPOILER BK",
+          "delta": 2,
+          "is_default": false,
+          "weight": 3
+        }
       ]
     },
-
     {
       "id": "wing_ext_trans",
       "label": "Wing/Ext Trans",
@@ -246,12 +391,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORM", "delta":  0, "is_default": true,  "weight": 87 },
-        { "label": "WING", "delta": -1, "is_default": false, "weight": 7  },
-        { "label": "EXT",  "delta":  1, "is_default": false, "weight": 6  }
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "WING",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "EXT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "master_arm_cover",
       "label": "Master Arm Cover",
@@ -260,131 +419,98 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true,  "weight": 90 },
-        { "label": "OPEN",   "delta": 1, "is_default": false, "weight": 10 }
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
-      "id": "hud_takeoff_mode",
-      "label": "HUD Take-off Mode",
+      "id": "hud_mode_select",
+      "label": "HUD Mode",
       "dev": 40,
-      "cmd": 3216,
+      "type": "select_one",
       "enabled": true,
-      "type": "discrete",
       "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
+        {
+          "label": "Take-off",
+          "cmd": 3216,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "Cruise",
+          "cmd": 3217,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "Air-to-Air",
+          "cmd": 3218,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "Air-to-Ground",
+          "cmd": 3219,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "Landing",
+          "cmd": 3220,
+          "is_default": true,
+          "weight": 54
+        }
       ]
     },
-
     {
-      "id": "hud_cruise_mode",
-      "label": "HUD Cruise Mode",
-      "dev": 40,
-      "cmd": 3217,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
-      ]
-    },
-
-    {
-      "id": "hud_aa_mode",
-      "label": "HUD Air-to-Air Mode",
-      "dev": 40,
-      "cmd": 3218,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
-      ]
-    },
-
-    {
-      "id": "hud_ag_mode",
-      "label": "HUD Air-to-Ground Mode",
-      "dev": 40,
-      "cmd": 3219,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
-      ]
-    },
-
-    {
-      "id": "hud_landing_mode",
-      "label": "HUD Landing Mode",
-      "dev": 40,
-      "cmd": 3220,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
-      ]
-    },
-
-    {
-      "id": "nav_steer_tacan",
-      "label": "Navigation Steer Commands: TACAN",
+      "id": "nav_steer_select",
+      "label": "Navigation Steer Commands",
       "dev": 46,
-      "cmd": 3317,
+      "type": "select_one",
       "enabled": true,
-      "type": "discrete",
       "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
+        {
+          "label": "TACAN",
+          "cmd": 3317,
+          "is_default": true,
+          "weight": 54
+        },
+        {
+          "label": "Destination",
+          "cmd": 3318,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "AWL PCD",
+          "cmd": 3321,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "Vector",
+          "cmd": 3319,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "Manual",
+          "cmd": 3320,
+          "is_default": false,
+          "weight": 12
+        }
       ]
     },
-
-    {
-      "id": "nav_steer_destination",
-      "label": "Navigation Steer Commands: Destination",
-      "dev": 46,
-      "cmd": 3318,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
-      ]
-    },
-
-    {
-      "id": "nav_steer_awl_pcd",
-      "label": "Navigation Steer Commands: AWL PCD",
-      "dev": 46,
-      "cmd": 3321,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
-      ]
-    },
-
-    {
-      "id": "nav_steer_vector",
-      "label": "Navigation Steer Commands: Vector",
-      "dev": 46,
-      "cmd": 3319,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
-      ]
-    },
-
-    {
-      "id": "nav_steer_manual",
-      "label": "Navigation Steer Commands: Manual",
-      "dev": 46,
-      "cmd": 3320,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ACTIVATE", "delta": 1, "is_default": true, "weight": 100 }
-      ]
-    },
-
     {
       "id": "hud_awl_mode",
       "label": "HUD AWL Mode",
@@ -393,11 +519,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "vdi_landing_mode",
       "label": "VDI Landing Mode",
@@ -406,11 +541,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "hsd_display_mode",
       "label": "HSD Display Mode",
@@ -419,12 +563,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CENTER", "delta":  0, "is_default": true,  "weight": 87 },
-        { "label": "LEFT",   "delta": -1, "is_default": false, "weight": 7  },
-        { "label": "RIGHT",  "delta":  1, "is_default": false, "weight": 6  }
+        {
+          "label": "CENTER",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "LEFT",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "RIGHT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "vdi_power",
       "label": "VDI Power On/Off",
@@ -433,11 +591,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON",  "delta":  0, "is_default": true,  "weight": 90 },
-        { "label": "OFF", "delta": -1, "is_default": false, "weight": 10 }
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "hud_power",
       "label": "HUD Power On/Off",
@@ -446,11 +613,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON",  "delta":  0, "is_default": true,  "weight": 90 },
-        { "label": "OFF", "delta": -1, "is_default": false, "weight": 10 }
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "hsd_ecm_power",
       "label": "HSD/ECM Power On/Off",
@@ -459,11 +635,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON",  "delta":  0, "is_default": true,  "weight": 90 },
-        { "label": "OFF", "delta": -1, "is_default": false, "weight": 10 }
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "ana_ara63_power",
       "label": "ANA/ARA-63 Power Switch",
@@ -472,11 +657,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "hook_bypass",
       "label": "Hook Bypass",
@@ -485,11 +679,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "taxi_light",
       "label": "Taxi Light",
@@ -498,11 +701,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "white_flood_light",
       "label": "White Flood Light",
@@ -511,12 +723,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "DIM", "delta": -1, "is_default": true,  "weight": 34 },
-        { "label": "OFF", "delta":  0, "is_default": false, "weight": 33 },
-        { "label": "BRT", "delta":  1, "is_default": false, "weight": 33 }
+        {
+          "label": "DIM",
+          "delta": -1,
+          "is_default": true,
+          "weight": 34
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 33
+        },
+        {
+          "label": "BRT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 33
+        }
       ]
     },
-
     {
       "id": "red_flood_light",
       "label": "Red Flood Light",
@@ -525,12 +751,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "DIM", "delta": -1, "is_default": true,  "weight": 34 },
-        { "label": "OFF", "delta":  0, "is_default": false, "weight": 33 },
-        { "label": "BRT", "delta":  1, "is_default": false, "weight": 33 }
+        {
+          "label": "DIM",
+          "delta": -1,
+          "is_default": true,
+          "weight": 34
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 33
+        },
+        {
+          "label": "BRT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 33
+        }
       ]
     },
-
     {
       "id": "position_lights_wing",
       "label": "Position Lights Wing",
@@ -539,12 +779,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "DIM", "delta": 1, "is_default": false, "weight": 9  },
-        { "label": "BRT", "delta": 2, "is_default": false, "weight": 4  }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "DIM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 9
+        },
+        {
+          "label": "BRT",
+          "delta": 2,
+          "is_default": false,
+          "weight": 4
+        }
       ]
     },
-
     {
       "id": "position_lights_tail",
       "label": "Position Lights Tail",
@@ -553,12 +807,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "DIM", "delta": 1, "is_default": false, "weight": 9  },
-        { "label": "BRT", "delta": 2, "is_default": false, "weight": 4  }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "DIM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 9
+        },
+        {
+          "label": "BRT",
+          "delta": 2,
+          "is_default": false,
+          "weight": 4
+        }
       ]
     },
-
     {
       "id": "position_lights_flash",
       "label": "Position Lights Flash",
@@ -567,11 +835,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "anti_collision_lights",
       "label": "Anti-Collision Lights",
@@ -580,11 +857,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true,  "weight": 87 },
-        { "label": "ON",  "delta": 1, "is_default": false, "weight": 13 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "instrument_light_intensity",
       "label": "Instrument Light Intensity",
@@ -593,7 +879,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "console_light_intensity",
       "label": "Console Light Intensity",
@@ -602,7 +887,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "formation_light_intensity",
       "label": "Formation Light Intensity",
@@ -611,7 +895,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "hyd_transfer_pump_cover",
       "label": "Hydraulic Transfer Pump Switch Cover",
@@ -620,10 +903,19 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true,  "weight": 90 },
-        { "label": "OPEN",   "delta": 1, "is_default": false, "weight": 10 }
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     }
-
   ]
 }
