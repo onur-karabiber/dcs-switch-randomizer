@@ -14,15 +14,15 @@ from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QFont, QColor
 
 # ── Palette ───────────────────────────────────────────────────────────────────
-BG    = "#000000"
-PANEL = "#111111"
-TB    = "#0a0a0a"
+BG    = "#111111"
+PANEL = "#222222"
+TB    = "#111111"
 HL    = "#9ae69b"
 ACC   = "#9ae69b"
-FG    = "#ffffff"
+FG    = "#777777"
 MUTED = "#666666"
 GREEN = "#9ae69b"
-DARK  = "#000000"
+DARK  = "#111111"
 
 TYPE_COLOR = {
     "discrete":   "#9ae69b",
@@ -92,7 +92,7 @@ def format_delta(v) -> str:
 
 def style_msgbox(dlg: QMessageBox) -> None:
     dlg.setStyleSheet(f"""
-        QMessageBox {{ background-color: #111111; }}
+        QMessageBox {{ background-color: #222222; }}
         QMessageBox QLabel {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
         QMessageBox QPushButton {{
             background: #1a1a1a; color: {FG};
@@ -101,7 +101,7 @@ def style_msgbox(dlg: QMessageBox) -> None:
             padding: 6px 20px; min-width: 70px;
         }}
         QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
-        QMessageBox QPushButton:default {{ background: {ACC}; color: #000000; border: none; }}
+        QMessageBox QPushButton:default {{ background: {ACC}; color: #111111; border: none; }}
         QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
     """)
 
@@ -324,7 +324,7 @@ class PositionRow(QWidget):
 
         btn_style = f"""
             QPushButton {{
-                background: {ACC}; color: #000000;
+                background: {ACC}; color: #111111;
                 border: none; border-radius: 3px;
                 font-size: 10pt; padding: 0px;
             }}
@@ -409,7 +409,7 @@ class PositionRow(QWidget):
         """
         btn_style_normal = f"""
             QPushButton {{
-                background: {ACC}; color: #000000;
+                background: {ACC}; color: #111111;
                 border: none; border-radius: 3px;
                 font-size: 10pt; padding: 0px;
             }}
@@ -474,7 +474,7 @@ class ControlCard(QFrame):
         t = ctrl["type"]
         badge = QLabel(TYPE_LABEL.get(t, t.upper()))
         badge.setStyleSheet(
-            f"background: {TYPE_COLOR.get(t, ACC)}; color: #000000; "
+            f"background: {TYPE_COLOR.get(t, ACC)}; color: #111111; "
             f"font-size: 9pt; font-family: Consolas; font-weight: bold; "
             f"border-radius: 3px; padding: 2px 6px;")
         top.addWidget(badge)
@@ -779,7 +779,7 @@ class AircraftSettingsDialog(QDialog):
             btn.setCursor(Qt.PointingHandCursor)
             if style == "apply":
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: {ACC}; color: #000000;
+                    QPushButton {{ background: {ACC}; color: #111111;
                         font-family: Consolas; font-size: 12pt; font-weight: bold;
                         border: none; border-radius: 6px; padding: 0 16px; }}
                     QPushButton:hover {{ background: #55ff2a; }}

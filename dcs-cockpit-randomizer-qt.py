@@ -40,8 +40,8 @@ else:
 LUA_SRC_DIR = os.path.join(THIS_DIR, "CockpitRandomizer")
 
 # ── Palette ───────────────────────────────────────────────────────────────────
-BG    = "#000000"
-PANEL = "#111111"
+BG    = "#111111"
+PANEL = "#222222"
 TB    = "#0a0a0a"
 HL    = "#9ae69b"
 ACC   = "#9ae69b"
@@ -192,7 +192,7 @@ QLabel#status   {{ color: {MUTED}; font-size: 10pt; }}
 QLabel#body     {{ color: {FG};    font-size: 13pt; }}
 QLabel#head     {{ color: {FG};    font-size: 15pt; font-weight: bold; }}
 
-QPushButton#apply   {{ background:{ACC}; color:#000000; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#apply   {{ background:{ACC}; color:#111111; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
 QPushButton#apply:hover    {{ background:#55ff2a; }}
 QPushButton#apply:pressed  {{ background:#22cc00; }}
 
@@ -243,7 +243,7 @@ QPushButton#rdefault {{ background:#1a1a1a; color:{FG}; font-size:15pt; font-wei
 QPushButton#rdefault:hover   {{ background:#222222; border:1px solid {ACC}; }}
 QPushButton#rdefault:pressed {{ background:#0a0a0a; }}
 
-QPushButton#actbtn  {{ background:{ACC}; color:#000000; font-size:13pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#actbtn  {{ background:{ACC}; color:#111111; font-size:13pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
 QPushButton#actbtn:hover   {{ background:#55ff2a; }}
 QPushButton#actbtn:pressed {{ background:#22cc00; }}
 
@@ -254,10 +254,10 @@ QPushButton#secbtn:pressed {{ background:#0a0a0a; }}
 QPushButton#tb_cls {{ background: transparent; color: {MUTED}; font-size: 13pt; border: none; }}
 QPushButton#tb_cls:hover {{ background:#1a0000; color:#e74c3c; }}
 
-QProgressBar {{ background:#111111; border:none; border-radius:5px; height:10px; }}
+QProgressBar {{ background:#222222; border:none; border-radius:5px; height:10px; }}
 QProgressBar::chunk {{ background:{GREEN}; border-radius:5px; }}
 
-QMessageBox {{ background-color: #111111; }}
+QMessageBox {{ background-color: #222222; }}
 QMessageBox QLabel {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
 QMessageBox QPushButton {{
     background: #1a1a1a; color: {FG};
@@ -266,11 +266,11 @@ QMessageBox QPushButton {{
     padding: 6px 20px; min-width: 70px;
 }}
 QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
-QMessageBox QPushButton:default {{ background: {ACC}; color: #000000; border: none; }}
+QMessageBox QPushButton:default {{ background: {ACC}; color: #111111; border: none; }}
 QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
 
 QToolTip {{
-    background-color: #111111;
+    background-color: #222222;
     color: {FG};
     border: 1px solid {ACC};
     border-radius: 4px;
@@ -358,7 +358,7 @@ class AircraftRow(QWidget):
                 outline: none;
             }}
             QToolButton:hover {{
-                background: #1e2a4a;
+                background: #222222;
                 color: {FG};
             }}
             QToolButton:pressed {{
@@ -574,7 +574,7 @@ class MainWindow(QWidget):
     def _style_msgbox(self, dlg: QMessageBox):
         dlg.setStyleSheet(f"""
             QMessageBox {{
-                background-color: #111111;
+                background-color: #222222;
             }}
             QMessageBox QLabel {{
                 color: {FG};
@@ -588,7 +588,7 @@ class MainWindow(QWidget):
                 padding: 6px 20px; min-width: 70px;
             }}
             QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
-            QMessageBox QPushButton:default {{ background: {ACC}; color: #000000; border: none; }}
+            QMessageBox QPushButton:default {{ background: {ACC}; color: #111111; border: none; }}
             QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
         """)
 
@@ -1060,7 +1060,7 @@ class MainWindow(QWidget):
         dlg.setFixedWidth(340)
         dlg.setStyleSheet(f"""
             QDialog {{
-                background-color: #111111;
+                background-color: #222222;
             }}
             QLabel {{
                 color: {FG};
@@ -1078,7 +1078,7 @@ class MainWindow(QWidget):
                 width: 16px; height: 16px;
                 border: 2px solid {MUTED};
                 border-radius: 3px;
-                background: #000000;
+                background: #111111;
             }}
             QCheckBox::indicator:checked {{
                 background: {ACC};
