@@ -14,21 +14,21 @@ from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QFont, QColor
 
 # ── Palette ───────────────────────────────────────────────────────────────────
-BG    = "#1a1d2e"
-PANEL = "#16213e"
-TB    = "#0d0f1e"
-HL    = "#e05c7a"
-ACC   = "#2d5fa0"
-FG    = "#c0c8f0"
-MUTED = "#5a6080"
-GREEN = "#2e7d32"
-DARK  = "#0d1020"
+BG    = "#000000"
+PANEL = "#111111"
+TB    = "#0a0a0a"
+HL    = "#9ae69b"
+ACC   = "#9ae69b"
+FG    = "#ffffff"
+MUTED = "#666666"
+GREEN = "#9ae69b"
+DARK  = "#000000"
 
 TYPE_COLOR = {
-    "discrete":   "#2d5fa0",
-    "continuous": "#4a6a3a",
-    "run":        "#6a4a2a",
-    "select_one": "#2d5fa0",
+    "discrete":   "#9ae69b",
+    "continuous": "#9ae69b",
+    "run":        "#9ae69b",
+    "select_one": "#9ae69b",
 }
 TYPE_LABEL = {
     "discrete":   "SWITCH",
@@ -92,17 +92,17 @@ def format_delta(v) -> str:
 
 def style_msgbox(dlg: QMessageBox) -> None:
     dlg.setStyleSheet(f"""
-        QMessageBox {{ background-color: #2a2d3e; }}
+        QMessageBox {{ background-color: #111111; }}
         QMessageBox QLabel {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
         QMessageBox QPushButton {{
-            background: {ACC}; color: white;
+            background: #1a1a1a; color: {FG};
             font-size: 11pt; font-family: Consolas;
-            border: none; border-radius: 6px;
+            border: 1px solid #333333; border-radius: 6px;
             padding: 6px 20px; min-width: 70px;
         }}
-        QMessageBox QPushButton:hover {{ background: #1e5799; }}
-        QMessageBox QPushButton:default {{ background: {HL}; }}
-        QMessageBox QPushButton:default:hover {{ background: #c73652; }}
+        QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
+        QMessageBox QPushButton:default {{ background: {ACC}; color: #000000; border: none; }}
+        QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
     """)
 
 
@@ -287,7 +287,7 @@ class PositionRow(QWidget):
 
         def_lbl = QLabel("★" if is_default else "  ")
         def_lbl.setFixedWidth(18)
-        def_lbl.setStyleSheet(f"color: #f9a825; font-size: 11pt; background: transparent;")
+        def_lbl.setStyleSheet(f"color: {ACC}; font-size: 11pt; background: transparent;")
         lay.addWidget(def_lbl)
 
         name_lbl = QLabel(pos_data["label"])
@@ -324,12 +324,12 @@ class PositionRow(QWidget):
 
         btn_style = f"""
             QPushButton {{
-                background: {ACC}; color: {FG};
+                background: {ACC}; color: #000000;
                 border: none; border-radius: 3px;
                 font-size: 10pt; padding: 0px;
             }}
-            QPushButton:hover   {{ background: #1e5799; }}
-            QPushButton:pressed {{ background: #1a4a80; }}
+            QPushButton:hover   {{ background: #55ff2a; }}
+            QPushButton:pressed {{ background: #22cc00; }}
         """
 
         spin_grp = QHBoxLayout()
@@ -402,19 +402,19 @@ class PositionRow(QWidget):
     def _sync_up_buttons(self, locked: bool):
         btn_style_disabled = f"""
             QPushButton {{
-                background: {MUTED}; color: #3a3a5a;
+                background: #222222; color: {MUTED};
                 border: none; border-radius: 3px;
                 font-size: 10pt; padding: 0px;
             }}
         """
         btn_style_normal = f"""
             QPushButton {{
-                background: {ACC}; color: {FG};
+                background: {ACC}; color: #000000;
                 border: none; border-radius: 3px;
                 font-size: 10pt; padding: 0px;
             }}
-            QPushButton:hover   {{ background: #1e5799; }}
-            QPushButton:pressed {{ background: #1a4a80; }}
+            QPushButton:hover   {{ background: #55ff2a; }}
+            QPushButton:pressed {{ background: #22cc00; }}
         """
         for row in self._rows:
             if row._btn_up is not None:
@@ -452,12 +452,12 @@ class ControlCard(QFrame):
                 background: {DARK};
             }}
             QCheckBox::indicator:checked {{
-                background: #1b5e20;
-                border: 2px solid #43a047;
+                background: {ACC};
+                border: 2px solid {ACC};
                 image: none;
             }}
             QCheckBox::indicator:unchecked {{
-                background: #3a0a0a;
+                background: #1a0000;
                 border: 2px solid #c0392b;
                 image: none;
             }}
@@ -474,7 +474,7 @@ class ControlCard(QFrame):
         t = ctrl["type"]
         badge = QLabel(TYPE_LABEL.get(t, t.upper()))
         badge.setStyleSheet(
-            f"background: {TYPE_COLOR.get(t, ACC)}; color: white; "
+            f"background: {TYPE_COLOR.get(t, ACC)}; color: #000000; "
             f"font-size: 9pt; font-family: Consolas; font-weight: bold; "
             f"border-radius: 3px; padding: 2px 6px;")
         top.addWidget(badge)
@@ -636,7 +636,7 @@ class AircraftSettingsDialog(QDialog):
 
         # Divider
         div = QFrame(); div.setFixedHeight(1)
-        div.setStyleSheet(f"background: #2e3250;")
+        div.setStyleSheet(f"background: #222222;")
         root.addWidget(div)
 
         # Ortalanmış mesaj
@@ -692,7 +692,7 @@ class AircraftSettingsDialog(QDialog):
         cls_btn.setStyleSheet(f"""
             QPushButton {{ background: transparent; color: {MUTED};
                           font-size: 13pt; border: none; }}
-            QPushButton:hover {{ background: #3a0a0a; color: #e74c3c; }}
+            QPushButton:hover {{ background: #1a0000; color: #e74c3c; }}
         """)
         cls_btn.setCursor(Qt.PointingHandCursor)
         cls_btn.clicked.connect(self._cancel)
@@ -717,7 +717,7 @@ class AircraftSettingsDialog(QDialog):
 
         # Divider
         div1 = QFrame(); div1.setFixedHeight(1)
-        div1.setStyleSheet(f"background: #2e3250;")
+        div1.setStyleSheet(f"background: #222222;")
         root.addWidget(div1)
 
         # ── Scroll area ────────────────────────────────────────────────────
@@ -753,7 +753,7 @@ class AircraftSettingsDialog(QDialog):
 
         # Divider
         div2 = QFrame(); div2.setFixedHeight(1)
-        div2.setStyleSheet(f"background: #2e3250;")
+        div2.setStyleSheet(f"background: #222222;")
         root.addWidget(div2)
 
         # ── Alt butonlar ───────────────────────────────────────────────────
@@ -779,18 +779,18 @@ class AircraftSettingsDialog(QDialog):
             btn.setCursor(Qt.PointingHandCursor)
             if style == "apply":
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: {GREEN}; color: white;
+                    QPushButton {{ background: {ACC}; color: #000000;
                         font-family: Consolas; font-size: 12pt; font-weight: bold;
                         border: none; border-radius: 6px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: #43a047; }}
-                    QPushButton:pressed {{ background: #1b5e20; }}
+                    QPushButton:hover {{ background: #55ff2a; }}
+                    QPushButton:pressed {{ background: #22cc00; }}
                 """)
             else:
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: #1e2a3a; color: {FG};
+                    QPushButton {{ background: #1a1a1a; color: {FG};
                         font-family: Consolas; font-size: 12pt;
-                        border: none; border-radius: 6px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: #243040; }}
+                        border: 1px solid #333333; border-radius: 6px; padding: 0 16px; }}
+                    QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
                 """)
             btn.clicked.connect(slot)
             bot_lay.addWidget(btn)

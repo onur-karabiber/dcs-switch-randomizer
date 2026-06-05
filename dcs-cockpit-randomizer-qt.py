@@ -40,17 +40,17 @@ else:
 LUA_SRC_DIR = os.path.join(THIS_DIR, "CockpitRandomizer")
 
 # ── Palette ───────────────────────────────────────────────────────────────────
-BG    = "#1a1d2e"
-PANEL = "#16213e"
-TB    = "#0d0f1e"
-HL    = "#e05c7a"
-ACC   = "#2d5fa0"
-FG    = "#c0c8f0"
-MUTED = "#5a6080"
-GREEN = "#2e7d32"
+BG    = "#000000"
+PANEL = "#111111"
+TB    = "#0a0a0a"
+HL    = "#9ae69b"
+ACC   = "#9ae69b"
+FG    = "#ffffff"
+MUTED = "#666666"
+GREEN = "#9ae69b"
 
-# [10] Hover rengi — Reset butonuyla aynı mavi (ACC)
-HOVER_ROW = ACC  # "#2d5fa0"
+# [10] Hover rengi — neon yeşil vurgu
+HOVER_ROW = "#1a1a1a"
 
 # ── Version helpers ───────────────────────────────────────────────────────────
 def read_version(path):
@@ -179,97 +179,98 @@ STYLE = f"""
 QWidget#main   {{ background-color: {BG}; }}
 QWidget#tb     {{ background-color: {TB}; }}
 QFrame#panel   {{ background-color: {PANEL}; border-radius: 6px; }}
-QFrame#div     {{ background-color: #2e3250; }}
+QFrame#div     {{ background-color: #222222; }}
+QFrame#div     {{ background-color: #222222; }}
 QFrame#content {{ background-color: {BG}; }}
 
 QLabel          {{ background-color: transparent; color: {FG}; }}
 QLabel#title    {{ color: {HL};    font-size: 19pt; font-weight: bold; }}
 QLabel#ver      {{ color: {MUTED}; font-size: 10pt; }}
 QLabel#sel      {{ color: {MUTED}; font-size: 14pt; }}
-QLabel#appname  {{ color: #7b8cde; font-size: 10pt; }}
+QLabel#appname  {{ color: {MUTED}; font-size: 10pt; }}
 QLabel#status   {{ color: {MUTED}; font-size: 10pt; }}
 QLabel#body     {{ color: {FG};    font-size: 13pt; }}
 QLabel#head     {{ color: {FG};    font-size: 15pt; font-weight: bold; }}
 
-QPushButton#apply   {{ background:#2e7d32; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#apply:hover    {{ background:#43a047; }}
-QPushButton#apply:pressed  {{ background:#1b5e20; }}
+QPushButton#apply   {{ background:{ACC}; color:#000000; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#apply:hover    {{ background:#55ff2a; }}
+QPushButton#apply:pressed  {{ background:#22cc00; }}
 
-QPushButton#reset   {{ background:{ACC}; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#reset:hover    {{ background:#1e5799; }}
-QPushButton#reset:pressed  {{ background:#1a4a80; }}
+QPushButton#reset   {{ background:#1a1a1a; color:{FG}; font-size:15pt; font-weight:bold; border:1px solid #333333; border-radius:8px; padding:10px; }}
+QPushButton#reset:hover    {{ background:#222222; border:1px solid {ACC}; }}
+QPushButton#reset:pressed  {{ background:#0a0a0a; }}
 
-QPushButton#update  {{ background:#f9a825; color:#1a1a00; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#update:hover   {{ background:#ffe082; }}
-QPushButton#update:pressed {{ background:#f57f17; }}
+QPushButton#update  {{ background:#1a1a1a; color:{FG}; font-size:15pt; font-weight:bold; border:1px solid #333333; border-radius:8px; padding:10px; }}
+QPushButton#update:hover   {{ background:#222222; border:1px solid {ACC}; }}
+QPushButton#update:pressed {{ background:#0a0a0a; }}
 
-QPushButton#uninst  {{ background:#c0392b; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#uninst  {{ background:#824f4a; color:white; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
 QPushButton#uninst:hover   {{ background:#e74c3c; }}
 QPushButton#uninst:pressed {{ background:#922b21; }}
 
-QPushButton#closebtn {{ background:#808080; color:white; font-size:10pt; border:none; border-radius:6px; padding:8px 24px; }}
-QPushButton#closebtn:hover {{ background:#8f8b8b; }}
+QPushButton#closebtn {{ background:#1a1a1a; color:{MUTED}; font-size:10pt; border:1px solid #333333; border-radius:6px; padding:8px 24px; }}
+QPushButton#closebtn:hover {{ background:#222222; color:{FG}; }}
 
 QPushButton#iconbtn_update,
 QPushButton#iconbtn_deactivate,
 QPushButton#iconbtn_import,
 QPushButton#iconbtn_export,
-QPushButton#iconbtn_defaults {{ background:{ACC}; color:white; border:none; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
+QPushButton#iconbtn_defaults {{ background:{PANEL}; color:{ACC}; border:1px solid #222222; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
 QPushButton#iconbtn_update:hover,
 QPushButton#iconbtn_deactivate:hover,
 QPushButton#iconbtn_import:hover,
 QPushButton#iconbtn_export:hover,
-QPushButton#iconbtn_defaults:hover {{ background:#1e5799; }}
+QPushButton#iconbtn_defaults:hover {{ background:#1a1a1a; border:1px solid {ACC}; }}
 QPushButton#iconbtn_update:pressed,
 QPushButton#iconbtn_deactivate:pressed,
 QPushButton#iconbtn_import:pressed,
 QPushButton#iconbtn_export:pressed,
-QPushButton#iconbtn_defaults:pressed {{ background:#1a4a80; }}
+QPushButton#iconbtn_defaults:pressed {{ background:#0a0a0a; }}
 
-QPushButton#iconbtn_uninst  {{ background:#c0392b; color:white; border:none; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
+QPushButton#iconbtn_uninst  {{ background:#824f4a; color:white; border:none; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
 QPushButton#iconbtn_uninst:hover   {{ background:#e74c3c; }}
 QPushButton#iconbtn_uninst:pressed {{ background:#922b21; }}
 
-QPushButton#export {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#export:hover   {{ background:#1e4a5e; }}
-QPushButton#export:pressed {{ background:#152e3a; }}
+QPushButton#export {{ background:#1a1a1a; color:{FG}; font-size:15pt; font-weight:bold; border:1px solid #333333; border-radius:8px; padding:10px; }}
+QPushButton#export:hover   {{ background:#222222; border:1px solid {ACC}; }}
+QPushButton#export:pressed {{ background:#0a0a0a; }}
 
-QPushButton#import {{ background:#1a3a4a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#import:hover   {{ background:#1e4a5e; }}
-QPushButton#import:pressed {{ background:#152e3a; }}
+QPushButton#import {{ background:#1a1a1a; color:{FG}; font-size:15pt; font-weight:bold; border:1px solid #333333; border-radius:8px; padding:10px; }}
+QPushButton#import:hover   {{ background:#222222; border:1px solid {ACC}; }}
+QPushButton#import:pressed {{ background:#0a0a0a; }}
 
-QPushButton#rdefault {{ background:#3a2a1a; color:{FG}; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#rdefault:hover   {{ background:#4a3520; }}
-QPushButton#rdefault:pressed {{ background:#2a1e10; }}
+QPushButton#rdefault {{ background:#1a1a1a; color:{FG}; font-size:15pt; font-weight:bold; border:1px solid #333333; border-radius:8px; padding:10px; }}
+QPushButton#rdefault:hover   {{ background:#222222; border:1px solid {ACC}; }}
+QPushButton#rdefault:pressed {{ background:#0a0a0a; }}
 
-QPushButton#actbtn  {{ background:{ACC}; color:white; font-size:13pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#actbtn:hover   {{ background:#1e5799; }}
-QPushButton#actbtn:pressed {{ background:#1a4a80; }}
+QPushButton#actbtn  {{ background:{ACC}; color:#000000; font-size:13pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
+QPushButton#actbtn:hover   {{ background:#55ff2a; }}
+QPushButton#actbtn:pressed {{ background:#22cc00; }}
 
-QPushButton#secbtn  {{ background:#1e2a3a; color:{FG}; font-size:13pt; border:none; border-radius:8px; padding:10px; }}
-QPushButton#secbtn:hover   {{ background:#243040; }}
-QPushButton#secbtn:pressed {{ background:#1a2030; }}
+QPushButton#secbtn  {{ background:#1a1a1a; color:{FG}; font-size:13pt; border:1px solid #333333; border-radius:8px; padding:10px; }}
+QPushButton#secbtn:hover   {{ background:#222222; border:1px solid {ACC}; }}
+QPushButton#secbtn:pressed {{ background:#0a0a0a; }}
 
 QPushButton#tb_cls {{ background: transparent; color: {MUTED}; font-size: 13pt; border: none; }}
-QPushButton#tb_cls:hover {{ background:#3a0a0a; color:#e74c3c; }}
+QPushButton#tb_cls:hover {{ background:#1a0000; color:#e74c3c; }}
 
-QProgressBar {{ background:#0d0f1e; border:none; border-radius:5px; height:10px; }}
+QProgressBar {{ background:#111111; border:none; border-radius:5px; height:10px; }}
 QProgressBar::chunk {{ background:{GREEN}; border-radius:5px; }}
 
-QMessageBox {{ background-color: #2a2d3e; }}
+QMessageBox {{ background-color: #111111; }}
 QMessageBox QLabel {{ color: {FG}; font-size: 11pt; font-family: Consolas; }}
 QMessageBox QPushButton {{
-    background: {ACC}; color: white;
+    background: #1a1a1a; color: {FG};
     font-size: 11pt; font-family: Consolas;
-    border: none; border-radius: 6px;
+    border: 1px solid #333333; border-radius: 6px;
     padding: 6px 20px; min-width: 70px;
 }}
-QMessageBox QPushButton:hover {{ background: #1e5799; }}
-QMessageBox QPushButton:default {{ background: {HL}; }}
-QMessageBox QPushButton:default:hover {{ background: #c73652; }}
+QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
+QMessageBox QPushButton:default {{ background: {ACC}; color: #000000; border: none; }}
+QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
 
 QToolTip {{
-    background-color: #0d0f1e;
+    background-color: #111111;
     color: {FG};
     border: 1px solid {ACC};
     border-radius: 4px;
@@ -573,7 +574,7 @@ class MainWindow(QWidget):
     def _style_msgbox(self, dlg: QMessageBox):
         dlg.setStyleSheet(f"""
             QMessageBox {{
-                background-color: #2a2d3e;
+                background-color: #111111;
             }}
             QMessageBox QLabel {{
                 color: {FG};
@@ -581,14 +582,14 @@ class MainWindow(QWidget):
                 font-family: Consolas;
             }}
             QMessageBox QPushButton {{
-                background: {ACC}; color: white;
+                background: #1a1a1a; color: {FG};
                 font-size: 11pt; font-family: Consolas;
-                border: none; border-radius: 6px;
+                border: 1px solid #333333; border-radius: 6px;
                 padding: 6px 20px; min-width: 70px;
             }}
-            QMessageBox QPushButton:hover {{ background: #1e5799; }}
-            QMessageBox QPushButton:default {{ background: {HL}; }}
-            QMessageBox QPushButton:default:hover {{ background: #c73652; }}
+            QMessageBox QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
+            QMessageBox QPushButton:default {{ background: {ACC}; color: #000000; border: none; }}
+            QMessageBox QPushButton:default:hover {{ background: #55ff2a; }}
         """)
 
     def _ask(self, title, msg, icon=QMessageBox.Warning):
@@ -1059,7 +1060,7 @@ class MainWindow(QWidget):
         dlg.setFixedWidth(340)
         dlg.setStyleSheet(f"""
             QDialog {{
-                background-color: #2a2d3e;
+                background-color: #111111;
             }}
             QLabel {{
                 color: {FG};
@@ -1077,7 +1078,7 @@ class MainWindow(QWidget):
                 width: 16px; height: 16px;
                 border: 2px solid {MUTED};
                 border-radius: 3px;
-                background: #1a1d2e;
+                background: #000000;
             }}
             QCheckBox::indicator:checked {{
                 background: {ACC};
