@@ -230,10 +230,7 @@ QPushButton#secbtn  {{ background:#1e2a3a; color:{FG}; font-size:13pt; border:no
 QPushButton#secbtn:hover   {{ background:#243040; }}
 QPushButton#secbtn:pressed {{ background:#1a2030; }}
 
-QPushButton#tb_min {{ background:transparent; color:#8890b8; font-size:15pt; font-weight:bold; border:none; padding:4px 18px; }}
-QPushButton#tb_min:hover {{ background:#1e2238; color:{FG}; }}
-
-QPushButton#tb_cls {{ background:transparent; color:#8890b8; font-size:15pt; font-weight:bold; border:none; padding:4px 18px; }}
+QPushButton#tb_cls {{ background: transparent; color: {MUTED}; font-size: 13pt; border: none; }}
 QPushButton#tb_cls:hover {{ background:#3a0a0a; color:#e74c3c; }}
 
 QProgressBar {{ background:#0d0f1e; border:none; border-radius:5px; height:10px; }}
@@ -268,11 +265,11 @@ class TitleBar(QWidget):
         super().__init__(parent)
         self.parent = parent
         self.setObjectName("tb")
-        self.setFixedHeight(44)  # [5] biraz daha yüksek titlebar
+        self.setFixedHeight(40)
         self._drag_pos = QPoint()
 
         lay = QHBoxLayout(self)
-        lay.setContentsMargins(12, 0, 0, 0)
+        lay.setContentsMargins(16, 0, 8, 0)
         lay.setSpacing(0)
 
         lbl = QLabel(APP_TITLE)
@@ -280,18 +277,13 @@ class TitleBar(QWidget):
         lay.addWidget(lbl)
         lay.addStretch()
 
-        # [5] Daha büyük min/close butonlar — fixedSize ile garantile
-        for text, obj, slot, tip in [
-            ("─", "tb_min", parent.showMinimized, "Minimize"),
-            ("✕", "tb_cls", parent.close,         "Close"),
-        ]:
-            btn = QPushButton(text)
-            btn.setObjectName(obj)
-            btn.setFixedSize(48, 44)   # [5] genişlik+yükseklik artırıldı
-            btn.setCursor(Qt.PointingHandCursor)
-            btn.setToolTip(tip)
-            btn.clicked.connect(slot)
-            lay.addWidget(btn)
+        cls_btn = QPushButton("✕")
+        cls_btn.setObjectName("tb_cls")
+        cls_btn.setFixedSize(32, 32)
+        cls_btn.setCursor(Qt.PointingHandCursor)
+        cls_btn.setToolTip("Close")
+        cls_btn.clicked.connect(parent.close)
+        lay.addWidget(cls_btn)
 
     def mousePressEvent(self, e):
         if e.button() == Qt.LeftButton:
