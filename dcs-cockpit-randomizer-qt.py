@@ -928,6 +928,7 @@ class MainWindow(QWidget):
         if dlg is not None:
             dlg.close()
         super().closeEvent(e)
+        QApplication.quit()
 
     def moveEvent(self, e):
         self._reposition_settings_dialog()
