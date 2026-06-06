@@ -5,172 +5,180 @@
 CR.register("FA-18C_hornet", {
 
     -- Left Generator Switch
-    -- NORM=100%(default) / OFF=0%
-    { dev=3, cmd=3002, vals={2}, label="Left Generator Switch" },
+    -- NORM=93%(default) / OFF=7%
+    { dev=3, cmd=3002, vals={2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0}, label="Left Generator Switch" },
 
     -- Right Generator Switch
-    -- NORM=100%(default) / OFF=0%
-    { dev=3, cmd=3003, vals={2}, label="Right Generator Switch" },
+    -- NORM=92%(default) / OFF=8%
+    { dev=3, cmd=3003, vals={2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0}, label="Right Generator Switch" },
 
     -- CB FCS CHAN 3
-    -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3021, vals={0}, label="CB FCS CHAN 3" },
+    -- IN=93%(default) / OUT=7%
+    { dev=3, cmd=3021, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1}, label="CB FCS CHAN 3" },
 
     -- CB FCS CHAN 4
-    -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3022, vals={0}, label="CB FCS CHAN 4" },
+    -- IN=92%(default) / OUT=8%
+    { dev=3, cmd=3022, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1}, label="CB FCS CHAN 4" },
 
     -- CB HOOK
-    -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3023, vals={0}, label="CB HOOK" },
+    -- IN=92%(default) / OUT=8%
+    { dev=3, cmd=3023, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1}, label="CB HOOK" },
 
     -- CB LG
-    -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3024, vals={0}, label="CB LG" },
+    -- IN=92%(default) / OUT=8%
+    { dev=3, cmd=3024, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1}, label="CB LG" },
 
     -- CB FCS CHAN 1
-    -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3017, vals={0}, label="CB FCS CHAN 1" },
+    -- IN=92%(default) / OUT=8%
+    { dev=3, cmd=3017, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1}, label="CB FCS CHAN 1" },
 
     -- CB FCS CHAN 2
-    -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3018, vals={0}, label="CB FCS CHAN 2" },
+    -- IN=91%(default) / OUT=9%
+    { dev=3, cmd=3018, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="CB FCS CHAN 2" },
 
     -- CB SPD BRK
-    -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3019, vals={0}, label="CB SPD BRK" },
+    -- IN=89%(default) / OUT=11%
+    { dev=3, cmd=3019, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="CB SPD BRK" },
 
     -- CB LAUNCH BAR
-    -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3020, vals={0}, label="CB LAUNCH BAR" },
+    -- IN=87%(default) / OUT=13%
+    { dev=3, cmd=3020, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="CB LAUNCH BAR" },
 
     -- GAIN Switch Cover
-    -- OPEN=100% / CLOSE=0%(default)
-    { dev=2, cmd=3005, vals={1}, label="GAIN Switch Cover" },
+    -- OPEN=5% / CLOSE=95%(default)
+    { dev=2, cmd=3005, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="GAIN Switch Cover" },
 
     -- Generator TIE Control Switch Cover
-    -- OPEN=100% / CLOSE=0%(default)
-    { dev=3, cmd=3007, vals={1}, label="Generator TIE Control Switch Cover" },
+    -- OPEN=7% / CLOSE=93%(default)
+    { dev=3, cmd=3007, vals={1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Generator TIE Control Switch Cover" },
 
     -- COMM Relay Switch
-    -- CIPHER=0% / OFF=100%(default) / PLAIN=0%
-    { dev=40, cmd=3010, vals={0}, label="COMM Relay Switch" },
+    -- CIPHER=5% / OFF=88%(default) / PLAIN=7%
+    { dev=40, cmd=3010, vals={1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1}, label="COMM Relay Switch" },
 
     -- COMM G XMT Switch
-    -- COMM 1=0% / OFF=100%(default) / COMM 2=0%
-    { dev=40, cmd=3011, vals={0}, label="COMM G XMT Switch" },
+    -- COMM 1=7% / OFF=88%(default) / COMM 2=5%
+    { dev=40, cmd=3011, vals={1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1}, label="COMM G XMT Switch" },
 
     -- Spin Recovery Switch Cover
-    -- OPEN=100% / CLOSE=0%(default)
-    { dev=2, cmd=3008, vals={1}, label="Spin Recovery Switch Cover" },
+    -- OPEN=8% / CLOSE=92%(default)
+    { dev=2, cmd=3008, vals={1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Spin Recovery Switch Cover" },
 
     -- FLAP Switch
     -- FULL=60%(default) / HALF=20% / AUTO=20%
     { dev=2, cmd=3007, vals={-1, -1, -1, 0, 1}, label="FLAP Switch" },
 
     -- Anti Skid Switch
-    -- ON=0%(default) / OFF=100%
-    { dev=5, cmd=3004, vals={0}, label="Anti Skid Switch" },
+    -- ON=68%(default) / OFF=32%
+    { dev=5, cmd=3004, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0}, label="Anti Skid Switch" },
+
+    -- ILS UFC/MAN Switch
+    -- UFC=89%(default) / MAN=11%
+    { dev=40, cmd=3016, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="ILS UFC/MAN Switch" },
+
+    -- ILS Channel Selector
+    -- 1=5%(default) / 2=5% / 3=5% / 4=5% / 5=5% / 6=5% / 7=5% / 8=5% / 9=5% / 10=5% / 11=5% / 12=5% / 13=5% / 14=5% / 15=5% / 16=5% / 17=5% / 18=5% / 19=5% / 20=5%
+    { dev=40, cmd=3017, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9}, label="ILS Channel Selector" },
 
     -- OBOGS Control Switch
-    -- ON=100% / OFF=0%(default)
-    { dev=10, cmd=3001, vals={1}, label="OBOGS Control Switch" },
+    -- ON=17% / OFF=83%(default)
+    { dev=10, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="OBOGS Control Switch" },
 
     -- HOOK BYPASS Switch
-    -- FIELD=100% / CARRIER=0%(default)
-    { dev=9, cmd=3009, vals={1}, label="HOOK BYPASS Switch" },
+    -- FIELD=34% / CARRIER=66%(default)
+    { dev=9, cmd=3009, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="HOOK BYPASS Switch" },
 
     -- MODE Switch
-    -- NVG=0% / NITE=100% / DAY=0%(default)
-    { dev=9, cmd=3004, vals={0}, label="MODE Switch" },
+    -- NVG=8% / NITE=70% / DAY=22%(default)
+    { dev=9, cmd=3004, vals={1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="MODE Switch" },
 
     -- Master Arm Switch
-    -- SAFE=100%(default) / ARM=0%
-    { dev=23, cmd=3003, vals={0}, label="Master Arm Switch" },
+    -- SAFE=99%(default) / ARM=1%
+    { dev=23, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="Master Arm Switch" },
 
     -- LDG/TAXI LIGHT Switch
-    -- OFF=100%(default) / ON=0%
-    { dev=8, cmd=3004, vals={0}, label="LDG/TAXI LIGHT Switch" },
+    -- OFF=96%(default) / ON=4%
+    { dev=8, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="LDG/TAXI LIGHT Switch" },
 
     -- HUD Altitude Switch
-    -- BARO=100%(default) / RDR=0%
-    { dev=34, cmd=3008, vals={1}, label="HUD Altitude Switch" },
+    -- BARO=96%(default) / RDR=4%
+    { dev=34, cmd=3008, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="HUD Altitude Switch" },
 
     -- HUD Symbology Brightness Selector
-    -- DAY=100%(default) / NIGHT=0%
-    { dev=34, cmd=3003, vals={1}, label="HUD Symbology Brightness Selector" },
+    -- DAY=64%(default) / NIGHT=36%
+    { dev=34, cmd=3003, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="HUD Symbology Brightness Selector" },
 
     -- Left MDI Brightness Selector
     -- OFF=100%(default) / NIGHT=0% / DAY=0%
     { dev=35, cmd=3001, vals={0}, label="Left MDI Brightness Selector" },
 
     -- Right MDI Brightness Selector
-    -- OFF=0%(default) / NIGHT=0% / DAY=100%
-    { dev=36, cmd=3001, vals={0.2}, label="Right MDI Brightness Selector" },
+    -- OFF=97%(default) / NIGHT=1% / DAY=2%
+    { dev=36, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.2, 0.2}, label="Right MDI Brightness Selector" },
 
     -- Shoulder Harness Control Handle
-    -- LOCK=100% / UNLOCK=0%(default)
-    { dev=7, cmd=3009, vals={1}, label="Shoulder Harness Control Handle" },
+    -- LOCK=7% / UNLOCK=93%(default)
+    { dev=7, cmd=3009, vals={1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Shoulder Harness Control Handle" },
 
     -- ECM Mode Switch
-    -- OFF=0%(default) / STBY=0% / BIT=0% / REC=100% / XMIT=0%
-    { dev=66, cmd=3001, vals={0.3}, label="ECM Mode Switch" },
+    -- OFF=88%(default) / STBY=6% / BIT=3% / REC=2% / XMIT=1%
+    { dev=66, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.3, 0.3, 0.4}, label="ECM Mode Switch" },
 
     -- DISPENSER Switch
-    -- BYPASS=100% / ON=0% / OFF=0%(default)
-    { dev=54, cmd=3001, vals={0.2}, label="DISPENSER Switch" },
+    -- BYPASS=6% / ON=1% / OFF=93%(default)
+    { dev=54, cmd=3001, vals={0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="DISPENSER Switch" },
 
-	-- Auxiliary Release Switch
-	-- ENABLE=0% / NORM=100%(default)
-	{ dev=23, cmd=3012, vals={1}, label="Auxiliary Release Switch" },
+    -- Auxiliary Release Switch
+    -- ENABLE=6% / NORM=94%(default)
+    { dev=23, cmd=3012, vals={0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="Auxiliary Release Switch" },
 
     -- RADAR Switch
-    -- OFF=0%(default) / STBY=100% / OPR=0%
-    { dev=42, cmd=3001, vals={0.1}, label="RADAR Switch" },
+    -- OFF=90%(default) / STBY=8% / OPR=2%
+    { dev=42, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.2}, label="RADAR Switch" },
 
     -- ENGINE ANTI-ICE Switch
-    -- ON=100%(default) / OFF=0% / TEST=0%
-    { dev=12, cmd=3014, vals={1}, label="ENGINE ANTI-ICE Switch" },
+    -- ON=1% / OFF=94%(default) / TEST=5%
+    { dev=12, cmd=3014, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1}, label="ENGINE ANTI-ICE Switch" },
 
     -- INS Switch
-    -- OFF=0%(default) / CV=0% / GND=100% / NAV=0% / IFA=0% / GYRO=0% / GB=0% / TEST=0%
-    { dev=44, cmd=3001, vals={0.2}, label="INS Switch" },
+    -- OFF=85%(default) / CV=2% / GND=1% / NAV=2% / IFA=6% / GYRO=1% / GB=1% / TEST=2%
+    { dev=44, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.3, 0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.5, 0.6, 0.7, 0.7}, label="INS Switch" },
 
     -- LST/NFLR Switch
-    -- ON=0% / OFF=100%(default)
-    { dev=62, cmd=3003, vals={0}, label="LST/NFLR Switch" },
+    -- ON=4% / OFF=96%(default)
+    { dev=62, cmd=3003, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="LST/NFLR Switch" },
 
     -- FLIR Switch
-    -- ON=0% / STBY=0% / OFF=100%(default)
-    { dev=62, cmd=3001, vals={-1}, label="FLIR Switch" },
+    -- ON=2% / STBY=7% / OFF=91%(default)
+    { dev=62, cmd=3001, vals={1, 1, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="FLIR Switch" },
 
     -- KY-58 Mode Select
-    -- P=25%(default) / C=25% / LD=25% / RV=25%
-    { dev=41, cmd=3001, vals={0, 0.1, 0.2, 0.3}, label="KY-58 Mode Select" },
+    -- P=89%(default) / C=3% / LD=5% / RV=3%
+    { dev=41, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3}, label="KY-58 Mode Select" },
 
     -- KY-58 Fill Select
-    -- 1=25%(default) / 2=25% / 3=25% / 4=0% / 5=0% / 6=0%
-    { dev=41, cmd=3002, vals={0.0, 0.1, 0.2, 0.3, 0.4, 0.5}, label="KY-58 Fill Select" },
+    -- 1=78%(default) / 2=4% / 3=4% / 4=5% / 5=5% / 6=4%
+    { dev=41, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.5, 0.5, 0.5, 0.5}, label="KY-58 Fill Select" },
 
     -- KY-58 Power Select
-    -- OFF=100%(default) / ON=0% / TD=0%
-    { dev=41, cmd=3004, vals={0.2}, label="KY-58 Power Select" },
+    -- OFF=90%(default) / ON=6% / TD=4%
+    { dev=41, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.2, 0.2}, label="KY-58 Power Select" },
 
     -- UFC ADF Function Select Switch
-    -- 1=0% / OFF=100%(default) / 2=0%
-    { dev=25, cmd=3016, vals={0}, label="UFC ADF Function Select Switch" },
+    -- 1=4% / OFF=92%(default) / 2=4%
+    { dev=25, cmd=3016, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1}, label="UFC ADF Function Select Switch" },
 
     -- HUD Symbology Reject Switch
-    -- NORM=100%(default) / REJ 1=0% / REJ 2=0%
-    { dev=34, cmd=3001, vals={1}, label="HUD Symbology Reject Switch" },
+    -- NORM=94%(default) / REJ 1=4% / REJ 2=2%
+    { dev=34, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, -1}, label="HUD Symbology Reject Switch" },
 
     -- ATTITUDE Selector Switch
-    -- INS=0% / AUTO=100%(default) / STBY=0%
-    { dev=34, cmd=3009, vals={0}, label="ATTITUDE Selector Switch" },
+    -- INS=4% / AUTO=93%(default) / STBY=3%
+    { dev=34, cmd=3009, vals={1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1}, label="ATTITUDE Selector Switch" },
 
     -- HUD Video Control Switch
-    -- W/B=0% / VID=0% / OFF=100%(default)
-    { dev=34, cmd=3005, vals={-1}, label="HUD Video Control Switch" },
+    -- W/B=5% / VID=3% / OFF=92%(default)
+    { dev=34, cmd=3005, vals={1, 1, 1, 1, 1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="HUD Video Control Switch" },
 
     -- UFC Brightness Control Knob
     { dev=25, cmd=3032, vals={0, 0.25, 0.5, 0.75, 1.0}, label="UFC Brightness Control Knob" },
@@ -186,8 +194,8 @@ CR.register("FA-18C_hornet", {
 
     -- TACAN Volume Knob
     { dev=40, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="TACAN Volume Knob" },
-	
-	-- OXY Flow Knob
+
+    -- OXY Flow Knob
     { dev=10, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="OXY Flow Knob" },
 
     -- POSITION Lights Dimmer
@@ -216,8 +224,8 @@ CR.register("FA-18C_hornet", {
 
     -- Balance Control Knob
     { dev=34, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Balance Control Knob" },
-	
-	-- Throttles Friction Adjusting Lever
+
+    -- Throttles Friction Adjusting Lever
     { dev=2, cmd=3012, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Throttles Friction Adjusting Lever" },
 
     -- COMM 1 Volume

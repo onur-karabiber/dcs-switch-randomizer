@@ -15,13 +15,13 @@
           "label": "NORM",
           "delta": 2,
           "is_default": true,
-          "weight": 100
+          "weight": 93
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": false,
-          "weight": 0
+          "weight": 7
         }
       ]
     },
@@ -37,17 +37,17 @@
           "label": "NORM",
           "delta": 2,
           "is_default": true,
-          "weight": 100
+          "weight": 92
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": false,
-          "weight": 0
+          "weight": 8
         }
       ]
     },
-	{
+    {
       "id": "cb_fcs_chan3",
       "label": "CB FCS CHAN 3",
       "dev": 3,
@@ -59,13 +59,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 93
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 7
         }
       ]
     },
@@ -81,13 +81,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 92
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 8
         }
       ]
     },
@@ -103,13 +103,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 92
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 8
         }
       ]
     },
@@ -125,13 +125,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 92
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 8
         }
       ]
     },
@@ -147,13 +147,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 92
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 8
         }
       ]
     },
@@ -169,13 +169,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 91
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 9
         }
       ]
     },
@@ -191,13 +191,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 89
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 11
         }
       ]
     },
@@ -213,138 +213,138 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 87
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 13
         }
       ]
     },
-	{
-  "id": "gain_switch_cover",
-  "label": "GAIN Switch Cover",
-  "dev": 2,
-  "cmd": 3005,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "OPEN",
-      "delta": 1,
-      "is_default": false,
-      "weight": 100
+      "id": "gain_switch_cover",
+      "label": "GAIN Switch Cover",
+      "dev": 2,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        }
+      ]
     },
     {
-      "label": "CLOSE",
-      "delta": 0,
-      "is_default": true,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "gen_tie_sw_cover",
-  "label": "Generator TIE Control Switch Cover",
-  "dev": 3,
-  "cmd": 3007,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "OPEN",
-      "delta": 1,
-      "is_default": false,
-      "weight": 100
+      "id": "gen_tie_sw_cover",
+      "label": "Generator TIE Control Switch Cover",
+      "dev": 3,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 93
+        }
+      ]
     },
     {
-      "label": "CLOSE",
-      "delta": 0,
-      "is_default": true,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "comm_relay_switch",
-  "label": "COMM Relay Switch",
-  "dev": 40,
-  "cmd": 3010,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "CIPHER",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
+      "id": "comm_relay_switch",
+      "label": "COMM Relay Switch",
+      "dev": 40,
+      "cmd": 3010,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CIPHER",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "PLAIN",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
     },
     {
-      "label": "OFF",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
+      "id": "comm_g_xmt_switch",
+      "label": "COMM G XMT Switch",
+      "dev": 40,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "COMM 1",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "COMM 2",
+          "delta": -1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
     },
     {
-      "label": "PLAIN",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "comm_g_xmt_switch",
-  "label": "COMM G XMT Switch",
-  "dev": 40,
-  "cmd": 3011,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "COMM 1",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
+      "id": "spin_rec_cover",
+      "label": "Spin Recovery Switch Cover",
+      "dev": 2,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 8
+        },
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 92
+        }
+      ]
     },
-    {
-      "label": "OFF",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
-    },
-    {
-      "label": "COMM 2",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "spin_rec_cover",
-  "label": "Spin Recovery Switch Cover",
-  "dev": 2,
-  "cmd": 3008,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "OPEN",
-      "delta": 1,
-      "is_default": false,
-      "weight": 100
-    },
-    {
-      "label": "CLOSE",
-      "delta": 0,
-      "is_default": true,
-      "weight": 0
-    }
-  ]
-},
     {
       "id": "flap_switch",
       "label": "FLAP Switch",
@@ -385,13 +385,165 @@
           "label": "ON",
           "delta": 1,
           "is_default": true,
-          "weight": 0
+          "weight": 68
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": false,
-          "weight": 100
+          "weight": 32
+        }
+      ]
+    },
+    {
+      "id": "ils_ufc_man_switch",
+      "label": "ILS UFC/MAN Switch",
+      "dev": 40,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UFC",
+          "delta": 0,
+          "is_default": true,
+          "weight": 89
+        },
+        {
+          "label": "MAN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 11
+        }
+      ]
+    },
+    {
+      "id": "ils_channel_selector",
+      "label": "ILS Channel Selector",
+      "dev": 40,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 5
+        },
+        {
+          "label": "2",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "3",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "4",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "5",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "6",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "7",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "8",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "9",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "10",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "11",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "12",
+          "delta": 1.1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "13",
+          "delta": 1.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "14",
+          "delta": 1.3,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "15",
+          "delta": 1.4,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "16",
+          "delta": 1.5,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "17",
+          "delta": 1.6,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "18",
+          "delta": 1.7,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "19",
+          "delta": 1.8,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "20",
+          "delta": 1.9,
+          "is_default": false,
+          "weight": 5
         }
       ]
     },
@@ -407,13 +559,13 @@
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 100
+          "weight": 17
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 0
+          "weight": 83
         }
       ]
     },
@@ -429,13 +581,13 @@
           "label": "FIELD",
           "delta": 1,
           "is_default": false,
-          "weight": 100
+          "weight": 34
         },
         {
           "label": "CARRIER",
           "delta": 0,
           "is_default": true,
-          "weight": 0
+          "weight": 66
         }
       ]
     },
@@ -451,19 +603,19 @@
           "label": "NVG",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 8
         },
         {
           "label": "NITE",
           "delta": 0,
           "is_default": false,
-          "weight": 100
+          "weight": 70
         },
         {
           "label": "DAY",
           "delta": -1,
           "is_default": true,
-          "weight": 0
+          "weight": 22
         }
       ]
     },
@@ -479,13 +631,13 @@
           "label": "SAFE",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 99
         },
         {
           "label": "ARM",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 1
         }
       ]
     },
@@ -501,13 +653,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 96
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 4
         }
       ]
     },
@@ -523,13 +675,13 @@
           "label": "BARO",
           "delta": 1,
           "is_default": true,
-          "weight": 100
+          "weight": 96
         },
         {
           "label": "RDR",
           "delta": 0,
           "is_default": false,
-          "weight": 0
+          "weight": 4
         }
       ]
     },
@@ -545,13 +697,13 @@
           "label": "DAY",
           "delta": 1,
           "is_default": true,
-          "weight": 100
+          "weight": 64
         },
         {
           "label": "NIGHT",
           "delta": 0,
           "is_default": false,
-          "weight": 0
+          "weight": 36
         }
       ]
     },
@@ -595,44 +747,44 @@
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 0
+          "weight": 97
         },
         {
           "label": "NIGHT",
           "delta": 0.1,
           "is_default": false,
-          "weight": 0
+          "weight": 1
         },
         {
           "label": "DAY",
           "delta": 0.2,
           "is_default": false,
-          "weight": 100
+          "weight": 2
         }
       ]
     },
-	{
-  "id": "shoulder_harness_handle",
-  "label": "Shoulder Harness Control Handle",
-  "dev": 7,
-  "cmd": 3009,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "LOCK",
-      "delta": 1,
-      "is_default": false,
-      "weight": 100
+      "id": "shoulder_harness_handle",
+      "label": "Shoulder Harness Control Handle",
+      "dev": 7,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "LOCK",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "UNLOCK",
+          "delta": 0,
+          "is_default": true,
+          "weight": 93
+        }
+      ]
     },
-    {
-      "label": "UNLOCK",
-      "delta": 0,
-      "is_default": true,
-      "weight": 0
-    }
-  ]
-},
     {
       "id": "ecm_mode_switch",
       "label": "ECM Mode Switch",
@@ -645,31 +797,31 @@
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 0
+          "weight": 88
         },
         {
           "label": "STBY",
           "delta": 0.1,
           "is_default": false,
-          "weight": 0
+          "weight": 6
         },
         {
           "label": "BIT",
           "delta": 0.2,
           "is_default": false,
-          "weight": 0
+          "weight": 3
         },
         {
           "label": "REC",
           "delta": 0.3,
           "is_default": false,
-          "weight": 100
+          "weight": 2
         },
         {
           "label": "XMIT",
           "delta": 0.4,
           "is_default": false,
-          "weight": 0
+          "weight": 1
         }
       ]
     },
@@ -685,44 +837,44 @@
           "label": "BYPASS",
           "delta": 0.2,
           "is_default": false,
-          "weight": 100
+          "weight": 6
         },
         {
           "label": "ON",
           "delta": 0.1,
           "is_default": false,
-          "weight": 0
+          "weight": 1
         },
         {
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 0
+          "weight": 93
         }
       ]
     },
-	{
-  "id": "aux_release_switch",
-  "label": "Auxiliary Release Switch",
-  "dev": 23,
-  "cmd": 3012,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "ENABLE",
-      "delta": 0,
-      "is_default": false,
-      "weight": 0
+      "id": "aux_release_switch",
+      "label": "Auxiliary Release Switch",
+      "dev": 23,
+      "cmd": 3012,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ENABLE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 94
+        }
+      ]
     },
-    {
-      "label": "NORM",
-      "delta": 1,
-      "is_default": true,
-      "weight": 100
-    }
-  ]
-},
     {
       "id": "radar_switch",
       "label": "RADAR Switch",
@@ -735,23 +887,23 @@
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 0
+          "weight": 90
         },
         {
           "label": "STBY",
           "delta": 0.1,
           "is_default": false,
-          "weight": 100
+          "weight": 8
         },
         {
           "label": "OPR",
           "delta": 0.2,
           "is_default": false,
-          "weight": 0
+          "weight": 2
         }
       ]
     },
-	{
+    {
       "id": "engine_anti_ice_switch",
       "label": "ENGINE ANTI-ICE Switch",
       "dev": 12,
@@ -762,20 +914,20 @@
         {
           "label": "ON",
           "delta": 1,
-          "is_default": true,
-          "weight": 100
+          "is_default": false,
+          "weight": 1
         },
         {
           "label": "OFF",
           "delta": 0,
-          "is_default": false,
-          "weight": 0
+          "is_default": true,
+          "weight": 94
         },
         {
           "label": "TEST",
           "delta": -1,
           "is_default": false,
-          "weight": 0
+          "weight": 5
         }
       ]
     },
@@ -791,49 +943,49 @@
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 0
+          "weight": 85
         },
         {
           "label": "CV",
           "delta": 0.1,
           "is_default": false,
-          "weight": 0
+          "weight": 2
         },
         {
           "label": "GND",
           "delta": 0.2,
           "is_default": false,
-          "weight": 100
+          "weight": 1
         },
         {
           "label": "NAV",
           "delta": 0.3,
           "is_default": false,
-          "weight": 0
+          "weight": 2
         },
         {
           "label": "IFA",
           "delta": 0.4,
           "is_default": false,
-          "weight": 0
+          "weight": 6
         },
         {
           "label": "GYRO",
           "delta": 0.5,
           "is_default": false,
-          "weight": 0
+          "weight": 1
         },
         {
           "label": "GB",
           "delta": 0.6,
           "is_default": false,
-          "weight": 0
+          "weight": 1
         },
         {
           "label": "TEST",
           "delta": 0.7,
           "is_default": false,
-          "weight": 0
+          "weight": 2
         }
       ]
     },
@@ -849,13 +1001,13 @@
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 4
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 100
+          "weight": 96
         }
       ]
     },
@@ -871,258 +1023,258 @@
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 0
+          "weight": 2
         },
-		{
+        {
           "label": "STBY",
           "delta": 0,
           "is_default": false,
-          "weight": 0
+          "weight": 7
         },
-		{
+        {
           "label": "OFF",
           "delta": -1,
           "is_default": true,
-          "weight": 100
+          "weight": 91
         }
       ]
     },
-	{
-  "id": "ky58_mode_select",
-  "label": "KY-58 Mode Select",
-  "dev": 41,
-  "cmd": 3001,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "P",
-      "delta": 0.0,
-      "is_default": true,
-      "weight": 25
+      "id": "ky58_mode_select",
+      "label": "KY-58 Mode Select",
+      "dev": 41,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "P",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 89
+        },
+        {
+          "label": "C",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "LD",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "RV",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 3
+        }
+      ]
     },
     {
-      "label": "C",
-      "delta": 0.1,
-      "is_default": false,
-      "weight": 25
+      "id": "ky58_fill_select",
+      "label": "KY-58 Fill Select",
+      "dev": 41,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 78
+        },
+        {
+          "label": "2",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "3",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "4",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "5",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "6",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
     },
     {
-      "label": "LD",
-      "delta": 0.2,
-      "is_default": false,
-      "weight": 25
+      "id": "ky58_power_select",
+      "label": "KY-58 Power Select",
+      "dev": 41,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "TD",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
     },
     {
-      "label": "RV",
-      "delta": 0.3,
-      "is_default": false,
-      "weight": 25
-    }
-  ]
-},
-{
-  "id": "ky58_fill_select",
-  "label": "KY-58 Fill Select",
-  "dev": 41,
-  "cmd": 3002,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "1",
-      "delta": 0.0,
-      "is_default": true,
-      "weight": 25
+      "id": "ufc_adf_switch",
+      "label": "UFC ADF Function Select Switch",
+      "dev": 25,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 1,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 92
+        },
+        {
+          "label": "2",
+          "delta": -1,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
     },
     {
-      "label": "2",
-      "delta": 0.1,
-      "is_default": false,
-      "weight": 25
+      "id": "hud_sym_reject_switch",
+      "label": "HUD Symbology Reject Switch",
+      "dev": 34,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 94
+        },
+        {
+          "label": "REJ 1",
+          "delta": 0,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "REJ 2",
+          "delta": -1,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
     },
     {
-      "label": "3",
-      "delta": 0.2,
-      "is_default": false,
-      "weight": 25
+      "id": "attitude_selector_switch",
+      "label": "ATTITUDE Selector Switch",
+      "dev": 34,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "INS",
+          "delta": 1,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "AUTO",
+          "delta": 0,
+          "is_default": true,
+          "weight": 93
+        },
+        {
+          "label": "STBY",
+          "delta": -1,
+          "is_default": false,
+          "weight": 3
+        }
+      ]
     },
     {
-      "label": "4",
-      "delta": 0.3,
-      "is_default": false,
-      "weight": 0
+      "id": "hud_video_control_switch",
+      "label": "HUD Video Control Switch",
+      "dev": 34,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "W/B",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "VID",
+          "delta": 0,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": true,
+          "weight": 92
+        }
+      ]
     },
     {
-      "label": "5",
-      "delta": 0.4,
-      "is_default": false,
-      "weight": 0
+      "id": "ufc_brightness_knob",
+      "label": "UFC Brightness Control Knob",
+      "dev": 25,
+      "cmd": 3032,
+      "enabled": true,
+      "type": "continuous"
     },
     {
-      "label": "6",
-      "delta": 0.5,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "ky58_power_select",
-  "label": "KY-58 Power Select",
-  "dev": 41,
-  "cmd": 3004,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "OFF",
-      "delta": 0.2,
-      "is_default": true,
-      "weight": 100
+      "id": "ky58_volume",
+      "label": "KY-58 Volume Control",
+      "dev": 41,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
     },
-    {
-      "label": "ON",
-      "delta": 0.1,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "TD",
-      "delta": 0.0,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "ufc_adf_switch",
-  "label": "UFC ADF Function Select Switch",
-  "dev": 25,
-  "cmd": 3016,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "1",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "OFF",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
-    },
-    {
-      "label": "2",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "hud_sym_reject_switch",
-  "label": "HUD Symbology Reject Switch",
-  "dev": 34,
-  "cmd": 3001,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "NORM",
-      "delta": 1,
-      "is_default": true,
-      "weight": 100
-    },
-    {
-      "label": "REJ 1",
-      "delta": 0,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "REJ 2",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "attitude_selector_switch",
-  "label": "ATTITUDE Selector Switch",
-  "dev": 34,
-  "cmd": 3009,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "INS",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "AUTO",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
-    },
-    {
-      "label": "STBY",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "hud_video_control_switch",
-  "label": "HUD Video Control Switch",
-  "dev": 34,
-  "cmd": 3005,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "W/B",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "VID",
-      "delta": 0,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "OFF",
-      "delta": -1,
-      "is_default": true,
-      "weight": 100
-    }
-  ]
-},
-{
-  "id": "ufc_brightness_knob",
-  "label": "UFC Brightness Control Knob",
-  "dev": 25,
-  "cmd": 3032,
-  "enabled": true,
-  "type": "continuous"
-},
-{
-  "id": "ky58_volume",
-  "label": "KY-58 Volume Control",
-  "dev": 41,
-  "cmd": 3005,
-  "enabled": true,
-  "type": "continuous"
-},
     {
       "id": "defog_handle",
       "label": "Defog Handle",
@@ -1147,7 +1299,7 @@
       "enabled": true,
       "type": "continuous"
     },
-	{
+    {
       "id": "oxy_flow_knob",
       "label": "OXY Flow Knob",
       "dev": 10,
@@ -1211,30 +1363,30 @@
       "enabled": true,
       "type": "continuous"
     },
-	{
-  "id": "ifei_brightness_knob",
-  "label": "IFEI Brightness Control Knob",
-  "dev": 33,
-  "cmd": 3007,
-  "enabled": true,
-  "type": "continuous"
-},
-{
-  "id": "hud_balance_knob",
-  "label": "Balance Control Knob",
-  "dev": 34,
-  "cmd": 3006,
-  "enabled": true,
-  "type": "continuous"
-},
-{
-  "id": "throttles_friction_lever",
-  "label": "Throttles Friction Adjusting Lever",
-  "dev": 2,
-  "cmd": 3012,
-  "enabled": true,
-  "type": "continuous"
-},
+    {
+      "id": "ifei_brightness_knob",
+      "label": "IFEI Brightness Control Knob",
+      "dev": 33,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "hud_balance_knob",
+      "label": "Balance Control Knob",
+      "dev": 34,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "throttles_friction_lever",
+      "label": "Throttles Friction Adjusting Lever",
+      "dev": 2,
+      "cmd": 3012,
+      "enabled": true,
+      "type": "continuous"
+    },
     {
       "id": "comm1_volume",
       "label": "COMM 1 Volume",
