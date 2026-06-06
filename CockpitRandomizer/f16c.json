@@ -4,21 +4,21 @@
   "delay": 3.0,
   "controls": [
     {
-      "id": "probe_heat_switch",
-      "label": "PROBE HEAT Switch",
-      "dev": 3,
-      "cmd": 3006,
+      "id": "air_refuel_switch",
+      "label": "AIR REFUELING Switch",
+      "dev": 4,
+      "cmd": 3008,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "OFF",
+          "label": "CLOSE",
           "delta": 0,
           "is_default": true,
           "weight": 90
         },
         {
-          "label": "PROBE HEAT",
+          "label": "OPEN",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -26,68 +26,36 @@
       ]
     },
     {
-      "id": "flcs_pwr_switch",
-      "label": "FLCS POWER Switch",
-      "dev": 3,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NORM",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "MAINT",
-          "delta": -1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "trim_ap_disc_switch",
-      "label": "TRIM/AP DISC Switch",
-      "dev": 2,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "DISC",
-          "delta": 0,
-          "is_default": true,
-          "weight": 10
-        },
-        {
-          "label": "NORM",
-          "delta": 1,
-          "is_default": false,
-          "weight": 90
-        }
-      ]
-    },
-    {
-      "id": "digital_backup_switch",
-      "label": "DIGITAL BACKUP Switch",
-      "dev": 2,
+      "id": "air_source_knob",
+      "label": "AIR SOURCE Knob",
+      "dev": 13,
       "cmd": 3001,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "OFF",
-          "delta": 0,
+          "label": "NORM",
+          "delta": 0.0,
           "is_default": true,
-          "weight": 90
+          "weight": 30
         },
         {
-          "label": "BACKUP",
-          "delta": -1,
+          "label": "OFF",
+          "delta": -0.1,
           "is_default": false,
-          "weight": 10
+          "weight": 60
+        },
+        {
+          "label": "DUMP",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "RAM",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
         }
       ]
     },
@@ -114,24 +82,24 @@
       ]
     },
     {
-      "id": "manual_tf_flyup_switch",
-      "label": "MANUAL TF FLYUP Switch",
-      "dev": 2,
-      "cmd": 3016,
+      "id": "anti_skid_switch",
+      "label": "ANTI-SKID Switch",
+      "dev": 7,
+      "cmd": 3004,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "DISABLE",
+          "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 10
         },
         {
-          "label": "ENABLE",
-          "delta": -1,
+          "label": "ANTI-SKID",
+          "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 90
         }
       ]
     },
@@ -164,68 +132,90 @@
       ]
     },
     {
-      "id": "stores_config_switch",
-      "label": "STORES CONFIG Switch",
+      "id": "ci_knob",
+      "label": "C & I Knob",
+      "dev": 35,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UFC",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "BACKUP",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "ch_expendable_switch",
+      "label": "CH Expendable Category Switch",
+      "dev": 32,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "digital_backup_switch",
+      "label": "DIGITAL BACKUP Switch",
       "dev": 2,
-      "cmd": 3011,
+      "cmd": 3001,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "CAT III",
-          "delta": 0,
-          "is_default": true,
-          "weight": 40
-        },
-        {
-          "label": "CAT I",
-          "delta": 1,
-          "is_default": false,
-          "weight": 60
-        }
-      ]
-    },
-    {
-      "id": "fuel_master_cover",
-      "label": "FUEL MASTER Switch Cover",
-      "dev": 4,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "CLOSE",
+          "label": "OFF",
           "delta": 0,
           "is_default": true,
           "weight": 90
         },
         {
-          "label": "OPEN",
-          "delta": 1,
+          "label": "BACKUP",
+          "delta": -1,
           "is_default": false,
           "weight": 10
         }
       ]
     },
     {
-      "id": "ext_fuel_transfer_switch",
-      "label": "External Fuel Transfer Switch",
-      "dev": 4,
-      "cmd": 3003,
+      "id": "dl_switch",
+      "label": "DL Switch",
+      "dev": 60,
+      "cmd": 3001,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "NORM",
+          "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 10
+          "weight": 85
         },
         {
-          "label": "WING FIRST",
+          "label": "OFF",
           "delta": 1,
           "is_default": false,
-          "weight": 90
+          "weight": 15
         }
       ]
     },
@@ -260,6 +250,148 @@
           "delta": 0.2,
           "is_default": false,
           "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "epu_system",
+      "label": "EPU SYSTEM",
+      "dev": 6,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "run",
+      "run_note": "EPU covers + switch. Six scenarios with correct mechanical interlock. ON cover=3001, OFF cover=3002, EPU switch=3003.",
+      "lua_body": "            local r = math.random(10)\n            local function click(cmd, val) dev:performClickableAction(cmd, val) end\n            click(3001, -1)\n            click(3002, -1)\n            if r == 1 then\n                click(3001, 1)\n                click(3002, 1)\n            elseif r == 2 then\n                click(3001, 1)\n                click(3002, 1)\n                click(3003, -0.5)\n            elseif r == 3 then\n                click(3002, 1)\n            elseif r == 4 then\n                click(3002, 1)\n                click(3003, -0.5)\n            elseif r == 5 then\n                click(3001, 1)\n            end"
+    },
+    {
+      "id": "ext_fuel_transfer_switch",
+      "label": "External Fuel Transfer Switch",
+      "dev": 4,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 10
+        },
+        {
+          "label": "WING FIRST",
+          "delta": 1,
+          "is_default": false,
+          "weight": 90
+        }
+      ]
+    },
+    {
+      "id": "fcr_switch",
+      "label": "FCR Switch",
+      "dev": 31,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "fl_expendable_switch",
+      "label": "FL Expendable Category Switch",
+      "dev": 32,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "flash_steady_switch",
+      "label": "FLASH STEADY Switch",
+      "dev": 11,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "STEADY",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "FLASH",
+          "delta": -1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "flcs_pwr_switch",
+      "label": "FLCS POWER Switch",
+      "dev": 3,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "MAINT",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "fuel_master_cover",
+      "label": "FUEL MASTER Switch Cover",
+      "dev": 4,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
         }
       ]
     },
@@ -304,156 +436,6 @@
       ]
     },
     {
-      "id": "air_refuel_switch",
-      "label": "AIR REFUELING Switch",
-      "dev": 4,
-      "cmd": 3008,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "CLOSE",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OPEN",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "supply_lever",
-      "label": "Supply Lever",
-      "dev": 8,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 80
-        },
-        {
-          "label": "OFF",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 20
-        }
-      ]
-    },
-    {
-      "id": "anti_skid_switch",
-      "label": "ANTI-SKID Switch",
-      "dev": 7,
-      "cmd": 3004,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "PARKING BRAKE",
-          "delta": 0,
-          "is_default": true,
-          "weight": 10
-        },
-        {
-          "label": "ANTI-SKID",
-          "delta": 1,
-          "is_default": false,
-          "weight": 90
-        }
-      ]
-    },
-    {
-      "id": "anti_coll_knob",
-      "label": "ANTI-COLL Knob",
-      "dev": 11,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "form_knob",
-      "label": "FORM Knob",
-      "dev": 11,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "master_switch",
-      "label": "MASTER Switch",
-      "dev": 11,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NORM",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "FORM",
-          "delta": -0.1,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "A-C",
-          "delta": -0.2,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "ALL",
-          "delta": -0.3,
-          "is_default": false,
-          "weight": 3
-        },
-        {
-          "label": "OFF",
-          "delta": -0.4,
-          "is_default": false,
-          "weight": 2
-        }
-      ]
-    },
-    {
-      "id": "wing_tail_switch",
-      "label": "WING/TAIL Switch",
-      "dev": 11,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 86
-        },
-        {
-          "label": "BRT",
-          "delta": -1,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "DIM",
-          "delta": 1,
-          "is_default": false,
-          "weight": 7
-        }
-      ]
-    },
-    {
       "id": "fuselage_switch",
       "label": "FUSELAGE Switch",
       "dev": 11,
@@ -482,298 +464,6 @@
       ]
     },
     {
-      "id": "flash_steady_switch",
-      "label": "FLASH STEADY Switch",
-      "dev": 11,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "STEADY",
-          "delta": 0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "FLASH",
-          "delta": -1,
-          "is_default": false,
-          "weight": 15
-        }
-      ]
-    },
-    {
-      "id": "landing_taxi_lights_switch",
-      "label": "LANDING TAXI LIGHTS Switch",
-      "dev": 11,
-      "cmd": 3008,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 86
-        },
-        {
-          "label": "LANDING",
-          "delta": -1,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "TAXI",
-          "delta": 1,
-          "is_default": false,
-          "weight": 7
-        }
-      ]
-    },
-    {
-      "id": "primary_consoles_brt",
-      "label": "PRIMARY CONSOLES BRT Knob",
-      "dev": 12,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "primary_inst_pnl",
-      "label": "PRIMARY INST PNL Knob",
-      "dev": 12,
-      "cmd": 3004,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "primary_ded_brt",
-      "label": "PRIMARY DATA ENTRY DISPLAY BRT Knob",
-      "dev": 12,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "flood_consoles_brt",
-      "label": "FLOOD CONSOLES BRT Knob",
-      "dev": 12,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "flood_inst_pnl",
-      "label": "FLOOD INST PNL Knob",
-      "dev": 12,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "air_source_knob",
-      "label": "AIR SOURCE Knob",
-      "dev": 13,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NORM",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 30
-        },
-        {
-          "label": "OFF",
-          "delta": -0.1,
-          "is_default": false,
-          "weight": 60
-        },
-        {
-          "label": "DUMP",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "RAM",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 5
-        }
-      ]
-    },
-    {
-      "id": "ins_knob",
-      "label": "INS Knob",
-      "dev": 14,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NAV",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "NORM",
-          "delta": -0.1,
-          "is_default": false,
-          "weight": 3
-        },
-        {
-          "label": "STOR HDG",
-          "delta": -0.2,
-          "is_default": false,
-          "weight": 3
-        },
-        {
-          "label": "OFF",
-          "delta": -0.3,
-          "is_default": false,
-          "weight": 3
-        },
-        {
-          "label": "CAL",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 2
-        },
-        {
-          "label": "INFLT ALIGN",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 2
-        },
-        {
-          "label": "ATT",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 2
-        }
-      ]
-    },
-    {
-      "id": "rdr_alt_switch",
-      "label": "RDR ALT Switch",
-      "dev": 15,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "STBY",
-          "delta": 0,
-          "is_default": true,
-          "weight": 10
-        },
-        {
-          "label": "OFF",
-          "delta": -1,
-          "is_default": false,
-          "weight": 90
-        }
-      ]
-    },
-    {
-      "id": "ufc_switch",
-      "label": "UFC Switch",
-      "dev": 17,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "OFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 15
-        }
-      ]
-    },
-    {
-      "id": "mmc_switch",
-      "label": "MMC Switch",
-      "dev": 19,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "OFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 15
-        }
-      ]
-    },
-    {
-      "id": "mfd_switch",
-      "label": "MFD Switch",
-      "dev": 19,
-      "cmd": 3014,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "OFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 15
-        }
-      ]
-    },
-    {
-      "id": "master_arm_switch",
-      "label": "MASTER ARM Switch",
-      "dev": 19,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "MASTER ARM",
-          "delta": -1,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "SIMULATE",
-          "delta": 1,
-          "is_default": false,
-          "weight": 5
-        }
-      ]
-    },
-    {
       "id": "gnd_jett_enable_switch",
       "label": "GND JETT ENABLE Switch",
       "dev": 19,
@@ -796,80 +486,24 @@
       ]
     },
     {
-      "id": "hud_scales_switch",
-      "label": "HUD Scales Switch",
-      "dev": 19,
-      "cmd": 3006,
+      "id": "gps_switch",
+      "label": "GPS Switch",
+      "dev": 59,
+      "cmd": 3001,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "VAH",
+          "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 86
-        },
-        {
-          "label": "VV/VAH",
-          "delta": -1,
-          "is_default": false,
-          "weight": 7
+          "weight": 85
         },
         {
           "label": "OFF",
           "delta": 1,
           "is_default": false,
-          "weight": 7
-        }
-      ]
-    },
-    {
-      "id": "hud_fpm_switch",
-      "label": "HUD Flightpath Marker Switch",
-      "dev": 19,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ATT/FPM",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "FPM",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "hud_ded_pfld_switch",
-      "label": "HUD DED/PFLD Data Switch",
-      "dev": 19,
-      "cmd": 3008,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "PFL",
-          "delta": 0,
-          "is_default": true,
-          "weight": 86
-        },
-        {
-          "label": "DED",
-          "delta": -1,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "OFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 7
+          "weight": 15
         }
       ]
     },
@@ -930,21 +564,49 @@
       ]
     },
     {
-      "id": "st_sta_switch",
-      "label": "ST STA Switch",
-      "dev": 22,
-      "cmd": 3001,
+      "id": "hud_ded_pfld_switch",
+      "label": "HUD DED/PFLD Data Switch",
+      "dev": 19,
+      "cmd": 3008,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "ST STA",
+          "label": "PFL",
+          "delta": 0,
+          "is_default": true,
+          "weight": 86
+        },
+        {
+          "label": "DED",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "id": "hud_fpm_switch",
+      "label": "HUD Flightpath Marker Switch",
+      "dev": 19,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ATT/FPM",
           "delta": 0,
           "is_default": true,
           "weight": 90
         },
         {
-          "label": "OFF",
+          "label": "FPM",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -952,21 +614,141 @@
       ]
     },
     {
-      "id": "left_hdpt_switch",
-      "label": "LEFT HDPT Switch",
-      "dev": 22,
+      "id": "hud_scales_switch",
+      "label": "HUD Scales Switch",
+      "dev": 19,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "VAH",
+          "delta": 0,
+          "is_default": true,
+          "weight": 86
+        },
+        {
+          "label": "VV/VAH",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "id": "iff_master_knob",
+      "label": "IFF Master Knob",
+      "dev": 35,
       "cmd": 3002,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "ON",
-          "delta": 0,
+          "label": "STBY",
+          "delta": 0.0,
           "is_default": true,
           "weight": 90
         },
         {
           "label": "OFF",
+          "delta": -0.1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "NORM",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "EMER",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "TRNSP",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "ins_knob",
+      "label": "INS Knob",
+      "dev": 14,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NAV",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "NORM",
+          "delta": -0.1,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "STOR HDG",
+          "delta": -0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "OFF",
+          "delta": -0.3,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "CAL",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "INFLT ALIGN",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "ATT",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "jammer_source_switch",
+      "label": "Jammer Source Switch",
+      "dev": 32,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -974,24 +756,30 @@
       ]
     },
     {
-      "id": "right_hdpt_switch",
-      "label": "RIGHT HDPT Switch",
-      "dev": 22,
-      "cmd": 3003,
+      "id": "landing_taxi_lights_switch",
+      "label": "LANDING TAXI LIGHTS Switch",
+      "dev": 11,
+      "cmd": 3008,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "ON",
+          "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 86
         },
         {
-          "label": "OFF",
+          "label": "LANDING",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "TAXI",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         }
       ]
     },
@@ -1018,17 +806,53 @@
       ]
     },
     {
-      "id": "hmcs_int_knob",
-      "label": "HMCS SYMBOLOGY INT Knob",
-      "dev": 30,
-      "cmd": 3001,
+      "id": "left_hdpt_switch",
+      "label": "LEFT HDPT Switch",
+      "dev": 22,
+      "cmd": 3002,
       "enabled": true,
-      "type": "continuous"
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
     },
     {
-      "id": "fcr_switch",
-      "label": "FCR Switch",
-      "dev": 31,
+      "id": "manual_tf_flyup_switch",
+      "label": "MANUAL TF FLYUP Switch",
+      "dev": 2,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DISABLE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ENABLE",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "map_switch",
+      "label": "MAP Switch",
+      "dev": 61,
       "cmd": 3001,
       "enabled": true,
       "type": "discrete",
@@ -1037,42 +861,20 @@
           "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 70
+          "weight": 85
         },
         {
           "label": "OFF",
           "delta": 1,
           "is_default": false,
-          "weight": 30
+          "weight": 15
         }
       ]
     },
     {
-      "id": "rwr_source_switch",
-      "label": "RWR Source Switch",
-      "dev": 32,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "SEARCH",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "HANDOFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "jammer_source_switch",
-      "label": "Jammer Source Switch",
-      "dev": 32,
+      "id": "master_arm_switch",
+      "label": "MASTER ARM Switch",
+      "dev": 19,
       "cmd": 3002,
       "enabled": true,
       "type": "discrete",
@@ -1084,10 +886,174 @@
           "weight": 90
         },
         {
-          "label": "ON",
+          "label": "MASTER ARM",
+          "delta": -1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "SIMULATE",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "master_switch",
+      "label": "MASTER Switch",
+      "dev": 11,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "FORM",
+          "delta": -0.1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "A-C",
+          "delta": -0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "ALL",
+          "delta": -0.3,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "OFF",
+          "delta": -0.4,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "mfd_switch",
+      "label": "MFD Switch",
+      "dev": 19,
+      "cmd": 3014,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "mids_lvt_knob",
+      "label": "MIDS LVT Knob",
+      "dev": 41,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ZERO",
+          "delta": -0.1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "ON",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "mmc_switch",
+      "label": "MMC Switch",
+      "dev": 19,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "mode_knob",
+      "label": "MODE Knob",
+      "dev": 32,
+      "cmd": 3010,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "STBY",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": -0.1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "MAN",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "SEMI",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "AUTO",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "BYP",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 1
         }
       ]
     },
@@ -1158,10 +1124,10 @@
       ]
     },
     {
-      "id": "ch_expendable_switch",
-      "label": "CH Expendable Category Switch",
-      "dev": 32,
-      "cmd": 3007,
+      "id": "probe_heat_switch",
+      "label": "PROBE HEAT Switch",
+      "dev": 3,
+      "cmd": 3006,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -1172,29 +1138,7 @@
           "weight": 90
         },
         {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "fl_expendable_switch",
-      "label": "FL Expendable Category Switch",
-      "dev": 32,
-      "cmd": 3008,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "ON",
+          "label": "PROBE HEAT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -1242,112 +1186,216 @@
       ]
     },
     {
-      "id": "mode_knob",
-      "label": "MODE Knob",
-      "dev": 32,
-      "cmd": 3010,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "STBY",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OFF",
-          "delta": -0.1,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "MAN",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 2
-        },
-        {
-          "label": "SEMI",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 1
-        },
-        {
-          "label": "AUTO",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 1
-        },
-        {
-          "label": "BYP",
-          "delta": 0.4,
-          "is_default": false,
-          "weight": 1
-        }
-      ]
-    },
-    {
-      "id": "iff_master_knob",
-      "label": "IFF Master Knob",
-      "dev": 35,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "STBY",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OFF",
-          "delta": -0.1,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "NORM",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 2
-        },
-        {
-          "label": "EMER",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 2
-        },
-        {
-          "label": "TRNSP",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 1
-        }
-      ]
-    },
-    {
-      "id": "ci_knob",
-      "label": "C & I Knob",
-      "dev": 35,
+      "id": "rdr_alt_switch",
+      "label": "RDR ALT Switch",
+      "dev": 15,
       "cmd": 3001,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "UFC",
+          "label": "STBY",
+          "delta": 0,
+          "is_default": true,
+          "weight": 10
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 90
+        }
+      ]
+    },
+    {
+      "id": "right_hdpt_switch",
+      "label": "RIGHT HDPT Switch",
+      "dev": 22,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
           "delta": 0,
           "is_default": true,
           "weight": 90
         },
         {
-          "label": "BACKUP",
+          "label": "OFF",
           "delta": 1,
           "is_default": false,
           "weight": 10
         }
       ]
+    },
+    {
+      "id": "rwr_source_switch",
+      "label": "RWR Source Switch",
+      "dev": 32,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "SEARCH",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "HANDOFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "st_sta_switch",
+      "label": "ST STA Switch",
+      "dev": 22,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ST STA",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "stores_config_switch",
+      "label": "STORES CONFIG Switch",
+      "dev": 2,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CAT III",
+          "delta": 0,
+          "is_default": true,
+          "weight": 40
+        },
+        {
+          "label": "CAT I",
+          "delta": 1,
+          "is_default": false,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "supply_lever",
+      "label": "Supply Lever",
+      "dev": 8,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "OFF",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "trim_ap_disc_switch",
+      "label": "TRIM/AP DISC Switch",
+      "dev": 2,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DISC",
+          "delta": 0,
+          "is_default": true,
+          "weight": 10
+        },
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 90
+        }
+      ]
+    },
+    {
+      "id": "ufc_switch",
+      "label": "UFC Switch",
+      "dev": 17,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wing_tail_switch",
+      "label": "WING/TAIL Switch",
+      "dev": 11,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 86
+        },
+        {
+          "label": "BRT",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "DIM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "id": "anti_coll_knob",
+      "label": "ANTI-COLL Knob",
+      "dev": 11,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "comm1_power_knob",
@@ -1366,108 +1414,60 @@
       "type": "continuous"
     },
     {
-      "id": "mids_lvt_knob",
-      "label": "MIDS LVT Knob",
-      "dev": 41,
-      "cmd": 3001,
+      "id": "flood_consoles_brt",
+      "label": "FLOOD CONSOLES BRT Knob",
+      "dev": 12,
+      "cmd": 3006,
       "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "ZERO",
-          "delta": -0.1,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "ON",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 5
-        }
-      ]
+      "type": "continuous"
     },
     {
-      "id": "gps_switch",
-      "label": "GPS Switch",
-      "dev": 59,
-      "cmd": 3001,
+      "id": "flood_inst_pnl",
+      "label": "FLOOD INST PNL Knob",
+      "dev": 12,
+      "cmd": 3007,
       "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "OFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 15
-        }
-      ]
+      "type": "continuous"
     },
     {
-      "id": "dl_switch",
-      "label": "DL Switch",
-      "dev": 60,
-      "cmd": 3001,
+      "id": "form_knob",
+      "label": "FORM Knob",
+      "dev": 11,
+      "cmd": 3005,
       "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "OFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 15
-        }
-      ]
+      "type": "continuous"
     },
     {
-      "id": "map_switch",
-      "label": "MAP Switch",
-      "dev": 61,
+      "id": "hmcs_int_knob",
+      "label": "HMCS SYMBOLOGY INT Knob",
+      "dev": 30,
       "cmd": 3001,
       "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "OFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 15
-        }
-      ]
+      "type": "continuous"
     },
     {
-      "id": "epu_system",
-      "label": "EPU SYSTEM",
-      "dev": 6,
-      "cmd": 3001,
+      "id": "primary_consoles_brt",
+      "label": "PRIMARY CONSOLES BRT Knob",
+      "dev": 12,
+      "cmd": 3003,
       "enabled": true,
-      "type": "run",
-      "run_note": "EPU covers + switch. Six scenarios with correct mechanical interlock. ON cover=3001, OFF cover=3002, EPU switch=3003.",
-      "lua_body": "            local r = math.random(10)\n            local function click(cmd, val) dev:performClickableAction(cmd, val) end\n            click(3001, -1)\n            click(3002, -1)\n            if r == 1 then\n                click(3001, 1)\n                click(3002, 1)\n            elseif r == 2 then\n                click(3001, 1)\n                click(3002, 1)\n                click(3003, -0.5)\n            elseif r == 3 then\n                click(3002, 1)\n            elseif r == 4 then\n                click(3002, 1)\n                click(3003, -0.5)\n            elseif r == 5 then\n                click(3001, 1)\n            end"
+      "type": "continuous"
+    },
+    {
+      "id": "primary_ded_brt",
+      "label": "PRIMARY DATA ENTRY DISPLAY BRT Knob",
+      "dev": 12,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "primary_inst_pnl",
+      "label": "PRIMARY INST PNL Knob",
+      "dev": 12,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "continuous"
     }
   ]
 }
