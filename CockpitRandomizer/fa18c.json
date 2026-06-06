@@ -932,7 +932,7 @@
     {
       "label": "1",
       "delta": 0.0,
-      "is_default": false,
+      "is_default": true,
       "weight": 25
     },
     {
