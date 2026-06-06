@@ -6,86 +6,86 @@ CR.register("FA-18C_hornet", {
 
     -- Left Generator Switch
     -- NORM=100%(default) / OFF=0%
-    { dev=3, cmd=3002, vals={0}, label="Left Generator Switch" },
+    { dev=3, cmd=3002, vals={2}, label="Left Generator Switch" },
 
     -- Right Generator Switch
     -- NORM=100%(default) / OFF=0%
     { dev=3, cmd=3003, vals={2}, label="Right Generator Switch" },
-	
-	-- CB FCS CHAN 3
+
+    -- CB FCS CHAN 3
     -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3021, vals={1}, label="CB FCS CHAN 3" },
-	
-	-- CB FCS CHAN 4
+    { dev=3, cmd=3021, vals={0}, label="CB FCS CHAN 3" },
+
+    -- CB FCS CHAN 4
     -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3022, vals={1}, label="CB FCS CHAN 4" },
-	
-	-- CB HOOK
+    { dev=3, cmd=3022, vals={0}, label="CB FCS CHAN 4" },
+
+    -- CB HOOK
     -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3023, vals={1}, label="CB HOOK" },
-	
-	-- CB LG
+    { dev=3, cmd=3023, vals={0}, label="CB HOOK" },
+
+    -- CB LG
     -- IN=100%(default) / OUT=0%
-    { dev=4, cmd=3023, vals={1}, label="CB LG" },
+    { dev=3, cmd=3024, vals={0}, label="CB LG" },
 
     -- CB FCS CHAN 1
     -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3017, vals={1}, label="CB FCS CHAN 1" },
+    { dev=3, cmd=3017, vals={0}, label="CB FCS CHAN 1" },
 
     -- CB FCS CHAN 2
     -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3018, vals={1}, label="CB FCS CHAN 2" },
+    { dev=3, cmd=3018, vals={0}, label="CB FCS CHAN 2" },
 
     -- CB SPD BRK
     -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3019, vals={1}, label="CB SPD BRK" },
+    { dev=3, cmd=3019, vals={0}, label="CB SPD BRK" },
 
     -- CB LAUNCH BAR
     -- IN=100%(default) / OUT=0%
-    { dev=3, cmd=3020, vals={1}, label="CB LAUNCH BAR" },
-	
-	-- GAIN Switch Cover
+    { dev=3, cmd=3020, vals={0}, label="CB LAUNCH BAR" },
+
+    -- GAIN Switch Cover
     -- OPEN=100% / CLOSE=0%(default)
     { dev=2, cmd=3005, vals={1}, label="GAIN Switch Cover" },
-	
-	-- Generator TIE Control Switch Cover
+
+    -- Generator TIE Control Switch Cover
     -- OPEN=100% / CLOSE=0%(default)
     { dev=3, cmd=3007, vals={1}, label="Generator TIE Control Switch Cover" },
+
+    -- COMM Relay Switch
+    -- CIPHER=0% / OFF=100%(default) / PLAIN=0%
+    { dev=40, cmd=3010, vals={0}, label="COMM Relay Switch" },
+
+    -- COMM G XMT Switch
+    -- COMM 1=0% / OFF=100%(default) / COMM 2=0%
+    { dev=40, cmd=3011, vals={0}, label="COMM G XMT Switch" },
 
     -- Spin Recovery Switch Cover
     -- OPEN=100% / CLOSE=0%(default)
     { dev=2, cmd=3008, vals={1}, label="Spin Recovery Switch Cover" },
-	
-	-- COMM Relay Switch
-	-- CIPHER=0% / OFF=100%(default) / PLAIN=0%
-	{ dev=40, cmd=3010, vals={1}, label="COMM Relay Switch" },
-
-	-- COMM G XMT Switch
-	-- COMM 1=0% / OFF=100%(default) / COMM 2=0%
-	{ dev=40, cmd=3011, vals={1}, label="COMM G XMT Switch" },
 
     -- FLAP Switch
-    -- FULL=0%(default) / HALF=0%/ AUTO=100%
-    { dev=2, cmd=3007, vals={-1}, label="FLAP Switch" },
+    -- FULL=0%(default) / HALF=0% / AUTO=100%
+    { dev=2, cmd=3007, vals={1}, label="FLAP Switch" },
 
     -- Anti Skid Switch
     -- ON=0%(default) / OFF=100%
     { dev=5, cmd=3004, vals={0}, label="Anti Skid Switch" },
 
     -- OBOGS Control Switch
-    -- ON=100% / OFF=0%(default)
+    -- ON=100%(default) / OFF=0%
     { dev=10, cmd=3001, vals={1}, label="OBOGS Control Switch" },
 
     -- OXY Flow Knob
     { dev=10, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="OXY Flow Knob" },
 
     -- HOOK BYPASS Switch
-    -- FIELD=100%(default) / CARRIER=0%
+    -- FIELD=100% / CARRIER=0%(default)
     { dev=9, cmd=3009, vals={1}, label="HOOK BYPASS Switch" },
 
     -- MODE Switch
-    -- NVG=0% / NITE=100%(default) / DAY=0%
-    { dev=9, cmd=3004, vals={1}, label="MODE Switch" },
+    -- NVG=0% / NITE=100% / DAY=0%(default)
+    { dev=9, cmd=3004, vals={0}, label="MODE Switch" },
 
     -- Master Arm Switch
     -- SAFE=100%(default) / ARM=0%
@@ -110,10 +110,10 @@ CR.register("FA-18C_hornet", {
     -- Right MDI Brightness Selector
     -- OFF=0%(default) / NIGHT=0% / DAY=100%
     { dev=36, cmd=3001, vals={0.2}, label="Right MDI Brightness Selector" },
-	
-	-- Shoulder Harness Control Handle
+
+    -- Shoulder Harness Control Handle
     -- LOCK=100%(default) / UNLOCK=0%
-    { dev=7, cmd=3009, vals={1}, label="Shoulder Harness Control Handle" },
+    { dev=7, cmd=3009, vals={0}, label="Shoulder Harness Control Handle" },
 
     -- Throttles Friction Adjusting Lever
     { dev=2, cmd=3012, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Throttles Friction Adjusting Lever" },
@@ -123,42 +123,62 @@ CR.register("FA-18C_hornet", {
     { dev=66, cmd=3001, vals={0.3}, label="ECM Mode Switch" },
 
     -- DISPENSER Switch
-    -- BYPASS=100%(default) / ON=0% / OFF=0%
-    { dev=54, cmd=3001, vals={0.0}, label="DISPENSER Switch" },
+    -- BYPASS=100% / ON=0% / OFF=0%(default)
+    { dev=54, cmd=3001, vals={0.2}, label="DISPENSER Switch" },
 
     -- RADAR Switch
     -- OFF=0%(default) / STBY=100% / OPR=0%
     { dev=42, cmd=3001, vals={0.1}, label="RADAR Switch" },
-	
-	-- ENGINE ANTI-ICE Switch Switch
-    -- TEST=0% / OFF=100%(default) / ON=0%
-    { dev=12, cmd=3014, vals={-1}, label="ENGINE ANTI-ICE Switch" },
+
+    -- ENGINE ANTI-ICE Switch
+    -- ON=100%(default) / OFF=0% / TEST=0%
+    { dev=12, cmd=3014, vals={1}, label="ENGINE ANTI-ICE Switch" },
 
     -- INS Switch
     -- OFF=0%(default) / CV=0% / GND=100% / NAV=0% / IFA=0% / GYRO=0% / GB=0% / TEST=0%
     { dev=44, cmd=3001, vals={0.2}, label="INS Switch" },
 
+    -- LST/NFLR Switch
+    -- ON=0% / OFF=100%(default)
+    { dev=62, cmd=3003, vals={0}, label="LST/NFLR Switch" },
+
     -- FLIR Switch
-    -- OFF=0%(default) / STBY=100% / ON=100%
+    -- ON=0% / STBY=0% / OFF=100%(default)
     { dev=62, cmd=3001, vals={-1}, label="FLIR Switch" },
 
-    -- [DISABLED] { dev=62, cmd=3002, vals=..., label="LTD/R Switch" },
-    -- SAFE=100%(default)
-	
-	-- KY-58 Mode Select
-	-- P=25% / C=25% / LD=25% / RV=25%
-	{ dev=41, cmd=3001, vals={0.0, 0.1, 0.2, 0.3}, label="KY-58 Mode Select" },
+    -- KY-58 Mode Select
+    -- P=25%(default) / C=25% / LD=25% / RV=25%
+    { dev=41, cmd=3001, vals={0, 0.1, 0.2, 0.3}, label="KY-58 Mode Select" },
 
-	-- KY-58 Fill Select
-	-- Z1-5=25% / 1=25% / 2=25% / 3=25%
-	{ dev=41, cmd=3002, vals={0.0, 0.1, 0.2, 0.3}, label="KY-58 Fill Select" },
+    -- KY-58 Fill Select
+    -- Z 1-5=25%(default) / 1=25% / 2=25% / 3=25% / 4=0% / 5=0% / 6=0% / Z ALL=0%
+    { dev=41, cmd=3002, vals={0, 0.1, 0.2, 0.3}, label="KY-58 Fill Select" },
 
-	-- KY-58 Power Select
-	-- OFF=100%(default) / ON=0% / TD=0%
-	{ dev=41, cmd=3004, {0.1, 0.1, 0.2}, label="KY-58 Power Select" },
+    -- KY-58 Power Select
+    -- OFF=100%(default) / ON=0% / TD=0%
+    { dev=41, cmd=3004, vals={0.2}, label="KY-58 Power Select" },
 
-	-- KY-58 Volume Control
-	{ dev=41, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="KY-58 Volume Control" },
+    -- UFC ADF Function Select Switch
+    -- 1=0% / OFF=100%(default) / 2=0%
+    { dev=25, cmd=3016, vals={0}, label="UFC ADF Function Select Switch" },
+
+    -- HUD Symbology Reject Switch
+    -- NORM=100%(default) / REJ 1=0% / REJ 2=0%
+    { dev=34, cmd=3001, vals={1}, label="HUD Symbology Reject Switch" },
+
+    -- ATTITUDE Selector Switch
+    -- INS=0% / AUTO=100%(default) / STBY=0%
+    { dev=34, cmd=3009, vals={0}, label="ATTITUDE Selector Switch" },
+
+    -- HUD Video Control Switch
+    -- W/B=0% / VID=0% / OFF=100%(default)
+    { dev=34, cmd=3005, vals={-1}, label="HUD Video Control Switch" },
+
+    -- UFC Brightness Control Knob
+    { dev=25, cmd=3032, vals={0, 0.25, 0.5, 0.75, 1.0}, label="UFC Brightness Control Knob" },
+
+    -- KY-58 Volume Control
+    { dev=41, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="KY-58 Volume Control" },
 
     -- Defog Handle
     { dev=11, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Defog Handle" },
@@ -189,30 +209,11 @@ CR.register("FA-18C_hornet", {
 
     -- CHART Dimmer
     { dev=9, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="CHART Dimmer" },
-	
-	-- UFC ADF Function Select Switch
-	-- 1=0% / OFF=100%(default) / 2=0%
-	{ dev=25, cmd=3016, vals={1}, label="UFC ADF Function Select Switch" },
 
-	-- HUD Symbology Reject Switch
-	-- NORM=100%(default) / REJ1=0% / REJ2=0%
-	{ dev=34, cmd=3001, vals={1}, label="HUD Symbology Reject Switch" },
-
-	-- ATTITUDE Selector Switch
-	-- INS=0% / AUTO=100%(default) / STBY=0%
-	{ dev=34, cmd=3009, vals={1}, label="ATTITUDE Selector Switch" },
-
-	-- HUD Video Control Switch
-	-- W/B=0% / VID=0% / OFF=100%(default)
-	{ dev=34, cmd=3005, vals={1}, label="HUD Video Control Switch" },
-
-	-- UFC Brightness Control Knob
-	{ dev=25, cmd=3032, vals={0, 0.25, 0.5, 0.75, 1.0}, label="UFC Brightness Control Knob" },
-	
-	-- IFEI Brightness Control Knob
+    -- IFEI Brightness Control Knob
     { dev=33, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="IFEI Brightness Control Knob" },
-	
-	-- Balance Control Knob
+
+    -- Balance Control Knob
     { dev=34, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Balance Control Knob" },
 
     -- COMM 1 Volume
