@@ -24,11 +24,15 @@ APP_TITLE            = "dcs-cockpit-randomizer"
 APP_VERSION_FALLBACK = "3.0.0"  # [6] v3.0.0
 
 AIRCRAFT = [
-    ("F-4E Phantom II", "f4e"),
-    ("F/A-18C Hornet",  "fa18c"),
-    ("F-14B Tomcat",    "f14b"),
-    ("F-16C Viper",     "f16c"),
-    ("F-5E Tiger II",   "f5e"),
+    ("F/A-18C Hornet",     "fa18c"),
+    ("F-16C Viper",        "f16c"),
+    ("A-10C II",           "a10cii"),
+    ("UH-1H Huey",         "uh1h"),
+    ("MiG-21bis",          "mig21bis"),   
+    ("Spitfire LF Mk. IX", "spitfirelfmkix"),
+    ("F-5E Tiger II",      "f5e"),
+    ("F-4E Phantom II",    "f4e"),
+    ("F-14B Tomcat",       "f14b"),
 ]
 
 DCS_FOLDER_NAMES = ["DCS", "DCS.openbeta"]
