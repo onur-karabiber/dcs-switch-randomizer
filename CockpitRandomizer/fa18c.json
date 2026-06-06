@@ -406,8 +406,8 @@
         {
           "label": "ON",
           "delta": 1,
-          "is_default": true
-		  "weight": 100
+          "is_default": true,
+          "weight": 100
         },
         {
           "label": "OFF",
@@ -865,7 +865,7 @@
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 100
+          "weight": 0
         },
 		{
           "label": "STBY",
@@ -877,7 +877,7 @@
           "label": "OFF",
           "delta": -1,
           "is_default": true,
-          "weight": 0
+          "weight": 100
         }
       ]
     },
