@@ -65,19 +65,16 @@ CR.register("FA-18C_hornet", {
     { dev=2, cmd=3008, vals={1}, label="Spin Recovery Switch Cover" },
 
     -- FLAP Switch
-    -- FULL=0%(default) / HALF=0% / AUTO=100%
-    { dev=2, cmd=3007, vals={1}, label="FLAP Switch" },
+    -- FULL=60%(default) / HALF=20% / AUTO=20%
+    { dev=2, cmd=3007, vals={-1, -1, -1, 0, 1}, label="FLAP Switch" },
 
     -- Anti Skid Switch
     -- ON=0%(default) / OFF=100%
     { dev=5, cmd=3004, vals={0}, label="Anti Skid Switch" },
 
     -- OBOGS Control Switch
-    -- ON=100%(default) / OFF=0%
+    -- ON=100% / OFF=0%(default)
     { dev=10, cmd=3001, vals={1}, label="OBOGS Control Switch" },
-
-    -- OXY Flow Knob
-    { dev=10, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="OXY Flow Knob" },
 
     -- HOOK BYPASS Switch
     -- FIELD=100% / CARRIER=0%(default)
@@ -112,11 +109,8 @@ CR.register("FA-18C_hornet", {
     { dev=36, cmd=3001, vals={0.2}, label="Right MDI Brightness Selector" },
 
     -- Shoulder Harness Control Handle
-    -- LOCK=100%(default) / UNLOCK=0%
-    { dev=7, cmd=3009, vals={0}, label="Shoulder Harness Control Handle" },
-
-    -- Throttles Friction Adjusting Lever
-    { dev=2, cmd=3012, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Throttles Friction Adjusting Lever" },
+    -- LOCK=100% / UNLOCK=0%(default)
+    { dev=7, cmd=3009, vals={1}, label="Shoulder Harness Control Handle" },
 
     -- ECM Mode Switch
     -- OFF=0%(default) / STBY=0% / BIT=0% / REC=100% / XMIT=0%
@@ -125,6 +119,10 @@ CR.register("FA-18C_hornet", {
     -- DISPENSER Switch
     -- BYPASS=100% / ON=0% / OFF=0%(default)
     { dev=54, cmd=3001, vals={0.2}, label="DISPENSER Switch" },
+
+	-- Auxiliary Release Switch
+	-- ENABLE=0% / NORM=100%(default)
+	{ dev=23, cmd=3012, vals={1}, label="Auxiliary Release Switch" },
 
     -- RADAR Switch
     -- OFF=0%(default) / STBY=100% / OPR=0%
@@ -151,8 +149,8 @@ CR.register("FA-18C_hornet", {
     { dev=41, cmd=3001, vals={0, 0.1, 0.2, 0.3}, label="KY-58 Mode Select" },
 
     -- KY-58 Fill Select
-    -- Z 1-5=25%(default) / 1=25% / 2=25% / 3=25% / 4=0% / 5=0% / 6=0% / Z ALL=0%
-    { dev=41, cmd=3002, vals={0, 0.1, 0.2, 0.3}, label="KY-58 Fill Select" },
+    -- 1=25%(default) / 2=25% / 3=25% / 4=0% / 5=0% / 6=0%
+    { dev=41, cmd=3002, vals={0.0, 0.1, 0.2, 0.3, 0.4, 0.5}, label="KY-58 Fill Select" },
 
     -- KY-58 Power Select
     -- OFF=100%(default) / ON=0% / TD=0%
@@ -188,6 +186,9 @@ CR.register("FA-18C_hornet", {
 
     -- TACAN Volume Knob
     { dev=40, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="TACAN Volume Knob" },
+	
+	-- OXY Flow Knob
+    { dev=10, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="OXY Flow Knob" },
 
     -- POSITION Lights Dimmer
     { dev=8, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="POSITION Lights Dimmer" },
@@ -215,6 +216,9 @@ CR.register("FA-18C_hornet", {
 
     -- Balance Control Knob
     { dev=34, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Balance Control Knob" },
+	
+	-- Throttles Friction Adjusting Lever
+    { dev=2, cmd=3012, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Throttles Friction Adjusting Lever" },
 
     -- COMM 1 Volume
     { dev=25, cmd=3030, vals={0, 0.25, 0.5, 0.75, 1.0}, label="COMM 1 Volume" },

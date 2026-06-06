@@ -357,19 +357,19 @@
           "label": "FULL",
           "delta": -1,
           "is_default": true,
-          "weight": 0
+          "weight": 60
         },
         {
           "label": "HALF",
           "delta": 0,
           "is_default": false,
-          "weight": 0
+          "weight": 20
         },
         {
           "label": "AUTO",
           "delta": 1,
           "is_default": false,
-          "weight": 100
+          "weight": 20
         }
       ]
     },
@@ -406,24 +406,16 @@
         {
           "label": "ON",
           "delta": 1,
-          "is_default": true,
+          "is_default": false,
           "weight": 100
         },
         {
           "label": "OFF",
           "delta": 0,
-          "is_default": false,
+          "is_default": true,
           "weight": 0
         }
       ]
-    },
-    {
-      "id": "oxy_flow_knob",
-      "label": "OXY Flow Knob",
-      "dev": 10,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "continuous"
     },
     {
       "id": "hook_bypass_switch",
@@ -629,25 +621,17 @@
   "positions": [
     {
       "label": "LOCK",
-      "delta": 0,
-      "is_default": true,
+      "delta": 1,
+      "is_default": false,
       "weight": 100
     },
     {
       "label": "UNLOCK",
-      "delta": 1,
-      "is_default": false,
+      "delta": 0,
+      "is_default": true,
       "weight": 0
     }
   ]
-},
-{
-  "id": "throttles_friction_lever",
-  "label": "Throttles Friction Adjusting Lever",
-  "dev": 2,
-  "cmd": 3012,
-  "enabled": true,
-  "type": "continuous"
 },
     {
       "id": "ecm_mode_switch",
@@ -717,6 +701,28 @@
         }
       ]
     },
+	{
+  "id": "aux_release_switch",
+  "label": "Auxiliary Release Switch",
+  "dev": 23,
+  "cmd": 3012,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "ENABLE",
+      "delta": 0,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "NORM",
+      "delta": 1,
+      "is_default": true,
+      "weight": 100
+    }
+  ]
+},
     {
       "id": "radar_switch",
       "label": "RADAR Switch",
@@ -924,50 +930,38 @@
   "type": "discrete",
   "positions": [
     {
-      "label": "Z 1-5",
-      "delta": 0.0,
-      "is_default": true,
-      "weight": 25
-    },
-    {
       "label": "1",
-      "delta": 0.1,
+      "delta": 0.0,
       "is_default": false,
       "weight": 25
     },
     {
       "label": "2",
-      "delta": 0.2,
+      "delta": 0.1,
       "is_default": false,
       "weight": 25
     },
     {
       "label": "3",
-      "delta": 0.3,
+      "delta": 0.2,
       "is_default": false,
       "weight": 25
     },
     {
       "label": "4",
-      "delta": 0.4,
+      "delta": 0.3,
       "is_default": false,
       "weight": 0
     },
     {
       "label": "5",
-      "delta": 0.5,
+      "delta": 0.4,
       "is_default": false,
       "weight": 0
     },
     {
       "label": "6",
-      "delta": 0.6,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "Z ALL",
-      "delta": 0.7,
+      "delta": 0.5,
       "is_default": false,
       "weight": 0
     }
@@ -1153,6 +1147,14 @@
       "enabled": true,
       "type": "continuous"
     },
+	{
+      "id": "oxy_flow_knob",
+      "label": "OXY Flow Knob",
+      "dev": 10,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
     {
       "id": "position_dimmer",
       "label": "POSITION Lights Dimmer",
@@ -1222,6 +1224,14 @@
   "label": "Balance Control Knob",
   "dev": 34,
   "cmd": 3006,
+  "enabled": true,
+  "type": "continuous"
+},
+{
+  "id": "throttles_friction_lever",
+  "label": "Throttles Friction Adjusting Lever",
+  "dev": 2,
+  "cmd": 3012,
   "enabled": true,
   "type": "continuous"
 },
