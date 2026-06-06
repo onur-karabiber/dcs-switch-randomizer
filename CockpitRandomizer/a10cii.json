@@ -1,0 +1,2231 @@
+{
+  "aircraft": "A-10C_2",
+  "display_name": "A-10C II Thunderbolt",
+  "delay": 3.0,
+  "controls": [
+    {
+      "id": "nmsp_able_stow",
+      "label": "ABLE-STOW ADI Localizer Bar",
+      "dev": 46,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ABLE",
+          "delta": 1,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "STOW",
+          "delta": 0,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "light_accel_compass",
+      "label": "Accelerometer & Compass Lights",
+      "dev": 49,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 50
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "id": "refuel_slipway",
+      "label": "Aerial Refueling Slipway Control",
+      "dev": 36,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        }
+      ]
+    },
+    {
+      "id": "alt_source",
+      "label": "Altimeter Source",
+      "dev": 7,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "RADAR",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "BARO",
+          "delta": 0.1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "GPS",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "anti_skid",
+      "label": "Anti Skid",
+      "dev": 38,
+      "cmd": 3028,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "apu_gen_pwr",
+      "label": "APU Generator On/Off",
+      "dev": 1,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        }
+      ]
+    },
+    {
+      "id": "apu_start",
+      "label": "APU On/Off",
+      "dev": 37,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        }
+      ]
+    },
+    {
+      "id": "vhf_am_master",
+      "label": "ARC-210 Master Switch",
+      "dev": 55,
+      "cmd": 3043,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 30
+        },
+        {
+          "label": "TR",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 40
+        },
+        {
+          "label": "DF",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "RCV",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "MAN",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "STBY",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "SQL",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "ground_safety_override",
+      "label": "Arm Ground Safety Override Switch",
+      "dev": 12,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OVERRIDE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "SAFE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 98
+        }
+      ]
+    },
+    {
+      "id": "autopilot_mode",
+      "label": "Autopilot Mode Select",
+      "dev": 38,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "PATH",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "ALT/HDG",
+          "delta": 0,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "ALT",
+          "delta": -1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "battery_pwr",
+      "label": "Battery Power",
+      "dev": 1,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "bleed_air",
+      "label": "Bleed Air",
+      "dev": 41,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "boost_pumps_wing_l",
+      "label": "Boost Pumps Left Wing",
+      "dev": 36,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "WING",
+          "delta": 1,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "boost_pumps_main_l",
+      "label": "Boost Pumps Main Fuselage Left",
+      "dev": 36,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MAIN",
+          "delta": 1,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "boost_pumps_main_r",
+      "label": "Boost Pumps Main Fuselage Right",
+      "dev": 36,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MAIN",
+          "delta": 1,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "boost_pumps_wing_r",
+      "label": "Boost Pumps Right Wing",
+      "dev": 36,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "WING",
+          "delta": 1,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "aap_page_sel",
+      "label": "CDU Page Select",
+      "dev": 22,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OTHER",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 25
+        },
+        {
+          "label": "POSITION",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 25
+        },
+        {
+          "label": "STEER",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 25
+        },
+        {
+          "label": "WAYPT",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 25
+        }
+      ]
+    },
+    {
+      "id": "aap_cdu_power",
+      "label": "CDU Power On/Off",
+      "dev": 22,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 50
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "id": "ahcp_cicu",
+      "label": "CICU On/Off",
+      "dev": 7,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 50
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "id": "cross_feed",
+      "label": "Cross Feed",
+      "dev": 36,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        },
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        }
+      ]
+    },
+    {
+      "id": "ahcp_hud_day_night",
+      "label": "Day/Night HUD Mode",
+      "dev": 7,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DAY",
+          "delta": 1,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "NIGHT",
+          "delta": 0,
+          "is_default": false,
+          "weight": 40
+        }
+      ]
+    },
+    {
+      "id": "dvadr_func",
+      "label": "DVADR Function Control",
+      "dev": 73,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "RECORD",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "XMIT",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "eac",
+      "label": "EAC On/Off",
+      "dev": 38,
+      "cmd": 3026,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "aap_egi_power",
+      "label": "EGI Power On/Off",
+      "dev": 22,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 50
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "id": "ext_tanks_fus",
+      "label": "External Fuselage Tank Boost Pump",
+      "dev": 36,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "BOOST",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        }
+      ]
+    },
+    {
+      "id": "ext_tanks_wing",
+      "label": "External Wing Tanks Boost Pumps",
+      "dev": 36,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "BOOST",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        }
+      ]
+    },
+    {
+      "id": "flaps",
+      "label": "Flap Setting",
+      "dev": 39,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UP",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 50
+        },
+        {
+          "label": "MVR",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "LDG",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "efcp_flap_emer_retr",
+      "label": "Flaps Emergency Retract",
+      "dev": 38,
+      "cmd": 3023,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UP",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        }
+      ]
+    },
+    {
+      "id": "ahcp_gunpac",
+      "label": "Gun Arm Mode",
+      "dev": 7,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ARM",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "SAFE",
+          "delta": 0.1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "GUNPAC",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "hars_n_s",
+      "label": "HARS N/S Toggle",
+      "dev": 44,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "N",
+          "delta": 1,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "S",
+          "delta": 0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "hars_slave_dg",
+      "label": "HARS SLAVE/DG Mode",
+      "dev": 44,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "SLAVE",
+          "delta": 1,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "DG",
+          "delta": 0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "hars_sas_override",
+      "label": "HARS-SAS Override/NORM",
+      "dev": 38,
+      "cmd": 3031,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OVERRIDE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "iff_antenna",
+      "label": "IFF Antenna Switch",
+      "dev": 43,
+      "cmd": 3019,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UPPER",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 50
+        },
+        {
+          "label": "AUTO",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "LOWER",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "ils_power",
+      "label": "ILS Frequency/Power",
+      "dev": 53,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        }
+      ]
+    },
+    {
+      "id": "cmsp_jettison",
+      "label": "Jettison Countermeasures",
+      "dev": 4,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "JTSN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 97
+        }
+      ]
+    },
+    {
+      "id": "ahcp_jtrs",
+      "label": "JTRS Datalink On/Off",
+      "dev": 7,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        }
+      ]
+    },
+    {
+      "id": "ky58_c_rad",
+      "label": "KY-58 C/RAD Switch",
+      "dev": 69,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "C",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "RAD",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "RAD+C",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "ky58_fill",
+      "label": "KY-58 Fill Switch",
+      "dev": 69,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "Z",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 40
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "E",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 12
+        }
+      ]
+    },
+    {
+      "id": "ky58_mode",
+      "label": "KY-58 Mode Switch",
+      "dev": 69,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "P",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "C",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "LD",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "ky58_power",
+      "label": "KY-58 Power Switch",
+      "dev": 69,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        }
+      ]
+    },
+    {
+      "id": "light_land_taxi",
+      "label": "Land Taxi Lights",
+      "dev": 49,
+      "cmd": 3014,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "TAXI",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "OFF",
+          "delta": 0.1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "LDG",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "landing_gear",
+      "label": "Landing Gear Lever",
+      "dev": 39,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UP",
+          "delta": 1,
+          "is_default": false,
+          "weight": 40
+        },
+        {
+          "label": "DOWN",
+          "delta": 0,
+          "is_default": true,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "ahcp_laser_arm",
+      "label": "Laser Arm",
+      "dev": 7,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ARM",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "SAFE",
+          "delta": 0.1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "elec_ac_gen_l",
+      "label": "Left AC Generator Power",
+      "dev": 1,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "fuel_flow_l",
+      "label": "Left Engine Fuel Flow Control",
+      "dev": 37,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OVERRIDE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "mfcd_left_mode",
+      "label": "Left MFCD DAY/NIGHT/OFF",
+      "dev": 2,
+      "cmd": 3036,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DAY",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "NIGHT",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "OFF",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "env_bleed_air_main",
+      "label": "Main Air Supply",
+      "dev": 41,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "efcp_mrfcs",
+      "label": "Manual Reversion Flight Control System",
+      "dev": 38,
+      "cmd": 3024,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MRFCS",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        }
+      ]
+    },
+    {
+      "id": "ahcp_master_arm",
+      "label": "Master Arm",
+      "dev": 7,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ARM",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "SAFE",
+          "delta": 0.1,
+          "is_default": true,
+          "weight": 96
+        },
+        {
+          "label": "TRAIN",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "light_nightvision",
+      "label": "Nightvision Lights",
+      "dev": 49,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0.2,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "NVG",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "ahcp_hud_norm_stby",
+      "label": "NORM/Standby HUD Mode",
+      "dev": 7,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "STBY",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "light_nose_illum",
+      "label": "Nose Illumination",
+      "dev": 49,
+      "cmd": 3012,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        }
+      ]
+    },
+    {
+      "id": "oxy_diluter",
+      "label": "Oxygen Normal/100%",
+      "dev": 40,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "100%",
+          "delta": 0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "oxy_supply",
+      "label": "Oxygen Supply On/Off",
+      "dev": 40,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "sasp_pitch_l",
+      "label": "Pitch SAS Engage Left",
+      "dev": 38,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ENGAGE",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "sasp_pitch_r",
+      "label": "Pitch SAS Engage Right",
+      "dev": 38,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ENGAGE",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "efcp_ptchroll_trim",
+      "label": "Pitch/Roll Trim Norm/Emergency Override",
+      "dev": 38,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "EMER",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        }
+      ]
+    },
+    {
+      "id": "env_pitot_heat",
+      "label": "Pitot Heater",
+      "dev": 41,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "light_position",
+      "label": "Position Lights FLASH/OFF/STEADY",
+      "dev": 49,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "FLASH",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "STEADY",
+          "delta": -1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "radar_altimeter",
+      "label": "Radar Altimeter Normal/Disabled",
+      "dev": 67,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "DISABLED",
+          "delta": 0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "elec_ac_gen_r",
+      "label": "Right AC Generator Power",
+      "dev": 1,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "fuel_flow_r",
+      "label": "Right Engine Fuel Flow Control",
+      "dev": 37,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OVERRIDE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "mfcd_right_mode",
+      "label": "Right MFCD DAY/NIGHT/OFF",
+      "dev": 3,
+      "cmd": 3036,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DAY",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "NIGHT",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "OFF",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "scorpion_hmcs",
+      "label": "Scorpion HMCS Power",
+      "dev": 75,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 40
+        },
+        {
+          "label": "STBY",
+          "delta": 0,
+          "is_default": true,
+          "weight": 40
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "sig_ampl",
+      "label": "Signal Amplifier Norm/Override",
+      "dev": 36,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OVERRIDE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "light_signal",
+      "label": "Signal Lights",
+      "dev": 49,
+      "cmd": 3013,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        }
+      ]
+    },
+    {
+      "id": "efcp_spdbk_emer_retr",
+      "label": "Speed Brake Emergency Retract",
+      "dev": 38,
+      "cmd": 3015,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "RETR",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        }
+      ]
+    },
+    {
+      "id": "aap_steerpt_sel",
+      "label": "Steerpoint Selector",
+      "dev": 22,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "FLT PLAN",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 34
+        },
+        {
+          "label": "MARK",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 33
+        },
+        {
+          "label": "MISSION",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 33
+        }
+      ]
+    },
+    {
+      "id": "tacan_mode",
+      "label": "TACAN Mode Dial",
+      "dev": 74,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "REC",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "T/R",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "A/A REC",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "A/A T/R",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "tank_gate",
+      "label": "Tank Gate",
+      "dev": 36,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        }
+      ]
+    },
+    {
+      "id": "ahcp_tgp",
+      "label": "Targeting Pod Power",
+      "dev": 7,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        }
+      ]
+    },
+    {
+      "id": "ahcp_iffcc",
+      "label": "Turn On/Off/Test IFFCC",
+      "dev": 7,
+      "cmd": 3010,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "TEST",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "OFF",
+          "delta": 0.1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "uhf_antenna",
+      "label": "UHF Antenna Switch",
+      "dev": 54,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UPPER",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 50
+        },
+        {
+          "label": "AUTO",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "LOWER",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "uhf_freq_mode",
+      "label": "UHF Frequency Mode Dial",
+      "dev": 54,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MNL",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 34
+        },
+        {
+          "label": "PRESET",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 33
+        },
+        {
+          "label": "GUARD",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 33
+        }
+      ]
+    },
+    {
+      "id": "uhf_function",
+      "label": "UHF Function Dial",
+      "dev": 54,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 40
+        },
+        {
+          "label": "MAIN",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 30
+        },
+        {
+          "label": "BOTH",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "ADF",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "uhf_squelch",
+      "label": "UHF Squelch",
+      "dev": 54,
+      "cmd": 3010,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "SQUELCH",
+          "delta": 1,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "UNSQUELCH",
+          "delta": 0,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "vhf_fm_freq_mode",
+      "label": "VHF FM Frequency Mode Dial",
+      "dev": 56,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "FM",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 34
+        },
+        {
+          "label": "AM",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 33
+        },
+        {
+          "label": "MAN",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 33
+        }
+      ]
+    },
+    {
+      "id": "env_windshield_defog",
+      "label": "Windshield Defog/Deice",
+      "dev": 41,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        }
+      ]
+    },
+    {
+      "id": "windshield_rain",
+      "label": "Windshield Rain Removal/Wash",
+      "dev": 41,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "RAIN REM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 75
+        },
+        {
+          "label": "WASH",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "sasp_yaw_l",
+      "label": "Yaw SAS Engage Left",
+      "dev": 38,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ENGAGE",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "sasp_yaw_r",
+      "label": "Yaw SAS Engage Right",
+      "dev": 38,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ENGAGE",
+          "delta": 1,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "zeroize_cover",
+      "label": "Zeroize Cover",
+      "dev": 69,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        }
+      ]
+    },
+    {
+      "id": "aux_inst_lights",
+      "label": "Auxiliary Instruments Lights",
+      "dev": 49,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "canopy_defog",
+      "label": "Canopy Defog",
+      "dev": 41,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "cmsc_rwr_brightness",
+      "label": "CMSC RWR Display Brightness",
+      "dev": 5,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "cmsc_rwr_volume",
+      "label": "CMSC RWR Volume",
+      "dev": 5,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "cmsp_brightness",
+      "label": "CMSP Display Brightness",
+      "dev": 4,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "console_light",
+      "label": "Console Light",
+      "dev": 49,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "eng_inst_lights",
+      "label": "Engine Instruments Lights",
+      "dev": 49,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "flight_inst_lights",
+      "label": "Flight Instruments Lights",
+      "dev": 49,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "flood_light",
+      "label": "Flood Light",
+      "dev": 49,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "env_flow_level",
+      "label": "Flow Level Control",
+      "dev": 41,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "formation_lights",
+      "label": "Formation Lights",
+      "dev": 49,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "hsi_course_knob",
+      "label": "HSI Course Set Knob",
+      "dev": 45,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "hsi_heading_knob",
+      "label": "HSI Heading Set Knob",
+      "dev": 45,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "intercom_volume",
+      "label": "Intercom Volume",
+      "dev": 58,
+      "cmd": 3018,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "rsil_lights",
+      "label": "Refuel Status Indexer Lights",
+      "dev": 49,
+      "cmd": 3015,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "refuel_lighting",
+      "label": "Refueling Lighting Dial",
+      "dev": 49,
+      "cmd": 3018,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "rwr_brightness",
+      "label": "RWR Display Brightness",
+      "dev": 29,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "stall_peak_volume",
+      "label": "Stall Peak Volume",
+      "dev": 52,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "stall_volume",
+      "label": "Stall Volume",
+      "dev": 52,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "tacan_volume",
+      "label": "TACAN Signal Volume",
+      "dev": 74,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "env_temp_level",
+      "label": "Temp Level Control",
+      "dev": 41,
+      "cmd": 3013,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "throttle_friction",
+      "label": "Throttle Friction Control",
+      "dev": 37,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "uhf_volume",
+      "label": "UHF Volume",
+      "dev": 54,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "vhf_fm_volume",
+      "label": "VHF FM Volume",
+      "dev": 56,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
+    }
+  ]
+}
