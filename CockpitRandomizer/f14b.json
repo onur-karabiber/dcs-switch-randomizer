@@ -4,64 +4,32 @@
   "delay": 3.1,
   "controls": [
     {
-      "id": "pilot_oxygen_on",
-      "label": "Pilot Oxygen On",
-      "dev": 12,
-      "cmd": 3190,
+      "id": "acm_cover",
+      "label": "ACM Cover",
+      "dev": 55,
+      "cmd": 3133,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "ON",
+          "label": "CLOSED",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 70
         },
         {
-          "label": "OFF",
-          "delta": -1,
+          "label": "OPEN",
+          "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 30
         }
       ]
     },
     {
-      "id": "sidewinder_volume",
-      "label": "Sidewinder Volume",
-      "dev": 2,
-      "cmd": 3400,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "alr67_volume",
-      "label": "ALR-67 Volume",
-      "dev": 2,
-      "cmd": 3398,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "arc182_volume_pilot",
-      "label": "VHF/UHF ARC-182 Volume Pilot",
-      "dev": 4,
-      "cmd": 3406,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "arc159_volume_pilot",
-      "label": "UHF ARC-159 Volume Pilot",
-      "dev": 3,
-      "cmd": 3362,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "afcs_sas_yaw",
-      "label": "AFCS Stability Augmentation - Yaw",
+      "id": "afcs_sas_pitch",
+      "label": "AFCS Stability Augmentation - Pitch",
       "dev": 22,
-      "cmd": 3036,
+      "cmd": 3034,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -102,10 +70,10 @@
       ]
     },
     {
-      "id": "afcs_sas_pitch",
-      "label": "AFCS Stability Augmentation - Pitch",
+      "id": "afcs_sas_yaw",
+      "label": "AFCS Stability Augmentation - Yaw",
       "dev": 22,
-      "cmd": 3034,
+      "cmd": 3036,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -124,10 +92,10 @@
       ]
     },
     {
-      "id": "autopilot_engage",
-      "label": "Autopilot - Engage",
-      "dev": 22,
-      "cmd": 3041,
+      "id": "ana_ara63_power",
+      "label": "ANA/ARA-63 Power Switch",
+      "dev": 50,
+      "cmd": 3322,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -146,10 +114,104 @@
       ]
     },
     {
+      "id": "anti_collision_lights",
+      "label": "Anti-Collision Lights",
+      "dev": 12,
+      "cmd": 3177,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
+      ]
+    },
+    {
+      "id": "anti_skid_spoiler_bk",
+      "label": "Anti-Skid Spoiler BK Switch",
+      "dev": 18,
+      "cmd": 3014,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "BOTH",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "SPOILER BK",
+          "delta": 2,
+          "is_default": false,
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "id": "asym_thrust_limiter_cover",
+      "label": "Asymmetric Thrust Limiter Cover",
+      "dev": 20,
+      "cmd": 3055,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
       "id": "autopilot_altitude_hold",
       "label": "Autopilot - Altitude Hold",
       "dev": 22,
       "cmd": 3038,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
+      ]
+    },
+    {
+      "id": "autopilot_engage",
+      "label": "Autopilot - Engage",
+      "dev": 22,
+      "cmd": 3041,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -224,28 +286,6 @@
       ]
     },
     {
-      "id": "asym_thrust_limiter_cover",
-      "label": "Asymmetric Thrust Limiter Cover",
-      "dev": 20,
-      "cmd": 3055,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "CLOSED",
-          "delta": 0,
-          "is_default": true,
-          "weight": 70
-        },
-        {
-          "label": "OPEN",
-          "delta": 1,
-          "is_default": false,
-          "weight": 30
-        }
-      ]
-    },
-    {
       "id": "emerg_gen_switch_cover",
       "label": "Emergency Generator Switch Cover",
       "dev": 15,
@@ -268,143 +308,27 @@
       ]
     },
     {
-      "id": "acm_cover",
-      "label": "ACM Cover",
-      "dev": 55,
-      "cmd": 3133,
+      "id": "hsd_display_mode",
+      "label": "HSD Display Mode",
+      "dev": 41,
+      "cmd": 3235,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "CLOSED",
-          "delta": 0,
-          "is_default": true,
-          "weight": 70
-        },
-        {
-          "label": "OPEN",
-          "delta": 1,
-          "is_default": false,
-          "weight": 30
-        }
-      ]
-    },
-    {
-      "id": "hyd_emerg_flt_cover",
-      "label": "Hydraulic Emergency Flight Control Switch Cover",
-      "dev": 13,
-      "cmd": 3004,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "CLOSED",
-          "delta": 0,
-          "is_default": true,
-          "weight": 70
-        },
-        {
-          "label": "OPEN",
-          "delta": 1,
-          "is_default": false,
-          "weight": 30
-        }
-      ]
-    },
-    {
-      "id": "left_engine_mode",
-      "label": "Left Engine Mode",
-      "dev": 20,
-      "cmd": 3052,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NORM",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OFF-IDLE",
-          "delta": -1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "right_engine_mode",
-      "label": "Right Engine Mode",
-      "dev": 20,
-      "cmd": 3053,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NORM",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OFF-IDLE",
-          "delta": -1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "anti_skid_spoiler_bk",
-      "label": "Anti-Skid Spoiler BK Switch",
-      "dev": 18,
-      "cmd": 3014,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "BOTH",
+          "label": "CENTER",
           "delta": 0,
           "is_default": true,
           "weight": 87
         },
         {
-          "label": "OFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "SPOILER BK",
-          "delta": 2,
-          "is_default": false,
-          "weight": 3
-        }
-      ]
-    },
-    {
-      "id": "wing_ext_trans",
-      "label": "Wing/Ext Trans",
-      "dev": 21,
-      "cmd": 3066,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NORM",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "WING",
+          "label": "LEFT",
           "delta": -1,
           "is_default": false,
           "weight": 7
         },
         {
-          "label": "EXT",
+          "label": "RIGHT",
           "delta": 1,
           "is_default": false,
           "weight": 6
@@ -412,24 +336,46 @@
       ]
     },
     {
-      "id": "master_arm_cover",
-      "label": "Master Arm Cover",
-      "dev": 55,
-      "cmd": 3135,
+      "id": "hsd_ecm_power",
+      "label": "HSD/ECM Power On/Off",
+      "dev": 41,
+      "cmd": 3215,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "CLOSED",
+          "label": "ON",
           "delta": 0,
           "is_default": true,
           "weight": 90
         },
         {
-          "label": "OPEN",
-          "delta": 1,
+          "label": "OFF",
+          "delta": -1,
           "is_default": false,
           "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "hud_awl_mode",
+      "label": "HUD AWL Mode",
+      "dev": 40,
+      "cmd": 3227,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
         }
       ]
     },
@@ -473,6 +419,138 @@
       ]
     },
     {
+      "id": "hud_power",
+      "label": "HUD Power On/Off",
+      "dev": 40,
+      "cmd": 3213,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "hook_bypass",
+      "label": "Hook Bypass",
+      "dev": 12,
+      "cmd": 3211,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
+      ]
+    },
+    {
+      "id": "hyd_emerg_flt_cover",
+      "label": "Hydraulic Emergency Flight Control Switch Cover",
+      "dev": 13,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "hyd_transfer_pump_cover",
+      "label": "Hydraulic Transfer Pump Switch Cover",
+      "dev": 13,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "left_engine_mode",
+      "label": "Left Engine Mode",
+      "dev": 20,
+      "cmd": 3052,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF-IDLE",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "master_arm_cover",
+      "label": "Master Arm Cover",
+      "dev": 55,
+      "cmd": 3135,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
       "id": "nav_steer_select",
       "label": "Navigation Steer Commands",
       "dev": 46,
@@ -512,10 +590,160 @@
       ]
     },
     {
-      "id": "hud_awl_mode",
-      "label": "HUD AWL Mode",
-      "dev": 40,
-      "cmd": 3227,
+      "id": "pilot_oxygen_on",
+      "label": "Pilot Oxygen On",
+      "dev": 12,
+      "cmd": 3190,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "position_lights_flash",
+      "label": "Position Lights Flash",
+      "dev": 12,
+      "cmd": 3176,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
+      ]
+    },
+    {
+      "id": "position_lights_tail",
+      "label": "Position Lights Tail",
+      "dev": 12,
+      "cmd": 3175,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "DIM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 9
+        },
+        {
+          "label": "BRT",
+          "delta": 2,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "position_lights_wing",
+      "label": "Position Lights Wing",
+      "dev": 12,
+      "cmd": 3174,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "DIM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 9
+        },
+        {
+          "label": "BRT",
+          "delta": 2,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "red_flood_light",
+      "label": "Red Flood Light",
+      "dev": 12,
+      "cmd": 3172,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DIM",
+          "delta": -1,
+          "is_default": true,
+          "weight": 34
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 33
+        },
+        {
+          "label": "BRT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 33
+        }
+      ]
+    },
+    {
+      "id": "right_engine_mode",
+      "label": "Right Engine Mode",
+      "dev": 20,
+      "cmd": 3053,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF-IDLE",
+          "delta": -1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "taxi_light",
+      "label": "Taxi Light",
+      "dev": 12,
+      "cmd": 3171,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -556,34 +784,6 @@
       ]
     },
     {
-      "id": "hsd_display_mode",
-      "label": "HSD Display Mode",
-      "dev": 41,
-      "cmd": 3235,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "CENTER",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "LEFT",
-          "delta": -1,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "RIGHT",
-          "delta": 1,
-          "is_default": false,
-          "weight": 6
-        }
-      ]
-    },
-    {
       "id": "vdi_power",
       "label": "VDI Power On/Off",
       "dev": 42,
@@ -602,116 +802,6 @@
           "delta": -1,
           "is_default": false,
           "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "hud_power",
-      "label": "HUD Power On/Off",
-      "dev": 40,
-      "cmd": 3213,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OFF",
-          "delta": -1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "hsd_ecm_power",
-      "label": "HSD/ECM Power On/Off",
-      "dev": 41,
-      "cmd": 3215,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OFF",
-          "delta": -1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "ana_ara63_power",
-      "label": "ANA/ARA-63 Power Switch",
-      "dev": 50,
-      "cmd": 3322,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 13
-        }
-      ]
-    },
-    {
-      "id": "hook_bypass",
-      "label": "Hook Bypass",
-      "dev": 12,
-      "cmd": 3211,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 13
-        }
-      ]
-    },
-    {
-      "id": "taxi_light",
-      "label": "Taxi Light",
-      "dev": 12,
-      "cmd": 3171,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 13
         }
       ]
     },
@@ -744,138 +834,38 @@
       ]
     },
     {
-      "id": "red_flood_light",
-      "label": "Red Flood Light",
-      "dev": 12,
-      "cmd": 3172,
+      "id": "wing_ext_trans",
+      "label": "Wing/Ext Trans",
+      "dev": 21,
+      "cmd": 3066,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "DIM",
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "WING",
           "delta": -1,
-          "is_default": true,
-          "weight": 34
-        },
-        {
-          "label": "OFF",
-          "delta": 0,
           "is_default": false,
-          "weight": 33
+          "weight": 7
         },
         {
-          "label": "BRT",
+          "label": "EXT",
           "delta": 1,
           "is_default": false,
-          "weight": 33
+          "weight": 6
         }
       ]
     },
     {
-      "id": "position_lights_wing",
-      "label": "Position Lights Wing",
-      "dev": 12,
-      "cmd": 3174,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "DIM",
-          "delta": 1,
-          "is_default": false,
-          "weight": 9
-        },
-        {
-          "label": "BRT",
-          "delta": 2,
-          "is_default": false,
-          "weight": 4
-        }
-      ]
-    },
-    {
-      "id": "position_lights_tail",
-      "label": "Position Lights Tail",
-      "dev": 12,
-      "cmd": 3175,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "DIM",
-          "delta": 1,
-          "is_default": false,
-          "weight": 9
-        },
-        {
-          "label": "BRT",
-          "delta": 2,
-          "is_default": false,
-          "weight": 4
-        }
-      ]
-    },
-    {
-      "id": "position_lights_flash",
-      "label": "Position Lights Flash",
-      "dev": 12,
-      "cmd": 3176,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 13
-        }
-      ]
-    },
-    {
-      "id": "anti_collision_lights",
-      "label": "Anti-Collision Lights",
-      "dev": 12,
-      "cmd": 3177,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 13
-        }
-      ]
-    },
-    {
-      "id": "instrument_light_intensity",
-      "label": "Instrument Light Intensity",
-      "dev": 12,
-      "cmd": 3179,
+      "id": "alr67_volume",
+      "label": "ALR-67 Volume",
+      "dev": 2,
+      "cmd": 3398,
       "enabled": true,
       "type": "continuous"
     },
@@ -896,26 +886,36 @@
       "type": "continuous"
     },
     {
-      "id": "hyd_transfer_pump_cover",
-      "label": "Hydraulic Transfer Pump Switch Cover",
-      "dev": 13,
-      "cmd": 3002,
+      "id": "instrument_light_intensity",
+      "label": "Instrument Light Intensity",
+      "dev": 12,
+      "cmd": 3179,
       "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "CLOSED",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OPEN",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
+      "type": "continuous"
+    },
+    {
+      "id": "sidewinder_volume",
+      "label": "Sidewinder Volume",
+      "dev": 2,
+      "cmd": 3400,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "arc159_volume_pilot",
+      "label": "UHF ARC-159 Volume Pilot",
+      "dev": 3,
+      "cmd": 3362,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "arc182_volume_pilot",
+      "label": "VHF/UHF ARC-182 Volume Pilot",
+      "dev": 4,
+      "cmd": 3406,
+      "enabled": true,
+      "type": "continuous"
     }
   ]
 }

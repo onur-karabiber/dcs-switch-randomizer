@@ -37,48 +37,27 @@
 
 CR.register("F-14B", {
 
-    -- -------------------------------------------------------------------------
-    -- OXYGEN   dev=12 (COCKPITMECHANICS)
-    -- -------------------------------------------------------------------------
-    -- Cold start: ON (arg=1). val=0 -> stay ON. val=-1 -> OFF.
-    -- ON=stay (90%) / OFF=-1 (10%)
-    { dev=12, cmd=3190, vals={0,0,0,0,0,0,0,0,0,-1}, label="Pilot Oxygen On" },
+    -- =========================================================================
+    -- DISCRETE SWITCHES (alphabetical by label)
+    -- =========================================================================
 
-    -- -------------------------------------------------------------------------
-    -- ICS VOLUMES   dev=2 (ICS) -- continuous, uniform
-    -- -------------------------------------------------------------------------
-    { dev=2, cmd=3400, vals={0,0.25,0.5,0.75,1.0}, label="Sidewinder Volume" },
-    { dev=2, cmd=3398, vals={0,0.25,0.5,0.75,1.0}, label="ALR-67 Volume" },
+    -- ACM Cover | default_animated_lever | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
+    { dev=55, cmd=3133, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="ACM Cover" },
 
-    -- -------------------------------------------------------------------------
-    -- RADIO VOLUMES -- continuous, uniform
-    -- -------------------------------------------------------------------------
-    { dev=4, cmd=3406, vals={0,0.25,0.5,0.75,1.0}, label="VHF/UHF ARC-182 Volume Pilot" },
-    { dev=3, cmd=3362, vals={0,0.25,0.5,0.75,1.0}, label="UHF ARC-159 Volume Pilot" },
-
-    -- -------------------------------------------------------------------------
-    -- AFCS   dev=22 (AFCS)
-    -- -------------------------------------------------------------------------
     -- Stability Augmentation | cold start: OFF (arg=0). val=+1 -> ON.
     -- OFF=stay (33%) / ON=+1 (67%) -- matching original working version probability
-    { dev=22, cmd=3036, vals={0,1,1}, label="AFCS Stability Augmentation - Yaw" },
-    { dev=22, cmd=3035, vals={0,1,1}, label="AFCS Stability Augmentation - Roll" },
     { dev=22, cmd=3034, vals={0,1,1}, label="AFCS Stability Augmentation - Pitch" },
+    { dev=22, cmd=3035, vals={0,1,1}, label="AFCS Stability Augmentation - Roll" },
+    { dev=22, cmd=3036, vals={0,1,1}, label="AFCS Stability Augmentation - Yaw" },
 
-    -- Autopilot Engage | cold start: OFF. val=+1 -> ON.
-    -- OFF=stay (87%) / ON=+1 (13%)
-    { dev=22, cmd=3041, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="Autopilot - Engage" },
+    { dev=50, cmd=3322, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="ANA/ARA-63 Power Switch" },
 
-    -- Autopilot Altitude Hold | DEBUG: always nonzero
-    { dev=22, cmd=3038, vals={1}, label="Autopilot - Altitude Hold" },
+    { dev=12, cmd=3177, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},   label="Anti-Collision Lights" },
 
-    -- Autopilot Heading/GT | DEBUG: always nonzero
-    { dev=22, cmd=3039, vals={1,-1}, label="Autopilot - Heading / Ground Track" },
+    -- Anti-Skid Spoiler BK | cold start: BOTH. stay (87%) / OFF=+1 (10%) / SPOILER BK=+2 (3%)
+    { dev=18, cmd=3014, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,2}, label="Anti-Skid Spoiler BK Switch" },
 
-    -- Autopilot Vector/ACL | DEBUG: always nonzero
-    { dev=22, cmd=3037, vals={1,-1}, label="Autopilot - Vector / Automatic Carrier Landing" },
-
--- -------------------------------------------------------------------------
     -- COVER SWITCHES — 70% closed / 30% open
     --
     -- All covers default to CLOSED at cold start (arg=0).
@@ -102,47 +81,38 @@ CR.register("F-14B", {
     --   ELECTRICS (dev=15) | SPOIL_Outboard_Override_Cover index 432 → cmd=3432
     --   WEAPONS (dev=55)   | WEAP_ACM_Cover              index 133 → cmd=3133
     --   HYDRAULICS (dev=13)| HYD_EMERG_FLT_SwitchCover   index 4   → cmd=3004
-    -- -------------------------------------------------------------------------
 
     -- Asymmetric Thrust Limiter Cover | default_2_position_tumb | arg_lim={0,1}
     -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
     { dev=20, cmd=3055, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Asymmetric Thrust Limiter Cover" },
 
+    -- Autopilot Altitude Hold | DEBUG: always nonzero
+    { dev=22, cmd=3038, vals={1}, label="Autopilot - Altitude Hold" },
+
+    -- Autopilot Engage | cold start: OFF. val=+1 -> ON.
+    -- OFF=stay (87%) / ON=+1 (13%)
+    { dev=22, cmd=3041, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="Autopilot - Engage" },
+
+    -- Autopilot Heading/GT | DEBUG: always nonzero
+    { dev=22, cmd=3039, vals={1,-1}, label="Autopilot - Heading / Ground Track" },
+
+    -- Autopilot Vector/ACL | DEBUG: always nonzero
+    { dev=22, cmd=3037, vals={1,-1}, label="Autopilot - Vector / Automatic Carrier Landing" },
+
     -- Emergency Generator Switch Cover | default_flipcover | arg_lim={0,1}
     -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
     { dev=15, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Emergency Generator Switch Cover" },
 
-    -- ACM Cover | default_animated_lever | arg_lim={0,1}
-    -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
-    { dev=55, cmd=3133, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="ACM Cover" },
+    { dev=12, cmd=3211, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="Hook Bypass" },
 
-    -- Hydraulic Emergency Flight Control Switch Cover | default_flipcover | arg_lim={0,1}
-    -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
-    { dev=13, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Hydraulic Emergency Flight Control Switch Cover" },
+    -- HSD Display Mode | cold start: center. stay (87%) / left=-1 (7%) / right=+1 (6%)
+    { dev=41, cmd=3235, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,1}, label="HSD Display Mode" },
 
-    -- -------------------------------------------------------------------------
-    -- ENGINE   dev=20 (ENGINE)
-    -- -------------------------------------------------------------------------
-    -- Engine Mode | cold start: NORM (arg=1). NORM=stay (90%) / OFF-IDLE=-1 (10%)
-    { dev=20, cmd=3052, vals={0,0,0,0,0,0,0,0,0,-1}, label="Left Engine Mode" },
-    { dev=20, cmd=3053, vals={0,0,0,0,0,0,0,0,0,-1}, label="Right Engine Mode" },
+    -- Power switches | cold start: ON. stay (90%) / OFF=-1 (10%)
+    { dev=41, cmd=3215, vals={0,0,0,0,0,0,0,0,0,-1}, label="HSD/ECM Power On/Off" },
 
-    -- -------------------------------------------------------------------------
-    -- GEAR/BRAKES   dev=18 (GEARHOOK)
-    -- -------------------------------------------------------------------------
-    -- Anti-Skid Spoiler BK | cold start: BOTH. stay (87%) / OFF=+1 (10%) / SPOILER BK=+2 (3%)
-    { dev=18, cmd=3014, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,2}, label="Anti-Skid Spoiler BK Switch" },
-
-    -- -------------------------------------------------------------------------
-    -- FUEL   dev=21 (FUELSYSTEM)
-    -- -------------------------------------------------------------------------
-    -- Wing/Ext Trans | cold start: NORM. NORM=stay (87%) / WING=-1 (7%) / EXT=+1 (6%)
-    { dev=21, cmd=3066, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,1}, label="Wing/Ext Trans" },
-
-    -- -------------------------------------------------------------------------
-    -- WEAPONS   dev=55 (WEAPONS)
-    -- -------------------------------------------------------------------------
-    { dev=55, cmd=3135, vals={0,0,0,0,0,0,0,0,0,1}, label="Master Arm Cover" },
+    -- HUD AWL Mode | cold start: OFF. OFF=stay (87%) / ON=+1 (13%)
+    { dev=40, cmd=3227, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="HUD AWL Mode" },
 
     -- -------------------------------------------------------------------------
     -- HUD MODE   dev=40 (HUD)
@@ -157,6 +127,20 @@ CR.register("F-14B", {
         end
     },
 
+    -- Power switches | cold start: ON. stay (90%) / OFF=-1 (10%)
+    { dev=40, cmd=3213, vals={0,0,0,0,0,0,0,0,0,-1}, label="HUD Power On/Off" },
+
+    -- Hydraulic Emergency Flight Control Switch Cover | default_flipcover | arg_lim={0,1}
+    -- Cold start: CLOSED (arg=0). val=0 → CLOSED. val=+1 → OPEN.
+    { dev=13, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1},  label="Hydraulic Emergency Flight Control Switch Cover" },
+
+    { dev=13, cmd=3002, vals={0,0,0,0,0,0,0,0,0,1}, label="Hydraulic Transfer Pump Switch Cover" },
+
+    -- Engine Mode | cold start: NORM (arg=1). NORM=stay (90%) / OFF-IDLE=-1 (10%)
+    { dev=20, cmd=3052, vals={0,0,0,0,0,0,0,0,0,-1}, label="Left Engine Mode" },
+
+    { dev=55, cmd=3135, vals={0,0,0,0,0,0,0,0,0,1}, label="Master Arm Cover" },
+
     -- -------------------------------------------------------------------------
     -- NAVIGATION STEER COMMANDS   dev=46 (NAV_INTERFACE)
     -- Radio group: one of 5 momentary buttons sets the steer source, others deactivate.
@@ -170,56 +154,51 @@ CR.register("F-14B", {
         end
     },
 
-    -- -------------------------------------------------------------------------
-    -- HUD / VDI / HSD   dev=40/42/41
-    -- -------------------------------------------------------------------------
-    -- HUD AWL Mode | cold start: OFF. OFF=stay (87%) / ON=+1 (13%)
-    { dev=40, cmd=3227, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="HUD AWL Mode" },
+    -- Cold start: ON (arg=1). val=0 -> stay ON. val=-1 -> OFF.
+    -- ON=stay (90%) / OFF=-1 (10%)
+    { dev=12, cmd=3190, vals={0,0,0,0,0,0,0,0,0,-1}, label="Pilot Oxygen On" },
+
+    -- Position lights | cold start: OFF. stay (87%) / DIM=+1 (9%) / BRT=+2 (4%)
+    { dev=12, cmd=3176, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},   label="Position Lights Flash" },
+    { dev=12, cmd=3175, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2}, label="Position Lights Tail" },
+    { dev=12, cmd=3174, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2}, label="Position Lights Wing" },
+
+    -- Flood lights | exempt: no operationally meaningful default, uniform
+    { dev=12, cmd=3172, vals={-1,0,1}, label="Red Flood Light" },
+
+    { dev=20, cmd=3053, vals={0,0,0,0,0,0,0,0,0,-1}, label="Right Engine Mode" },
+
+    { dev=12, cmd=3171, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="Taxi Light" },
 
     -- VDI Landing Mode | cold start: OFF. OFF=stay (87%) / ON=+1 (13%)
     { dev=42, cmd=3225, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="VDI Landing Mode" },
 
-    -- HSD Display Mode | cold start: center. stay (87%) / left=-1 (7%) / right=+1 (6%)
-    { dev=41, cmd=3235, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,1}, label="HSD Display Mode" },
-
     -- Power switches | cold start: ON. stay (90%) / OFF=-1 (10%)
     { dev=42, cmd=3214, vals={0,0,0,0,0,0,0,0,0,-1}, label="VDI Power On/Off" },
-    { dev=40, cmd=3213, vals={0,0,0,0,0,0,0,0,0,-1}, label="HUD Power On/Off" },
-    { dev=41, cmd=3215, vals={0,0,0,0,0,0,0,0,0,-1}, label="HSD/ECM Power On/Off" },
-
-    -- -------------------------------------------------------------------------
-    -- ANA/ARA-63   dev=50 (ILS)
-    -- -------------------------------------------------------------------------
-    { dev=50, cmd=3322, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="ANA/ARA-63 Power Switch" },
-
-    -- -------------------------------------------------------------------------
-    -- COCKPIT MECHANICS   dev=12 (COCKPITMECHANICS)
-    -- -------------------------------------------------------------------------
-    { dev=12, cmd=3211, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="Hook Bypass" },
-    { dev=12, cmd=3171, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="Taxi Light" },
 
     -- Flood lights | exempt: no operationally meaningful default, uniform
     { dev=12, cmd=3173, vals={-1,0,1}, label="White Flood Light" },
-    { dev=12, cmd=3172, vals={-1,0,1}, label="Red Flood Light" },
 
-    -- Position lights | cold start: OFF. stay (87%) / DIM=+1 (9%) / BRT=+2 (4%)
-    { dev=12, cmd=3174, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2}, label="Position Lights Wing" },
-    { dev=12, cmd=3175, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2}, label="Position Lights Tail" },
-    { dev=12, cmd=3176, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},   label="Position Lights Flash" },
-    { dev=12, cmd=3177, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},   label="Anti-Collision Lights" },
+    -- Wing/Ext Trans | cold start: NORM. NORM=stay (87%) / WING=-1 (7%) / EXT=+1 (6%)
+    { dev=21, cmd=3066, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,1}, label="Wing/Ext Trans" },
+
+    -- =========================================================================
+    -- CONTINUOUS KNOBS (alphabetical by label)
+    -- =========================================================================
+
+    { dev=2, cmd=3398, vals={0,0.25,0.5,0.75,1.0}, label="ALR-67 Volume" },
 
     -- Light intensity knobs | continuous, uniform
     -- cmd=3179/3180/3181 (1 below command_defs values 3180/3181/3182 -- matches working pattern)
-    { dev=12, cmd=3179, vals={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0}, label="Instrument Light Intensity" },
     { dev=12, cmd=3180, vals={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0}, label="Console Light Intensity" },
     { dev=12, cmd=3181, vals={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0}, label="Formation Light Intensity" },
+    { dev=12, cmd=3179, vals={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0}, label="Instrument Light Intensity" },
 
-    -- -------------------------------------------------------------------------
-    -- HYDRAULICS   dev=13 (HYDRAULICS)
-    -- -------------------------------------------------------------------------
-    { dev=13, cmd=3002, vals={0,0,0,0,0,0,0,0,0,1}, label="Hydraulic Transfer Pump Switch Cover" },
+    { dev=2, cmd=3400, vals={0,0.25,0.5,0.75,1.0}, label="Sidewinder Volume" },
+
+    { dev=3, cmd=3362, vals={0,0.25,0.5,0.75,1.0}, label="UHF ARC-159 Volume Pilot" },
+
+    { dev=4, cmd=3406, vals={0,0.25,0.5,0.75,1.0}, label="VHF/UHF ARC-182 Volume Pilot" },
 
 }, 3.1)
 -- Note: F-14B uses a 3.1s delay to allow avionics initialization to complete.
-
-
