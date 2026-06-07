@@ -21,6 +21,7 @@ HL    = "#9ae69b"
 ACC   = "#9ae69b"
 FG    = "#777777"
 MUTED = "#666666"
+WHITE = "#ffffff"
 GREEN = "#9ae69b"
 DARK  = "#111111"
 
@@ -702,14 +703,16 @@ class AircraftSettingsDialog(QDialog):
         body.setStyleSheet(f"background: transparent;")
         body_lay = QVBoxLayout(body)
         body_lay.setContentsMargins(32, 0, 32, 0)
+        body_lay.setSpacing(0)
 
         hint = QLabel("Click the gear icon next to an aircraft\nto configure its switch settings.")
         hint.setStyleSheet(
-            f"color: {MUTED}; font-family: Consolas; font-size: 13pt; background: transparent;")
+            f"color: {WHITE}; font-family: Consolas; font-size: 13pt; background: transparent;")
         hint.setAlignment(Qt.AlignCenter)
         hint.setWordWrap(True)
 
-        body_lay.addStretch()
+        from PyQt5.QtWidgets import QSpacerItem, QSizePolicy
+        body_lay.addItem(QSpacerItem(0, 290, QSizePolicy.Minimum, QSizePolicy.Fixed))
         body_lay.addWidget(hint)
         body_lay.addStretch()
 
