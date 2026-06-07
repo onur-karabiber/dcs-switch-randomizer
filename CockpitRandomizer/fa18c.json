@@ -4,46 +4,118 @@
   "delay": 3.0,
   "controls": [
     {
-      "id": "left_gen_switch",
-      "label": "Left Generator Switch",
-      "dev": 3,
-      "cmd": 3002,
+      "id": "anti_skid_switch",
+      "label": "Anti Skid Switch",
+      "dev": 5,
+      "cmd": 3004,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "NORM",
-          "delta": 2,
+          "label": "ON",
+          "delta": 1,
           "is_default": true,
-          "weight": 93
+          "weight": 68
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": false,
-          "weight": 7
+          "weight": 32
         }
       ]
     },
     {
-      "id": "right_gen_switch",
-      "label": "Right Generator Switch",
-      "dev": 3,
-      "cmd": 3003,
+      "id": "attitude_selector_switch",
+      "label": "ATTITUDE Selector Switch",
+      "dev": 34,
+      "cmd": 3009,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
+          "label": "INS",
+          "delta": 1,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "AUTO",
+          "delta": 0,
+          "is_default": true,
+          "weight": 93
+        },
+        {
+          "label": "STBY",
+          "delta": -1,
+          "is_default": false,
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "id": "aux_release_switch",
+      "label": "Auxiliary Release Switch",
+      "dev": 23,
+      "cmd": 3012,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ENABLE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
           "label": "NORM",
-          "delta": 2,
+          "delta": 1,
+          "is_default": true,
+          "weight": 94
+        }
+      ]
+    },
+    {
+      "id": "cb_fcs_chan1",
+      "label": "CB FCS CHAN 1",
+      "dev": 3,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "IN",
+          "delta": 0,
           "is_default": true,
           "weight": 92
         },
         {
-          "label": "OFF",
-          "delta": 0,
+          "label": "OUT",
+          "delta": 1,
           "is_default": false,
           "weight": 8
+        }
+      ]
+    },
+    {
+      "id": "cb_fcs_chan2",
+      "label": "CB FCS CHAN 2",
+      "dev": 3,
+      "cmd": 3018,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "IN",
+          "delta": 0,
+          "is_default": true,
+          "weight": 91
+        },
+        {
+          "label": "OUT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 9
         }
       ]
     },
@@ -114,6 +186,28 @@
       ]
     },
     {
+      "id": "cb_launch_bar",
+      "label": "CB LAUNCH BAR",
+      "dev": 3,
+      "cmd": 3020,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "IN",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "OUT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
+      ]
+    },
+    {
       "id": "cb_lg",
       "label": "CB LG",
       "dev": 3,
@@ -132,50 +226,6 @@
           "delta": 1,
           "is_default": false,
           "weight": 8
-        }
-      ]
-    },
-    {
-      "id": "cb_fcs_chan1",
-      "label": "CB FCS CHAN 1",
-      "dev": 3,
-      "cmd": 3017,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "IN",
-          "delta": 0,
-          "is_default": true,
-          "weight": 92
-        },
-        {
-          "label": "OUT",
-          "delta": 1,
-          "is_default": false,
-          "weight": 8
-        }
-      ]
-    },
-    {
-      "id": "cb_fcs_chan2",
-      "label": "CB FCS CHAN 2",
-      "dev": 3,
-      "cmd": 3018,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "IN",
-          "delta": 0,
-          "is_default": true,
-          "weight": 91
-        },
-        {
-          "label": "OUT",
-          "delta": 1,
-          "is_default": false,
-          "weight": 9
         }
       ]
     },
@@ -202,24 +252,210 @@
       ]
     },
     {
-      "id": "cb_launch_bar",
-      "label": "CB LAUNCH BAR",
-      "dev": 3,
-      "cmd": 3020,
+      "id": "comm_g_xmt_switch",
+      "label": "COMM G XMT Switch",
+      "dev": 40,
+      "cmd": 3011,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "IN",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "OUT",
+          "label": "COMM 1",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 7
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "COMM 2",
+          "delta": -1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "comm_relay_switch",
+      "label": "COMM Relay Switch",
+      "dev": 40,
+      "cmd": 3010,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CIPHER",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "PLAIN",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "id": "dispenser_switch",
+      "label": "DISPENSER Switch",
+      "dev": 54,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "BYPASS",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "ON",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 93
+        }
+      ]
+    },
+    {
+      "id": "ecm_mode_switch",
+      "label": "ECM Mode Switch",
+      "dev": 66,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "STBY",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "BIT",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "REC",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "XMIT",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "engine_anti_ice_switch",
+      "label": "ENGINE ANTI-ICE Switch",
+      "dev": 12,
+      "cmd": 3014,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 94
+        },
+        {
+          "label": "TEST",
+          "delta": -1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "flap_switch",
+      "label": "FLAP Switch",
+      "dev": 2,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "FULL",
+          "delta": -1,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "HALF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "AUTO",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "flir_switch",
+      "label": "FLIR Switch",
+      "dev": 62,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "STBY",
+          "delta": 0,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": true,
+          "weight": 91
         }
       ]
     },
@@ -268,152 +504,124 @@
       ]
     },
     {
-      "id": "comm_relay_switch",
-      "label": "COMM Relay Switch",
-      "dev": 40,
-      "cmd": 3010,
+      "id": "hook_bypass_switch",
+      "label": "HOOK BYPASS Switch",
+      "dev": 9,
+      "cmd": 3009,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "CIPHER",
+          "label": "FIELD",
           "delta": 1,
           "is_default": false,
-          "weight": 5
+          "weight": 34
         },
         {
-          "label": "OFF",
+          "label": "CARRIER",
           "delta": 0,
           "is_default": true,
-          "weight": 88
-        },
-        {
-          "label": "PLAIN",
-          "delta": -1,
-          "is_default": false,
-          "weight": 7
+          "weight": 66
         }
       ]
     },
     {
-      "id": "comm_g_xmt_switch",
-      "label": "COMM G XMT Switch",
-      "dev": 40,
-      "cmd": 3011,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "COMM 1",
-          "delta": 1,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 88
-        },
-        {
-          "label": "COMM 2",
-          "delta": -1,
-          "is_default": false,
-          "weight": 5
-        }
-      ]
-    },
-    {
-      "id": "spin_rec_cover",
-      "label": "Spin Recovery Switch Cover",
-      "dev": 2,
+      "id": "hud_altitude_switch",
+      "label": "HUD Altitude Switch",
+      "dev": 34,
       "cmd": 3008,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "OPEN",
+          "label": "BARO",
           "delta": 1,
-          "is_default": false,
-          "weight": 8
+          "is_default": true,
+          "weight": 96
         },
         {
-          "label": "CLOSE",
+          "label": "RDR",
           "delta": 0,
-          "is_default": true,
-          "weight": 92
+          "is_default": false,
+          "weight": 4
         }
       ]
     },
     {
-      "id": "flap_switch",
-      "label": "FLAP Switch",
-      "dev": 2,
-      "cmd": 3007,
+      "id": "hud_sym_brt_selector",
+      "label": "HUD Symbology Brightness Selector",
+      "dev": 34,
+      "cmd": 3003,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "FULL",
+          "label": "DAY",
+          "delta": 1,
+          "is_default": true,
+          "weight": 64
+        },
+        {
+          "label": "NIGHT",
+          "delta": 0,
+          "is_default": false,
+          "weight": 36
+        }
+      ]
+    },
+    {
+      "id": "hud_sym_reject_switch",
+      "label": "HUD Symbology Reject Switch",
+      "dev": 34,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 94
+        },
+        {
+          "label": "REJ 1",
+          "delta": 0,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "REJ 2",
           "delta": -1,
-          "is_default": true,
-          "weight": 60
-        },
-        {
-          "label": "HALF",
-          "delta": 0,
           "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "AUTO",
-          "delta": 1,
-          "is_default": false,
-          "weight": 20
+          "weight": 2
         }
       ]
     },
     {
-      "id": "anti_skid_switch",
-      "label": "Anti Skid Switch",
-      "dev": 5,
-      "cmd": 3004,
+      "id": "hud_video_control_switch",
+      "label": "HUD Video Control Switch",
+      "dev": 34,
+      "cmd": 3005,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "ON",
+          "label": "W/B",
           "delta": 1,
-          "is_default": true,
-          "weight": 68
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "VID",
+          "delta": 0,
+          "is_default": false,
+          "weight": 3
         },
         {
           "label": "OFF",
-          "delta": 0,
-          "is_default": false,
-          "weight": 32
-        }
-      ]
-    },
-    {
-      "id": "ils_ufc_man_switch",
-      "label": "ILS UFC/MAN Switch",
-      "dev": 40,
-      "cmd": 3016,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "UFC",
-          "delta": 0,
+          "delta": -1,
           "is_default": true,
-          "weight": 89
-        },
-        {
-          "label": "MAN",
-          "delta": 1,
-          "is_default": false,
-          "weight": 11
+          "weight": 92
         }
       ]
     },
@@ -548,386 +756,24 @@
       ]
     },
     {
-      "id": "obogs_control_switch",
-      "label": "OBOGS Control Switch",
-      "dev": 10,
-      "cmd": 3001,
+      "id": "ils_ufc_man_switch",
+      "label": "ILS UFC/MAN Switch",
+      "dev": 40,
+      "cmd": 3016,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 17
-        },
-        {
-          "label": "OFF",
+          "label": "UFC",
           "delta": 0,
           "is_default": true,
-          "weight": 83
-        }
-      ]
-    },
-    {
-      "id": "hook_bypass_switch",
-      "label": "HOOK BYPASS Switch",
-      "dev": 9,
-      "cmd": 3009,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
+          "weight": 89
+        },
         {
-          "label": "FIELD",
+          "label": "MAN",
           "delta": 1,
           "is_default": false,
-          "weight": 34
-        },
-        {
-          "label": "CARRIER",
-          "delta": 0,
-          "is_default": true,
-          "weight": 66
-        }
-      ]
-    },
-    {
-      "id": "mode_switch",
-      "label": "MODE Switch",
-      "dev": 9,
-      "cmd": 3004,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NVG",
-          "delta": 1,
-          "is_default": false,
-          "weight": 8
-        },
-        {
-          "label": "NITE",
-          "delta": 0,
-          "is_default": false,
-          "weight": 70
-        },
-        {
-          "label": "DAY",
-          "delta": -1,
-          "is_default": true,
-          "weight": 22
-        }
-      ]
-    },
-    {
-      "id": "master_arm_switch",
-      "label": "Master Arm Switch",
-      "dev": 23,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "SAFE",
-          "delta": 0,
-          "is_default": true,
-          "weight": 99
-        },
-        {
-          "label": "ARM",
-          "delta": 1,
-          "is_default": false,
-          "weight": 1
-        }
-      ]
-    },
-    {
-      "id": "ldg_taxi_light",
-      "label": "LDG/TAXI LIGHT Switch",
-      "dev": 8,
-      "cmd": 3004,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 96
-        },
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 4
-        }
-      ]
-    },
-    {
-      "id": "hud_altitude_switch",
-      "label": "HUD Altitude Switch",
-      "dev": 34,
-      "cmd": 3008,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "BARO",
-          "delta": 1,
-          "is_default": true,
-          "weight": 96
-        },
-        {
-          "label": "RDR",
-          "delta": 0,
-          "is_default": false,
-          "weight": 4
-        }
-      ]
-    },
-    {
-      "id": "hud_sym_brt_selector",
-      "label": "HUD Symbology Brightness Selector",
-      "dev": 34,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "DAY",
-          "delta": 1,
-          "is_default": true,
-          "weight": 64
-        },
-        {
-          "label": "NIGHT",
-          "delta": 0,
-          "is_default": false,
-          "weight": 36
-        }
-      ]
-    },
-    {
-      "id": "left_mdi_brt_selector",
-      "label": "Left MDI Brightness Selector",
-      "dev": 35,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 100
-        },
-        {
-          "label": "NIGHT",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 0
-        },
-        {
-          "label": "DAY",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 0
-        }
-      ]
-    },
-    {
-      "id": "right_mdi_brt_selector",
-      "label": "Right MDI Brightness Selector",
-      "dev": 36,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 97
-        },
-        {
-          "label": "NIGHT",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 1
-        },
-        {
-          "label": "DAY",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 2
-        }
-      ]
-    },
-    {
-      "id": "shoulder_harness_handle",
-      "label": "Shoulder Harness Control Handle",
-      "dev": 7,
-      "cmd": 3009,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "LOCK",
-          "delta": 1,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "UNLOCK",
-          "delta": 0,
-          "is_default": true,
-          "weight": 93
-        }
-      ]
-    },
-    {
-      "id": "ecm_mode_switch",
-      "label": "ECM Mode Switch",
-      "dev": 66,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 88
-        },
-        {
-          "label": "STBY",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 6
-        },
-        {
-          "label": "BIT",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 3
-        },
-        {
-          "label": "REC",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 2
-        },
-        {
-          "label": "XMIT",
-          "delta": 0.4,
-          "is_default": false,
-          "weight": 1
-        }
-      ]
-    },
-    {
-      "id": "dispenser_switch",
-      "label": "DISPENSER Switch",
-      "dev": 54,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "BYPASS",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 6
-        },
-        {
-          "label": "ON",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 1
-        },
-        {
-          "label": "OFF",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 93
-        }
-      ]
-    },
-    {
-      "id": "aux_release_switch",
-      "label": "Auxiliary Release Switch",
-      "dev": 23,
-      "cmd": 3012,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ENABLE",
-          "delta": 0,
-          "is_default": false,
-          "weight": 6
-        },
-        {
-          "label": "NORM",
-          "delta": 1,
-          "is_default": true,
-          "weight": 94
-        }
-      ]
-    },
-    {
-      "id": "radar_switch",
-      "label": "RADAR Switch",
-      "dev": 42,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "STBY",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 8
-        },
-        {
-          "label": "OPR",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 2
-        }
-      ]
-    },
-    {
-      "id": "engine_anti_ice_switch",
-      "label": "ENGINE ANTI-ICE Switch",
-      "dev": 12,
-      "cmd": 3014,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 1
-        },
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 94
-        },
-        {
-          "label": "TEST",
-          "delta": -1,
-          "is_default": false,
-          "weight": 5
+          "weight": 11
         }
       ]
     },
@@ -990,90 +836,6 @@
       ]
     },
     {
-      "id": "lst_nflr_switch",
-      "label": "LST/NFLR Switch",
-      "dev": 62,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 4
-        },
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 96
-        }
-      ]
-    },
-    {
-      "id": "flir_switch",
-      "label": "FLIR Switch",
-      "dev": 62,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 2
-        },
-        {
-          "label": "STBY",
-          "delta": 0,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "OFF",
-          "delta": -1,
-          "is_default": true,
-          "weight": 91
-        }
-      ]
-    },
-    {
-      "id": "ky58_mode_select",
-      "label": "KY-58 Mode Select",
-      "dev": 41,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "P",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 89
-        },
-        {
-          "label": "C",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 3
-        },
-        {
-          "label": "LD",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "RV",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 3
-        }
-      ]
-    },
-    {
       "id": "ky58_fill_select",
       "label": "KY-58 Fill Select",
       "dev": 41,
@@ -1120,6 +882,40 @@
       ]
     },
     {
+      "id": "ky58_mode_select",
+      "label": "KY-58 Mode Select",
+      "dev": 41,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "P",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 89
+        },
+        {
+          "label": "C",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "LD",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "RV",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 3
+        }
+      ]
+    },
+    {
       "id": "ky58_power_select",
       "label": "KY-58 Power Select",
       "dev": 41,
@@ -1144,6 +940,294 @@
           "delta": 0.2,
           "is_default": false,
           "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "ldg_taxi_light",
+      "label": "LDG/TAXI LIGHT Switch",
+      "dev": 8,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 96
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "left_gen_switch",
+      "label": "Left Generator Switch",
+      "dev": 3,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 2,
+          "is_default": true,
+          "weight": 93
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "id": "left_mdi_brt_selector",
+      "label": "Left MDI Brightness Selector",
+      "dev": 35,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "NIGHT",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "DAY",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "lst_nflr_switch",
+      "label": "LST/NFLR Switch",
+      "dev": 62,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 96
+        }
+      ]
+    },
+    {
+      "id": "master_arm_switch",
+      "label": "Master Arm Switch",
+      "dev": 23,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "SAFE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "ARM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "mode_switch",
+      "label": "MODE Switch",
+      "dev": 9,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NVG",
+          "delta": 1,
+          "is_default": false,
+          "weight": 8
+        },
+        {
+          "label": "NITE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 70
+        },
+        {
+          "label": "DAY",
+          "delta": -1,
+          "is_default": true,
+          "weight": 22
+        }
+      ]
+    },
+    {
+      "id": "obogs_control_switch",
+      "label": "OBOGS Control Switch",
+      "dev": 10,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 17
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 83
+        }
+      ]
+    },
+    {
+      "id": "radar_switch",
+      "label": "RADAR Switch",
+      "dev": 42,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "STBY",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 8
+        },
+        {
+          "label": "OPR",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "right_gen_switch",
+      "label": "Right Generator Switch",
+      "dev": 3,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 2,
+          "is_default": true,
+          "weight": 92
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 8
+        }
+      ]
+    },
+    {
+      "id": "right_mdi_brt_selector",
+      "label": "Right MDI Brightness Selector",
+      "dev": 36,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 97
+        },
+        {
+          "label": "NIGHT",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "DAY",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "shoulder_harness_handle",
+      "label": "Shoulder Harness Control Handle",
+      "dev": 7,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "LOCK",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "UNLOCK",
+          "delta": 0,
+          "is_default": true,
+          "weight": 93
+        }
+      ]
+    },
+    {
+      "id": "spin_rec_cover",
+      "label": "Spin Recovery Switch Cover",
+      "dev": 2,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 8
+        },
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 92
         }
       ]
     },
@@ -1176,102 +1260,50 @@
       ]
     },
     {
-      "id": "hud_sym_reject_switch",
-      "label": "HUD Symbology Reject Switch",
-      "dev": 34,
+      "id": "ampcd_off_brt_knob",
+      "label": "AMPCD Off/Brightness Knob",
+      "dev": 37,
       "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "NORM",
-          "delta": 1,
-          "is_default": true,
-          "weight": 94
-        },
-        {
-          "label": "REJ 1",
-          "delta": 0,
-          "is_default": false,
-          "weight": 4
-        },
-        {
-          "label": "REJ 2",
-          "delta": -1,
-          "is_default": false,
-          "weight": 2
-        }
-      ]
-    },
-    {
-      "id": "attitude_selector_switch",
-      "label": "ATTITUDE Selector Switch",
-      "dev": 34,
-      "cmd": 3009,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "INS",
-          "delta": 1,
-          "is_default": false,
-          "weight": 4
-        },
-        {
-          "label": "AUTO",
-          "delta": 0,
-          "is_default": true,
-          "weight": 93
-        },
-        {
-          "label": "STBY",
-          "delta": -1,
-          "is_default": false,
-          "weight": 3
-        }
-      ]
-    },
-    {
-      "id": "hud_video_control_switch",
-      "label": "HUD Video Control Switch",
-      "dev": 34,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "W/B",
-          "delta": 1,
-          "is_default": false,
-          "weight": 5
-        },
-        {
-          "label": "VID",
-          "delta": 0,
-          "is_default": false,
-          "weight": 3
-        },
-        {
-          "label": "OFF",
-          "delta": -1,
-          "is_default": true,
-          "weight": 92
-        }
-      ]
-    },
-    {
-      "id": "ufc_brightness_knob",
-      "label": "UFC Brightness Control Knob",
-      "dev": 25,
-      "cmd": 3032,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "ky58_volume",
-      "label": "KY-58 Volume Control",
-      "dev": 41,
+      "id": "hud_balance_knob",
+      "label": "Balance Control Knob",
+      "dev": 34,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "chart_dimmer",
+      "label": "CHART Dimmer",
+      "dev": 9,
       "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "comm1_volume",
+      "label": "COMM 1 Volume",
+      "dev": 25,
+      "cmd": 3030,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "comm2_volume",
+      "label": "COMM 2 Volume",
+      "dev": 25,
+      "cmd": 3031,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "consoles_dimmer",
+      "label": "CONSOLES Dimmer",
+      "dev": 9,
+      "cmd": 3001,
       "enabled": true,
       "type": "continuous"
     },
@@ -1284,18 +1316,42 @@
       "type": "continuous"
     },
     {
-      "id": "ampcd_off_brt_knob",
-      "label": "AMPCD Off/Brightness Knob",
-      "dev": 37,
-      "cmd": 3001,
+      "id": "flood_dimmer",
+      "label": "FLOOD Dimmer",
+      "dev": 9,
+      "cmd": 3003,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "tacan_volume_knob",
-      "label": "TACAN Volume Knob",
-      "dev": 40,
-      "cmd": 3008,
+      "id": "formation_dimmer",
+      "label": "FORMATION Lights Dimmer",
+      "dev": 8,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "ifei_brightness_knob",
+      "label": "IFEI Brightness Control Knob",
+      "dev": 33,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "inst_pnl_dimmer",
+      "label": "INST PNL Dimmer",
+      "dev": 9,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "ky58_volume",
+      "label": "KY-58 Volume Control",
+      "dev": 41,
+      "cmd": 3005,
       "enabled": true,
       "type": "continuous"
     },
@@ -1316,66 +1372,10 @@
       "type": "continuous"
     },
     {
-      "id": "formation_dimmer",
-      "label": "FORMATION Lights Dimmer",
-      "dev": 8,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "consoles_dimmer",
-      "label": "CONSOLES Dimmer",
-      "dev": 9,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "inst_pnl_dimmer",
-      "label": "INST PNL Dimmer",
-      "dev": 9,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "flood_dimmer",
-      "label": "FLOOD Dimmer",
-      "dev": 9,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "warn_caution_dimmer",
-      "label": "WARN/CAUTION Dimmer",
-      "dev": 9,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "chart_dimmer",
-      "label": "CHART Dimmer",
-      "dev": 9,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "ifei_brightness_knob",
-      "label": "IFEI Brightness Control Knob",
-      "dev": 33,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "hud_balance_knob",
-      "label": "Balance Control Knob",
-      "dev": 34,
-      "cmd": 3006,
+      "id": "tacan_volume_knob",
+      "label": "TACAN Volume Knob",
+      "dev": 40,
+      "cmd": 3008,
       "enabled": true,
       "type": "continuous"
     },
@@ -1388,18 +1388,18 @@
       "type": "continuous"
     },
     {
-      "id": "comm1_volume",
-      "label": "COMM 1 Volume",
+      "id": "ufc_brightness_knob",
+      "label": "UFC Brightness Control Knob",
       "dev": 25,
-      "cmd": 3030,
+      "cmd": 3032,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "comm2_volume",
-      "label": "COMM 2 Volume",
-      "dev": 25,
-      "cmd": 3031,
+      "id": "warn_caution_dimmer",
+      "label": "WARN/CAUTION Dimmer",
+      "dev": 9,
+      "cmd": 3006,
       "enabled": true,
       "type": "continuous"
     }
