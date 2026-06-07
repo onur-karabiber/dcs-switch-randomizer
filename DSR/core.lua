@@ -103,7 +103,9 @@ local function cr_randomize()
                     sw.run(device)
                 else
                     pick = sw.vals[math.random(#sw.vals)]
-                    device:performClickableAction(sw.cmd, pick)
+                    if pick ~= false then
+                        device:performClickableAction(sw.cmd, pick)
+                    end
                 end
             end)
             if ok3 then

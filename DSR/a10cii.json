@@ -219,7 +219,7 @@
       "id": "ground_safety_override_cover",
       "label": "Arm Ground Safety Override Switch Cover",
       "dev": 12,
-      "cmd": 3003,
+      "cmd": 3002,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -231,9 +231,10 @@
         },
         {
           "label": "SAFE",
-          "delta": -1,
+          "delta": 0,
           "is_default": true,
-          "weight": 98
+          "weight": 98,
+          "skip_command": true
         }
       ]
     },

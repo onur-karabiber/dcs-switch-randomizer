@@ -38,7 +38,7 @@ CR.register("A-10C_2", {
 
     -- Arm Ground Safety Override Switch Cover
     -- OVERRIDE=2% / SAFE=98%(default)
-    { dev=12, cmd=3003, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Arm Ground Safety Override Switch Cover" },
+    { dev=12, cmd=3002, vals={1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Arm Ground Safety Override Switch Cover" },
 
     -- Autopilot Mode Select
     -- PATH=20% / ALT/HDG=60%(default) / ALT=20%
