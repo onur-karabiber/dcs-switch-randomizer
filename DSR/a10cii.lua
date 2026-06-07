@@ -37,8 +37,8 @@ CR.register("A-10C_2", {
     { dev=55, cmd=3043, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.5, 0.5, 0.5, 0.6, 0.6}, label="ARC-210 Master Switch" },
 
     -- Arm Ground Safety Override Switch Cover
-    -- OVERRIDE=2% / SAFE=98%(default)
-    { dev=12, cmd=3002, vals={1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Arm Ground Safety Override Switch Cover" },
+    -- OPEN=4% / SAFE=96%(default)
+    { dev=12, cmd=3002, vals={1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Arm Ground Safety Override Switch Cover" },
 
     -- Autopilot Mode Select
     -- PATH=20% / ALT/HDG=60%(default) / ALT=20%
@@ -133,7 +133,7 @@ CR.register("A-10C_2", {
     { dev=38, cmd=3031, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="HARS-SAS Override/NORM" },
 
     -- IFF Antenna Switch
-    -- UPPER=0%(default) / AUTO=0% / LOWER=100%
+    -- UPPER=0% / AUTO=0% / LOWER=100%(default)
     { dev=43, cmd=3019, vals={0}, label="IFF Antenna Switch" },
 
     -- ILS Frequency/Power
@@ -329,8 +329,8 @@ CR.register("A-10C_2", {
     { dev=38, cmd=3005, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Yaw SAS Engage Right" },
 
     -- Zeroize Cover
-    -- OPEN=5% / CLOSE=95%(default)
-    { dev=69, cmd=3001, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Zeroize Cover" },
+    -- OPEN=7% / CLOSE=93%(default)
+    { dev=69, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Zeroize Cover" },
 
     -- Auxiliary Instruments Lights
     { dev=49, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Auxiliary Instruments Lights" },
