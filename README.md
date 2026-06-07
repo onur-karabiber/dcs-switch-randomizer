@@ -38,15 +38,6 @@ CockpitRandomizer recreates that reality. Each cold start is different. You cann
 - Windows
 - DCS World (Steam or standalone)
 - One or more supported aircraft modules
-- Python 3 with PyQt5 (`pip install PyQt5`)
-
----
-
-## Requirements
-
-- Windows
-- DCS World (Steam or standalone)
-- One or more supported aircraft modules
 - No additional tools required
 
 ---
