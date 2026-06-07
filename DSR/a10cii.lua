@@ -160,6 +160,10 @@ CR.register("A-10C_2", {
     -- IN=50% / OUT=50%(default)
     { dev=58, cmd=3001, vals={1, 0}, label="Intercom INT Switch" },
 
+    -- Intercom Selector Switch
+    -- POS 1=20%(default) / POS 2=20% / POS 3=20% / POS 4=20% / POS 5=20%
+    { dev=58, cmd=3019, vals={0, 0.1, 0.2, 0.3, 0.4}, label="Intercom Selector Switch" },
+
     -- Intercom TCN Switch
     -- IN=50% / OUT=50%(default)
     { dev=58, cmd=3015, vals={1, 0}, label="Intercom TCN Switch" },
