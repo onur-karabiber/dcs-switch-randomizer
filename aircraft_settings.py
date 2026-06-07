@@ -842,18 +842,18 @@ class AircraftSettingsDialog(QDialog):
             btn.setCursor(Qt.PointingHandCursor)
             if style == "apply":
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: {ACC}; color: #111111;
+                    QPushButton {{ background: transparent; color: {ACC};
                         font-family: Consolas; font-size: 12pt; font-weight: bold;
-                        border: none; border-radius: 6px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: #eae8eb; }}
-                    QPushButton:pressed {{ background: #22cc00; }}
+                        border: 1px solid {ACC}; border-radius: 6px; padding: 0 16px; }}
+                    QPushButton:hover {{ background: rgba(154,230,155,0.12); }}
+                    QPushButton:pressed {{ background: rgba(154,230,155,0.25); }}
                 """)
             else:
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: #1a1a1a; color: {FG};
+                    QPushButton {{ background: transparent; color: {FG};
                         font-family: Consolas; font-size: 12pt;
                         border: 1px solid #333333; border-radius: 6px; padding: 0 16px; }}
-                    QPushButton:hover {{ background: #222222; border: 1px solid {ACC}; }}
+                    QPushButton:hover {{ background: rgba(34,34,34,0.5); border: 1px solid {ACC}; }}
                 """)
             btn.clicked.connect(slot)
             bot_lay.addWidget(btn)

@@ -54,7 +54,7 @@ MUTED = "#777777"
 GREEN = "#9ae69b"
 
 # [10] Hover rengi — neon yeşil vurgu
-HOVER_ROW = "#1a1a1a"
+HOVER_ROW = "#000000"
 
 # ── Version helpers ───────────────────────────────────────────────────────────
 def read_version(path):
@@ -195,9 +195,9 @@ QLabel#status   {{ color: {MUTED}; font-size: 10pt; }}
 QLabel#body     {{ color: {FG};    font-size: 13pt; }}
 QLabel#head     {{ color: {FG};    font-size: 15pt; font-weight: bold; }}
 
-QPushButton#apply   {{ background:{ACC}; color:#111111; font-size:15pt; font-weight:bold; border:none; border-radius:8px; padding:10px; }}
-QPushButton#apply:hover    {{ background:#eae8eb; }}
-QPushButton#apply:pressed  {{ background:#22cc00; }}
+QPushButton#apply   {{ background:transparent; color:{ACC}; font-size:15pt; font-weight:bold; border:1px solid {ACC}; border-radius:8px; padding:10px; }}
+QPushButton#apply:hover    {{ background:rgba(154,230,155,0.12); }}
+QPushButton#apply:pressed  {{ background:rgba(154,230,155,0.25); }}
 
 QPushButton#reset   {{ background:#1a1a1a; color:{FG}; font-size:15pt; font-weight:bold; border:1px solid #333333; border-radius:8px; padding:10px; }}
 QPushButton#reset:hover    {{ background:#222222; border:1px solid {ACC}; }}
@@ -211,24 +211,24 @@ QPushButton#uninst  {{ background:#824f4a; color:white; font-size:15pt; font-wei
 QPushButton#uninst:hover   {{ background:#e74c3c; }}
 QPushButton#uninst:pressed {{ background:#922b21; }}
 
-QPushButton#closebtn {{ background:#1a1a1a; color:{MUTED}; font-size:10pt; border:1px solid #333333; border-radius:6px; padding:8px 24px; }}
-QPushButton#closebtn:hover {{ background:#222222; color:{FG}; }}
+QPushButton#closebtn {{ background:transparent; color:{FG}; font-family:Consolas; font-size:12pt; border:1px solid #333333; border-radius:6px; padding:8px 24px; }}
+QPushButton#closebtn:hover {{ background:rgba(34,34,34,0.5); border:1px solid {ACC}; }}
 
 QPushButton#iconbtn_update,
 QPushButton#iconbtn_deactivate,
 QPushButton#iconbtn_import,
 QPushButton#iconbtn_export,
-QPushButton#iconbtn_defaults {{ background:{PANEL}; color:{ACC}; border:1px solid #222222; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
+QPushButton#iconbtn_defaults {{ background:rgba(34,34,34,0.55); color:{ACC}; border:1px solid #333333; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
 QPushButton#iconbtn_update:hover,
 QPushButton#iconbtn_deactivate:hover,
 QPushButton#iconbtn_import:hover,
 QPushButton#iconbtn_export:hover,
-QPushButton#iconbtn_defaults:hover {{ background:#1a1a1a; border:1px solid {ACC}; }}
+QPushButton#iconbtn_defaults:hover {{ background:rgba(34,34,34,0.75); border:1px solid {ACC}; }}
 QPushButton#iconbtn_update:pressed,
 QPushButton#iconbtn_deactivate:pressed,
 QPushButton#iconbtn_import:pressed,
 QPushButton#iconbtn_export:pressed,
-QPushButton#iconbtn_defaults:pressed {{ background:#0a0a0a; }}
+QPushButton#iconbtn_defaults:pressed {{ background:rgba(10,10,10,0.85); }}
 
 QPushButton#iconbtn_uninst  {{ background:#824f4a; color:white; border:none; border-radius:8px; font-family:'Segoe MDL2 Assets'; font-size:18pt; }}
 QPushButton#iconbtn_uninst:hover   {{ background:#e74c3c; }}
@@ -335,7 +335,7 @@ class AircraftRow(QWidget):
 
         # [12] Modern tik: ✔ / boş daire ○ — seçili daha koyu, pasif daha silik
         self.lbl = QLabel(self._text())
-        font = QFont("Consolas", 15)
+        font = QFont("Consolas", 13)
         font.setBold(True)
         self.lbl.setFont(font)
         self.lbl.setStyleSheet(self._label_style())
@@ -355,14 +355,14 @@ class AircraftRow(QWidget):
             QToolButton {{
                 background: transparent;
                 color: {MUTED};
-                font-size: 16pt;
+                font-size: 14pt;
                 border: none;
                 border-radius: 6px;
                 outline: none;
             }}
             QToolButton:hover {{
-                background: #222222;
-                color: {FG};
+                background: #000000;
+                color: {MUTED};
             }}
             QToolButton:pressed {{
                 background: {ACC};
