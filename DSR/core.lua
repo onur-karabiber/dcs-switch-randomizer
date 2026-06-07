@@ -1,5 +1,5 @@
 -- =============================================================================
--- CockpitRandomizer — core.lua
+-- DCS Switch Randomizer (DSR) — core.lua
 -- Shared engine: aircraft detection, RPM guard, hook chaining, logging.
 -- Aircraft-specific switch tables live in separate files (f4e.lua, fa18c.lua…).
 -- =============================================================================
@@ -43,7 +43,7 @@ CR._armed    = false
 -- HELPERS
 -- =============================================================================
 local function cr_log(msg)
-    log.write("COCKPIT_RANDOMIZER", log.INFO, msg)
+    log.write("DCS_SWITCH_RANDOMIZER", log.INFO, msg)
 end
 
 local function cr_get_aircraft()

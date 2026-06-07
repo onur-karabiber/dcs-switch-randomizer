@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to CockpitRandomizer are documented here.
+All notable changes to DCS Switch Randomizer (DSR) are documented here.
 
 ---
 
@@ -129,4 +129,4 @@ CB FCS CHAN 3/4, CB HOOK, and CB LG cannot be reached using standard command IDs
 - Weighted randomization engine
 - Export.lua hook chaining (DCS-BIOS, SRS, Tacview compatible)
 - Per-aircraft configurable delay
-- Full activity logging under `COCKPIT_RANDOMIZER` tag
+- Full activity logging under `DCS_SWITCH_RANDOMIZER` tag

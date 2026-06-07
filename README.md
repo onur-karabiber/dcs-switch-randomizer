@@ -1,14 +1,17 @@
-# CockpitRandomizer
+# DCS Switch Randomizer (DSR)
 
 A desktop application for DCS World that randomizes cockpit switch and knob positions on each cold start, forcing a proper interior check before you do anything else.
 
+Supports: **F/A-18C Hornet** · **F-16C Viper** · **A-10C II** · **UH-1H Huey** · **MiG-21bis** · **Spitfire LF Mk. IX** · **F-5E Tiger II** · **F-4E Phantom II** · **F-14B Tomcat**
+
+> **Note:** Why these 9 aircraft? Because I do this as a hobby and I could only afford so many modules. :)
 ---
 
 ## Why this exists
 
 In DCS, every time you enter a cockpit the aircraft spawns with all switches in their factory-default positions. For taxi, runway hold, and in-flight slots this makes sense. For cold-start scenarios it breaks immersion: a real aircraft coming out of a previous sortie would have been left in whatever state the last crew left it in. Landing lights on, STAB AUG engaged, IFF in an unexpected mode — anything is possible.
 
-CockpitRandomizer recreates that reality. Each cold start is different. You cannot skip the interior check.
+DCS Switch Randomizer recreates that reality. Each cold start is different. You cannot skip the interior check.
 
 ---
 
@@ -20,25 +23,16 @@ CockpitRandomizer recreates that reality. Each cold start is different. You cann
 - **Per-control probability.** Each switch has weighted probabilities for each position. Safety-critical switches are biased toward safe defaults, but nothing is guaranteed.
 - **Knob randomization.** Continuous controls (volume knobs, brightness dials, trim wheels, etc.) are sampled across their full range.
 - **Non-destructive.** Chains into any existing `LuaExport*` functions. Compatible with DCS-BIOS, SRS, Tacview, and similar Export.lua-based tools.
-- All activity is logged to `DCS.log` under the `COCKPIT_RANDOMIZER` tag.
+- All activity is logged to `DCS.log` under the `DCS_SWITCH_RANDOMIZER` tag.
 
 **Application**
 - **GUI installer.** Install, update, and uninstall entirely through the application — no manual file editing required under normal use.
 - **Existing Export.lua support.** The installer detects and backs up your existing `Export.lua`. All operations restore it correctly on deactivation or uninstall.
 - **Per-aircraft control.** Enable or disable individual aircraft modules from the main screen with a single click.
 - **Settings dialog.** Adjust the randomization probability of each individual switch or knob per aircraft. Changes generate new Lua scripts automatically.
-- **Deactivate without uninstalling.** Temporarily removes CockpitRandomizer from your Export.lua and restores your original file. Reactivate at any time by pressing Apply.
+- **Deactivate without uninstalling.** Temporarily removes DSR from your Export.lua and restores your original file. Reactivate at any time by pressing Apply.
 - **Factory defaults.** Reset any aircraft's switch settings back to the built-in defaults at any time.
 - **Settings backup and restore.** Export your current switch settings to a folder and import them later, or share them with others.
-
----
-
-## Requirements
-
-- Windows
-- DCS World (Steam or standalone)
-- One or more supported aircraft modules
-- Python 3 with PyQt5 (`pip install PyQt5`)
 
 ---
 
@@ -55,21 +49,21 @@ CockpitRandomizer recreates that reality. Each cold start is different. You cann
 
 **Step 1 — Download**
 
-Download the latest release and extract it. You will get `CockpitRandomizer.exe` and a `CockpitRandomizer\` folder — keep them in the same directory.
+Download the latest release and extract it. You will get `dcs-switch-randomizer.exe` and a `DSR\` folder — keep them in the same directory.
 
 **Step 2 — Launch the application**
 
-Run `CockpitRandomizer.exe`.
+Run `dcs-switch-randomizer.exe`.
 
 **Step 3 — Install**
 
 The application detects your DCS Saved Games folder automatically. If you have multiple DCS installations it will ask you to choose one. Click **Install**, then select the aircraft you want to activate and click **Apply**.
 
-If you already have an `Export.lua`, it is backed up automatically. CockpitRandomizer is injected into it without removing your existing content.
+If you already have an `Export.lua`, it is backed up automatically. DSR is injected into it without removing your existing content.
 
 **Step 4 — Verify**
 
-Launch DCS and fly any supported cold-start mission. After a short delay in the cockpit, switches will randomize. Check `Saved Games\DCS\Logs\dcs.log` and search for `COCKPIT_RANDOMIZER` to confirm the script is running.
+Launch DCS and fly any supported cold-start mission. After a short delay in the cockpit, switches will randomize. Check `Saved Games\DCS\Logs\dcs.log` and search for `DCS_SWITCH_RANDOMIZER` to confirm the script is running.
 
 > **Do not edit** `SteamLibrary\steamapps\common\DCSWorld\Scripts\Export.lua`. That file is read-only reference material. Your changes belong exclusively in `Saved Games\DCS\Scripts\Export.lua`.
 ---
@@ -282,34 +276,34 @@ Changes are saved immediately and take effect on the next cold start.
 
 ## Debugging
 
-Search `Saved Games\DCS\Logs\dcs.log` for `COCKPIT_RANDOMIZER`.
+Search `Saved Games\DCS\Logs\dcs.log` for `DCS_SWITCH_RANDOMIZER`.
 
 Typical output on a successful cold start:
 
 ```
-[COCKPIT_RANDOMIZER] Aircraft detected: FA-18C_hornet — arming with 3.0s delay.
-[COCKPIT_RANDOMIZER] RPM check: left=0.0%  right=0.0%  threshold=10.0%
-[COCKPIT_RANDOMIZER] Randomizing cockpit on: FA-18C_hornet
-[COCKPIT_RANDOMIZER]   Master Arm Switch                          dev=18  cmd=3003  -> 0
-[COCKPIT_RANDOMIZER]   RADAR Switch                               dev=19  cmd=3001  -> 0.1
+[DCS_SWITCH_RANDOMIZER] Aircraft detected: FA-18C_hornet — arming with 3.0s delay.
+[DCS_SWITCH_RANDOMIZER] RPM check: left=0.0%  right=0.0%  threshold=10.0%
+[DCS_SWITCH_RANDOMIZER] Randomizing cockpit on: FA-18C_hornet
+[DCS_SWITCH_RANDOMIZER]   Master Arm Switch                          dev=18  cmd=3003  -> 0
+[DCS_SWITCH_RANDOMIZER]   RADAR Switch                               dev=19  cmd=3001  -> 0.1
 ...
-[COCKPIT_RANDOMIZER] Randomizer complete for: FA-18C_hornet
+[DCS_SWITCH_RANDOMIZER] Randomizer complete for: FA-18C_hornet
 ```
 
 Typical output when skipped (taxi / in-flight):
 
 ```
-[COCKPIT_RANDOMIZER] RPM check: left=68.4%  right=67.9%  threshold=10.0%
-[COCKPIT_RANDOMIZER] Skipping: engines running (RPM >= threshold). Not a cold start.
+[DCS_SWITCH_RANDOMIZER] RPM check: left=68.4%  right=67.9%  threshold=10.0%
+[DCS_SWITCH_RANDOMIZER] Skipping: engines running (RPM >= threshold). Not a cold start.
 ```
 
 ---
 
 ## License
 
-CockpitRandomizer is a hobby DCS mod distributed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+DCS Switch Randomizer is a hobby DCS mod distributed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 Use it, modify it, share it — but not for commercial purposes. Credit required: please link back to this repository.
 
 **No warranty:** This software is provided as-is, without any warranty, express or implied. The author is not responsible for any issues arising from its use, including but not limited to data loss, save file corruption, or unexpected behavior in DCS World. You install and use this mod at your own risk.
 
-**Disclaimer:** CockpitRandomizer is an independent hobby project with no affiliation with Eagle Dynamics, Heatblur Simulations, or any other DCS module developer.
+**Disclaimer:** DCS Switch Randomizer (DSR) is an independent hobby project with no affiliation with Eagle Dynamics, Heatblur Simulations, or any other DCS module developer.
