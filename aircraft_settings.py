@@ -90,6 +90,44 @@ def format_delta(v) -> str:
     return str(v)
 
 
+_LABEL_ABBREVS = [
+    ('Brightness', 'Brt.'),
+    ('Rheostat',   'Rheo.'),
+    ('Instrument', 'Instr.'),
+    ('Altitude',   'Alt.'),
+    ('Setting',    'Set.'),
+    ('Switch',     'Sw.'),
+    ('Station',    'Stn.'),
+    ('Secondary',  'Sec.'),
+    ('Console',    'Cons.'),
+    ('Squelch',    'Sql.'),
+    ('Selector',   'Sel.'),
+    ('Sighting',   'Sight.'),
+    ('Frequency',  'Freq.'),
+    ('Receiver',   'Rcvr.'),
+    ('control',    'ctrl.'),
+    ('Master',     'Mstr.'),
+    ('Control',    'Ctrl.'),
+    ('Lights',     'Lts.'),
+    ('Panel',      'Pnl.'),
+    ('Light',      'Lt.'),
+]
+_LABEL_THRESHOLD = 36
+
+
+def abbreviate_label(label: str) -> str:
+    """Shorten display labels that would cause horizontal scroll.
+    Only trailing/middle words are replaced; JSON data is untouched."""
+    if len(label) <= _LABEL_THRESHOLD:
+        return label
+    result = label
+    for word, short in _LABEL_ABBREVS:
+        if len(result) <= _LABEL_THRESHOLD:
+            break
+        result = result.replace(word, short)
+    return result
+
+
 def style_msgbox(dlg: QMessageBox) -> None:
     dlg.setStyleSheet(f"""
         QMessageBox {{ background-color: #222222; }}
@@ -465,7 +503,7 @@ class ControlCard(QFrame):
         self.chk.stateChanged.connect(self._on_toggle)
         top.addWidget(self.chk)
 
-        lbl = QLabel(ctrl["label"])
+        lbl = QLabel(abbreviate_label(ctrl["label"]))
         lbl.setStyleSheet(f"color: {FG}; font-size: 12pt; "
                            f"font-family: Consolas; font-weight: bold; background: transparent;")
         top.addWidget(lbl)

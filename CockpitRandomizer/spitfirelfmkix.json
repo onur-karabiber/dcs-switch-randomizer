@@ -1,0 +1,915 @@
+{
+  "aircraft": "SpitfireLFMkIX",
+  "display_name": "Spitfire LF Mk. IX",
+  "delay": 3.0,
+  "controls": [
+    {
+      "id": "booster_cover",
+      "label": "Booster Coil Button Cover",
+      "dev": 2,
+      "cmd": 3025,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "canopy_operate",
+      "label": "Canopy Open/Close Control",
+      "dev": 1,
+      "cmd": 3051,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "carb_air",
+      "label": "Carburettor Air Control Lever",
+      "dev": 2,
+      "cmd": 3045,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "COLD",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "WARM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "deicer",
+      "label": "De-Icer Lever",
+      "dev": 1,
+      "cmd": 3021,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "droptank_cock",
+      "label": "Drop Tank Cock",
+      "dev": 2,
+      "cmd": 3041,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "flaps_lever",
+      "label": "Flaps Lever",
+      "dev": 1,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UP",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "DOWN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "fuel_cock",
+      "label": "Fuel Cock",
+      "dev": 2,
+      "cmd": 3037,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "fuel_pump",
+      "label": "Fuel Pump Toggle",
+      "dev": 2,
+      "cmd": 3043,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 75
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 25
+        }
+      ]
+    },
+    {
+      "id": "gunsight_master",
+      "label": "Gun Sight Master Switch",
+      "dev": 5,
+      "cmd": 3018,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "gunsight_tint",
+      "label": "Gun Sight Tint Screen",
+      "dev": 5,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLEAR",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "TINTED",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "id_lamp_down_mode",
+      "label": "ID Lamp Down Mode Selector",
+      "dev": 4,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "SLOW",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 15
+        },
+        {
+          "label": "FAST",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "id_lamp_up_mode",
+      "label": "ID Lamp Up Mode Selector",
+      "dev": 4,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "SLOW",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 15
+        },
+        {
+          "label": "FAST",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "iff_cover",
+      "label": "I.F.F. Protective Cover",
+      "dev": 4,
+      "cmd": 3021,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "iff_type_b",
+      "label": "I.F.F. Upper Toggle (Type B)",
+      "dev": 4,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "iff_type_d",
+      "label": "I.F.F. Lower Toggle (Type D)",
+      "dev": 4,
+      "cmd": 3019,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "magneto_left",
+      "label": "Magneto Left",
+      "dev": 2,
+      "cmd": 3015,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "magneto_right",
+      "label": "Magneto Right",
+      "dev": 2,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "mixture_lever",
+      "label": "Mixture Cut-Off Lever",
+      "dev": 2,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "RICH",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "CUT OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "nav_lights",
+      "label": "Nav Lights Toggle",
+      "dev": 1,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "oil_diluter_cover",
+      "label": "Oil Diluter Button Cover",
+      "dev": 2,
+      "cmd": 3051,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "oxy_valve",
+      "label": "Oxygen Valve",
+      "dev": 3,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "pitot_heater",
+      "label": "Pitot Heater Toggle",
+      "dev": 1,
+      "cmd": 3035,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "radiator",
+      "label": "Radiator Control Toggle",
+      "dev": 1,
+      "cmd": 3033,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUTOMATIC",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "MANUAL",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "radiator_test_cover",
+      "label": "Radiator Flap Test Button Cover",
+      "dev": 2,
+      "cmd": 3059,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "radio_dimmer",
+      "label": "Radio Dimmer Toggle",
+      "dev": 15,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "BRIGHT",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "DIM",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "radio_mode",
+      "label": "Radio Mode Selector",
+      "dev": 15,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "R/T",
+          "delta": 0,
+          "is_default": true,
+          "weight": 80
+        },
+        {
+          "label": "R/T+T/R",
+          "delta": 1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "radio_transmit_lock",
+      "label": "Radio Transmit Lock Toggle",
+      "dev": 15,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UNLOCKED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "LOCKED",
+          "delta": 1,
+          "is_default": false,
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "safety_lever",
+      "label": "Safety Lever",
+      "dev": 5,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "SAFE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "FIRE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "side_door",
+      "label": "Cockpit Side Door",
+      "dev": 1,
+      "cmd": 3059,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 75
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 25
+        }
+      ]
+    },
+    {
+      "id": "starter_cover",
+      "label": "Starter Button Cover",
+      "dev": 2,
+      "cmd": 3021,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "supercharger_mode",
+      "label": "Supercharger Mode Toggle",
+      "dev": 2,
+      "cmd": 3019,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MS",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "FS",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "supercharger_test_cover",
+      "label": "Supercharger Mode Test Button Cover",
+      "dev": 2,
+      "cmd": 3055,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSED",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "tank_pressurizer",
+      "label": "Tank Pressurizer Lever",
+      "dev": 2,
+      "cmd": 3033,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "uc_blind",
+      "label": "U/C Indicator Blind",
+      "dev": 1,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OPEN",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "CLOSED",
+          "delta": 1,
+          "is_default": false,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "id": "uc_down_cutoff",
+      "label": "U/C Indicator Cut-Off Toggle",
+      "dev": 2,
+      "cmd": 3099,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORMAL",
+          "delta": 0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "CUT OFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "undercarriage",
+      "label": "Undercarriage Lever",
+      "dev": 1,
+      "cmd": 3025,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UP",
+          "delta": 0,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "DOWN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 40
+        }
+      ]
+    },
+    {
+      "id": "altimeter_knob",
+      "label": "Altimeter Pressure Setting Knob",
+      "dev": 1,
+      "cmd": 3037,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "compass_ring",
+      "label": "Compass Azimuth Ring",
+      "dev": 1,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "di_knob",
+      "label": "Direction Indicator Knob",
+      "dev": 1,
+      "cmd": 3041,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "gunsight_dimmer",
+      "label": "Gun Sight Dimmer",
+      "dev": 5,
+      "cmd": 3020,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "gunsight_range",
+      "label": "Gun Sight Range Setter",
+      "dev": 5,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "gunsight_span",
+      "label": "Gun Sight Span Setter",
+      "dev": 5,
+      "cmd": 3010,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "illumination_lh",
+      "label": "Cockpit Illumination LH",
+      "dev": 4,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "illumination_rh",
+      "label": "Cockpit Illumination RH",
+      "dev": 4,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "propeller_pitch",
+      "label": "Propeller Pitch Lever",
+      "dev": 2,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "throttle",
+      "label": "Throttle Lever",
+      "dev": 2,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "trim_elevator",
+      "label": "Elevator Trim Wheel",
+      "dev": 1,
+      "cmd": 3029,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "trim_rudder",
+      "label": "Rudder Trim Wheel",
+      "dev": 1,
+      "cmd": 3044,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "wheel_brakes",
+      "label": "Wheel Brakes",
+      "dev": 1,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    }
+  ]
+}
