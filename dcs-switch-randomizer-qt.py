@@ -409,6 +409,9 @@ class AircraftRow(QWidget):
         self.lbl.setText(self._text())
         # [11] Font rengini güncelle
         self.lbl.setStyleSheet(self._label_style())
+        # Bekleyen değişiklik uyarısını göster
+        if self._parent_win is not None:
+            self._parent_win._mark_pending()
 
     def _open_settings(self):
         try:
@@ -894,6 +897,7 @@ class MainWindow(QWidget):
         btn_apply.setToolTip("Write selected aircraft to Export.lua and activate the randomizer.")
         self.content.addWidget(btn_apply)
         self.content.addSpacing(6)
+        self._btn_apply = btn_apply
 
         # 6 ikon butonu — tek satır
         _ICON_BTNS = [
@@ -965,6 +969,23 @@ class MainWindow(QWidget):
         self._reposition_settings_dialog()
         super().moveEvent(e)
 
+    def _mark_pending(self):
+        """Uçak seçimi değişti — Apply butonu ve status ile kullanıcıyı uyar."""
+        btn = getattr(self, "_btn_apply", None)
+        if btn is not None:
+            btn.setStyleSheet(
+                "background: #b8860b; color: #111111;"
+                "font-size:15pt; font-weight:bold;"
+                "border: none; border-radius: 8px; padding: 10px;"
+            )
+        self.set_status("Press Apply to apply changes to Export.lua.", color="#f0c040")
+
+    def _clear_pending(self):
+        """Apply tamamlandı — butonu normal stiline döndür."""
+        btn = getattr(self, "_btn_apply", None)
+        if btn is not None:
+            btn.setStyleSheet("")  # QSS'den #apply stilini yeniden uygular
+
     def _selected_keys(self):
         return {row.key for row in self._rows if row.is_checked()}
 
@@ -980,11 +1001,14 @@ class MainWindow(QWidget):
                 bak = backup_path(self.scripts_dir)
                 if os.path.isfile(bak):
                     shutil.copy2(bak, export)
+                    self._clear_pending()
                     self.set_status("No aircraft selected — stock Export.lua restored.", color=MUTED)
                 elif os.path.isfile(export):
                     os.remove(export)
+                    self._clear_pending()
                     self.set_status("No aircraft selected — Export.lua removed.", color=MUTED)
                 else:
+                    self._clear_pending()
                     self.set_status("No aircraft selected.", color=MUTED)
                 return
 
@@ -1007,6 +1031,7 @@ class MainWindow(QWidget):
             with open(export, "w", encoding="utf-8") as f:
                 f.write(content)
 
+            self._clear_pending()
             self.progress.show()
             self.progress.setValue(0)
             self._progress_step(0, f"Export.lua updated — {len(selected)} aircraft active.", GREEN)
