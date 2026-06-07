@@ -216,22 +216,22 @@
       ]
     },
     {
-      "id": "ground_safety_override",
-      "label": "Arm Ground Safety Override Switch",
+      "id": "ground_safety_override_cover",
+      "label": "Arm Ground Safety Override Switch Cover",
       "dev": 12,
       "cmd": 3003,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "OVERRIDE",
+          "label": "OPEN",
           "delta": 1,
           "is_default": false,
           "weight": 2
         },
         {
           "label": "SAFE",
-          "delta": 0,
+          "delta": -1,
           "is_default": true,
           "weight": 98
         }
@@ -789,21 +789,21 @@
       "positions": [
         {
           "label": "UPPER",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 50
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
         },
         {
           "label": "AUTO",
           "delta": 0.5,
           "is_default": false,
-          "weight": 30
+          "weight": 0
         },
         {
           "label": "LOWER",
-          "delta": 1.0,
-          "is_default": false,
-          "weight": 20
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
         }
       ]
     },
@@ -1789,21 +1789,21 @@
       "positions": [
         {
           "label": "UPPER",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 50
+          "delta": 1,
+          "is_default": false,
+          "weight": 8
         },
         {
           "label": "AUTO",
           "delta": 0.5,
           "is_default": false,
-          "weight": 30
+          "weight": 15
         },
         {
           "label": "LOWER",
-          "delta": 1.0,
-          "is_default": false,
-          "weight": 20
+          "delta": 0,
+          "is_default": true,
+          "weight": 77
         }
       ]
     },
