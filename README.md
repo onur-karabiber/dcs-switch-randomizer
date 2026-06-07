@@ -2,6 +2,9 @@
 
 A desktop application for DCS World that randomizes cockpit switch and knob positions on each cold start, forcing a proper interior check before you do anything else.
 
+Supports: **F/A-18C Hornet** · **F-16C Viper** · **A-10C II** · **UH-1H Huey** · **MiG-21bis** · **Spitfire LF Mk. IX** · **F-5E Tiger II** · **F-4E Phantom II** · **F-14B Tomcat**
+
+> **Note:** Why these 9 aircraft? Because I do this as a hobby and I could only afford so many modules. :)
 ---
 
 ## Why this exists
