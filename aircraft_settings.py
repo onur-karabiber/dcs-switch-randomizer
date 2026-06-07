@@ -665,7 +665,7 @@ class AircraftSettingsDialog(QDialog):
         # Başlık çubuğu
         tb = QWidget()
         tb.setFixedHeight(40)
-        tb.setStyleSheet(f"background: {TB};")
+        tb.setStyleSheet("background: transparent;")
         tb_lay = QHBoxLayout(tb)
         tb_lay.setContentsMargins(16, 0, 8, 0)
 
@@ -734,7 +734,7 @@ class AircraftSettingsDialog(QDialog):
         # ── Başlık çubuğu ─────────────────────────────────────────────────
         tb = QWidget()
         tb.setFixedHeight(40)
-        tb.setStyleSheet(f"background: {TB};")
+        tb.setStyleSheet("background: transparent;")
         tb_lay = QHBoxLayout(tb)
         tb_lay.setContentsMargins(16, 0, 8, 0)
 
@@ -818,7 +818,7 @@ class AircraftSettingsDialog(QDialog):
 
         # ── Alt butonlar ───────────────────────────────────────────────────
         bottom = QWidget()
-        bottom.setStyleSheet(f"background: {TB};")
+        bottom.setStyleSheet("background: transparent;")
         bot_lay = QHBoxLayout(bottom)
         bot_lay.setContentsMargins(16, 10, 16, 10)
         bot_lay.setSpacing(8)
