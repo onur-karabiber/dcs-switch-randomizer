@@ -891,6 +891,21 @@
       ]
     },
     {
+  "id": "intercom_selector",
+  "label": "Intercom Selector Switch",
+  "dev": 58,
+  "cmd": 3019,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    { "label": "POS 1", "delta": 0.0, "is_default": true,  "weight": 20 },
+    { "label": "POS 2", "delta": 0.1, "is_default": false, "weight": 20 },
+    { "label": "POS 3", "delta": 0.2, "is_default": false, "weight": 20 },
+    { "label": "POS 4", "delta": 0.3, "is_default": false, "weight": 20 },
+    { "label": "POS 5", "delta": 0.4, "is_default": false, "weight": 20 }
+  ]
+},
+    {
       "id": "intercom_tcn_push",
       "label": "Intercom TCN Switch",
       "dev": 58,
