@@ -831,6 +831,90 @@
       ]
     },
     {
+      "id": "intercom_aim_push",
+      "label": "Intercom AIM Switch",
+      "dev": 58,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "IN",  "delta": 1, "is_default": false, "weight": 50 },
+        { "label": "OUT", "delta": 0, "is_default": true,  "weight": 50 }
+      ]
+    },
+    {
+      "id": "intercom_hm_push",
+      "label": "Intercom HM Switch",
+      "dev": 58,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "IN",  "delta": 1, "is_default": false, "weight": 50 },
+        { "label": "OUT", "delta": 0, "is_default": true,  "weight": 50 }
+      ]
+    },
+    {
+      "id": "intercom_iff_push",
+      "label": "Intercom IFF Switch",
+      "dev": 58,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "IN",  "delta": 1, "is_default": false, "weight": 50 },
+        { "label": "OUT", "delta": 0, "is_default": true,  "weight": 50 }
+      ]
+    },
+    {
+      "id": "intercom_ils_push",
+      "label": "Intercom ILS Switch",
+      "dev": 58,
+      "cmd": 3013,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "IN",  "delta": 1, "is_default": false, "weight": 50 },
+        { "label": "OUT", "delta": 0, "is_default": true,  "weight": 50 }
+      ]
+    },
+    {
+      "id": "intercom_int_push",
+      "label": "Intercom INT Switch",
+      "dev": 58,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "IN",  "delta": 1, "is_default": false, "weight": 50 },
+        { "label": "OUT", "delta": 0, "is_default": true,  "weight": 50 }
+      ]
+    },
+    {
+      "id": "intercom_tcn_push",
+      "label": "Intercom TCN Switch",
+      "dev": 58,
+      "cmd": 3015,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "IN",  "delta": 1, "is_default": false, "weight": 50 },
+        { "label": "OUT", "delta": 0, "is_default": true,  "weight": 50 }
+      ]
+    },
+    {
+      "id": "intercom_uhf_push",
+      "label": "Intercom UHF Switch",
+      "dev": 58,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "IN",  "delta": 1, "is_default": false, "weight": 50 },
+        { "label": "OUT", "delta": 0, "is_default": true,  "weight": 50 }
+      ]
+    },
+    {
       "id": "cmsp_jettison",
       "label": "Jettison Countermeasures",
       "dev": 4,
@@ -1180,13 +1264,13 @@
       "positions": [
         {
           "label": "MRFCS",
-          "delta": 1,
+          "delta": 0,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "NORM",
-          "delta": 0,
+          "delta": 1,
           "is_default": true,
           "weight": 95
         }
@@ -2141,6 +2225,12 @@
       "enabled": true,
       "type": "continuous"
     },
+    { "id": "intercom_aim_vol", "label": "Intercom AIM Volume", "dev": 58, "cmd": 3010, "enabled": true, "type": "continuous" },
+    { "id": "intercom_iff_vol", "label": "Intercom IFF Volume", "dev": 58, "cmd": 3012, "enabled": true, "type": "continuous" },
+    { "id": "intercom_ils_vol", "label": "Intercom ILS Volume", "dev": 58, "cmd": 3014, "enabled": true, "type": "continuous" },
+    { "id": "intercom_int_vol", "label": "Intercom INT Volume", "dev": 58, "cmd": 3002, "enabled": true, "type": "continuous" },
+    { "id": "intercom_tcn_vol", "label": "Intercom TCN Volume", "dev": 58, "cmd": 3016, "enabled": true, "type": "continuous" },
+    { "id": "intercom_uhf_vol", "label": "Intercom UHF Volume", "dev": 58, "cmd": 3008, "enabled": true, "type": "continuous" },
     {
       "id": "intercom_volume",
       "label": "Intercom Volume",

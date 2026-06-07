@@ -37,8 +37,8 @@ CR.register("A-10C_2", {
     { dev=55, cmd=3043, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.5, 0.5, 0.5, 0.6, 0.6}, label="ARC-210 Master Switch" },
 
     -- Arm Ground Safety Override Switch Cover
-    -- OPEN=4% / SAFE=96%(default)
-    { dev=12, cmd=3002, vals={1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Arm Ground Safety Override Switch Cover" },
+    -- OPEN=2% / SAFE=98%(default)
+    { dev=12, cmd=3002, vals={1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Arm Ground Safety Override Switch Cover" },
 
     -- Autopilot Mode Select
     -- PATH=20% / ALT/HDG=60%(default) / ALT=20%
@@ -140,6 +140,34 @@ CR.register("A-10C_2", {
     -- ON=20% / OFF=80%(default)
     { dev=53, cmd=3001, vals={1, 0, 0, 0, 0}, label="ILS Frequency/Power" },
 
+    -- Intercom AIM Switch
+    -- IN=50% / OUT=50%(default)
+    { dev=58, cmd=3009, vals={1, 0}, label="Intercom AIM Switch" },
+
+    -- Intercom HM Switch
+    -- IN=50% / OUT=50%(default)
+    { dev=58, cmd=3017, vals={1, 0}, label="Intercom HM Switch" },
+
+    -- Intercom IFF Switch
+    -- IN=50% / OUT=50%(default)
+    { dev=58, cmd=3011, vals={1, 0}, label="Intercom IFF Switch" },
+
+    -- Intercom ILS Switch
+    -- IN=50% / OUT=50%(default)
+    { dev=58, cmd=3013, vals={1, 0}, label="Intercom ILS Switch" },
+
+    -- Intercom INT Switch
+    -- IN=50% / OUT=50%(default)
+    { dev=58, cmd=3001, vals={1, 0}, label="Intercom INT Switch" },
+
+    -- Intercom TCN Switch
+    -- IN=50% / OUT=50%(default)
+    { dev=58, cmd=3015, vals={1, 0}, label="Intercom TCN Switch" },
+
+    -- Intercom UHF Switch
+    -- IN=50% / OUT=50%(default)
+    { dev=58, cmd=3007, vals={1, 0}, label="Intercom UHF Switch" },
+
     -- Jettison Countermeasures
     -- JTSN=3% / OFF=97%(default)
     { dev=4, cmd=3008, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Jettison Countermeasures" },
@@ -194,7 +222,7 @@ CR.register("A-10C_2", {
 
     -- Manual Reversion Flight Control System
     -- MRFCS=5% / NORM=95%(default)
-    { dev=38, cmd=3024, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Manual Reversion Flight Control System" },
+    { dev=38, cmd=3024, vals={0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="Manual Reversion Flight Control System" },
 
     -- Master Arm
     -- ARM=2% / SAFE=96%(default) / TRAIN=2%
@@ -329,8 +357,8 @@ CR.register("A-10C_2", {
     { dev=38, cmd=3005, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Yaw SAS Engage Right" },
 
     -- Zeroize Cover
-    -- OPEN=7% / CLOSE=93%(default)
-    { dev=69, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Zeroize Cover" },
+    -- OPEN=5% / CLOSE=95%(default)
+    { dev=69, cmd=3001, vals={1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Zeroize Cover" },
 
     -- Auxiliary Instruments Lights
     { dev=49, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Auxiliary Instruments Lights" },
@@ -370,6 +398,24 @@ CR.register("A-10C_2", {
 
     -- HSI Heading Set Knob
     { dev=45, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="HSI Heading Set Knob" },
+
+    -- Intercom AIM Volume
+    { dev=58, cmd=3010, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom AIM Volume" },
+
+    -- Intercom IFF Volume
+    { dev=58, cmd=3012, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom IFF Volume" },
+
+    -- Intercom ILS Volume
+    { dev=58, cmd=3014, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom ILS Volume" },
+
+    -- Intercom INT Volume
+    { dev=58, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom INT Volume" },
+
+    -- Intercom TCN Volume
+    { dev=58, cmd=3016, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom TCN Volume" },
+
+    -- Intercom UHF Volume
+    { dev=58, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom UHF Volume" },
 
     -- Intercom Volume
     { dev=58, cmd=3018, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom Volume" },
