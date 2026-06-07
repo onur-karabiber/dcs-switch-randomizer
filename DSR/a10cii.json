@@ -2032,7 +2032,7 @@
           "label": "CLOSE",
           "delta": 0,
           "is_default": true,
-          "weight": 95
+          "weight": 95,
           "skip_command": true
         }
       ]
