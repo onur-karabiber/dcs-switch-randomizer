@@ -1,402 +1,282 @@
-# dcs-cockpit-randomizer
+# CockpitRandomizer
 
-A DCS World Export script that randomizes selected cockpit controls during cold starts, restoring the need for genuine cockpit inspections instead of memorized routines.
-
-Currently supports:
-
-- **F-4E Phantom II** (Heatblur)
-- **F/A-18C Hornet** (Eagle Dynamics)
-- **F-14B Tomcat** (Heatblur)
-- **F-16C Viper** (Eagle Dynamics)
-- **F-5E Tiger II** (Eagle Dynamics)
-
----
-
-## Who is this for?
-
-This mod is **not for everyone**.
-
-CockpitRandomizer is built for DCS players who enjoy:
-
-- Real cold-start procedures
-- Checklists
-- Interior checks
-- Proper switch discipline
-- Realistic cockpit workflow
-- Catching something out of place before startup
-
-If you are the type of player who spawns, hits auto-start, and takes off in 30 seconds, this mod is probably not for you.
-
-If you enjoy real procedures, checklists, and doing things properly, this mod is for you.
+A desktop application for DCS World that randomizes cockpit switch and knob positions on each cold start, forcing a proper interior check before you do anything else.
 
 ---
 
 ## Why this exists
 
-In vanilla DCS, cold starts become predictable.
+In DCS, every time you enter a cockpit the aircraft spawns with all switches in their factory-default positions. For taxi, runway hold, and in-flight slots this makes sense. For cold-start scenarios it breaks immersion: a real aircraft coming out of a previous sortie would have been left in whatever state the last crew left it in. Landing lights on, STAB AUG engaged, IFF in an unexpected mode — anything is possible.
 
-Every time you enter the cockpit, the aircraft appears in the exact same state. Same switches. Same knobs. Same panel positions.
-
-After a while, interior checks stop being checks.
-
-You stop **checking** and start **remembering**.
-
-After enough repetitions, you already know where everything is before even looking. The checklist becomes memory instead of verification.
-
-That breaks immersion.
-
-A real aircraft coming from a previous sortie would rarely be left in a perfectly standardized state. A previous pilot, crew chief, or technician may have left things differently:
-
-- A light dimmer slightly moved
-- A radio volume changed
-- A formation light setting altered
-- A non-critical system left in an unexpected position
-- A switch not exactly where you expected
-
-CockpitRandomizer brings some of that uncertainty back.
-
-There is one more thing — perhaps an obsession, if we are being honest.
-
-Some cockpits are so exquisitely designed, so carefully implemented, and so lovingly textured that spending time inside them is a pleasure in its own right. Look at what Heatblur has done with the F-4E Phantom. Every switch, every panel, every worn surface tells a story. This mod exists, in part, as an excuse to linger in those cockpits a little longer — to touch more switches, to look more carefully, to be present in that craftsmanship rather than rushing past it.
-
-If we are being fully honest, that may have been the primary motivation all along.
-
----
-
-## How the randomization works
-
-**This is not a chaos or failure simulator.** CockpitRandomizer will not open your landing gear, jettison the canopy, pull the ejection handle, or drop your stores. It does not simulate mechanical failures or broken aircraft.
-
-What it does is more subtle — and that is exactly the point.
-
-Safety-critical and operationally important switches are intentionally biased toward their correct cold-start position. Most of the time, the cockpit will look familiar. But occasionally — at low probability — something will be different. A generator that normally comes up ON might start OFF. A circuit breaker that is always in might be pulled. A weapons system that is always SAFE might have taken a stray elbow in the hangar.
-
-A switch in the wrong position will not always announce itself. It may only reveal itself when you need that system — on the runway, during cruise, or in an engagement.
-
-That is the whole point: **if you are serious about flying like a real pilot, you must be serious about your interior check. Every time. Without exception.**
-
-In other words: this mod does not create chaos. It creates the conditions under which failing to do a proper interior check has consequences. If you install it, you are signing up for that stress. Do not forget it.
-
-A switch's default state usually has somewhere between **75% and 95% probability** of appearing unchanged. Non-critical elements such as interior lighting, brightness knobs, and radio volumes are often randomized more freely.
+CockpitRandomizer recreates that reality. Each cold start is different. You cannot skip the interior check.
 
 ---
 
 ## Features
 
-- **Cold-start only**
-  The script checks engine RPM values and only activates when the aircraft is truly cold. Taxi, runway, hot-start, and in-flight slots are unaffected.
+**Randomization**
+- **Cold-start only.** The script reads both engine RPM values via `LoGetEngineInfo()`. If either engine is at or above 10% RPM the script silently does nothing. Taxi, runway, and in-flight slots are unaffected.
+- **Multi-aircraft.** A shared core engine detects the active aircraft and applies the correct switch table automatically. No configuration needed when switching between modules.
+- **Per-control probability.** Each switch has weighted probabilities for each position. Safety-critical switches are biased toward safe defaults, but nothing is guaranteed.
+- **Knob randomization.** Continuous controls (volume knobs, brightness dials, trim wheels, etc.) are sampled across their full range.
+- **Non-destructive.** Chains into any existing `LuaExport*` functions. Compatible with DCS-BIOS, SRS, Tacview, and similar Export.lua-based tools.
+- All activity is logged to `DCS.log` under the `COCKPIT_RANDOMIZER` tag.
 
-- **Aircraft-aware**
-  Automatically detects the active aircraft and loads the correct switch table.
-
-- **Weighted randomization**
-  Safety-critical systems heavily favor realistic defaults instead of pure randomness.
-
-- **Modular structure**
-  Each aircraft uses its own switch table file, making expansion straightforward.
-
-- **Export.lua friendly**
-  Compatible with DCS-BIOS, SRS, Tacview, and other Export.lua-based tools.
-
-- **Logging support**
-  All activity is written to `DCS.log` under the `COCKPIT_RANDOMIZER` tag.
+**Application**
+- **GUI installer.** Install, update, and uninstall entirely through the application — no manual file editing required under normal use.
+- **Existing Export.lua support.** The installer detects and backs up your existing `Export.lua`. All operations restore it correctly on deactivation or uninstall.
+- **Per-aircraft control.** Enable or disable individual aircraft modules from the main screen with a single click.
+- **Settings dialog.** Adjust the randomization probability of each individual switch or knob per aircraft. Changes generate new Lua scripts automatically.
+- **Deactivate without uninstalling.** Temporarily removes CockpitRandomizer from your Export.lua and restores your original file. Reactivate at any time by pressing Apply.
+- **Factory defaults.** Reset any aircraft's switch settings back to the built-in defaults at any time.
+- **Settings backup and restore.** Export your current switch settings to a folder and import them later, or share them with others.
 
 ---
 
 ## Requirements
 
+- Windows
 - DCS World (Steam or standalone)
 - One or more supported aircraft modules
-- No additional mods or tools required
+- Python 3 with PyQt5 (`pip install PyQt5`)
+
+---
+
+## Requirements
+
+- Windows
+- DCS World (Steam or standalone)
+- One or more supported aircraft modules
+- No additional tools required
 
 ---
 
 ## Installation
 
-### Option A — Installer (recommended)
+**Step 1 — Download**
 
-1. Go to the [Releases](../../releases) page and download the latest
-   `dcs-cockpit-randomizer-vX.X.zip`.
+Download the latest release and extract it. You will get `CockpitRandomizer.exe` and a `CockpitRandomizer\` folder — keep them in the same directory.
 
-2. Extract the zip anywhere you like (Desktop, Downloads, etc.).
-   You will get a folder like this:
+**Step 2 — Launch the application**
 
-   ```
-   dcs-cockpit-randomizer-v1.0\
-       dcs-cockpit-randomizer-v1.0.exe
-       version.txt
-       CockpitRandomizer\
-           core.lua
-           f4e.lua
-           fa18c.lua
-           f14b.lua
-           f16c.lua
-           f5e.lua
-   ```
+Run `CockpitRandomizer.exe`.
 
-3. Double-click `dcs-cockpit-randomizer-v1.0.exe`.
+**Step 3 — Install**
 
-4. The installer will automatically locate your DCS Saved Games folder.
-   If it cannot find it, click **Browse...** and point it to your
-   `Saved Games\DCS\Scripts` folder manually.
+The application detects your DCS Saved Games folder automatically. If you have multiple DCS installations it will ask you to choose one. Click **Install**, then select the aircraft you want to activate and click **Apply**.
 
-5. Click **Install**. The installer will:
-   - Create `Saved Games\DCS\Scripts\` if it does not exist.
-   - Copy all Lua scripts to `Saved Games\DCS\Scripts\CockpitRandomizer\`.
+If you already have an `Export.lua`, it is backed up automatically. CockpitRandomizer is injected into it without removing your existing content.
 
-6. Click **Apply**. The installer will write the required block to
-   `Saved Games\DCS\Scripts\Export.lua`.
+**Step 4 — Verify**
 
-   - If an `Export.lua` already exists (DCS-BIOS, SRS, Tacview, etc.),
-     you will be asked to confirm before it is modified. Your original file
-     will be backed up as `Export.lua.stock_backup`. The CockpitRandomizer
-     block will be added to the **top** of your existing file; your other
-     tools' content will be preserved below it.
+Launch DCS and fly any supported cold-start mission. After a short delay in the cockpit, switches will randomize. Check `Saved Games\DCS\Logs\dcs.log` and search for `COCKPIT_RANDOMIZER` to confirm the script is running.
 
-   > **Recommendation:** As an extra precaution, manually back up your
-   > `Saved Games\DCS\Scripts\Export.lua` before clicking Apply,
-   > regardless of whether the installer creates a backup automatically.
+> **Do not edit** `SteamLibrary\steamapps\common\DCSWorld\Scripts\Export.lua`. That file is read-only reference material. Your changes belong exclusively in `Saved Games\DCS\Scripts\Export.lua`.
+---
 
-7. Select which aircraft you want to randomize, then click **Apply**.
-   You can change your selection at any time by running the exe again.
+## Uninstallation
 
-#### Updating
-
-When a new version is released, download the new zip, extract it, and run
-the exe. If a newer version is detected, a **"New version available"**
-banner will appear. Click **Update now** to overwrite the Lua scripts with
-the new versions. Your aircraft selection is preserved. Click **Apply**
-afterwards to refresh `Export.lua`.
-
-#### Uninstalling
-
-Run the exe and click **Uninstall** at the bottom of the main screen.
-This will remove the `CockpitRandomizer\` folder and restore your original
-`Export.lua` from the backup. If no backup exists (e.g. it was deleted
-manually), you will be informed and `Export.lua` will be cleaned instead.
+Click the **Uninstall** button in the application. Your original `Export.lua` is restored from backup. If no backup exists, `Export.lua` is deleted.
 
 ---
 
-### Option B — Manual installation
+## Per-switch settings
 
-> **Before you begin:** CockpitRandomizer is installed entirely inside your `Saved Games\DCS\` folder. It does not touch your DCS installation directory. That said, you are responsible for following these instructions carefully, taking any backups you consider appropriate (particularly of an existing `Export.lua`), and understanding what the mod does before using it. Install at your own discretion.
+Click the gear icon next to any aircraft name to open the Settings dialog. Every randomizable control is listed. For each switch you can:
 
-**Step 1 — Locate your Saved Games folder**
+- **Enable or disable** it from randomization entirely.
+- **Adjust the probability** of each position (weights must sum to 100%).
 
-```
-%USERPROFILE%\Saved Games\DCS\
-```
+Knobs are randomized across a range and do not have per-position probabilities — they are either included or excluded.
 
-If you use the OpenBeta branch, the folder may be `Saved Games\DCS.openbeta\`.
-
-**Step 2 — Create the folder structure** (skip folders that already exist)
-
-```
-Saved Games\DCS\
-    Scripts\
-        CockpitRandomizer\
-            core.lua
-            f4e.lua
-            fa18c.lua
-            f14b.lua
-            f16c.lua
-            f5e.lua
-        Export.lua
-```
-
-**Step 3 — Copy the files**
-
-From this repository, copy each file under `CockpitRandomizer\` to the corresponding path under `Saved Games\DCS\Scripts\CockpitRandomizer\`.
-
-Only copy the aircraft files for modules you own.
-
-**Step 4 — If Export.lua already exists**
-
-If you already have an `Export.lua` (DCS-BIOS, SRS, Tacview, etc.), do **not** replace it. Instead, add the CockpitRandomizer block to the **top** of your existing file:
-
-```lua
--- [CockpitRandomizer:begin]
-local cr_status, cr_err = pcall(function()
-    local lfs = require('lfs')
-    local base = lfs.writedir() .. "Scripts\\CockpitRandomizer\\"
-    dofile(base .. "core.lua")
-    dofile(base .. "f4e.lua")      -- remove if you don't own this module
-    dofile(base .. "fa18c.lua")    -- remove if you don't own this module
-    dofile(base .. "f14b.lua")     -- remove if you don't own this module
-    dofile(base .. "f16c.lua")     -- remove if you don't own this module
-    dofile(base .. "f5e.lua")      -- remove if you don't own this module
-end)
-if not cr_status then
-    log.write("COCKPIT_RANDOMIZER", log.ERROR, "Load failed: " .. tostring(cr_err))
-end
--- [CockpitRandomizer:end]
-```
-
-Remove any `dofile` lines for aircraft you do not own.
-
-> **Do not touch** `SteamLibrary\steamapps\common\DCSWorld\Scripts\Export.lua`. That file is read-only reference material. Your changes belong exclusively in `Saved Games\DCS\Scripts\Export.lua`.
-
-**Step 5 — Verify**
-
-Launch DCS and fly any supported cold-start mission. After ~3 seconds in the cockpit, switches will randomize. Check `Saved Games\DCS\Logs\dcs.log` and search for `COCKPIT_RANDOMIZER` to confirm the script is running.
-
-#### Uninstalling (manual)
-
-1. Delete `Saved Games\DCS\Scripts\CockpitRandomizer\`.
-2. Open `Saved Games\DCS\Scripts\Export.lua` and remove the block between
-   `-- [CockpitRandomizer:begin]` and `-- [CockpitRandomizer:end]`.
-3. If `Export.lua` is now empty, delete it as well.
-
-**Temporary disable** (without uninstalling):
-
-Open `CockpitRandomizer\core.lua` and set:
-
-```lua
-CR.ENABLED = false
-```
-
-**Disable a single aircraft** (without removing its file):
-
-Comment out its `dofile` line in `Export.lua`:
-
-```lua
--- dofile(base .. "f16c.lua")
-```
-
----
-
-## Configuration
-
-All user-facing settings are at the top of `CockpitRandomizer\core.lua`:
-
-| Setting            | Default | Description                                                                                       |
-| ------------------ | ------- | ------------------------------------------------------------------------------------------------- |
-| `CR.ENABLED`       | `true`  | Set to `false` to disable without uninstalling.                                                   |
-| `CR.DELAY_SECONDS` | `3.0`   | Seconds to wait after cockpit load before randomizing. Increase if switches snap back to default. |
-| `CR.RPM_THRESHOLD` | `10.0`  | Both engines must be below this RPM % for cold-start detection.                                   |
+Changes are saved immediately and take effect on the next cold start.
 
 ---
 
 ## Randomized controls
 
-Probabilities below are derived from the comment annotations in each aircraft file. In all tables, a switch listed here is randomized; unlisted switches are not touched.
-
-### F-4E Phantom II
+### A-10C II Thunderbolt (106 controls — 82 switches, 24 knobs)
 
 | System | Controls |
-| --- | --- |
-| Countermeasures | Select Dispense Program |
-| Communications | Set Mode (ICS Panel), Select Communication Antenna, Select Radio Mode, Select Frequency Mode |
-| IFF | Select Master Mode |
-| Fuel | Wing Fuel Dump Selector, Internal Wing Tanks Feed |
-| AFCS | STAB AUG Yaw, STAB AUG Roll, STAB AUG Pitch, AFCS Autopilot, ALT Hold |
-| Gear / Brakes | Anti-Skid Toggle, Emergency Wheel Brake |
-| Navigation | Select Reference System, Select TACAN Mode, Select Navigation Input, Select Navigation Mode, Toggle Flight Director |
+|---|---|
+| APU | APU On/Off, APU Generator On/Off |
+| Electrical | Battery Power, Left AC Generator Power, Right AC Generator Power, CICU On/Off, EGI Power On/Off |
+| Engines | Left Engine Fuel Flow Control, Right Engine Fuel Flow Control |
+| Fuel | Boost Pumps Left Wing, Boost Pumps Right Wing, Boost Pumps Main Fuselage Left, Boost Pumps Main Fuselage Right, External Wing Tanks Boost Pumps, External Fuselage Tank Boost Pump, Cross Feed, Tank Gate |
+| Flight Controls | Flap Setting, Flaps Emergency Retract, Speed Brake Emergency Retract, Pitch SAS Engage Left, Pitch SAS Engage Right, Yaw SAS Engage Left, Yaw SAS Engage Right, Pitch/Roll Trim Norm/Emergency Override, Manual Reversion Flight Control System |
+| Gear | Anti Skid, Landing Gear Lever |
+| Oxygen | Oxygen Supply On/Off, Oxygen Normal/100% |
+| Environmental | Bleed Air, Main Air Supply, Windshield Defog/Deice, Windshield Rain Removal/Wash, Pitot Heater |
+| Navigation | Altimeter Source, HARS N/S Toggle, HARS SLAVE/DG Mode, HARS-SAS Override/NORM, ILS Frequency/Power, TACAN Mode Dial, Steerpoint Selector, CDU Page Select, CDU Power On/Off |
+| Autopilot | Autopilot Mode Select, EAC On/Off, Signal Amplifier Norm/Override |
+| Communications | ARC-210 Master Switch, UHF Antenna Switch, UHF Frequency Mode Dial, UHF Function Dial, UHF Squelch, VHF FM Frequency Mode Dial, KY-58 C/RAD Switch, KY-58 Fill Switch, KY-58 Mode Switch, KY-58 Power Switch |
+| IFF | IFF Antenna Switch |
+| Radar | Radar Altimeter Normal/Disabled |
+| Weapons | Master Arm, Gun Arm Mode, Laser Arm, Targeting Pod Power, Jettison Countermeasures, Arm Ground Safety Override Switch, JTRS Datalink On/Off, Scorpion HMCS Power |
+| Sensors | DVADR Function Control, Turn On/Off/Test IFFCC |
+| Displays | Left MFCD DAY/NIGHT/OFF, Right MFCD DAY/NIGHT/OFF, Day/Night HUD Mode, NORM/Standby HUD Mode |
+| Lighting | Land Taxi Lights, Nose Illumination, Position Lights FLASH/OFF/STEADY, Signal Lights, Nightvision Lights, Aerial Refueling Slipway Control |
+| Miscellaneous | Zeroize Cover, Able-STOW ADI Localizer Bar |
+| Knobs | Aux Instruments Lights, Canopy Defog, CMSC RWR Display Brightness, CMSC RWR Volume, CMSP Display Brightness, Console Light, Engine Instruments Lights, Flight Instruments Lights, Flood Light, Flow Level Control, Formation Lights, HSI Course Set Knob, HSI Heading Set Knob, Intercom Volume, Refuel Status Indexer Lights, Refueling Lighting Dial, RWR Display Brightness, Stall Peak Volume, Stall Volume, TACAN Signal Volume, Temp Level Control, Throttle Friction Control, UHF Volume, VHF FM Volume |
+
+### F-4E Phantom II (52 controls — 38 switches, 14 knobs)
+
+| System | Controls |
+|---|---|
+| AFCS | AFCS Autopilot, ALT Hold, STAB AUG Pitch, STAB AUG Roll, STAB AUG Yaw |
+| Weapons | Arm Fuze, Arm Center Station, Arm Left/Inner Station, Arm Left/Outer Station, Arm Right/Inner Station, Arm Right/Outer Station, Select Delivery Mode, Select Quantity, Select Dispense Program |
+| Navigation | Select Reference System, TACAN Mode, Select Navigation Input, Select Navigation Mode, Toggle Flight Director |
+| IFF | IFF Master Mode |
+| Fuel | Wing Fuel Dump, Internal Wing Tanks Feed |
+| Communications | Set Mode (ICS), Comm Antenna, Select Radio Mode, Select Frequency Mode |
 | HUD | Select HUD Mode |
-| Weapons | Arm Fuze, Select Delivery Mode, Select Quantity |
 | Oxygen | Select Oxygen Mixture, Emergency Release Cockpit Pressure |
-| Circuit Breakers | ARI CB, SAI CB, Landing Gear CB, Speed Brake CB, STAB Feel-Trim CB, AIL Feel-Trim CB, Rudder Trim CB, Trim Controls CB, Flaps CB |
-| Exterior Lights | Taxi/Landing Light, Set Formation Lights Mode, Change Formation Lights Brightness |
-| Interior Lights | Set Console Floodlight (Red) Brightness, Change Console Light Brightness, Toggle White Floodlight, Set Instrument Floodlight (Red) Brightness |
-| Environmental | Toggle Rain Removal, Change Temperature¹, Defog Handle¹ |
-| DCU Arm Stations | Arm Left/Outer Station, Arm Left/Inner Station, Arm Center Station, Arm Right/Inner Station, Arm Right/Outer Station |
-| Audio | AoA Stall Warning Volume, Aural Tone Volume |
+| Gear | Anti-Skid |
+| Lighting | Taxi/Landing Light, Formation Lights Mode, Console Floodlight, White Floodlight, Instrument Floodlight |
+| Environmental | Toggle Rain Removal |
+| Circuit Breakers | AIL Feel-Trim CB, ARI CB, Flaps CB, Landing Gear CB, Rudder Trim CB, SAI CB, Speed Brake CB, STAB Feel-Trim CB, Trim Controls CB |
+| Knobs | Aural Tone Volume, Change Temperature, Console Light Brightness, Defog Handle, Emergency Wheel Brake, Formation Lights Brightness, Stall Warning Volume |
 
-### F/A-18C Hornet
-
-| System | Controls |
-| --- | --- |
-| Oxygen | OXY Flow Knob, OBOGS Control Switch |
-| Exterior Lights | POSITION Lights Dimmer, FORMATION Lights Dimmer, LDG/TAXI LIGHT Switch |
-| Cockpit Lights | HOOK BYPASS Switch, CONSOLES Dimmer, INST PNL Dimmer, FLOOD Dimmer, MODE Switch, WARN/CAUTION Dimmer, CHART Dimmer |
-| Gear | Anti Skid Switch |
-| HUD | Altitude Switch, HUD Symbology Brightness Selector |
-| UFC | UFC COMM 1 Volume, UFC COMM 2 Volume |
-| MDI | Left MDI Brightness Selector, Right MDI Brightness Selector |
-| AMPCD | AMPCD Off/Brightness Knob |
-| Weapons | Master Arm Switch, Selective Jettison Knob |
-| Electrical | Left Generator Switch, Right Generator Switch, External Power Switch, CB LAUNCH BAR, CB SPD BRK, CB FCS CHAN 1, CB FCS CHAN 2, CB FCS CHAN 3, CB FCS CHAN 4, CB HOOK, CB LG |
-| Countermeasures | DISPENSER Switch |
-| ECM | ECM Mode Switch |
-| Radar | RADAR Switch |
-| INS | INS Switch |
-| Flight Controls | FLAP Switch, Throttles Friction Adjusting Lever |
-| ECS | Defog Handle, Suit Temperature Knob, Cabin Temperature Knob |
-| Hydraulics | Hydraulic Isolate Override Switch |
-| Fuel | External Wing Tanks Fuel Control Switch, External Centerline Tank Fuel Control Switch |
-| Intercom / IFF | ILS Channel Selector Switch, ILS UFC/MAN Switch, IFF Master Switch, IFF Mode 4 Switch, TACAN Volume Knob, RWR Volume Control Knob, MIDS A/B Volume Control Knobs, ICS Volume Control Knob, VOX Volume Control Knob, AUX Volume Control Knob |
-| CPT Mechanics | Shoulder Harness Control Handle |
-
-### F-14B Tomcat
+### F-5E Tiger II (84 controls — 56 switches, 28 knobs)
 
 | System | Controls |
-| --- | --- |
-| Oxygen | Pilot Oxygen On |
-| Audio | Sidewinder Volume, ALR-67 Volume |
-| Radio | VHF/UHF ARC-182 Volume Pilot, UHF ARC-159 Volume Pilot |
-| AFCS | AFCS Stability Augmentation (Yaw/Roll/Pitch), Autopilot Engage, Autopilot Altitude Hold, Autopilot Heading/Ground Track, Autopilot Vector/ACL |
-| Covers | Asymmetric Thrust Limiter Cover, Emergency Generator Switch Cover, ACM Cover, Hydraulic Emergency Flight Control Switch Cover, Hydraulic Transfer Pump Switch Cover |
-| Engine | Left Engine Mode, Right Engine Mode |
-| Gear / Brakes | Anti-Skid Spoiler BK Switch |
-| Fuel | Wing/Ext Trans |
-| Weapons | Master Arm Cover |
-| HUD | HUD Take-off Mode, HUD Cruise Mode, HUD Air-to-Air Mode, HUD Air-to-Ground Mode, HUD Landing Mode, HUD AWL Mode, HUD Power On/Off |
+|---|---|
+| Weapons | Armament Selector (Centerline, Left/Right Inbd, Left/Right Outbd, Left/Right Wingtip), Bombs Arm Switch, External Stores Selector, Guns/Missile/Camera Switch, Guns/Missile/Camera Switch Cover, Interval Switch |
+| Countermeasures | Chaff Mode Selector, Flare Mode Selector, Flare Jettison Switch Cover |
+| Fuel | Crossfeed Switch, Ext Fuel Cl Switch, Ext Fuel Pylons Switch, Left Boost Pump Switch, Right Boost Pump Switch, Left Fuel Shutoff Switch, Right Fuel Shutoff Switch, Left Fuel Shutoff Switch Cover, Right Fuel Shutoff Switch Cover |
+| Flight Controls | Auto Flap System Thumb Switch, Flaps Lever, Pitch Damper Switch, Speed Brake Switch, Yaw Damper Switch |
+| Oxygen | Oxygen Diluter Lever, Oxygen Emergency Lever, Oxygen Supply Lever |
+| Navigation | Compass Switch, Nav Mode Selector Switch, TACAN Mode Selector |
+| Radar | Radar Mode Selector, Radar Range Selector, Sight BIT Switch, Sight Camera FPS Switch, Sight Camera Overrun Selector, Sight Mode Selector |
+| RWR | RWR Altitude Button, RWR Power Button |
+| Environmental | Cabin Press Switch, Cabin Press Switch Cover, Cabin Temp Switch, Engine Anti-Ice Switch, Pitot Anti-Ice Switch, Magnetic Compass Light Switch |
+| IFF | IFF Master Control Selector, IFF MODE 1 Code Wheels (×2), IFF MODE 3/A Code Wheels (×4), IFF MODE 4 Control Switch, IFF MODE 4 Monitor Switch |
+| Communications | UHF Antenna Selector, UHF Frequency Mode Selector, UHF Function Selector, UHF Squelch Switch |
+| Lighting | Exterior Lights Beacon Switch, Landing & Taxi Light Switch |
+| Knobs | Armament Panel Lights, Cabin Temperature, Canopy Defog, Console Lights, Engine Instruments Lights, Exterior Lights Formation, Exterior Lights Nav, Flight Instruments Lights, Flood Lights, Missile Volume, Radar Bright, Radar Persistence, Radar Video, Reticle Intensity, Rudder Trim, RWR Audio, RWR DIM, RWR INT, TACAN Volume, UHF Volume |
+
+### F-14B Tomcat (40 controls — 33 switches, 7 knobs)
+
+| System | Controls |
+|---|---|
+| AFCS | AFCS Stability Augmentation (Pitch, Roll, Yaw), Autopilot Engage, Autopilot Altitude Hold, Autopilot Heading/Ground Track, Autopilot Vector/ACL |
+| Weapons | ACM Cover, Master Arm Cover |
+| Navigation | Navigation Steer Commands, ANA/ARA-63 Power Switch |
+| HUD | HUD Mode, HUD AWL Mode, HUD Power On/Off |
 | VDI | VDI Landing Mode, VDI Power On/Off |
 | HSD | HSD Display Mode, HSD/ECM Power On/Off |
-| Navigation | Navigation Steer Commands (TACAN, Destination, AWL PCD, Vector, Manual) |
-| ILS | ANA/ARA-63 Power Switch |
-| Cockpit Mechanics | Hook Bypass, Taxi Light, White Flood Light, Red Flood Light, Position Lights Wing, Position Lights Tail, Position Lights Flash, Anti-Collision Lights, Instrument Light Intensity, Console Light Intensity, Formation Light Intensity |
+| Engine | Left Engine Mode, Right Engine Mode, Asymmetric Thrust Limiter Cover |
+| Hydraulics | Hydraulic Emergency Flight Control Switch Cover, Hydraulic Transfer Pump Switch Cover |
+| Electrical | Emergency Generator Switch Cover |
+| Fuel | Wing/Ext Trans |
+| Gear | Anti-Skid Spoiler BK Switch |
+| Oxygen | Pilot Oxygen On |
+| Lighting | Anti-Collision Lights, Position Lights Flash, Position Lights Tail, Position Lights Wing, Red Flood Light, White Flood Light, Taxi Light |
+| Miscellaneous | Hook Bypass |
+| Knobs | ALR-67 Volume, Console Light Intensity, Formation Light Intensity, Instrument Light Intensity, Sidewinder Volume, UHF ARC-159 Volume, VHF/UHF ARC-182 Volume |
 
-### F-16C Viper
-
-| System | Controls |
-| --- | --- |
-| Electrical | PROBE HEAT Switch, FLCS PWR TEST Switch |
-| Flight Controls | TRIM/AP DISC Switch, DIGITAL BACKUP Switch, ALT FLAPS Switch, MANUAL TF FLYUP Switch, Autopilot ROLL Switch, STORES CONFIG Switch |
-| Fuel | FUEL MASTER Switch Cover, External Fuel Transfer Switch, ENGINE FEED Knob, FUEL QTY SEL Knob, AIR REFUEL Switch |
-| Oxygen | Supply Lever |
-| Gear / Brakes | ANTI-SKID Switch |
-| Exterior Lights | ANTI-COLL Knob, FORM Knob, MASTER Switch, WING/TAIL Switch, FUSELAGE Switch, FLASH STEADY Switch, LANDING TAXI LIGHTS Switch |
-| Interior Lights | PRIMARY CONSOLES BRT Knob, PRIMARY INST PNL Knob, PRIMARY DATA ENTRY DISPLAY BRT Knob, FLOOD CONSOLES BRT Knob, FLOOD INST PNL Knob |
-| ECS | AIR SOURCE Knob |
-| INS | INS Knob |
-| RALT | RDR ALT Switch |
-| UFC | UFC Switch |
-| MMC / Avionics | MMC Switch, MFD Switch, ST STA Switch, LEFT HDPT Switch, RIGHT HDPT Switch, GPS Switch, DL Switch, MAP Switch |
-| HUD | HUD Scales Switch, HUD Flightpath Marker Switch, HUD DED/PFLD Data Switch, HUD Altitude Switch, HUD Brightness Control Switch |
-| Weapons | MASTER ARM Switch, GND JETT ENABLE Switch, LASER ARM Switch |
-| HMCS | HMCS SYMBOLOGY INT Knob |
-| FCR / Radar | FCR Switch |
-| CMDS | RWR Source Switch, Jammer Source Switch, MWS Source Switch, O1 Expendable Category Switch, O2 Expendable Category Switch, CH Expendable Category Switch, FL Expendable Category Switch, PROGRAM Knob, MODE Knob |
-| IFF | IFF MASTER Knob, C & I Knob |
-| Intercom | COMM 1 Power Knob, COMM 2 Power Knob |
-| MIDS | MIDS LVT Knob |
-| EPU | EPU System (covers + switch) |
-
-### F-5E Tiger II
+### F-16C Viper (63 controls — 52 switches, 11 knobs)
 
 | System | Controls |
-| --- | --- |
-| Flight Controls | Yaw Damper Switch, Pitch Damper Switch, Rudder Trim Knob, Flaps Lever, Auto Flap System Thumb Switch, Speed Brake Switch |
-| Electrical | Pitot Anti-Ice Switch |
-| Fuel | Left/Right Fuel Shutoff Switch Covers, Ext Fuel Cl Switch, Ext Fuel Pylons Switch, Left Boost Pump Switch, Crossfeed Switch, Right Boost Pump Switch |
-| Engine | Engine Anti-Ice Switch |
-| Oxygen | Oxygen Supply Lever, Oxygen Diluter Lever, Oxygen Emergency Lever |
-| ECS | Cabin Press Switch Cover, Cabin Press Switch, Cabin Temp Switch, Cabin Temperature Knob, Canopy Defog Knob |
-| Exterior Lights | Exterior Lights Nav Knob, Exterior Lights Formation Knob, Exterior Lights Beacon Switch, Landing & Taxi Light Switch |
-| Interior Lights | Magnetic Compass Light Switch, Flood Lights Knob, Flight Instruments Lights Knob, Engine Instruments Lights Knob, Console Lights Knob, Armament Panel Lights Knob |
-| Countermeasures | Chaff Mode Selector, Flare Mode Selector, Flare Jettison Switch Cover |
-| Weapons | Armament Position Selectors (×7), Interval Switch, Bombs Arm Switch, Guns/Missile/Camera Switch Cover, External Stores Selector, Missile Volume Knob |
-| AHRS | Compass Switch, Nav Mode Selector Switch |
-| Radar | Radar Range Selector, Radar Mode Selector, Radar Bright Knob, Radar Persistence Knob, Radar Video Knob |
-| Sight | Sight Mode Selector, Reticle Intensity Knob, Sight BIT Switch |
-| RWR | RWR Altitude Button, RWR Power Button, RWR Audio Knob, RWR DIM Knob, RWR INT Knob |
-| IFF | IFF Master Control Selector, IFF MODE 4 Monitor Switch, IFF MODE 4 Control Switch, IFF MODE 1 Code Wheels (×2), IFF MODE 3/A Code Wheels (×4) |
-| UHF Radio | UHF Frequency Mode Selector, UHF Function Selector, UHF Squelch Switch, UHF Volume Knob, UHF Antenna Selector |
-| TACAN | TACAN Mode Selector, TACAN Signal Volume Knob |
-| Sight Camera | Sight Camera FPS Select Switch, Sight Camera Overrun Selector |
+|---|---|
+| FLCS | DIGITAL BACKUP Switch, FLCS POWER Switch, ALT FLAPS Switch, TRIM/AP DISC Switch |
+| Autopilot | Autopilot Roll Switch |
+| Fuel | Engine Feed Knob, External Fuel Transfer Switch, FUEL MASTER Switch Cover, FUEL QTY SEL Knob |
+| Environmental | AIR SOURCE Knob, PROBE HEAT Switch |
+| Navigation | GPS Switch, INS Knob |
+| Radar | FCR Switch, RDR ALT Switch, MAP Switch |
+| Communications | C & I Knob, DL Switch, MIDS LVT Knob, MMC Switch, UFC Switch |
+| IFF | IFF Master Knob |
+| EW / ECM | Jammer Source Switch, MWS Source Switch, RWR Source Switch |
+| Countermeasures | CH Expendable Category Switch, FL Expendable Category Switch, O1/O2 Expendable Category Switch, FLASH STEADY Switch, MODE Knob, PROGRAM Knob |
+| Weapons | GND JETT ENABLE Switch, LASER ARM Switch, MASTER ARM Switch, MASTER Switch, MANUAL TF FLYUP Switch, ST STA Switch, STORES CONFIG Switch |
+| Dispensers | FUSELAGE Switch, LEFT/RIGHT HDPT Switch, WING/TAIL Switch |
+| Electrical | MFD Switch |
+| HUD | HUD Altitude Switch, HUD Brightness Control Switch, HUD DED/PFLD Data Switch, HUD Flightpath Marker Switch, HUD Scales Switch |
+| ECS | AIR REFUELING Switch, Supply Lever |
+| Lighting | LANDING TAXI LIGHTS Switch |
+| Knobs | ANTI-COLL, COMM 1 Power, COMM 2 Power, FLOOD CONSOLES BRT, FLOOD INST PNL, FORM, HMCS SYMBOLOGY INT, PRIMARY CONSOLES BRT, PRIMARY DATA ENTRY DISPLAY BRT, PRIMARY INST PNL |
 
-¹ Not yet simulated in DCS. Handle/knob moves visually but has no functional effect.
+### F/A-18C Hornet (62 controls — 41 switches, 21 knobs)
+
+| System | Controls |
+|---|---|
+| Oxygen | OBOGS Control Switch |
+| Flight Controls | FLAP Switch, Anti Skid Switch, ATTITUDE Selector Switch, Shoulder Harness Control Handle |
+| Weapons | Master Arm Switch, Auxiliary Release Switch, Spin Recovery Switch Cover, GAIN Switch Cover |
+| Navigation | INS Switch, ILS Channel Selector, ILS UFC/MAN Switch, HUD Altitude Switch, HUD Symbology Reject Switch, HUD Video Control Switch |
+| Communications | COMM G XMT Switch, COMM Relay Switch, KY-58 Fill Select, KY-58 Mode Select, KY-58 Power Select |
+| IFF | UFC ADF Function Select Switch |
+| Radar | RADAR Switch |
+| EW | ECM Mode Switch, FLIR Switch, LST/NFLR Switch |
+| Electrical | Left Generator Switch, Right Generator Switch, Generator TIE Control Switch Cover, CB FCS CHAN 1–4, CB HOOK, CB LAUNCH BAR, CB LG, CB SPD BRK |
+| Lighting | LDG/TAXI LIGHT Switch, HOOK BYPASS Switch, MODE Switch, ENGINE ANTI-ICE Switch |
+| Knobs | AMPCD Off/Brightness, Balance Control, CHART Dimmer, COMM 1 Volume, COMM 2 Volume, CONSOLES Dimmer, Defog Handle, FLOOD Dimmer, FORMATION Lights Dimmer, IFEI Brightness, INST PNL Dimmer, KY-58 Volume, OXY Flow, POSITION Lights Dimmer, Left/Right MDI Brightness, TACAN Volume, Throttles Friction, UFC Brightness, WARN/CAUTION Dimmer |
+
+### MiG-21bis (138 controls — 100 switches, 38 knobs)
+
+| System | Controls |
+|---|---|
+| Electrical | AC Generator On/Off, DC Generator On/Off, Battery On/Off, Battery Heat On/Off, PO-750 Inverter #1 On/Off, PO-750 Inverter #2 On/Off, Emergency Inverter |
+| Engine | Engine Cold/Normal Start, Engine Emergency Air Start, Engine Nozzle 2 Position Emergency Control, Anti Surge Doors Auto/Manual, Nosecone On/Off, Nosecone Control Manual/Auto, APU On/Off |
+| Fuel | Fuel Tanks 1st Group Fuel Pump, Fuel Tanks 3rd Group Fuel Pump, Drain Fuel Tank Fuel Pump |
+| Flight Controls | ABS Off/On, Aileron Booster Off/On, ARU System Manual/Auto, SPS System Off/On, Trimmer On/Off |
+| Afterburner | Afterburner Maximum Off/On, Emergency Afterburner Off/On, Special AB/Missile-Rocket-Bombs-Cannon |
+| Hydraulics | Emergency Hydraulic Pump On/Off |
+| RATO | SPRD RATO Start Cover, SPRD RATO System On/Off, SPRD RATO Drop Cover, SPRD RATO Drop System On/Off |
+| Oxygen | Emergency Oxygen Off/On, Mixture/Oxygen, Helmet Air Condition Off/On, Helmet Heat Manual/Auto, Helmet Visor Off/On |
+| Navigation | DA-200/Giro NPP/SAU Power On/Off, Giro NPP SAU RLS KPP Power On/Off, KPP Main/Emergency, Low Altitude Off/Comp/On, Marker Far/Near, NPP On/Off, Radio Altimeter/Marker On/Off, RSBN On/Off, RSBN Mode Land/Navigation/Descend, RSBN Bearing, RSBN Distance, RSBN/ARK |
+| Autopilot | SAU On/Off, SAU Pitch On/Off, SAU Preset Limit Altitude |
+| IFF | IFF System Type 81 On/Off, SOD IFF On/Off, SOD Modes, SOD Wave Selector, SRZO IFF Coder/Decoder On/Off |
+| Weapons | ASP Main Mode Manual/Auto, ASP Mode Bombardment/Shooting, ASP Mode Giro/Missile, ASP Mode Missiles-Rockets/Gun, ASP Optical Sight On/Off, Detonation Air/Ground, GS-23 Gun On/Off, Guncam On/Off, Missiles Rockets Heat On/Off, Missiles Rockets Launch On/Off, Pipper On/Off, Pylon 1-2 Power On/Off, Pylon 3-4 Power On/Off, Weapon Mode Air/Ground, Weapon Mode IR Missile/Neutral/SAR Missile |
+| Radar | Locked Beam On/Off, Radar Off/Prep/On |
+| EW | SPS-141 On/Off, SPS-141 Continuous/Impulse, SPS-141 Dispenser Auto/Manual, SPS-141 Off/Parallel/Full, SPS-141 Program I/II, SPS-141 Transmit/Receive, SPO-10 Night/Day, SPO-10 RWR On/Off |
+| Communications | ARK Mode Antenna/Compass, ARK On/Off, Fix Net On/Off, Radio System On/Off, Radio/Compass, Squelch On/Off, UK-2M Mic Amplifier GS/KM, UK-2M Mic Amplifier M/L |
+| Flight Data | SARPP-12 Flight Data Recorder On/Off |
+| Canopy | Hermetize Canopy, Secure Canopy, Harness Separation |
+| Pitot | Pitot Tube Selector Main/Emergency, Pitot Tube/Periscope/Clock Heat, Secondary Pitot Heat |
+| Airbrake | Airbrake Out/In |
+| Landing | Gear Up/Neutral/Down, Nosegear Brake Off/On, Landing Lights Off/Taxi/Land, Navigation Lights Off/Min/Med/Max |
+| Emergency | Emergency Transmitter Cover, Emergency Transmitter On/Off, Fire Extinguisher Off/On |
+| Miscellaneous | Flaps Landing, Flaps Neutral, Flaps Take-Off |
+| Knobs | Altimeter Pressure, ARK Channel, ARK Sound, ARK Zone, Canopy Ventilation, Cockpit Texts Back-light, Dangerous Altitude Warning Set, Fix Net Light Control, Fuel Quantity Set, G-Suit Valve, Harness Loose/Tight, Instruments Back-light, Intercept Angle, Main Red Lights, Main White Lights, Missile Seeker Sound, Nosecone Manual Position, Pipper Light Control, PRMG Landing, Radar Polar Filter, Radio Channel, Radio Volume, RSBN Navigation, RSBN Sound, Scale Backlights Control, SPO-10 Volume, Suit Ventilation, Target Size, TDC Range/Pipper Span, Throttle Fixation |
+
+### Spitfire LF Mk. IX (49 controls — 36 switches, 13 knobs)
+
+| System | Controls |
+|---|---|
+| Engine | Magneto Left, Magneto Right, Mixture Cut-Off Lever, Carburettor Air Control Lever, Supercharger Mode Toggle, Supercharger Mode Test Button Cover, Radiator Control Toggle |
+| Fuel | Fuel Cock, Fuel Pump Toggle, Tank Pressurizer Lever, Drop Tank Cock |
+| Propulsion | Booster Coil Button Cover, Oil Diluter Button Cover, Starter Button Cover |
+| Flight Controls | Flaps Lever, Undercarriage Lever, Elevator Trim Wheel |
+| Gear | U/C Indicator Blind, U/C Indicator Cut-Off Toggle |
+| Oxygen | Oxygen Valve |
+| IFF | I.F.F. Protective Cover, I.F.F. Upper Toggle (Type B), I.F.F. Lower Toggle (Type D) |
+| Identification Lights | ID Lamp Down Mode Selector, ID Lamp Up Mode Selector |
+| Communications | Radio Mode Selector, Radio Dimmer Toggle, Radio Transmit Lock Toggle |
+| Weapons | Safety Lever, Gun Sight Master Switch, Gun Sight Tint Screen |
+| Environmental | De-Icer Lever, Pitot Heater Toggle, Radiator Flap Test Button Cover |
+| Cockpit | Canopy Open/Close Control, Cockpit Side Door |
+| Lighting | Nav Lights Toggle |
+| Knobs | Altimeter Pressure Setting, Compass Azimuth Ring, Direction Indicator Knob, Gun Sight Dimmer, Gun Sight Range Setter, Gun Sight Span Setter, Cockpit Illumination LH, Cockpit Illumination RH, Propeller Pitch Lever, Throttle Lever, Rudder Trim Wheel, Wheel Brakes |
+
+### UH-1H Huey (136 controls — 122 switches, 14 knobs)
+
+| System | Controls |
+|---|---|
+| Electrical | Battery Switch, Inverter Switch, Non-Essential Bus Switch, Starter/Stdby GEN Switch, Main Generator Switch Cover |
+| Rotor / Governor | Governor Switch, Force Trim Switch |
+| Fuel | Main Fuel Switch |
+| Environmental | De-Ice Switch, Bleed Air Switch |
+| Miscellaneous | Gyro Mode Switch |
+| Navigation | ADF/VOR Control Switch, Radar Altimeter Power Switch, Marker Beacon Sensing Switch |
+| Communications | UHF Frequency Mode Dial, UHF Function Dial, UHF Radio Receiver Switch, UHF Squelch Disable Switch, VHF AM Radio Receiver Switch, VHF FM Mode Switch, VHF FM Radio Receiver Switch, VHF FM Squelch Mode Switch, INT Receiver Switch, BFO Switch |
+| IFF | IFF Master Knob, IFF On/Out Switch (Mode 4), Receiver 4 N/F Switch, Receiver NAV Switch |
+| Weapons | ARM Switch, Armament Selector Switch, Armament Switch, Gun Selector Switch, Chaff Mode Switch, Jettison Switch Cover, Ripple Fire Cover, Ripple Fire Switch |
+| Lighting | Anti-Collision Lights Switch, Dome Light Switch, Landing Light Control Switch, Landing Light Switch, Navigation Lights Switch, Position Lights Switch (Dim/Bright), Position Lights Switch (Steady/Off/Flash), Search Light Switch, Low RPM Warning Switch |
+| Wipers | Wiper Selector Switch |
+| Circuit Breakers | 28V Trans, Anticollision Light, ARC-102 HF Static INVTR, Cabin Heater (Air/Outlet Valve), Cargo Hook Release, Caution Lights, Cockpit Lights, Console Lights, Copilot ATTD 1/2, Course Ind, Dome Lights, Engine Anti-Ice, EXT Stores Jettison, Fail Relay, Fire Detector, FM Radio, FM 2 Radio, FORCE Trim, Fuel Quantity, Fuel TRANS, Fuel Valves, Fuselage Lights, Generator & Bus Reset, Governor Control, Gyro Compass, Heated Blanket 1/2, HF ANT COUPLR, HF ARC-102, HYD Control, IDLE Stop Release, IFF APX 1/2, Ignition System, INST Panel Lights, INST SEC Lights, Intercom CPLT, Intercom PLT, Inverter CTRL, KY-28 Voice Security, Landing & Search Light Control, Landing Light Power, LF Nav (ARN-83), LH/RH Fuel Boost Pump, Main Inverter PWR, Marker Beacon, Navigation Lights, Pilot ATTD 1/2, Pitot Tube, Pressure Eng/Fuel/Torque/XMSN, Prox. Warn., Rescue Hoist Cable Cutter/CTL/PWR, RPM Warning System, Search Light Power, Spare Inverter PWR, Starter Relay, STBY Generator Field, TEMP Indicator, Turn & Slip Indicator, UHF Radio, VHF AM Radio, VHF Nav (ARN-82), Voltmeter Non Ess Bus, Wind Wiper CPLT/PLT, Cargo Safety |
+| Knobs | Copilot Instrument Lights, Engine Instrument Lights, Intercom Volume, Marker Beacon Volume, Overhead Console Panel Lights, Pedestal Lights, Pilot Instrument Lights, Pilot Sighting Station Intensity, Radar Altimeter Low Altitude Setting, Secondary Instrument Lights, Sighting Station Intensity, UHF Volume, VHF FM Volume |
 
 ---
 
@@ -407,13 +287,13 @@ Search `Saved Games\DCS\Logs\dcs.log` for `COCKPIT_RANDOMIZER`.
 Typical output on a successful cold start:
 
 ```
-[COCKPIT_RANDOMIZER] Aircraft detected: F-16C_50 — arming with 3.0s delay.
+[COCKPIT_RANDOMIZER] Aircraft detected: FA-18C_hornet — arming with 3.0s delay.
 [COCKPIT_RANDOMIZER] RPM check: left=0.0%  right=0.0%  threshold=10.0%
-[COCKPIT_RANDOMIZER] Randomizing cockpit on: F-16C_50
-[COCKPIT_RANDOMIZER]   PROBE HEAT Switch   dev=3  cmd=3002 -> 1
-[COCKPIT_RANDOMIZER]   INS Knob            dev=14 cmd=3001 -> 0.3
+[COCKPIT_RANDOMIZER] Randomizing cockpit on: FA-18C_hornet
+[COCKPIT_RANDOMIZER]   Master Arm Switch                          dev=18  cmd=3003  -> 0
+[COCKPIT_RANDOMIZER]   RADAR Switch                               dev=19  cmd=3001  -> 0.1
 ...
-[COCKPIT_RANDOMIZER] Randomizer complete for: F-16C_50
+[COCKPIT_RANDOMIZER] Randomizer complete for: FA-18C_hornet
 ```
 
 Typical output when skipped (taxi / in-flight):
@@ -422,18 +302,6 @@ Typical output when skipped (taxi / in-flight):
 [COCKPIT_RANDOMIZER] RPM check: left=68.4%  right=67.9%  threshold=10.0%
 [COCKPIT_RANDOMIZER] Skipping: engines running (RPM >= threshold). Not a cold start.
 ```
-
----
-
-## Adding support for other aircraft
-
-1. Create a new file: `CockpitRandomizer\<module>.lua`
-2. Find the aircraft's `clickabledata.lua`, `command_defs.lua`, and `devices.lua` under `DCSWorld\Mods\aircraft\<module>\Cockpit\Scripts\`.
-3. Use an existing aircraft file as a template.
-4. Register the switch table with `CR.register("DCS_aircraft_name", { ... })`.
-5. Add a `dofile` line for the new file in `Export.lua`.
-
-The DCS aircraft name string is what `LoGetSelfData().Name` returns in-game. Confirm it by checking the `Aircraft detected:` line in `dcs.log` on first run.
 
 ---
 
