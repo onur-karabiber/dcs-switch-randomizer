@@ -898,10 +898,10 @@
   "enabled": true,
   "type": "discrete",
   "positions": [
-    { "label": "POS 1", "delta": 0.0, "is_default": true,  "weight": 20 },
-    { "label": "POS 2", "delta": 0.1, "is_default": false, "weight": 20 },
-    { "label": "POS 3", "delta": 0.2, "is_default": false, "weight": 20 },
-    { "label": "POS 4", "delta": 0.3, "is_default": false, "weight": 20 },
+    { "label": "INT", "delta": 0.0, "is_default": false,  "weight": 20 },
+    { "label": "FM", "delta": 0.1, "is_default": false, "weight": 20 },
+    { "label": "VHF", "delta": 0.2, "is_default": true, "weight": 20 },
+    { "label": "HF", "delta": 0.3, "is_default": false, "weight": 20 },
     { "label": "POS 5", "delta": 0.4, "is_default": false, "weight": 20 }
   ]
 },
@@ -982,19 +982,19 @@
       "type": "discrete",
       "positions": [
         {
-          "label": "C",
+          "label": "C/RAD 1",
           "delta": 0.0,
-          "is_default": true,
+          "is_default": false,
           "weight": 70
         },
         {
-          "label": "RAD",
+          "label": "PLAIN",
           "delta": 0.1,
-          "is_default": false,
+          "is_default": true,
           "weight": 20
         },
         {
-          "label": "RAD+C",
+          "label": "C/RAD 2",
           "delta": 0.2,
           "is_default": false,
           "weight": 10
@@ -1003,44 +1003,44 @@
     },
     {
       "id": "ky58_fill",
-      "label": "KY-58 Fill Switch",
+      "label": "KY-58 Full Switch",
       "dev": 69,
       "cmd": 3005,
       "enabled": true,
       "type": "discrete",
       "positions": [
         {
-          "label": "Z",
+          "label": "1",
           "delta": 0.0,
           "is_default": true,
           "weight": 40
         },
         {
-          "label": "1",
+          "label": "2",
           "delta": 0.1,
           "is_default": false,
           "weight": 12
         },
         {
-          "label": "2",
+          "label": "3",
           "delta": 0.2,
           "is_default": false,
           "weight": 12
         },
         {
-          "label": "3",
+          "label": "4",
           "delta": 0.3,
           "is_default": false,
           "weight": 12
         },
         {
-          "label": "4",
+          "label": "5",
           "delta": 0.4,
           "is_default": false,
           "weight": 12
         },
         {
-          "label": "E",
+          "label": "6",
           "delta": 0.5,
           "is_default": false,
           "weight": 12
@@ -1056,19 +1056,19 @@
       "type": "discrete",
       "positions": [
         {
-          "label": "P",
+          "label": "OP",
           "delta": 0.0,
           "is_default": true,
           "weight": 80
         },
         {
-          "label": "C",
+          "label": "LD",
           "delta": 0.1,
           "is_default": false,
           "weight": 10
         },
         {
-          "label": "LD",
+          "label": "RV",
           "delta": 0.2,
           "is_default": false,
           "weight": 10
@@ -2000,19 +2000,19 @@
       "type": "discrete",
       "positions": [
         {
-          "label": "FM",
+          "label": "OFF",
           "delta": 0.0,
           "is_default": true,
           "weight": 34
         },
         {
-          "label": "AM",
+          "label": "TR",
           "delta": 0.1,
           "is_default": false,
           "weight": 33
         },
         {
-          "label": "MAN",
+          "label": "DF",
           "delta": 0.2,
           "is_default": false,
           "weight": 33

@@ -4,365 +4,276 @@
 
 CR.register("A-10C_2", {
 
-    -- ABLE-STOW ADI Localizer Bar
+    -- [DISABLED] { dev=46, cmd=3008, vals=..., label="ABLE-STOW ADI Localizer Bar" },
     -- ABLE=70%(default) / STOW=30%
-    { dev=46, cmd=3008, vals={1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="ABLE-STOW ADI Localizer Bar" },
 
-    -- Accelerometer & Compass Lights
+    -- [DISABLED] { dev=49, cmd=3004, vals=..., label="Accelerometer & Compass Lights" },
     -- ON=50% / OFF=50%(default)
-    { dev=49, cmd=3004, vals={1, 0}, label="Accelerometer & Compass Lights" },
 
-    -- Aerial Refueling Slipway Control
+    -- [DISABLED] { dev=36, cmd=3016, vals=..., label="Aerial Refueling Slipway Control" },
     -- OPEN=10% / CLOSE=90%(default)
-    { dev=36, cmd=3016, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Aerial Refueling Slipway Control" },
 
-    -- Altimeter Source
+    -- [DISABLED] { dev=7, cmd=3005, vals=..., label="Altimeter Source" },
     -- RADAR=5% / BARO=90%(default) / GPS=5%
-    { dev=7, cmd=3005, vals={0.2, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0}, label="Altimeter Source" },
 
-    -- Anti Skid
+    -- [DISABLED] { dev=38, cmd=3028, vals=..., label="Anti Skid" },
     -- ON=90%(default) / OFF=10%
-    { dev=38, cmd=3028, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Anti Skid" },
 
-    -- APU Generator On/Off
+    -- [DISABLED] { dev=1, cmd=3001, vals=..., label="APU Generator On/Off" },
     -- ON=10% / OFF=90%(default)
-    { dev=1, cmd=3001, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="APU Generator On/Off" },
 
-    -- APU On/Off
+    -- [DISABLED] { dev=37, cmd=3005, vals=..., label="APU On/Off" },
     -- ON=20% / OFF=80%(default)
-    { dev=37, cmd=3005, vals={1, 0, 0, 0, 0}, label="APU On/Off" },
 
-    -- ARC-210 Master Switch
+    -- [DISABLED] { dev=55, cmd=3043, vals=..., label="ARC-210 Master Switch" },
     -- OFF=30%(default) / TR=40% / DF=10% / RCV=10% / MAN=5% / STBY=3% / SQL=2%
-    { dev=55, cmd=3043, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.5, 0.5, 0.5, 0.6, 0.6}, label="ARC-210 Master Switch" },
 
-    -- Arm Ground Safety Override Switch Cover
+    -- [DISABLED] { dev=12, cmd=3002, vals=..., label="Arm Ground Safety Override Switch Cover" },
     -- OPEN=2% / SAFE=98%(default)
-    { dev=12, cmd=3002, vals={1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Arm Ground Safety Override Switch Cover" },
 
-    -- Autopilot Mode Select
+    -- [DISABLED] { dev=38, cmd=3001, vals=..., label="Autopilot Mode Select" },
     -- PATH=20% / ALT/HDG=60%(default) / ALT=20%
-    { dev=38, cmd=3001, vals={1, 0, 0, 0, -1}, label="Autopilot Mode Select" },
 
-    -- Battery Power
+    -- [DISABLED] { dev=1, cmd=3006, vals=..., label="Battery Power" },
     -- ON=90%(default) / OFF=10%
-    { dev=1, cmd=3006, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Battery Power" },
 
-    -- Bleed Air
+    -- [DISABLED] { dev=41, cmd=3006, vals=..., label="Bleed Air" },
     -- ON=85%(default) / OFF=15%
-    { dev=41, cmd=3006, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="Bleed Air" },
 
-    -- Boost Pumps Left Wing
+    -- [DISABLED] { dev=36, cmd=3005, vals=..., label="Boost Pumps Left Wing" },
     -- WING=85%(default) / OFF=15%
-    { dev=36, cmd=3005, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="Boost Pumps Left Wing" },
 
-    -- Boost Pumps Main Fuselage Left
+    -- [DISABLED] { dev=36, cmd=3007, vals=..., label="Boost Pumps Main Fuselage Left" },
     -- MAIN=85%(default) / OFF=15%
-    { dev=36, cmd=3007, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="Boost Pumps Main Fuselage Left" },
 
-    -- Boost Pumps Main Fuselage Right
+    -- [DISABLED] { dev=36, cmd=3008, vals=..., label="Boost Pumps Main Fuselage Right" },
     -- MAIN=85%(default) / OFF=15%
-    { dev=36, cmd=3008, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="Boost Pumps Main Fuselage Right" },
 
-    -- Boost Pumps Right Wing
+    -- [DISABLED] { dev=36, cmd=3006, vals=..., label="Boost Pumps Right Wing" },
     -- WING=85%(default) / OFF=15%
-    { dev=36, cmd=3006, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="Boost Pumps Right Wing" },
 
-    -- CDU Page Select
+    -- [DISABLED] { dev=22, cmd=3004, vals=..., label="CDU Page Select" },
     -- OTHER=25%(default) / POSITION=25% / STEER=25% / WAYPT=25%
-    { dev=22, cmd=3004, vals={0, 0.1, 0.2, 0.3}, label="CDU Page Select" },
 
-    -- CDU Power On/Off
+    -- [DISABLED] { dev=22, cmd=3005, vals=..., label="CDU Power On/Off" },
     -- ON=50% / OFF=50%(default)
-    { dev=22, cmd=3005, vals={1, 0}, label="CDU Power On/Off" },
 
-    -- CICU On/Off
+    -- [DISABLED] { dev=7, cmd=3008, vals=..., label="CICU On/Off" },
     -- ON=50% / OFF=50%(default)
-    { dev=7, cmd=3008, vals={1, 0}, label="CICU On/Off" },
 
-    -- Cross Feed
+    -- [DISABLED] { dev=36, cmd=3004, vals=..., label="Cross Feed" },
     -- OPEN=15% / CLOSED=85%(default)
-    { dev=36, cmd=3004, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Cross Feed" },
 
-    -- Day/Night HUD Mode
+    -- [DISABLED] { dev=7, cmd=3006, vals=..., label="Day/Night HUD Mode" },
     -- DAY=60%(default) / NIGHT=40%
-    { dev=7, cmd=3006, vals={1, 1, 1, 0, 0}, label="Day/Night HUD Mode" },
 
-    -- DVADR Function Control
+    -- [DISABLED] { dev=73, cmd=3001, vals=..., label="DVADR Function Control" },
     -- RECORD=20% / OFF=60%(default) / XMIT=20%
-    { dev=73, cmd=3001, vals={0.1, 0, 0, 0, 0.2}, label="DVADR Function Control" },
 
-    -- EAC On/Off
+    -- [DISABLED] { dev=38, cmd=3026, vals=..., label="EAC On/Off" },
     -- ON=85%(default) / OFF=15%
-    { dev=38, cmd=3026, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="EAC On/Off" },
 
-    -- EGI Power On/Off
+    -- [DISABLED] { dev=22, cmd=3006, vals=..., label="EGI Power On/Off" },
     -- ON=50% / OFF=50%(default)
-    { dev=22, cmd=3006, vals={1, 0}, label="EGI Power On/Off" },
 
-    -- External Fuselage Tank Boost Pump
+    -- [DISABLED] { dev=36, cmd=3002, vals=..., label="External Fuselage Tank Boost Pump" },
     -- BOOST=30% / OFF=70%(default)
-    { dev=36, cmd=3002, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, label="External Fuselage Tank Boost Pump" },
 
-    -- External Wing Tanks Boost Pumps
+    -- [DISABLED] { dev=36, cmd=3001, vals=..., label="External Wing Tanks Boost Pumps" },
     -- BOOST=30% / OFF=70%(default)
-    { dev=36, cmd=3001, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, label="External Wing Tanks Boost Pumps" },
 
-    -- Flap Setting
+    -- [DISABLED] { dev=39, cmd=3002, vals=..., label="Flap Setting" },
     -- UP=50%(default) / MVR=30% / LDG=20%
-    { dev=39, cmd=3002, vals={0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 1, 1}, label="Flap Setting" },
 
-    -- Flaps Emergency Retract
+    -- [DISABLED] { dev=38, cmd=3023, vals=..., label="Flaps Emergency Retract" },
     -- UP=5% / NORM=95%(default)
-    { dev=38, cmd=3023, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Flaps Emergency Retract" },
 
-    -- Gun Arm Mode
+    -- [DISABLED] { dev=7, cmd=3002, vals=..., label="Gun Arm Mode" },
     -- ARM=5% / SAFE=90%(default) / GUNPAC=5%
-    { dev=7, cmd=3002, vals={0.2, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0}, label="Gun Arm Mode" },
 
-    -- HARS N/S Toggle
+    -- [DISABLED] { dev=44, cmd=3003, vals=..., label="HARS N/S Toggle" },
     -- N=80%(default) / S=20%
-    { dev=44, cmd=3003, vals={1, 1, 1, 1, 0}, label="HARS N/S Toggle" },
 
-    -- HARS SLAVE/DG Mode
+    -- [DISABLED] { dev=44, cmd=3002, vals=..., label="HARS SLAVE/DG Mode" },
     -- SLAVE=80%(default) / DG=20%
-    { dev=44, cmd=3002, vals={1, 1, 1, 1, 0}, label="HARS SLAVE/DG Mode" },
 
-    -- HARS-SAS Override/NORM
+    -- [DISABLED] { dev=38, cmd=3031, vals=..., label="HARS-SAS Override/NORM" },
     -- NORM=90%(default) / OVERRIDE=10%
-    { dev=38, cmd=3031, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="HARS-SAS Override/NORM" },
 
-    -- IFF Antenna Switch
+    -- [DISABLED] { dev=43, cmd=3019, vals=..., label="IFF Antenna Switch" },
     -- UPPER=0% / AUTO=0% / LOWER=100%(default)
-    { dev=43, cmd=3019, vals={0}, label="IFF Antenna Switch" },
 
-    -- ILS Frequency/Power
-    -- ON=20% / OFF=80%(default)
-    { dev=53, cmd=3001, vals={1, 0, 0, 0, 0}, label="ILS Frequency/Power" },
+    -- [DISABLED] { dev=53, cmd=3001, vals=..., label="ILS Frequency/Power" },
+    -- ON=100% / OFF=0%(default)
 
-    -- Intercom AIM Switch
+    -- [DISABLED] { dev=58, cmd=3009, vals=..., label="Intercom AIM Switch" },
     -- IN=50% / OUT=50%(default)
-    { dev=58, cmd=3009, vals={1, 0}, label="Intercom AIM Switch" },
 
-    -- Intercom HM Switch
+    -- [DISABLED] { dev=58, cmd=3017, vals=..., label="Intercom HM Switch" },
     -- IN=50% / OUT=50%(default)
-    { dev=58, cmd=3017, vals={1, 0}, label="Intercom HM Switch" },
 
-    -- Intercom IFF Switch
+    -- [DISABLED] { dev=58, cmd=3011, vals=..., label="Intercom IFF Switch" },
     -- IN=50% / OUT=50%(default)
-    { dev=58, cmd=3011, vals={1, 0}, label="Intercom IFF Switch" },
 
-    -- Intercom ILS Switch
+    -- [DISABLED] { dev=58, cmd=3013, vals=..., label="Intercom ILS Switch" },
     -- IN=50% / OUT=50%(default)
-    { dev=58, cmd=3013, vals={1, 0}, label="Intercom ILS Switch" },
 
-    -- Intercom INT Switch
+    -- [DISABLED] { dev=58, cmd=3001, vals=..., label="Intercom INT Switch" },
     -- IN=50% / OUT=50%(default)
-    { dev=58, cmd=3001, vals={1, 0}, label="Intercom INT Switch" },
 
-    -- Intercom Selector Switch
-    -- POS 1=20%(default) / POS 2=20% / POS 3=20% / POS 4=20% / POS 5=20%
-    { dev=58, cmd=3019, vals={0, 0.1, 0.2, 0.3, 0.4}, label="Intercom Selector Switch" },
+    -- [DISABLED] { dev=58, cmd=3019, vals=..., label="Intercom Selector Switch" },
+    -- INT=20% / FM=20% / VHF=20%(default) / HF=20% / POS 5=20%
 
-    -- Intercom TCN Switch
+    -- [DISABLED] { dev=58, cmd=3015, vals=..., label="Intercom TCN Switch" },
     -- IN=50% / OUT=50%(default)
-    { dev=58, cmd=3015, vals={1, 0}, label="Intercom TCN Switch" },
 
-    -- Intercom UHF Switch
+    -- [DISABLED] { dev=58, cmd=3007, vals=..., label="Intercom UHF Switch" },
     -- IN=50% / OUT=50%(default)
-    { dev=58, cmd=3007, vals={1, 0}, label="Intercom UHF Switch" },
 
-    -- Jettison Countermeasures
+    -- [DISABLED] { dev=4, cmd=3008, vals=..., label="Jettison Countermeasures" },
     -- JTSN=3% / OFF=97%(default)
-    { dev=4, cmd=3008, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Jettison Countermeasures" },
 
-    -- JTRS Datalink On/Off
+    -- [DISABLED] { dev=7, cmd=3009, vals=..., label="JTRS Datalink On/Off" },
     -- ON=20% / OFF=80%(default)
-    { dev=7, cmd=3009, vals={1, 0, 0, 0, 0}, label="JTRS Datalink On/Off" },
 
-    -- KY-58 C/RAD Switch
-    -- C=70%(default) / RAD=20% / RAD+C=10%
-    { dev=69, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2}, label="KY-58 C/RAD Switch" },
+    -- [DISABLED] { dev=69, cmd=3004, vals=..., label="KY-58 C/RAD Switch" },
+    -- C/RAD 1=31% / PLAIN=46%(default) / C/RAD 2=23%
 
-    -- KY-58 Fill Switch
-    -- Z=40%(default) / 1=12% / 2=12% / 3=12% / 4=12% / E=12%
-    { dev=69, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.4, 0.4, 0.4, 0.5, 0.5, 0.5}, label="KY-58 Fill Switch" },
+    -- [DISABLED] { dev=69, cmd=3005, vals=..., label="KY-58 Full Switch" },
+    -- 1=40%(default) / 2=12% / 3=12% / 4=12% / 5=12% / 6=12%
 
-    -- KY-58 Mode Switch
-    -- P=80%(default) / C=10% / LD=10%
-    { dev=69, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.2}, label="KY-58 Mode Switch" },
+    -- [DISABLED] { dev=69, cmd=3006, vals=..., label="KY-58 Mode Switch" },
+    -- OP=80%(default) / LD=10% / RV=10%
 
-    -- KY-58 Power Switch
-    -- ON=30% / OFF=70%(default)
-    { dev=69, cmd=3007, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, label="KY-58 Power Switch" },
+    -- [DISABLED] { dev=69, cmd=3007, vals=..., label="KY-58 Power Switch" },
+    -- ON=14% / OFF=86%(default)
 
-    -- Land Taxi Lights
+    -- [DISABLED] { dev=49, cmd=3014, vals=..., label="Land Taxi Lights" },
     -- TAXI=5% / OFF=90%(default) / LDG=5%
-    { dev=49, cmd=3014, vals={0.2, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0}, label="Land Taxi Lights" },
 
-    -- Landing Gear Lever
+    -- [DISABLED] { dev=39, cmd=3001, vals=..., label="Landing Gear Lever" },
     -- UP=40% / DOWN=60%(default)
-    { dev=39, cmd=3001, vals={1, 1, 0, 0, 0}, label="Landing Gear Lever" },
 
-    -- Laser Arm
+    -- [DISABLED] { dev=7, cmd=3003, vals=..., label="Laser Arm" },
     -- ARM=5% / SAFE=90%(default) / OFF=5%
-    { dev=7, cmd=3003, vals={0.2, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0}, label="Laser Arm" },
 
-    -- Left AC Generator Power
+    -- [DISABLED] { dev=1, cmd=3004, vals=..., label="Left AC Generator Power" },
     -- ON=90%(default) / OFF=10%
-    { dev=1, cmd=3004, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Left AC Generator Power" },
 
-    -- Left Engine Fuel Flow Control
+    -- [DISABLED] { dev=37, cmd=3001, vals=..., label="Left Engine Fuel Flow Control" },
     -- NORM=90%(default) / OVERRIDE=10%
-    { dev=37, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Left Engine Fuel Flow Control" },
 
-    -- Left MFCD DAY/NIGHT/OFF
+    -- [DISABLED] { dev=2, cmd=3036, vals=..., label="Left MFCD DAY/NIGHT/OFF" },
     -- DAY=60%(default) / NIGHT=30% / OFF=10%
-    { dev=2, cmd=3036, vals={0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.2}, label="Left MFCD DAY/NIGHT/OFF" },
 
-    -- Main Air Supply
+    -- [DISABLED] { dev=41, cmd=3008, vals=..., label="Main Air Supply" },
     -- ON=90%(default) / OFF=10%
-    { dev=41, cmd=3008, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Main Air Supply" },
 
-    -- Manual Reversion Flight Control System
+    -- [DISABLED] { dev=38, cmd=3024, vals=..., label="Manual Reversion Flight Control System" },
     -- MRFCS=5% / NORM=95%(default)
-    { dev=38, cmd=3024, vals={0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="Manual Reversion Flight Control System" },
 
-    -- Master Arm
+    -- [DISABLED] { dev=7, cmd=3001, vals=..., label="Master Arm" },
     -- ARM=2% / SAFE=96%(default) / TRAIN=2%
-    { dev=7, cmd=3001, vals={0.2, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0}, label="Master Arm" },
 
-    -- Nightvision Lights
+    -- [DISABLED] { dev=49, cmd=3017, vals=..., label="Nightvision Lights" },
     -- NORM=70%(default) / NVG=20% / OFF=10%
-    { dev=49, cmd=3017, vals={0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.1, 0.1, 0}, label="Nightvision Lights" },
 
-    -- NORM/Standby HUD Mode
+    -- [DISABLED] { dev=7, cmd=3007, vals=..., label="NORM/Standby HUD Mode" },
     -- NORM=90%(default) / STBY=10%
-    { dev=7, cmd=3007, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="NORM/Standby HUD Mode" },
 
-    -- Nose Illumination
+    -- [DISABLED] { dev=49, cmd=3012, vals=..., label="Nose Illumination" },
     -- ON=20% / OFF=80%(default)
-    { dev=49, cmd=3012, vals={1, 0, 0, 0, 0}, label="Nose Illumination" },
 
-    -- Oxygen Normal/100%
+    -- [DISABLED] { dev=40, cmd=3002, vals=..., label="Oxygen Normal/100%" },
     -- NORM=80%(default) / 100%=20%
-    { dev=40, cmd=3002, vals={1, 1, 1, 1, 0}, label="Oxygen Normal/100%" },
 
-    -- Oxygen Supply On/Off
+    -- [DISABLED] { dev=40, cmd=3001, vals=..., label="Oxygen Supply On/Off" },
     -- ON=90%(default) / OFF=10%
-    { dev=40, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Oxygen Supply On/Off" },
 
-    -- Pitch SAS Engage Left
+    -- [DISABLED] { dev=38, cmd=3007, vals=..., label="Pitch SAS Engage Left" },
     -- ENGAGE=90%(default) / OFF=10%
-    { dev=38, cmd=3007, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Pitch SAS Engage Left" },
 
-    -- Pitch SAS Engage Right
+    -- [DISABLED] { dev=38, cmd=3009, vals=..., label="Pitch SAS Engage Right" },
     -- ENGAGE=90%(default) / OFF=10%
-    { dev=38, cmd=3009, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Pitch SAS Engage Right" },
 
-    -- Pitch/Roll Trim Norm/Emergency Override
+    -- [DISABLED] { dev=38, cmd=3016, vals=..., label="Pitch/Roll Trim Norm/Emergency Override" },
     -- EMER=5% / NORM=95%(default)
-    { dev=38, cmd=3016, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Pitch/Roll Trim Norm/Emergency Override" },
 
-    -- Pitot Heater
+    -- [DISABLED] { dev=41, cmd=3005, vals=..., label="Pitot Heater" },
     -- ON=85%(default) / OFF=15%
-    { dev=41, cmd=3005, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="Pitot Heater" },
 
-    -- Position Lights FLASH/OFF/STEADY
+    -- [DISABLED] { dev=49, cmd=3008, vals=..., label="Position Lights FLASH/OFF/STEADY" },
     -- FLASH=20% / OFF=60%(default) / STEADY=20%
-    { dev=49, cmd=3008, vals={1, 0, 0, 0, -1}, label="Position Lights FLASH/OFF/STEADY" },
 
-    -- Radar Altimeter Normal/Disabled
+    -- [DISABLED] { dev=67, cmd=3001, vals=..., label="Radar Altimeter Normal/Disabled" },
     -- NORM=85%(default) / DISABLED=15%
-    { dev=67, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="Radar Altimeter Normal/Disabled" },
 
-    -- Right AC Generator Power
+    -- [DISABLED] { dev=1, cmd=3005, vals=..., label="Right AC Generator Power" },
     -- ON=90%(default) / OFF=10%
-    { dev=1, cmd=3005, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Right AC Generator Power" },
 
-    -- Right Engine Fuel Flow Control
+    -- [DISABLED] { dev=37, cmd=3002, vals=..., label="Right Engine Fuel Flow Control" },
     -- NORM=90%(default) / OVERRIDE=10%
-    { dev=37, cmd=3002, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Right Engine Fuel Flow Control" },
 
-    -- Right MFCD DAY/NIGHT/OFF
+    -- [DISABLED] { dev=3, cmd=3036, vals=..., label="Right MFCD DAY/NIGHT/OFF" },
     -- DAY=60%(default) / NIGHT=30% / OFF=10%
-    { dev=3, cmd=3036, vals={0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.2}, label="Right MFCD DAY/NIGHT/OFF" },
 
-    -- Scorpion HMCS Power
+    -- [DISABLED] { dev=75, cmd=3001, vals=..., label="Scorpion HMCS Power" },
     -- ON=40% / STBY=40%(default) / OFF=20%
-    { dev=75, cmd=3001, vals={1, 1, 0, 0, -1}, label="Scorpion HMCS Power" },
 
-    -- Signal Amplifier Norm/Override
+    -- [DISABLED] { dev=36, cmd=3009, vals=..., label="Signal Amplifier Norm/Override" },
     -- NORM=90%(default) / OVERRIDE=10%
-    { dev=36, cmd=3009, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Signal Amplifier Norm/Override" },
 
-    -- Signal Lights
+    -- [DISABLED] { dev=49, cmd=3013, vals=..., label="Signal Lights" },
     -- ON=20% / OFF=80%(default)
-    { dev=49, cmd=3013, vals={1, 0, 0, 0, 0}, label="Signal Lights" },
 
-    -- Speed Brake Emergency Retract
+    -- [DISABLED] { dev=38, cmd=3015, vals=..., label="Speed Brake Emergency Retract" },
     -- RETR=5% / NORM=95%(default)
-    { dev=38, cmd=3015, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Speed Brake Emergency Retract" },
 
-    -- Steerpoint Selector
+    -- [DISABLED] { dev=22, cmd=3001, vals=..., label="Steerpoint Selector" },
     -- FLT PLAN=34%(default) / MARK=33% / MISSION=33%
-    { dev=22, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}, label="Steerpoint Selector" },
 
     -- TACAN Mode Dial
-    -- OFF=60%(default) / REC=10% / T/R=10% / A/A REC=10% / A/A T/R=10%
-    { dev=74, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0.1, 0.2, 0.3, 0.4}, label="TACAN Mode Dial" },
+    -- OFF=0%(default) / REC=0% / T/R=96% / A/A REC=0% / A/A T/R=4%
+    { dev=74, cmd=3006, vals={0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.4}, label="TACAN Mode Dial" },
 
-    -- Tank Gate
+    -- [DISABLED] { dev=36, cmd=3003, vals=..., label="Tank Gate" },
     -- OPEN=20% / CLOSED=80%(default)
-    { dev=36, cmd=3003, vals={1, 0, 0, 0, 0}, label="Tank Gate" },
 
-    -- Targeting Pod Power
+    -- [DISABLED] { dev=7, cmd=3004, vals=..., label="Targeting Pod Power" },
     -- ON=30% / OFF=70%(default)
-    { dev=7, cmd=3004, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, label="Targeting Pod Power" },
 
-    -- Turn On/Off/Test IFFCC
+    -- [DISABLED] { dev=7, cmd=3010, vals=..., label="Turn On/Off/Test IFFCC" },
     -- TEST=5% / OFF=90%(default) / ON=5%
-    { dev=7, cmd=3010, vals={0.2, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0}, label="Turn On/Off/Test IFFCC" },
 
-    -- UHF Antenna Switch
+    -- [DISABLED] { dev=54, cmd=3016, vals=..., label="UHF Antenna Switch" },
     -- UPPER=8% / AUTO=15% / LOWER=77%(default)
-    { dev=54, cmd=3016, vals={1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="UHF Antenna Switch" },
 
-    -- UHF Frequency Mode Dial
+    -- [DISABLED] { dev=54, cmd=3007, vals=..., label="UHF Frequency Mode Dial" },
     -- MNL=34%(default) / PRESET=33% / GUARD=33%
-    { dev=54, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}, label="UHF Frequency Mode Dial" },
 
-    -- UHF Function Dial
-    -- OFF=40%(default) / MAIN=30% / BOTH=20% / ADF=10%
-    { dev=54, cmd=3008, vals={0, 0, 0, 0, 0.1, 0.1, 0.1, 0.2, 0.2, 0.3}, label="UHF Function Dial" },
+    -- [DISABLED] { dev=54, cmd=3008, vals=..., label="UHF Function Dial" },
+    -- OFF=58%(default) / MAIN=22% / BOTH=14% / ADF=6%
 
-    -- UHF Squelch
+    -- [DISABLED] { dev=54, cmd=3010, vals=..., label="UHF Squelch" },
     -- SQUELCH=70%(default) / UNSQUELCH=30%
-    { dev=54, cmd=3010, vals={1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="UHF Squelch" },
 
-    -- VHF FM Frequency Mode Dial
-    -- FM=34%(default) / AM=33% / MAN=33%
-    { dev=56, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}, label="VHF FM Frequency Mode Dial" },
+    -- [DISABLED] { dev=56, cmd=3003, vals=..., label="VHF FM Frequency Mode Dial" },
+    -- OFF=66%(default) / TR=19% / DF=15%
 
-    -- Windshield Defog/Deice
+    -- [DISABLED] { dev=41, cmd=3002, vals=..., label="Windshield Defog/Deice" },
     -- ON=20% / OFF=80%(default)
-    { dev=41, cmd=3002, vals={1, 0, 0, 0, 0}, label="Windshield Defog/Deice" },
 
-    -- Windshield Rain Removal/Wash
+    -- [DISABLED] { dev=41, cmd=3004, vals=..., label="Windshield Rain Removal/Wash" },
     -- RAIN REM=15% / OFF=75%(default) / WASH=10%
-    { dev=41, cmd=3004, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1}, label="Windshield Rain Removal/Wash" },
 
-    -- Yaw SAS Engage Left
+    -- [DISABLED] { dev=38, cmd=3003, vals=..., label="Yaw SAS Engage Left" },
     -- ENGAGE=90%(default) / OFF=10%
-    { dev=38, cmd=3003, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Yaw SAS Engage Left" },
 
-    -- Yaw SAS Engage Right
+    -- [DISABLED] { dev=38, cmd=3005, vals=..., label="Yaw SAS Engage Right" },
     -- ENGAGE=90%(default) / OFF=10%
-    { dev=38, cmd=3005, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Yaw SAS Engage Right" },
 
-    -- Zeroize Cover
+    -- [DISABLED] { dev=69, cmd=3001, vals=..., label="Zeroize Cover" },
     -- OPEN=5% / CLOSE=95%(default)
-    { dev=69, cmd=3001, vals={1, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}, label="Zeroize Cover" },
 
     -- Auxiliary Instruments Lights
     { dev=49, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Auxiliary Instruments Lights" },
