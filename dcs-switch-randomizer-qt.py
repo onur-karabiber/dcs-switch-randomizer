@@ -512,7 +512,7 @@ class MainWindow(QWidget):
         self.status_lbl.setObjectName("status")
         self.status_lbl.setAlignment(Qt.AlignCenter)
         self.status_lbl.setWordWrap(True)
-        self.status_lbl.setFixedHeight(20)
+        self.status_lbl.setMinimumHeight(20)
 
         self.progress = QProgressBar()
         self.progress.setFixedHeight(10)
@@ -788,8 +788,9 @@ class MainWindow(QWidget):
             copy_lua_files(scripts)
             save_json_defaults(scripts)
             save_config(scripts, {key for _, key in AIRCRAFT})
-            self.set_status("Installation complete. Press Apply to activate.", color=GREEN)
             self._show_main_screen()
+            self.set_status("Initialization complete. Check the aircraft whose switch and knob positions you want randomized during cold starts, and uncheck those you want excluded. Then click Apply to activate the Randomizer.", color=GREEN)
+            self._mark_pending(update_status=False)
         except Exception as e:
             self._err("Install failed", str(e))
             self.set_status(f"Error: {e}", color=HL)
@@ -820,8 +821,9 @@ class MainWindow(QWidget):
         try:
             copy_lua_files(self.scripts_dir)
             save_json_defaults(self.scripts_dir)
-            self.set_status("Update complete. Press Apply to refresh Export.lua.", color=GREEN)
             self._show_main_screen()
+            self.set_status("Update complete. Press Apply to refresh Export.lua.", color=GREEN)
+            self._mark_pending(update_status=False)
         except Exception as e:
             self._err("Update failed", str(e))
             self.set_status(f"Error: {e}", color=HL)
@@ -969,7 +971,7 @@ class MainWindow(QWidget):
         self._reposition_settings_dialog()
         super().moveEvent(e)
 
-    def _mark_pending(self):
+    def _mark_pending(self, update_status=True):
         """Uçak seçimi değişti — Apply butonu ve status ile kullanıcıyı uyar."""
         btn = getattr(self, "_btn_apply", None)
         if btn is not None:
@@ -978,7 +980,8 @@ class MainWindow(QWidget):
                 "font-size:15pt; font-weight:bold;"
                 "border: none; border-radius: 8px; padding: 10px;"
             )
-        self.set_status("Press Apply to apply changes to Export.lua.", color="#f0c040")
+        if update_status:
+            self.set_status("Press Apply to apply changes to Export.lua.", color="#f0c040")
 
     def _clear_pending(self):
         """Apply tamamlandı — butonu normal stiline döndür."""

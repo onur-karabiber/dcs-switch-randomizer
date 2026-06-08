@@ -316,12 +316,14 @@ class RepeatButton(QPushButton):
 # ── PositionRow ───────────────────────────────────────────────────────────────
 
 class PositionRow(QWidget):
-    def __init__(self, pos_data: dict, all_rows_ref: list, is_default: bool):
+    def __init__(self, pos_data: dict, all_rows_ref: list, is_default: bool,
+                 change_callback=None):
         super().__init__()
-        self._pos        = pos_data
-        self._rows       = all_rows_ref
-        self._is_default = is_default
-        self._updating   = False
+        self._pos             = pos_data
+        self._rows            = all_rows_ref
+        self._is_default      = is_default
+        self._updating        = False
+        self._change_callback = change_callback
 
         lay = QHBoxLayout(self)
         lay.setContentsMargins(0, 2, 0, 2)
@@ -426,6 +428,8 @@ class PositionRow(QWidget):
             default_row._updating = False
             default_row._update_color()
             self._sync_up_buttons(locked=(new_default == 0))
+        if self._change_callback is not None:
+            self._change_callback()
 
     def _update_color(self):
         color = GREEN if self.spin.value() == 100 else FG
@@ -469,10 +473,11 @@ class PositionRow(QWidget):
 # ── ControlCard ───────────────────────────────────────────────────────────────
 
 class ControlCard(QFrame):
-    def __init__(self, ctrl: dict):
+    def __init__(self, ctrl: dict, change_callback=None):
         super().__init__()
-        self._ctrl = ctrl
+        self._ctrl            = ctrl
         self._pos_rows: list[PositionRow] = []
+        self._change_callback = change_callback
 
         self.setObjectName("panel")
         self.setStyleSheet(f"QFrame#panel {{ background: rgba(34, 34, 34, 77); border-radius: 6px; }}")
@@ -541,7 +546,8 @@ class ControlCard(QFrame):
         defaults     = [p for p in positions if p.get("is_default", False)]
         for pos in non_defaults + defaults:
             is_def = pos.get("is_default", False)
-            row = PositionRow(pos, self._pos_rows, is_def)
+            row = PositionRow(pos, self._pos_rows, is_def,
+                              change_callback=self._change_callback)
             self._pos_rows.append(row)
             self._body.addWidget(row)
 
@@ -553,7 +559,8 @@ class ControlCard(QFrame):
         defaults     = [p for p in positions if p.get("is_default", False)]
         for pos in non_defaults + defaults:
             is_def = pos.get("is_default", False)
-            row = PositionRow(pos, self._pos_rows, is_def)
+            row = PositionRow(pos, self._pos_rows, is_def,
+                              change_callback=self._change_callback)
             self._pos_rows.append(row)
             self._body.addWidget(row)
 
@@ -561,6 +568,8 @@ class ControlCard(QFrame):
         enabled = bool(state)
         self._ctrl["enabled"] = enabled
         self._set_body_enabled(enabled)
+        if self._change_callback is not None:
+            self._change_callback()
 
     def _set_body_enabled(self, enabled: bool):
         for i in range(self._body.count()):
@@ -806,7 +815,7 @@ class AircraftSettingsDialog(QDialog):
 
         controls = self._meta.get("controls", [])
         for ctrl in controls:
-            card = ControlCard(ctrl)
+            card = ControlCard(ctrl, change_callback=self._mark_pending)
             self._cards.append(card)
             inner_lay.addWidget(card)
 
@@ -857,8 +866,37 @@ class AircraftSettingsDialog(QDialog):
                 """)
             btn.clicked.connect(slot)
             bot_lay.addWidget(btn)
+            if style == "apply":
+                self._btn_save = btn
 
         root.addWidget(bottom)
+
+    # ── Pending state ─────────────────────────────────────────────────────────
+
+    def _mark_pending(self):
+        """Bir parametre değişti — Save & Apply butonunu amber renge boyar."""
+        btn = getattr(self, "_btn_save", None)
+        if btn is not None:
+            btn.setStyleSheet(f"""
+                QPushButton {{ background: #b8860b; color: #111111;
+                    font-family: Consolas; font-size: 12pt; font-weight: bold;
+                    border: none; border-radius: 6px; padding: 0 16px; }}
+                QPushButton:hover   {{ background: #d4a017; }}
+                QPushButton:pressed {{ background: #8b6508; }}
+            """)
+        self._status("Press Save & Apply to save changes.", "#f0c040")
+
+    def _clear_pending(self):
+        """Kayıt tamamlandı — Save & Apply butonunu normal stiline döndür."""
+        btn = getattr(self, "_btn_save", None)
+        if btn is not None:
+            btn.setStyleSheet(f"""
+                QPushButton {{ background: transparent; color: {ACC};
+                    font-family: Consolas; font-size: 12pt; font-weight: bold;
+                    border: 1px solid {ACC}; border-radius: 6px; padding: 0 16px; }}
+                QPushButton:hover   {{ background: rgba(154,230,155,0.12); }}
+                QPushButton:pressed {{ background: rgba(154,230,155,0.25); }}
+            """)
 
     # ── Save ──────────────────────────────────────────────────────────────────
 
@@ -910,6 +948,7 @@ class AircraftSettingsDialog(QDialog):
                 f.write(lua_content)
             with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(self._meta, f, indent=2, ensure_ascii=False)
+            self._clear_pending()
             self._status("Saved.", GREEN)
             QTimer.singleShot(1200, self._after_save)
         else:
