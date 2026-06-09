@@ -857,20 +857,20 @@
   "positions": [
     {
       "label": "AUD/DIS",
-      "delta": -1,
+      "delta": 1,
       "is_default": false,
       "weight": 0
     },
     {
       "label": "DIS",
       "delta": 0,
-      "is_default": false,
+      "is_default": true,
       "weight": 0
     },
     {
       "label": "OFF",
-      "delta": 1,
-      "is_default": true,
+      "delta": -1,
+      "is_default": false,
       "weight": 100
     }
   ]
