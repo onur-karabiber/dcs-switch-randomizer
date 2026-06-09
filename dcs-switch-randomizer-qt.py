@@ -976,7 +976,7 @@ class MainWindow(QWidget):
         btn = getattr(self, "_btn_apply", None)
         if btn is not None:
             btn.setStyleSheet(
-                "background: #b8860b; color: #111111;"
+                "background: #ebd805; color: #111111;"
                 "font-size:15pt; font-weight:bold;"
                 "border: none; border-radius: 8px; padding: 10px;"
             )

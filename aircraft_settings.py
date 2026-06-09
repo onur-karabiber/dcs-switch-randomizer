@@ -728,8 +728,8 @@ class AircraftSettingsDialog(QDialog):
 
         notice = QLabel(
             'Second-stage testing for the F/A-18C has been completed.<br>'
-            'First-stage testing for the F-16C, F-4E, and F-14B has been completed.<br>'
-            'All other aircraft are still undergoing first-stage testing.<br><br>'
+            'First-stage testing for the F-16C, F-5E, F-4E, and F-14B has been completed.<br><br>'
+            '<span style="color:#ffd255;">All other aircraft are still undergoing first-stage testing.</span><br><br>'
             'As a result, you may occasionally encounter switches or knobs that are '
             'randomized contrary to your settings, incorrectly named, or otherwise '
             'behaving unexpectedly.<br><br>'
@@ -906,7 +906,7 @@ class AircraftSettingsDialog(QDialog):
         btn = getattr(self, "_btn_save", None)
         if btn is not None:
             btn.setStyleSheet(f"""
-                QPushButton {{ background: #b8860b; color: #111111;
+                QPushButton {{ background: #ebd805; color: #111111;
                     font-family: Consolas; font-size: 12pt; font-weight: bold;
                     border: none; border-radius: 6px; padding: 0 16px; }}
                 QPushButton:hover   {{ background: #d4a017; }}
