@@ -3,51 +3,255 @@
 -- DO NOT EDIT MANUALLY — use the Settings dialog
 
 CR.register("F-16C_50", {
-
     -- AIR REFUELING Switch
     -- CLOSE=91%(default) / OPEN=9%
     { dev=4, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="AIR REFUELING Switch" },
-
     -- AIR SOURCE Knob
     -- NORM=30%(default) / OFF=60% / DUMP=5% / RAM=5%
     { dev=13, cmd=3001, vals={0, 0, 0, 0, 0, 0, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, 0.1, 0.2}, label="AIR SOURCE Knob" },
-
     -- ALT FLAPS Switch
     -- NORM=95%(default) / EXTEND=5%
     { dev=2, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="ALT FLAPS Switch" },
-
     -- ANTI-SKID Switch
     -- OFF=10%(default) / ANTI-SKID=90%
     { dev=7, cmd=3004, vals={0, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="ANTI-SKID Switch" },
-
     -- Autopilot Roll Switch
     -- ATT HOLD=86%(default) / STRG SEL=7% / HDG SEL=7%
     { dev=2, cmd=3014, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1}, label="Autopilot Roll Switch" },
-
-    -- C & I Knob
-    -- UFC=90%(default) / BACKUP=10%
-    { dev=35, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="C & I Knob" },
-
+    -- BRAKES Channel Switch
+    -- CHAN 2=90%(default) / CHAN 1=10%
+    { dev=7, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="BRAKES Channel Switch" },
+    -- Canopy Handle
+    -- UP=90%(default) / DN=10%
+    { dev=10, cmd=3004, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Canopy Handle" },
     -- CH Expendable Category Switch
     -- OFF=90%(default) / ON=10%
     { dev=32, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="CH Expendable Category Switch" },
-
+    -- C & I Knob
+    -- UFC=90%(default) / BACKUP=10%
+    { dev=35, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="C & I Knob" },
     -- DIGITAL BACKUP Switch
     -- OFF=90%(default) / BACKUP=10%
     { dev=2, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="DIGITAL BACKUP Switch" },
-
     -- DL Switch
     -- ON=85% / OFF=15%(default)
     { dev=60, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="DL Switch" },
-
     -- ECM Power Switch
     -- OFF=85%(default) / STBY=10% / OPR=5%
     { dev=66, cmd=3001, vals={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 1}, label="ECM Power Switch" },
-
+    -- Engine ANTI ICE Switch
+    -- Auto=85%(default) / ON=10% / OFF=5%
+    { dev=6, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, -1}, label="Engine ANTI ICE Switch" },
+    -- ENG CONT Switch Cover
+    -- CLOSE=90%(default) / OPEN=10%
+    { dev=6, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="ENG CONT Switch Cover" },
     -- Engine Feed Knob
     -- NORM=90%(default) / OFF=7% / AFT=2% / FWD=1%
     { dev=4, cmd=3004, vals={0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.2, 0.3}, label="Engine Feed Knob" },
-
+    -- External Fuel Transfer Switch
+    -- NORM=10%(default) / WING FIRST=90%
+    { dev=4, cmd=3003, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="External Fuel Transfer Switch" },
+    -- FCR Switch
+    -- ON=70% / OFF=30%(default)
+    { dev=31, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="FCR Switch" },
+    -- FL Expendable Category Switch
+    -- OFF=90%(default) / ON=10%
+    { dev=32, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="FL Expendable Category Switch" },
+    -- FLASH STEADY Switch
+    -- STEADY=85% / FLASH=15%(default)
+    { dev=11, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="FLASH STEADY Switch" },
+    -- FLCS POWER Switch
+    -- NORM=90%(default) / MAINT=10%
+    { dev=3, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1}, label="FLCS POWER Switch" },
+    -- FUEL MASTER Switch Cover
+    -- CLOSE=90%(default) / OPEN=10%
+    { dev=4, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="FUEL MASTER Switch Cover" },
+    -- FUEL QTY SEL Knob
+    -- NORM=90%(default) / RSVR=4% / INT WING=2% / EXT WING=2% / EXT CTR=2%
+    { dev=4, cmd=3005, vals={0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.3, 0.4, 0.5}, label="FUEL QTY SEL Knob" },
+    -- FUSELAGE Switch
+    -- OFF=86%(default) / BRT=7% / DIM=7%
+    { dev=11, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="FUSELAGE Switch" },
+    -- GND JETT ENABLE Switch
+    -- ENABLE=10% / OFF=90%(default)
+    { dev=19, cmd=3004, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="GND JETT ENABLE Switch" },
+    -- GPS Switch
+    -- ON=85% / OFF=15%(default)
+    { dev=59, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="GPS Switch" },
+    -- HOOK Switch
+    -- UP=90%(default) / DN=10%
+    { dev=7, cmd=3006, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="HOOK Switch" },
+    -- HUD Altitude Switch
+    -- BARO=86%(default) / AUTO=7% / RADAR=7%
+    { dev=19, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1}, label="HUD Altitude Switch" },
+    -- HUD Brightness Control Switch
+    -- AUTO BRT=86%(default) / DAY=7% / NIGHT=7%
+    { dev=19, cmd=3012, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="HUD Brightness Control Switch" },
+    -- HUD DED/PFLD Data Switch
+    -- PFL=86% / DED=7% / OFF=7%(default)
+    { dev=19, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="HUD DED/PFLD Data Switch" },
+    -- HUD Depressible Reticle Switch
+    -- OFF=85%(default) / PRI=10% / STBY=5%
+    { dev=19, cmd=3009, vals={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 1}, label="HUD Depressible Reticle Switch" },
+    -- HUD Flightpath Marker Switch
+    -- ATT/FPM=10%(default) / FPM=90%(default) / OFF=0%
+    { dev=19, cmd=3007, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="HUD Flightpath Marker Switch" },
+    -- HUD Scales Switch
+    -- VAH=86%(default) / VV/VAH=7% / OFF=7%
+    { dev=19, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="HUD Scales Switch" },
+    -- ICP DRIFT CUTOUT Switch
+    -- NORM=90%(default) / DRIFT C/O=10%
+    { dev=17, cmd=3028, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="ICP DRIFT CUTOUT Switch" },
+    -- ICP FLIR GAIN/LEVEL Switch
+    -- LVL=85%(default) / GAIN=10% / AUTO=5%
+    { dev=17, cmd=3027, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, -1}, label="ICP FLIR GAIN/LEVEL Switch" },
+    -- IFF ANT SEL Switch
+    -- Norm=86%(default) / Lower=7% / Upper=7%
+    { dev=39, cmd=3013, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1}, label="IFF ANT SEL Switch" },
+    -- IFF Enable Switch
+    -- OFF=85%(default) / M1/M3=10% / M3/MS=5%
+    { dev=35, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1}, label="IFF Enable Switch" },
+    -- IFF M-4 CODE Switch
+    -- A/B=85%(default) / Hold=10% / Zero=5%
+    { dev=35, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1}, label="IFF M-4 CODE Switch" },
+    -- IFF M-4 MONITOR Switch
+    -- OUT=85%(default) / Audio=15%
+    { dev=35, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="IFF M-4 MONITOR Switch" },
+    -- IFF M-4 REPLY Switch
+    -- A=85%(default) / AUT=10% / B=5%
+    { dev=35, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1}, label="IFF M-4 REPLY Switch" },
+    -- IFF Master Knob
+    -- STBY=90%(default) / OFF=5% / NORM=2% / EMER=2% / TRNSP=1%
+    { dev=35, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -0.1, -0.1, -0.1, -0.1, 0.1, 0.1, 0.2, 0.2, 0.3}, label="IFF Master Knob" },
+    -- INS Knob
+    -- NAV=85%(default) / NORM=3% / STOR HDG=3% / OFF=3% / CAL=2% / INFLT ALIGN=2% / ATT=2%
+    { dev=14, cmd=3001, vals={0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.2, 0.2, 0.2, 0.1, 0.1, 0.1, 0, 0, 0, 0.4, 0.4, 0.5, 0.5, 0.6, 0.6}, label="INS Knob" },
+    -- Jammer Source Switch
+    -- OFF=90%(default) / ON=10%
+    { dev=32, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="Jammer Source Switch" },
+    -- KY-58 Fill Knob
+    -- Z 1.5=50%(default) / 1=10% / 2=10% / 3=10% / 4=5% / 5=5% / 6=5% / Z=5%
+    { dev=42, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.2, 0.3, 0.3, 0.4, 0.5, 0.6, 0.7}, label="KY-58 Fill Knob" },
+    -- KY-58 Mode Knob
+    -- P=70%(default) / C=10% / LD=10% / RV=10%
+    { dev=42, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0.1, 0.2, 0.3}, label="KY-58 Mode Knob" },
+    -- KY-58 Power Knob
+    -- OFF=85%(default) / ON=10% / TD=5%
+    { dev=42, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2}, label="KY-58 Power Knob" },
+    -- LANDING TAXI LIGHTS Switch
+    -- OFF=86%(default) / LANDING=7% / TAXI=7%
+    { dev=11, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="LANDING TAXI LIGHTS Switch" },
+    -- LASER ARM Switch
+    -- OFF=30%(default) / ARM=70%
+    { dev=22, cmd=3004, vals={0, 0, 0, 1, 1, 1, 1, 1, 1, 1}, label="LASER ARM Switch" },
+    -- LE FLAPS Switch
+    -- AUTO=90%(default) / LOCK=10%
+    { dev=2, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="LE FLAPS Switch" },
+    -- LEFT HDPT Switch
+    -- OFF=90%(default) / ON=10%
+    { dev=22, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="LEFT HDPT Switch" },
+    -- MANUAL TF FLYUP Switch
+    -- DISABLE=90%(default) / ENABLE=10%
+    { dev=2, cmd=3016, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="MANUAL TF FLYUP Switch" },
+    -- MAP Switch
+    -- OFF=85%(default) / ON=15%
+    { dev=61, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="MAP Switch" },
+    -- MASTER ARM Switch
+    -- OFF=90%(default) / MASTER ARM=5% / SIMULATE=5%
+    { dev=19, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -1}, label="MASTER ARM Switch" },
+    -- MASTER Switch
+    -- OFF=85%(default) / ALL=5% / A-C=5% / FORM=3% / NORM=2%
+    { dev=11, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.4, 0.4}, label="MASTER Switch" },
+    -- MAX POWER Switch
+    -- OFF=95%(default) / Max Power=5%
+    { dev=6, cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="MAX POWER Switch" },
+    -- MFD Switch
+    -- OFF=85%(default) / ON=15%
+    { dev=19, cmd=3014, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="MFD Switch" },
+    -- MIDS LVT Knob
+    -- OFF=90%(default) / ZERO=5% / ON=5%
+    { dev=41, cmd=3001, vals={0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0, 0.2}, label="MIDS LVT Knob" },
+    -- MMC Switch
+    -- OFF=85%(default) / ON=15%
+    { dev=19, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="MMC Switch" },
+    -- MODE Knob
+    -- OFF=90%(default) / STBY=5% / MAN=2% / SEMI=1% / AUTO=1% / BYP=1%
+    { dev=32, cmd=3010, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.3, 0.4, 0.5}, label="MODE Knob" },
+    -- MWS Source Switch
+    -- OFF=90%(default) / ON=10%
+    { dev=32, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="MWS Source Switch" },
+    -- O1 Expendable Category Switch
+    -- OFF=90%(default) / ON=10%
+    { dev=32, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="O1 Expendable Category Switch" },
+    -- O2 Expendable Category Switch
+    -- OFF=90%(default) / ON=10%
+    { dev=32, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="O2 Expendable Category Switch" },
+    -- Plain Cipher Switch
+    -- PLAIN=85%(default) / CRAD 2=10% / CRAD 1=5%
+    { dev=39, cmd=3016, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1}, label="Plain Cipher Switch" },
+    -- PROBE HEAT Switch
+    -- OFF=90%(default) / PROBE HEAT=10%
+    { dev=3, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="PROBE HEAT Switch" },
+    -- PROGRAM Knob
+    -- 1=20%(default) / 2=20% / 3=20% / 4=20% / BIT=20%
+    { dev=32, cmd=3009, vals={0.1, 0.2, 0.3, 0.4, 0}, label="PROGRAM Knob" },
+    -- RDR ALT Switch
+    -- STBY=7% / RDR ALT=1% / OFF=92%(default)
+    { dev=15, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="RDR ALT Switch" },
+    -- RF Switch
+    -- NORM=85%(default) / QUIET=10% / SILENT=5%
+    { dev=17, cmd=3038, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, -1}, label="RF Switch" },
+    -- RIGHT HDPT Switch
+    -- OFF=90%(default) / ON=10%
+    { dev=22, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="RIGHT HDPT Switch" },
+    -- RWR Source Switch
+    -- SEARCH=90%(default) / HANDOFF=10%
+    { dev=32, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="RWR Source Switch" },
+    -- ST STA Switch
+    -- ST STA=90% / OFF=10%(default)
+    { dev=22, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="ST STA Switch" },
+    -- STORES CONFIG Switch
+    -- CAT III=40%(default) / CAT I=60%
+    { dev=2, cmd=3011, vals={0, 0, 1, 1, 1}, label="STORES CONFIG Switch" },
+    -- Supply Lever
+    -- ON=65%(default) / PBG=3% / OFF=32%
+    { dev=8, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="Supply Lever" },
+    -- TANK INERTING Switch
+    -- OFF=95%(default) / TANK INERTING=5%
+    { dev=4, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="TANK INERTING Switch" },
+    -- TRIM/AP DISC Switch
+    -- DISC=10% / NORM=90%(default)
+    { dev=2, cmd=3006, vals={0, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="TRIM/AP DISC Switch" },
+    -- UFC Switch
+    -- OFF=85%(default) / ON=15%
+    { dev=17, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="UFC Switch" },
+    -- UHF ANT SEL Switch
+    -- Norm=86%(default) / Lower=7% / Upper=7%
+    { dev=39, cmd=3014, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1}, label="UHF ANT SEL Switch" },
+    -- UHF Manual Frequency Knob 0.025 MHz
+    -- 0=25%(default) / 1=25% / 2=25% / 3=25%
+    { dev=37, cmd=3006, vals={0, 0.1, 0.2, 0.3}, label="UHF Manual Frequency Knob 0.025 MHz" },
+    -- UHF Manual Frequency Knob 0.1 MHz
+    -- 0=10%(default) / 1=10% / 2=10% / 3=10% / 4=10% / 5=10% / 6=10% / 7=10% / 8=10% / 9=10%
+    { dev=37, cmd=3005, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 0.1 MHz" },
+    -- UHF Manual Frequency Knob 100 MHz
+    -- 2=33% / 3=34%(default) / A=33%
+    { dev=37, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}, label="UHF Manual Frequency Knob 100 MHz" },
+    -- UHF Manual Frequency Knob 10 MHz
+    -- 0=10%(default) / 1=10% / 2=10% / 3=10% / 4=10% / 5=10% / 6=10% / 7=10% / 8=10% / 9=10%
+    { dev=37, cmd=3003, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 10 MHz" },
+    -- UHF Manual Frequency Knob 1 MHz
+    -- 0=10%(default) / 1=10% / 2=10% / 3=10% / 4=10% / 5=10% / 6=10% / 7=10% / 8=10% / 9=10%
+    { dev=37, cmd=3004, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 1 MHz" },
+    -- Voice Message Inhibit Switch
+    -- Voice Message=90%(default) / Inhibit=10%
+    { dev=39, cmd=3015, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Voice Message Inhibit Switch" },
+    -- WING/TAIL Switch
+    -- OFF=86%(default) / BRT=7% / DIM=7%
+    { dev=11, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="WING/TAIL Switch" },
+    -- Zeroize Switch Cover
+    -- CLOSE=90%(default) / OPEN=10%
+    { dev=39, cmd=3017, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="Zeroize Switch Cover" },
     -- EPU SYSTEM
     -- EPU covers + switch. Six scenarios with correct mechanical interlock. ON cover=3001, OFF cover=3002, EPU switch=3003.
     {
@@ -74,356 +278,46 @@ CR.register("F-16C_50", {
             end
         end
     },
-
-    -- External Fuel Transfer Switch
-    -- NORM=10%(default) / WING FIRST=90%
-    { dev=4, cmd=3003, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="External Fuel Transfer Switch" },
-
-    -- FCR Switch
-    -- ON=70% / OFF=30%(default)
-    { dev=31, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="FCR Switch" },
-
-    -- FL Expendable Category Switch
-    -- OFF=90%(default) / ON=10%
-    { dev=32, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="FL Expendable Category Switch" },
-
-    -- FLASH STEADY Switch
-    -- STEADY=85% / FLASH=15%(default)
-    { dev=11, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="FLASH STEADY Switch" },
-
-    -- FLCS POWER Switch
-    -- NORM=90%(default) / MAINT=10%
-    { dev=3, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -1}, label="FLCS POWER Switch" },
-
-    -- FUEL MASTER Switch Cover
-    -- CLOSE=90%(default) / OPEN=10%
-    { dev=4, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="FUEL MASTER Switch Cover" },
-
-    -- FUEL QTY SEL Knob
-    -- NORM=90%(default) / RSVR=4% / INT WING=2% / EXT WING=2% / EXT CTR=2%
-    { dev=4, cmd=3005, vals={0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.3, 0.4, 0.5}, label="FUEL QTY SEL Knob" },
-
-    -- FUSELAGE Switch
-    -- OFF=86%(default) / BRT=7% / DIM=7%
-    { dev=11, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="FUSELAGE Switch" },
-
-    -- GND JETT ENABLE Switch
-    -- ENABLE=10% / OFF=90%(default)
-    { dev=19, cmd=3004, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="GND JETT ENABLE Switch" },
-
-    -- GPS Switch
-    -- ON=85% / OFF=15%(default)
-    { dev=59, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, label="GPS Switch" },
-
-    -- HUD Altitude Switch
-    -- BARO=86%(default) / AUTO=7% / RADAR=7%
-    { dev=19, cmd=3011, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1}, label="HUD Altitude Switch" },
-
-    -- HUD Brightness Control Switch
-    -- AUTO BRT=86%(default) / DAY=7% / NIGHT=7%
-    { dev=19, cmd=3012, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="HUD Brightness Control Switch" },
-
-    -- HUD DED/PFLD Data Switch
-    -- PFL=86% / DED=7% / OFF=7%(default)
-    { dev=19, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="HUD DED/PFLD Data Switch" },
-
-    -- HUD Flightpath Marker Switch
-    -- ATT/FPM=10%(default) / FPM=90%(default) / OFF=0%
-    { dev=19, cmd=3007, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="HUD Flightpath Marker Switch" },
-
-    -- HUD Scales Switch
-    -- VAH=86%(default) / VV/VAH=7% / OFF=7%
-    { dev=19, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="HUD Scales Switch" },
-
-    -- IFF Master Knob
-    -- STBY=90%(default) / OFF=5% / NORM=2% / EMER=2% / TRNSP=1%
-    { dev=35, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -0.1, -0.1, -0.1, -0.1, 0.1, 0.1, 0.2, 0.2, 0.3}, label="IFF Master Knob" },
-
-    -- INS Knob
-    -- NAV=85%(default) / NORM=3% / STOR HDG=3% / OFF=3% / CAL=2% / INFLT ALIGN=2% / ATT=2%
-    { dev=14, cmd=3001, vals={0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.2, 0.2, 0.2, 0.1, 0.1, 0.1, 0, 0, 0, 0.4, 0.4, 0.5, 0.5, 0.6, 0.6}, label="INS Knob" },
-
-    -- Jammer Source Switch
-    -- OFF=90%(default) / ON=10%
-    { dev=32, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="Jammer Source Switch" },
-
-    -- LANDING TAXI LIGHTS Switch
-    -- OFF=86%(default) / LANDING=7% / TAXI=7%
-    { dev=11, cmd=3008, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="LANDING TAXI LIGHTS Switch" },
-
-    -- LASER ARM Switch
-    -- OFF=30%(default) / ARM=70%
-    { dev=22, cmd=3004, vals={0, 0, 0, 1, 1, 1, 1, 1, 1, 1}, label="LASER ARM Switch" },
-
-    -- LE FLAPS Switch
-    -- AUTO=90%(default) / LOCK=10%
-    { dev=2, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="LE FLAPS Switch" },
-
-    -- LEFT HDPT Switch
-    -- OFF=90%(default) / ON=10%
-    { dev=22, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="LEFT HDPT Switch" },
-
-    -- MANUAL TF FLYUP Switch
-    -- DISABLE=90%(default) / ENABLE=10%
-    { dev=2, cmd=3016, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="MANUAL TF FLYUP Switch" },
-
-    -- MAP Switch
-    -- OFF=85%(default) / ON=15%
-    { dev=61, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="MAP Switch" },
-
-    -- MASTER ARM Switch
-    -- OFF=90%(default) / MASTER ARM=5% / SIMULATE=5%
-    { dev=19, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -1}, label="MASTER ARM Switch" },
-
-    -- MASTER Switch
-    -- OFF=85%(default) / ALL=5% / A-C=5% / FORM=3% / NORM=2%
-    { dev=11, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.4, 0.4}, label="MASTER Switch" },
-
-    -- MFD Switch
-    -- OFF=85%(default) / ON=15%
-    { dev=19, cmd=3014, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="MFD Switch" },
-
-    -- MIDS LVT Knob
-    -- OFF=90%(default) / ZERO=5% / ON=5%
-    { dev=41, cmd=3001, vals={0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0, 0.2}, label="MIDS LVT Knob" },
-
-    -- MMC Switch
-    -- OFF=85%(default) / ON=15%
-    { dev=19, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="MMC Switch" },
-
-    -- MODE Knob
-    -- OFF=90%(default) / STBY=5% / MAN=2% / SEMI=1% / AUTO=1% / BYP=1%
-    { dev=32, cmd=3010, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.3, 0.4, 0.5}, label="MODE Knob" },
-
-    -- MWS Source Switch
-    -- OFF=90%(default) / ON=10%
-    { dev=32, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="MWS Source Switch" },
-
-    -- O1 Expendable Category Switch
-    -- OFF=90%(default) / ON=10%
-    { dev=32, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="O1 Expendable Category Switch" },
-
-    -- O2 Expendable Category Switch
-    -- OFF=90%(default) / ON=10%
-    { dev=32, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="O2 Expendable Category Switch" },
-
-    -- PROBE HEAT Switch
-    -- OFF=90%(default) / PROBE HEAT=10%
-    { dev=3, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="PROBE HEAT Switch" },
-
-    -- PROGRAM Knob
-    -- 1=20%(default) / 2=20% / 3=20% / 4=20% / BIT=20%
-    { dev=32, cmd=3009, vals={0.1, 0.2, 0.3, 0.4, 0}, label="PROGRAM Knob" },
-
-    -- RDR ALT Switch
-    -- STBY=7% / RDR ALT=1% / OFF=92%(default)
-    { dev=15, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="RDR ALT Switch" },
-
-    -- RIGHT HDPT Switch
-    -- OFF=90%(default) / ON=10%
-    { dev=22, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="RIGHT HDPT Switch" },
-
-    -- RWR Source Switch
-    -- SEARCH=90%(default) / HANDOFF=10%
-    { dev=32, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="RWR Source Switch" },
-
-    -- ST STA Switch
-    -- ST STA=90% / OFF=10%(default)
-    { dev=22, cmd=3001, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="ST STA Switch" },
-
-    -- STORES CONFIG Switch
-    -- CAT III=40%(default) / CAT I=60%
-    { dev=2, cmd=3011, vals={0, 0, 1, 1, 1}, label="STORES CONFIG Switch" },
-
-    -- Supply Lever
-    -- ON=65%(default) / PBG=3% / OFF=32%
-    { dev=8, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="Supply Lever" },
-
-    -- TANK INERTING Switch
-    -- OFF=95%(default) / TANK INERTING=5%
-    { dev=4, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="TANK INERTING Switch" },
-
-    -- TRIM/AP DISC Switch
-    -- DISC=10% / NORM=90%(default)
-    { dev=2, cmd=3006, vals={0, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="TRIM/AP DISC Switch" },
-
-    -- UFC Switch
-    -- OFF=85%(default) / ON=15%
-    { dev=17, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="UFC Switch" },
-
-    -- WING/TAIL Switch
-    -- OFF=86%(default) / BRT=7% / DIM=7%
-    { dev=11, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1}, label="WING/TAIL Switch" },
-
-    -- BRAKES Channel Switch
-    -- CHAN 2=90%(default) / CHAN 1=10%
-    { dev=7, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="BRAKES Channel Switch" },
-
-    -- Canopy Handle
-    -- UP=90%(default) / DN=10%
-    { dev=10, cmd=3004, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Canopy Handle" },
-
-    -- Engine ANTI ICE Switch
-    -- Auto=85%(default) / ON=10% / OFF=5%
-    { dev=6, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, -1}, label="Engine ANTI ICE Switch" },
-
-    -- ENG CONT Switch Cover
-    -- CLOSE=90%(default) / OPEN=10%
-    { dev=6, cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="ENG CONT Switch Cover" },
-
-    -- HOOK Switch
-    -- UP=90%(default) / DN=10%
-    { dev=7, cmd=3006, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="HOOK Switch" },
-
-    -- HUD Depressible Reticle Switch
-    -- OFF=85%(default) / PRI=10% / STBY=5%
-    { dev=19, cmd=3009, vals={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 1}, label="HUD Depressible Reticle Switch" },
-
-    -- ICP DRIFT CUTOUT Switch
-    -- NORM=90%(default) / DRIFT C/O=10%
-    { dev=17, cmd=3028, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="ICP DRIFT CUTOUT Switch" },
-
-    -- ICP FLIR GAIN/LEVEL Switch
-    -- LVL=85%(default) / GAIN=10% / AUTO=5%
-    { dev=17, cmd=3027, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, -1}, label="ICP FLIR GAIN/LEVEL Switch" },
-
-    -- IFF ANT SEL Switch
-    -- Norm=86%(default) / Lower=7% / Upper=7%
-    { dev=39, cmd=3013, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1}, label="IFF ANT SEL Switch" },
-
-    -- IFF Enable Switch
-    -- OFF=85%(default) / M1/M3=10% / M3/MS=5%
-    { dev=35, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1}, label="IFF Enable Switch" },
-
-    -- IFF M-4 CODE Switch
-    -- A/B=85%(default) / Hold=10% / Zero=5%
-    { dev=35, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1}, label="IFF M-4 CODE Switch" },
-
-    -- IFF M-4 MONITOR Switch
-    -- OUT=85%(default) / Audio=15%
-    { dev=35, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="IFF M-4 MONITOR Switch" },
-
-    -- IFF M-4 REPLY Switch
-    -- A=85%(default) / AUT=10% / B=5%
-    { dev=35, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1}, label="IFF M-4 REPLY Switch" },
-
-    -- KY-58 Fill Knob
-    -- Z 1.5=50%(default) / 1=10% / 2=10% / 3=10% / 4=5% / 5=5% / 6=5% / Z=5%
-    { dev=42, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2, 0.2, 0.3, 0.3, 0.4, 0.5, 0.6, 0.7}, label="KY-58 Fill Knob" },
-
-    -- KY-58 Mode Knob
-    -- P=70%(default) / C=10% / LD=10% / RV=10%
-    { dev=42, cmd=3001, vals={0, 0, 0, 0, 0, 0, 0, 0.1, 0.2, 0.3}, label="KY-58 Mode Knob" },
-
-    -- KY-58 Power Knob
-    -- OFF=85%(default) / ON=10% / TD=5%
-    { dev=42, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.2}, label="KY-58 Power Knob" },
-
-    -- MAX POWER Switch
-    -- OFF=95%(default) / Max Power=5%
-    { dev=6, cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="MAX POWER Switch" },
-
-    -- Plain Cipher Switch
-    -- PLAIN=85%(default) / CRAD 2=10% / CRAD 1=5%
-    { dev=39, cmd=3016, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1}, label="Plain Cipher Switch" },
-
-    -- RF Switch
-    -- NORM=85%(default) / QUIET=10% / SILENT=5%
-    { dev=17, cmd=3038, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, -1}, label="RF Switch" },
-
-    -- UHF ANT SEL Switch
-    -- Norm=86%(default) / Lower=7% / Upper=7%
-    { dev=39, cmd=3014, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1}, label="UHF ANT SEL Switch" },
-
-    -- UHF Manual Frequency Knob 100 MHz
-    -- 2=33% / 3=34%(default) / A=33%
-    { dev=37, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}, label="UHF Manual Frequency Knob 100 MHz" },
-
-    -- UHF Manual Frequency Knob 10 MHz
-    -- 0=10%(default) / 1=10% / 2=10% / 3=10% / 4=10% / 5=10% / 6=10% / 7=10% / 8=10% / 9=10%
-    { dev=37, cmd=3003, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 10 MHz" },
-
-    -- UHF Manual Frequency Knob 1 MHz
-    -- 0=10%(default) / 1=10% / 2=10% / 3=10% / 4=10% / 5=10% / 6=10% / 7=10% / 8=10% / 9=10%
-    { dev=37, cmd=3004, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 1 MHz" },
-
-    -- UHF Manual Frequency Knob 0.1 MHz
-    -- 0=10%(default) / 1=10% / 2=10% / 3=10% / 4=10% / 5=10% / 6=10% / 7=10% / 8=10% / 9=10%
-    { dev=37, cmd=3005, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 0.1 MHz" },
-
-    -- UHF Manual Frequency Knob 0.025 MHz
-    -- 0=25%(default) / 1=25% / 2=25% / 3=25%
-    { dev=37, cmd=3006, vals={0, 0.1, 0.2, 0.3}, label="UHF Manual Frequency Knob 0.025 MHz" },
-
-    -- Voice Message Inhibit Switch
-    -- Voice Message=90%(default) / Inhibit=10%
-    { dev=39, cmd=3015, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, label="Voice Message Inhibit Switch" },
-
-    -- Zeroize Switch Cover
-    -- CLOSE=90%(default) / OPEN=10%
-    { dev=39, cmd=3017, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="Zeroize Switch Cover" },
-
     -- AERIAL REFUELING Knob
     { dev=11, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="AERIAL REFUELING Knob" },
-
     -- ANTI-COLL Knob
     { dev=11, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="ANTI-COLL Knob" },
-
     -- COMM 1 Power Knob
     { dev=39, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="COMM 1 Power Knob" },
-
     -- COMM 2 Power Knob
     { dev=39, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0}, label="COMM 2 Power Knob" },
-
-    -- FLOOD CONSOLES BRT Knob
-    { dev=12, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="FLOOD CONSOLES BRT Knob" },
-
-    -- FLOOD INST PNL Knob
-    { dev=12, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="FLOOD INST PNL Knob" },
-
-    -- FORM Knob
-    { dev=11, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="FORM Knob" },
-
-    -- HMCS SYMBOLOGY INT Knob
-    { dev=30, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="HMCS SYMBOLOGY INT Knob" },
-
-    -- ILS Power Knob
-    { dev=39, cmd=3009, vals={0, 0.25, 0.5, 0.75, 1.0}, label="ILS Power Knob" },
-
-    -- PRIMARY CONSOLES BRT Knob
-    { dev=12, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0}, label="PRIMARY CONSOLES BRT Knob" },
-
-    -- PRIMARY DATA ENTRY DISPLAY BRT Knob
-    { dev=12, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="PRIMARY DATA ENTRY DISPLAY BRT Knob" },
-
     -- ECM DIM Knob
     { dev=66, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0}, label="ECM DIM Knob" },
-
+    -- FLOOD CONSOLES BRT Knob
+    { dev=12, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="FLOOD CONSOLES BRT Knob" },
+    -- FLOOD INST PNL Knob
+    { dev=12, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="FLOOD INST PNL Knob" },
+    -- FORM Knob
+    { dev=11, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="FORM Knob" },
+    -- HMCS SYMBOLOGY INT Knob
+    { dev=30, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="HMCS SYMBOLOGY INT Knob" },
+    -- ILS Power Knob
+    { dev=39, cmd=3009, vals={0, 0.25, 0.5, 0.75, 1.0}, label="ILS Power Knob" },
     -- INTERCOM Knob
     { dev=39, cmd=3011, vals={0, 0.25, 0.5, 0.75, 1.0}, label="INTERCOM Knob" },
-
     -- KY-58 VOLUME Knob
     { dev=42, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="KY-58 VOLUME Knob" },
-
     -- MSL Tone Knob
     { dev=39, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="MSL Tone Knob" },
-
-    -- RWR Indicator Control DIM Knob
-    { dev=33, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="RWR Indicator Control DIM Knob" },
-
-    -- SECURE VOICE Knob
-    { dev=39, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="SECURE VOICE Knob" },
-
-    -- TEMP Knob
-    { dev=13, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="TEMP Knob" },
-
-    -- THREAT Tone Knob
-    { dev=39, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="THREAT Tone Knob" },
-
-    -- TF Tone Knob
-    { dev=39, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="TF Tone Knob" },
-
+    -- PRIMARY CONSOLES BRT Knob
+    { dev=12, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0}, label="PRIMARY CONSOLES BRT Knob" },
+    -- PRIMARY DATA ENTRY DISPLAY BRT Knob
+    { dev=12, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="PRIMARY DATA ENTRY DISPLAY BRT Knob" },
     -- PRIMARY INST PNL Knob
     { dev=12, cmd=3004, vals={0, 0.25, 0.5, 0.75, 1.0}, label="PRIMARY INST PNL Knob" },
-
+    -- RWR Indicator Control DIM Knob
+    { dev=33, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="RWR Indicator Control DIM Knob" },
+    -- SECURE VOICE Knob
+    { dev=39, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="SECURE VOICE Knob" },
+    -- TEMP Knob
+    { dev=13, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="TEMP Knob" },
+    -- TF Tone Knob
+    { dev=39, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="TF Tone Knob" },
+    -- THREAT Tone Knob
+    { dev=39, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="THREAT Tone Knob" },
 }, 3.0)

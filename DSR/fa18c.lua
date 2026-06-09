@@ -221,7 +221,7 @@ CR.register("FA-18C_hornet", {
     { dev=2, cmd=3008, vals={1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Spin Recovery Switch Cover" },
 	
 	-- STROBE Lights Switch
-	- BRT=0% / OFF=100%(default) / DIM=0%
+	-- BRT=0% / OFF=100%(default) / DIM=0%
 	{ dev=8, cmd=3003, vals={0}, label="STROBE Lights Switch" },
 	
 	-- UFC ADF Function Select Switch
