@@ -896,8 +896,6 @@ class AircraftSettingsDialog(QDialog):
             bot_lay.addWidget(btn)
             if style == "apply":
                 self._btn_save = btn
-            else:
-                self._btn_cancel = btn
 
         root.addWidget(bottom)
 
@@ -914,9 +912,6 @@ class AircraftSettingsDialog(QDialog):
                 QPushButton:hover   {{ background: #d4a017; }}
                 QPushButton:pressed {{ background: #8b6508; }}
             """)
-        cancel_btn = getattr(self, "_btn_cancel", None)
-        if cancel_btn is not None:
-            cancel_btn.setText("Close")
         self._status("Click Save & Apply to save changes.", "#f0c040")
 
     def _clear_pending(self):
@@ -930,9 +925,6 @@ class AircraftSettingsDialog(QDialog):
                 QPushButton:hover   {{ background: rgba(154,230,155,0.12); }}
                 QPushButton:pressed {{ background: rgba(154,230,155,0.25); }}
             """)
-        cancel_btn = getattr(self, "_btn_cancel", None)
-        if cancel_btn is not None:
-            cancel_btn.setText("Close")
 
     # ── Save ──────────────────────────────────────────────────────────────────
 
@@ -986,6 +978,7 @@ class AircraftSettingsDialog(QDialog):
                 json.dump(self._meta, f, indent=2, ensure_ascii=False)
             self._clear_pending()
             self._status("Saved.", GREEN)
+            QTimer.singleShot(1200, self._after_save)
         else:
             print("\n" + "="*60)
             print(lua_content)
