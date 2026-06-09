@@ -74,6 +74,10 @@ CR.register("F-16C_50", {
     -- NORM=stay (chance: 90%) / OFF=-0.1 (chance: 7%) / AFT=+0.1 (chance: 2%) / FWD=+0.2 (chance: 1%)
     { dev=4,  cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, 0.1, 0.1, 0.2, 0.2},  label="Engine Feed Knob" },
 
+	-- Cold start: OFF (arg=-1). val=-1 → stay OFF. val=0 → STBY. val=+1 → OPR.
+    -- OFF=stay (chance: 85%) / STBY=0 (chance: 10%) / OPR=+1 (chance: 5%)
+    { dev=66, cmd=3001, vals={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 1},  label="ECM Power Switch" },
+
     -- EPU SYSTEM   dev=6  (ENGINE_INTERFACE)
     -- engine_commands counter (start=3000):
     --   EpuSwCvrOn=3001  arg=527  default_red_cover         CLOSE=0 / OPEN=+1
@@ -208,6 +212,10 @@ CR.register("F-16C_50", {
     -- Cold start: ARM (arg=0). val=+1 → OFF (dominant). val=0 → stay ARM.
     -- OFF=+1 (chance: 70%) / ARM=stay (chance: 30%)
     { dev=22, cmd=3004, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0},                       label="LASER ARM Switch" },
+	
+	-- Cold start: AUTO (arg=0). val=0 → stay AUTO. val=+1 → LOCK.
+    -- AUTO=stay (chance: 90%) / LOCK=+1 (chance: 10%)
+    { dev=2,  cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},                       label="LE FLAPS Switch" },
 
     -- Cold start: ON (arg=0). val=0 → stay ON (dominant). val=+1 → OFF.
     -- ON=stay (chance: 90%) / OFF=+1 (chance: 10%)
@@ -279,6 +287,10 @@ CR.register("F-16C_50", {
     -- delta=-0.5 → PBG, delta=0 → stay ON, delta=+0.5 → OFF
     -- ON=stay (80%) / OFF=+0.5 (20%) / PBG: never
     { dev=8, cmd=3001, vals={0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0.5, 0.5},   label="Supply Lever" },
+	
+	-- Cold start: OFF (arg=0). val=0 → stay OFF. val=+1 → TANK INERTING.
+    -- OFF=stay (chance: 95%) / TANK INERTING=+1 (chance: 5%)
+    { dev=4,  cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},  label="TANK INERTING Switch" },
 
     -- Cold start: DISC (arg=0). val=+1 → NORM (dominant). val=0 → stay DISC.
     -- NORM=+1 (chance: 90%) / DISC=stay (chance: 10%)
@@ -300,6 +312,117 @@ CR.register("F-16C_50", {
     -- ANTI-COLL Knob | multiposition_switch, count=8, delta=0.1 | arg 531
     -- Exempt: no fixed operationally default position, uniform sampling
     { dev=11, cmd=3001, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7},              label="ANTI-COLL Knob" },
+	
+	-- Cold start: CHAN 2 (arg=0). val=0 → stay CHAN 2. val=+1 → CHAN 1.
+    -- CHAN 2=stay (chance: 90%) / CHAN 1=+1 (chance: 10%)
+    { dev=7,  cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},                       label="BRAKES Channel Switch" },
+
+    -- Cold start: UP (arg=1). val=+1 → stay UP. val=0 → DN.
+    -- UP=stay (chance: 90%) / DN=0 (chance: 10%)
+    { dev=10, cmd=3004, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0},                       label="Canopy Handle" },
+
+    -- Cold start: OFF (arg=-1). val=-1 → stay OFF. val=0 → STBY. val=+1 → OPR.
+    -- OFF=stay (chance: 85%) / STBY=0 (chance: 10%) / OPR=+1 (chance: 5%)
+    { dev=66, cmd=3001, vals={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 1},  label="ECM Power Switch" },
+
+    -- Cold start: CLOSE (arg=0). val=0 → stay CLOSE. val=+1 → OPEN.
+    -- CLOSE=stay (chance: 90%) / OPEN=+1 (chance: 10%)
+    { dev=6,  cmd=3007, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},                       label="ENG CONT Switch Cover" },
+
+    -- Cold start: AUTO (arg=0). val=0 → stay AUTO. val=+1 → ON. val=-1 → OFF.
+    -- AUTO=stay (chance: 85%) / ON=+1 (chance: 10%) / OFF=-1 (chance: 5%)
+    { dev=6,  cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, -1},  label="Engine ANTI ICE Switch" },
+
+    -- Cold start: NORM (arg=0). val=0 → stay NORM. val=+1 → DRIFT C/O.
+    -- NORM=stay (chance: 90%) / DRIFT C/O=+1 (chance: 10%)
+    { dev=17, cmd=3028, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},                       label="ICP DRIFT CUTOUT Switch" },
+
+    -- Cold start: LVL (arg=0). val=0 → stay LVL. val=+1 → GAIN. val=-1 → AUTO.
+    -- LVL=stay (chance: 85%) / GAIN=+1 (chance: 10%) / AUTO=-1 (chance: 5%)
+    { dev=17, cmd=3027, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, -1},  label="ICP FLIR GAIN/LEVEL Switch" },
+
+    -- Cold start: M1/M3 (arg=-1). val=-1 → stay M1/M3. val=0 → OFF. val=+1 → M3/MS.
+    -- OFF=0 (chance: 85%) / M1/M3=stay (chance: 10%) / M3/MS=+1 (chance: 5%)
+    { dev=35, cmd=3006, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1},  label="IFF Enable Switch" },
+
+    -- Cold start: A/B (arg=0). val=0 → stay A/B. val=-1 → HOLD. val=+1 → ZERO.
+    -- A/B=stay (chance: 85%) / HOLD=-1 (chance: 10%) / ZERO=+1 (chance: 5%)
+    { dev=35, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1},  label="IFF M-4 CODE Switch" },
+
+    -- Cold start: AUDIO (arg=0). val=0 → stay OUT. val=+1 → AUDIO.
+    -- OUT=stay (chance: 85%) / AUDIO=+1 (chance: 15%)
+    { dev=35, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},    label="IFF M-4 MONITOR Switch" },
+
+    -- Cold start: A (arg=0). val=0 → stay A. val=-1 → AUT. val=+1 → B.
+    -- A=stay (chance: 85%) / AUT=-1 (chance: 10%) / B=+1 (chance: 5%)
+    { dev=35, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1},  label="IFF M-4 REPLY Switch" },
+
+    -- Cold start: NORM (arg=0). val=0 → stay NORM. val=-1 → LOWER. val=+1 → UPPER.
+    -- NORM=stay (chance: 86%) / LOWER=-1 (chance: 7%) / UPPER=+1 (chance: 7%)
+    { dev=39, cmd=3013, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},          label="IFF ANT SEL Switch" },
+
+    -- Cold start: OFF (arg=0). val=0 → stay OFF. val=+1 → ON. val=+2 → TD.
+    -- OFF=stay (chance: 90%) / ON=+1 (chance: 7%) / TD=+2 (chance: 3%)
+    { dev=42, cmd=3004, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2},    label="KY-58 Power Knob" },
+
+    -- Cold start: OFF (arg=0). val=0 → stay OFF. val=+1 → MAX POWER.
+    -- OFF=stay (chance: 95%) / MAX POWER=+1 (chance: 5%)
+    { dev=6,  cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},    label="MAX POWER Switch" },
+
+    -- Cold start: NORM (arg=+1). val=+1 → stay NORM. val=0 → QUIET. val=-1 → SILENT.
+    -- NORM=stay (chance: 85%) / QUIET=0 (chance: 10%) / SILENT=-1 (chance: 5%)
+    { dev=17, cmd=3038, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, -1},   label="RF Switch" },
+
+    -- Cold start: OFF (arg=-1). val=-1 → stay OFF. val=0 → PRI. val=+1 → STBY.
+    -- OFF=stay (chance: 85%) / PRI=0 (chance: 10%) / STBY=+1 (chance: 5%)
+    { dev=19, cmd=3009, vals={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 1},  label="HUD Depressible Reticle Switch" },
+
+    -- Cold start: NORM (arg=0). val=0 → stay NORM. val=-1 → LOWER. val=+1 → UPPER.
+    -- NORM=stay (chance: 86%) / LOWER=-1 (chance: 7%) / UPPER=+1 (chance: 7%)
+    { dev=39, cmd=3014, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1},          label="UHF ANT SEL Switch" },
+
+    -- Cold start: VOICE MESSAGE (arg=+1). val=+1 → stay. val=0 → INHIBIT.
+    -- VOICE MESSAGE=stay (chance: 90%) / INHIBIT=0 (chance: 10%)
+    { dev=39, cmd=3015, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0},                       label="Voice Message Inhibit Switch" },
+
+    -- Cold start: PLAIN (arg=0). val=0 → stay PLAIN. val=-1 → CRAD 2. val=+1 → CRAD 1.
+    -- PLAIN=stay (chance: 85%) / CRAD 2=-1 (chance: 10%) / CRAD 1=+1 (chance: 5%)
+    { dev=39, cmd=3016, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 1},  label="Plain Cipher Switch" },
+
+    -- Cold start: UP (arg=+1). val=+1 → stay UP. val=0 → DN.
+    -- UP=stay (chance: 90%) / DN=0 (chance: 10%)
+    { dev=7,  cmd=3006, vals={1, 1, 1, 1, 1, 1, 1, 1, 1, 0},                       label="HOOK Switch" },
+
+    -- Cold start: CLOSE (arg=0). val=0 → stay CLOSE. val=+1 → OPEN.
+    -- CLOSE=stay (chance: 90%) / OPEN=+1 (chance: 10%)
+    { dev=39, cmd=3017, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1},                       label="Zeroize Switch Cover" },
+	
+	-- KY-58 Fill Knob | multiposition, fix positions | arg 706
+    -- Z 1.5=0.0(default) / 1=0.1 / 2=0.2 / 3=0.3 / 4=0.4 / 5=0.5 / 6=0.6 / Z=0.7
+    { dev=42, cmd=3002, vals={0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7},            label="KY-58 Fill Knob" },
+
+    -- KY-58 Mode Knob | multiposition, fix positions | arg 707
+    -- P=0.0(default) / C=0.1 / LD=0.2 / RV=0.3
+    { dev=42, cmd=3001, vals={0.0, 0.1, 0.2, 0.3},                                 label="KY-58 Mode Knob" },
+
+    -- Aerial Refueling Knob | default_axis_limited | arg 537 — Exempt
+    { dev=11, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0},                            label="AERIAL REFUELING Knob" },
+
+    -- UHF Manual Frequency Knob 100 MHz | multiposition, fix positions | arg 411
+    -- min=0.1 (3 pos: 2=0.0, 3=0.1, A=0.2)
+    { dev=37, cmd=3002, vals={0.0, 0.1, 0.2},                                      label="UHF Manual Frequency Knob 100 MHz" },
+
+    -- UHF Manual Frequency Knob 10 MHz | multiposition, fix positions | arg 412
+    { dev=37, cmd=3003, vals={0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 10 MHz" },
+
+    -- UHF Manual Frequency Knob 1 MHz | multiposition, fix positions | arg 413
+    { dev=37, cmd=3004, vals={0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 1 MHz" },
+
+    -- UHF Manual Frequency Knob 0.1 MHz | multiposition, fix positions | arg 414
+    { dev=37, cmd=3005, vals={0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}, label="UHF Manual Frequency Knob 0.1 MHz" },
+
+    -- UHF Manual Frequency Knob 0.025 MHz | multiposition, fix positions | arg 415
+    { dev=37, cmd=3006, vals={0.0, 0.1, 0.2, 0.3},                                 label="UHF Manual Frequency Knob 0.025 MHz" },
 
     -- COMM 1 Power Knob | default_axis_limited | arg 430 — Exempt
     { dev=39, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0},                            label="COMM 1 Power Knob" },
@@ -318,10 +441,33 @@ CR.register("F-16C_50", {
     -- HMCS SYMBOLOGY INT Knob | default_axis_limited | arg 392
     -- Exempt: continuous brightness knob, no fixed default position
     { dev=30, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0},                            label="HMCS SYMBOLOGY INT Knob" },
+	
+	-- ILS Power Knob | default_axis_limited | arg 442 — Exempt
+    { dev=39, cmd=3009, vals={0, 0.25, 0.5, 0.75, 1.0},  label="ILS Power Knob" },
 
     { dev=12, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0},  label="PRIMARY CONSOLES BRT Knob" },
 
     { dev=12, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0},  label="PRIMARY DATA ENTRY DISPLAY BRT Knob" },
+	
+	{ dev=66, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0},  label="ECM DIM Knob" },
+
+    { dev=39, cmd=3011, vals={0, 0.25, 0.5, 0.75, 1.0},  label="INTERCOM Knob" },
+
+    { dev=42, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0},  label="KY-58 VOLUME Knob" },
+
+    { dev=39, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0},  label="MSL Tone Knob" },
+
+    { dev=33, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0},  label="RWR Indicator Control DIM Knob" },
+
+    { dev=39, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0},  label="SECURE VOICE Knob" },
+
+    { dev=13, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0},  label="TEMP Knob" },
+
+    { dev=39, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0},  label="THREAT Tone Knob" },
+
+    { dev=39, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0},  label="TF Tone Knob" },
+	
+	
 
     { dev=12, cmd=3004, vals={0, 0.25, 0.5, 0.75, 1.0},  label="PRIMARY INST PNL Knob" },
 }, 3.0)
