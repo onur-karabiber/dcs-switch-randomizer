@@ -63,18 +63,46 @@
       "positions": [
         {
           "label": "ENABLE",
-          "delta": 0,
+          "delta": 1,
           "is_default": false,
           "weight": 6
         },
         {
           "label": "NORM",
-          "delta": 1,
+          "delta": 0,
           "is_default": true,
           "weight": 94
         }
       ]
     },
+	{
+  "id": "cabin_pressure_switch",
+  "label": "Cabin Pressure Switch",
+  "dev": 11,
+  "cmd": 3004,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "NORM",
+      "delta": -1,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "DUMP",
+      "delta": 0,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "RAM/DUMP",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
     {
       "id": "cb_fcs_chan1",
       "label": "CB FCS CHAN 1",
@@ -403,6 +431,84 @@
         }
       ]
     },
+	{
+  "id": "ext_ctr_tank_switch",
+  "label": "External Centerline Tank Fuel Control Switch",
+  "dev": 6,
+  "cmd": 3004,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "STOP",
+      "delta": -1,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "NORM",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "ORIDE",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
+{
+  "id": "ext_pwr_switch",
+  "label": "External Power Switch",
+  "dev": 3,
+  "cmd": 3004,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "NORM",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "OFF",
+      "delta": -1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
+	{
+  "id": "ext_wing_tanks_switch",
+  "label": "External Wing Tanks Fuel Control Switch",
+  "dev": 6,
+  "cmd": 3005,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "STOP",
+      "delta": -1,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "NORM",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "ORIDE",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
     {
       "id": "flap_switch",
       "label": "FLAP Switch",
@@ -459,6 +565,28 @@
         }
       ]
     },
+	{
+  "id": "gain_switch",
+  "label": "GAIN Switch",
+  "dev": 2,
+  "cmd": 3006,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "NORM",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "ORIDE",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
     {
       "id": "gain_switch_cover",
       "label": "GAIN Switch Cover",
@@ -481,6 +609,28 @@
         }
       ]
     },
+	{
+  "id": "gen_tie_control_switch",
+  "label": "Generator TIE Control Switch",
+  "dev": 3,
+  "cmd": 3006,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "NORM",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "RESET",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
     {
       "id": "gen_tie_sw_cover",
       "label": "Generator TIE Control Switch Cover",
@@ -625,6 +775,56 @@
         }
       ]
     },
+	{
+  "id": "hyd_isolate_override_switch",
+  "label": "Hydraulic Isolate Override Switch",
+  "dev": 4,
+  "cmd": 3001,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "NORM",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "ORIDE",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
+{
+  "id": "iff_antenna_selector",
+  "label": "IFF Antenna Selector Switch",
+  "dev": 50,
+  "cmd": 3002,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "UPPER",
+      "delta": -1,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "BOTH",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "LOWER",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
     {
       "id": "ils_channel_selector",
       "label": "ILS Channel Selector",
@@ -765,13 +965,13 @@
       "positions": [
         {
           "label": "UFC",
-          "delta": 0,
+          "delta": 1,
           "is_default": true,
           "weight": 89
         },
         {
           "label": "MAN",
-          "delta": 1,
+          "delta": 0,
           "is_default": false,
           "weight": 11
         }
@@ -835,6 +1035,34 @@
         }
       ]
     },
+	{
+  "id": "ir_cooling_switch",
+  "label": "IR Cooling Switch",
+  "dev": 23,
+  "cmd": 3013,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "ORIDE",
+      "delta": 0.0,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "NORM",
+      "delta": 0.1,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "OFF",
+      "delta": 0.2,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
     {
       "id": "ky58_fill_select",
       "label": "KY-58 Fill Select",
@@ -1209,6 +1437,28 @@
         }
       ]
     },
+	{
+  "id": "spin_recovery_switch",
+  "label": "Spin Recovery Switch",
+  "dev": 2,
+  "cmd": 3009,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "RCVY",
+      "delta": 0,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "NORM",
+      "delta": 1,
+      "is_default": true,
+      "weight": 100
+    }
+  ]
+},
     {
       "id": "spin_rec_cover",
       "label": "Spin Recovery Switch Cover",
@@ -1231,6 +1481,34 @@
         }
       ]
     },
+	{
+  "id": "strobe_lights_switch",
+  "label": "STROBE Lights Switch",
+  "dev": 8,
+  "cmd": 3003,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "BRT",
+      "delta": -1,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "OFF",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "DIM",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
     {
       "id": "ufc_adf_switch",
       "label": "UFC ADF Function Select Switch",

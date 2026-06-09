@@ -16,6 +16,10 @@ CR.register("FA-18C_hornet", {
     -- ENABLE=6% / NORM=94%(default)
     { dev=23, cmd=3012, vals={0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, label="Auxiliary Release Switch" },
 
+	-- Cabin Pressure Switch
+	-- NORM=100%(default) / DUMP=0% / RAM/DUMP=0%
+	{ dev=11, cmd=3004, vals={-1}, label="Cabin Pressure Switch" },
+
     -- CB FCS CHAN 1
     -- IN=92%(default) / OUT=8%
     { dev=3, cmd=3017, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1}, label="CB FCS CHAN 1" },
@@ -68,6 +72,18 @@ CR.register("FA-18C_hornet", {
     -- ON=1% / OFF=94%(default) / TEST=5%
     { dev=12, cmd=3014, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1}, label="ENGINE ANTI-ICE Switch" },
 
+	-- External Power Switch
+	-- NORM=100%(default) / OFF=0%
+	{ dev=3, cmd=3004, vals={0}, label="External Power Switch" },
+	
+	-- External Centerline Tank Fuel Control Switch
+	-- STOP=0% / NORM=100%(default) / ORIDE=0%
+	{ dev=6, cmd=3004, vals={0}, label="External Centerline Tank Fuel Control Switch" },
+	
+	-- External Wing Tanks Fuel Control Switch
+	-- STOP=0% / NORM=100%(default) / ORIDE=0%
+	{ dev=6, cmd=3005, vals={0}, label="External Wing Tanks Fuel Control Switch" },
+
     -- FLAP Switch
     -- FULL=60%(default) / HALF=20% / AUTO=20%
     { dev=2, cmd=3007, vals={-1, -1, -1, 0, 1}, label="FLAP Switch" },
@@ -76,9 +92,17 @@ CR.register("FA-18C_hornet", {
     -- ON=2% / STBY=7% / OFF=91%(default)
     { dev=62, cmd=3001, vals={1, 1, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="FLIR Switch" },
 
-    -- GAIN Switch Cover
+    -- GAIN Switch
+	-- NORM=100%(default) / ORIDE=0%
+	{ dev=2, cmd=3006, vals={0}, label="GAIN Switch" },
+	
+	-- GAIN Switch Cover
     -- OPEN=5% / CLOSE=95%(default)
     { dev=2, cmd=3005, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="GAIN Switch Cover" },
+	
+	-- Generator TIE Control Switch
+	-- NORM=100%(default) / RESET=0%
+	{ dev=3, cmd=3006, vals={0}, label="Generator TIE Control Switch" },
 
     -- Generator TIE Control Switch Cover
     -- OPEN=7% / CLOSE=93%(default)
@@ -103,6 +127,10 @@ CR.register("FA-18C_hornet", {
     -- HUD Video Control Switch
     -- W/B=5% / VID=3% / OFF=92%(default)
     { dev=34, cmd=3005, vals={1, 1, 1, 1, 1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, label="HUD Video Control Switch" },
+
+	-- Hydraulic Isolate Override Switch
+	-- NORM=100%(default) / ORIDE=0%
+	{ dev=4, cmd=3001, vals={0}, label="Hydraulic Isolate Override Switch" },
 
     -- ILS Channel Selector
     -- 1=5%(default) / 2=5% / 3=5% / 4=5% / 5=5% / 6=5% / 7=5% / 8=5% / 9=5% / 10=5% / 11=5% / 12=5% / 13=5% / 14=5% / 15=5% / 16=5% / 17=5% / 18=5% / 19=5% / 20=5%
@@ -212,6 +240,10 @@ CR.register("FA-18C_hornet", {
 
     -- INST PNL Dimmer
     { dev=9, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="INST PNL Dimmer" },
+	
+	-- IR Cooling Switch
+	-- ORIDE=0% / NORM=100%(default) / OFF=0%
+	{ dev=23, cmd=3013, vals={0.1}, label="IR Cooling Switch" },
 
     -- KY-58 Volume Control
     { dev=41, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="KY-58 Volume Control" },
@@ -221,6 +253,14 @@ CR.register("FA-18C_hornet", {
 
     -- POSITION Lights Dimmer
     { dev=8, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="POSITION Lights Dimmer" },
+	
+	-- Spin Recovery Switch
+	-- RCVY=0% / NORM=100%(default)
+	{ dev=2, cmd=3009, vals={1}, label="Spin Recovery Switch" },
+	
+	-- STROBE Lights Switch
+	- BRT=0% / OFF=100%(default) / DIM=0%
+	{ dev=8, cmd=3003, vals={0}, label="STROBE Lights Switch" },
 
     -- TACAN Volume Knob
     { dev=40, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="TACAN Volume Knob" },
