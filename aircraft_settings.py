@@ -720,9 +720,37 @@ class AircraftSettingsDialog(QDialog):
         hint.setAlignment(Qt.AlignCenter)
         hint.setWordWrap(True)
 
+        status_title = QLabel("CURRENT TESTING STATUS")
+        status_title.setStyleSheet(
+            "color: #e74c3c; font-family: Consolas; font-size: 11pt; "
+            "font-weight: bold; background: transparent;")
+        status_title.setAlignment(Qt.AlignCenter)
+
+        notice = QLabel(
+            'Second-stage testing for the F/A-18C has been completed.<br>'
+            'First-stage testing for the F-16C, F-4E, and F-14B has been completed.<br>'
+            'All other aircraft are still undergoing first-stage testing.<br><br>'
+            'As a result, you may occasionally encounter switches or knobs that are '
+            'randomized contrary to your settings, incorrectly named, or otherwise '
+            'behaving unexpectedly.<br><br>'
+            'Please report any incorrect switch mappings, naming errors, or unexpected '
+            'randomization behavior by opening an issue on '
+            '<a href="https://github.com/onur-karabiber/dcs-switch-randomizer/issues" '
+            'style="color:#4ea3ff; text-decoration:underline;">GitHub</a>.')
+        notice.setTextFormat(Qt.RichText)
+        notice.setOpenExternalLinks(True)
+        notice.setStyleSheet(
+            "color: #e74c3c; font-family: Consolas; font-size: 10pt; background: transparent;")
+        notice.setAlignment(Qt.AlignLeft)
+        notice.setWordWrap(True)
+
         from PyQt5.QtWidgets import QSpacerItem, QSizePolicy
         body_lay.addItem(QSpacerItem(0, 290, QSizePolicy.Minimum, QSizePolicy.Fixed))
         body_lay.addWidget(hint)
+        body_lay.addItem(QSpacerItem(0, 72, QSizePolicy.Minimum, QSizePolicy.Fixed))
+        body_lay.addWidget(status_title, alignment=Qt.AlignHCenter)
+        body_lay.addItem(QSpacerItem(0, 14, QSizePolicy.Minimum, QSizePolicy.Fixed))
+        body_lay.addWidget(notice)
         body_lay.addStretch()
 
         root.addWidget(body, stretch=1)
