@@ -879,7 +879,7 @@ class AircraftSettingsDialog(QDialog):
             btn.setCursor(Qt.PointingHandCursor)
             if style == "apply":
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: transparent; color: {ACC};
+                    QPushButton {{ background: transparent; color: {FG};
                         font-family: Consolas; font-size: 12pt; font-weight: bold;
                         border: 1px solid {ACC}; border-radius: 6px; padding: 0 16px; }}
                     QPushButton:hover {{ background: rgba(154,230,155,0.12); }}
@@ -887,7 +887,7 @@ class AircraftSettingsDialog(QDialog):
                 """)
             else:
                 btn.setStyleSheet(f"""
-                    QPushButton {{ background: transparent; color: {FG};
+                    QPushButton {{ background: transparent; color: {WHITE};
                         font-family: Consolas; font-size: 12pt;
                         border: 1px solid #333333; border-radius: 6px; padding: 0 16px; }}
                     QPushButton:hover {{ background: rgba(34,34,34,0.5); border: 1px solid {ACC}; }}
