@@ -85,7 +85,7 @@
   "positions": [
     {
       "label": "NORM",
-      "delta": -1,
+      "delta": 1,
       "is_default": true,
       "weight": 100
     },
@@ -97,7 +97,7 @@
     },
     {
       "label": "RAM/DUMP",
-      "delta": 1,
+      "delta": -1,
       "is_default": false,
       "weight": 0
     }
@@ -807,7 +807,7 @@
   "positions": [
     {
       "label": "UPPER",
-      "delta": -1,
+      "delta": 1,
       "is_default": false,
       "weight": 0
     },
@@ -819,9 +819,59 @@
     },
     {
       "label": "LOWER",
-      "delta": 1,
+      "delta": -1,
       "is_default": false,
       "weight": 0
+    }
+  ]
+},
+{
+  "id": "iff_master_switch",
+  "label": "IFF Master Switch",
+  "dev": 40,
+  "cmd": 3012,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "EMER",
+      "delta": 0,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "NORM",
+      "delta": 1,
+      "is_default": true,
+      "weight": 100
+    }
+  ]
+},
+{
+  "id": "iff_mode4_switch",
+  "label": "IFF Mode 4 Switch",
+  "dev": 40,
+  "cmd": 3013,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "AUD/DIS",
+      "delta": -1,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "DIS",
+      "delta": 0,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "OFF",
+      "delta": 1,
+      "is_default": true,
+      "weight": 100
     }
   ]
 },
@@ -1045,20 +1095,20 @@
   "positions": [
     {
       "label": "ORIDE",
-      "delta": 0.0,
+      "delta": 1,
       "is_default": false,
       "weight": 0
     },
     {
       "label": "NORM",
-      "delta": 0.1,
-      "is_default": true,
+      "delta": 0,
+      "is_default": false,
       "weight": 100
     },
     {
       "label": "OFF",
-      "delta": 0.2,
-      "is_default": false,
+      "delta": -1,
+      "is_default": true,
       "weight": 0
     }
   ]
@@ -1490,20 +1540,20 @@
   "type": "discrete",
   "positions": [
     {
-      "label": "BRT",
-      "delta": -1,
+      "label": "OFF",
+      "delta": 0,
       "is_default": false,
       "weight": 0
     },
     {
-      "label": "OFF",
-      "delta": 0,
+      "label": "BRT",
+      "delta": 1,
       "is_default": true,
       "weight": 100
     },
     {
       "label": "DIM",
-      "delta": 1,
+      "delta": -1,
       "is_default": false,
       "weight": 0
     }
@@ -1537,6 +1587,34 @@
         }
       ]
     },
+	{
+  "id": "windshield_anti_ice_switch",
+  "label": "Windshield Anti-Ice/Rain Switch",
+  "dev": 11,
+  "cmd": 3009,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {
+      "label": "ANTI ICE",
+      "delta": 1,
+      "is_default": false,
+      "weight": 0
+    },
+    {
+      "label": "OFF",
+      "delta": 0,
+      "is_default": true,
+      "weight": 100
+    },
+    {
+      "label": "RAIN",
+      "delta":-1,
+      "is_default": false,
+      "weight": 0
+    }
+  ]
+},
     {
       "id": "ampcd_off_brt_knob",
       "label": "AMPCD Off/Brightness Knob",

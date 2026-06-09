@@ -132,6 +132,18 @@ CR.register("FA-18C_hornet", {
 	-- NORM=100%(default) / ORIDE=0%
 	{ dev=4, cmd=3001, vals={0}, label="Hydraulic Isolate Override Switch" },
 
+	-- IFF Antenna Selector Switch
+	-- UPPER=0% / BOTH=100%(default) / LOWER=0%
+	{ dev=50, cmd=3002, vals={0}, label="IFF Antenna Selector Switch" },
+
+	-- IFF Master Switch
+	-- EMER=0% / NORM=100%(default)
+	{ dev=40, cmd=3012, vals={1}, label="IFF Master Switch" },
+	
+	-- IFF Mode 4 Switch
+	-- AUD/DIS=0% / DIS=0% / OFF=100%(default)
+	{ dev=40, cmd=3013, vals={1}, label="IFF Mode 4 Switch" },
+
     -- ILS Channel Selector
     -- 1=5%(default) / 2=5% / 3=5% / 4=5% / 5=5% / 6=5% / 7=5% / 8=5% / 9=5% / 10=5% / 11=5% / 12=5% / 13=5% / 14=5% / 15=5% / 16=5% / 17=5% / 18=5% / 19=5% / 20=5%
     { dev=40, cmd=3017, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9}, label="ILS Channel Selector" },
@@ -200,15 +212,27 @@ CR.register("FA-18C_hornet", {
     -- LOCK=7% / UNLOCK=93%(default)
     { dev=7, cmd=3009, vals={1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Shoulder Harness Control Handle" },
 
+	-- Spin Recovery Switch
+	-- RCVY=0% / NORM=100%(default)
+	{ dev=2, cmd=3009, vals={1}, label="Spin Recovery Switch" },
+
     -- Spin Recovery Switch Cover
     -- OPEN=8% / CLOSE=92%(default)
     { dev=2, cmd=3008, vals={1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="Spin Recovery Switch Cover" },
-
-    -- UFC ADF Function Select Switch
+	
+	-- STROBE Lights Switch
+	- BRT=0% / OFF=100%(default) / DIM=0%
+	{ dev=8, cmd=3003, vals={0}, label="STROBE Lights Switch" },
+	
+	-- UFC ADF Function Select Switch
     -- 1=4% / OFF=92%(default) / 2=4%
     { dev=25, cmd=3016, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1}, label="UFC ADF Function Select Switch" },
 
-    -- AMPCD Off/Brightness Knob
+	-- Windshield Anti-Ice/Rain Switch
+	-- ANTI ICE=0% / OFF=100%(default) / RAIN=0%
+	{ dev=11, cmd=3009, vals={0}, label="Windshield Anti-Ice/Rain Switch" },
+   
+   -- AMPCD Off/Brightness Knob
     { dev=37, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="AMPCD Off/Brightness Knob" },
 
     -- Balance Control Knob
@@ -253,14 +277,6 @@ CR.register("FA-18C_hornet", {
 
     -- POSITION Lights Dimmer
     { dev=8, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="POSITION Lights Dimmer" },
-	
-	-- Spin Recovery Switch
-	-- RCVY=0% / NORM=100%(default)
-	{ dev=2, cmd=3009, vals={1}, label="Spin Recovery Switch" },
-	
-	-- STROBE Lights Switch
-	- BRT=0% / OFF=100%(default) / DIM=0%
-	{ dev=8, cmd=3003, vals={0}, label="STROBE Lights Switch" },
 
     -- TACAN Volume Knob
     { dev=40, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="TACAN Volume Knob" },
