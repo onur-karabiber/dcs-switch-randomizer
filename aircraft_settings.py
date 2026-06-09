@@ -912,7 +912,7 @@ class AircraftSettingsDialog(QDialog):
                 QPushButton:hover   {{ background: #d4a017; }}
                 QPushButton:pressed {{ background: #8b6508; }}
             """)
-        self._status("Press Save & Apply to save changes.", "#f0c040")
+        self._status("Click Save & Apply to save changes.", "#f0c040")
 
     def _clear_pending(self):
         """Kayıt tamamlandı — Save & Apply butonunu normal stiline döndür."""
