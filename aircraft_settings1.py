@@ -81,16 +81,14 @@ def weights_to_vals(positions: list) -> list:
     g = reduce(gcd, ints)
     result = []
     for i, p in enumerate(positions):
-        val = None if p.get("skip_command") else p.get("delta")
+        val = None if p.get("skip_command") else p["delta"]
         result += [val] * (ints[i] // g)
     return result
 
 
 def format_delta(v) -> str:
-    if v is None or v == "false":
+    if v is None:
         return "false"
-    if v == "true":
-        return "true"
     if isinstance(v, float) and v == int(v):
         return str(int(v))
     return str(v)

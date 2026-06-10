@@ -21,8 +21,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ON", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -34,8 +34,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ON", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -47,8 +47,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ON", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -60,8 +60,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ON", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -73,8 +73,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ON", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -86,8 +86,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ON", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -99,8 +99,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ON", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -112,9 +112,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "FIXED", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "UP", "delta": -1, "is_default": false, "weight":  6 },
-        { "label": "AUTO", "delta": 1, "is_default": false, "weight":  6 }
+        { "label": "FIXED", "is_default": true, "weight": 88 },
+        { "label": "UP", "is_default": false, "weight":  6 },
+        { "label": "AUTO", "is_default": false, "weight":  6 }
       ]
     },
 
@@ -126,10 +126,10 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "SAFE", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "TAIL", "delta": 0.2, "is_default": false, "weight":  7 },
-        { "label": "NOSE&TAIL", "delta": 0.4, "is_default": false, "weight":  3 },
-        { "label": "NOSE", "delta": 0.6, "is_default": false, "weight":  2 }
+        { "label": "SAFE", "is_default": true, "weight": 88 },
+        { "label": "TAIL", "is_default": false, "weight":  7 },
+        { "label": "NOSE&TAIL", "is_default": false, "weight":  3 },
+        { "label": "NOSE", "is_default": false, "weight":  2 }
       ]
     },
 
@@ -141,9 +141,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORMAL", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "DEFOG", "delta": -0.5, "is_default": false, "weight":  6 },
-        { "label": "RAM DUMP", "delta": 0.5, "is_default": false, "weight":  6 }
+        { "label": "NORMAL", "is_default": true, "weight": 88 },
+        { "label": "DEFOG", "is_default": false, "weight":  6 },
+        { "label": "RAM DUMP", "is_default": false, "weight":  6 }
       ]
     },
 
@@ -155,8 +155,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "OPEN", "delta": 1, "is_default": false, "weight": 10 }
+        { "label": "CLOSED", "is_default": true, "weight": 90 },
+        { "label": "OPEN", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -168,13 +168,13 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "AUTO", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "P1", "delta": -0.1, "is_default": false, "weight":  4 },
-        { "label": "P2", "delta": -0.2, "is_default": false, "weight":  3 },
-        { "label": "P3", "delta": -0.3, "is_default": false, "weight":  2 },
-        { "label": "P4", "delta": -0.4, "is_default": false, "weight":  1 },
-        { "label": "P5", "delta": -0.5, "is_default": false, "weight":  1 },
-        { "label": "P6", "delta": -0.6, "is_default": false, "weight":  1 }
+        { "label": "AUTO", "is_default": true, "weight": 88 },
+        { "label": "P1", "is_default": false, "weight":  4 },
+        { "label": "P2", "is_default": false, "weight":  3 },
+        { "label": "P3", "is_default": false, "weight":  2 },
+        { "label": "P4", "is_default": false, "weight":  1 },
+        { "label": "P5", "is_default": false, "weight":  1 },
+        { "label": "P6", "is_default": false, "weight":  1 }
       ]
     },
 
@@ -197,6 +197,604 @@
     },
 
     {
+      "id": "cb_26_volt_ac_power",
+      "label": "CB 26 Volt AC Power",
+      "dev": 3,
+      "cmd": 3041,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_attd_hdg_ref_sys_a",
+      "label": "CB ATTD & HDG Ref Sys A",
+      "dev": 3,
+      "cmd": 3042,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_attd_hdg_ref_sys_b",
+      "label": "CB ATTD & HDG Ref Sys B",
+      "dev": 3,
+      "cmd": 3046,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_attd_hdg_ref_sys_c",
+      "label": "CB ATTD & HDG Ref Sys C",
+      "dev": 3,
+      "cmd": 3051,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_cabin_air_valves",
+      "label": "CB Cabin Air Valves",
+      "dev": 3,
+      "cmd": 3030,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_cabin_cond",
+      "label": "CB Cabin Cond",
+      "dev": 3,
+      "cmd": 3049,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_caution_warn_lights_dim",
+      "label": "CB Caution & Warn Lights-DIM",
+      "dev": 3,
+      "cmd": 3034,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_central_air_data_computer",
+      "label": "CB Central Air Data Computer",
+      "dev": 3,
+      "cmd": 3043,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_emergency_all_jettison",
+      "label": "CB Emergency All Jettison",
+      "dev": 3,
+      "cmd": 3027,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_eng_ign_l_eng_inst_hyd_ind",
+      "label": "CB Eng IGN L Eng Inst & HYD IND",
+      "dev": 3,
+      "cmd": 3044,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_fuel_qty_primary",
+      "label": "CB Fuel QTY Primary",
+      "dev": 3,
+      "cmd": 3050,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_ignition_inverter_power",
+      "label": "CB Ignition Inverter Power",
+      "dev": 3,
+      "cmd": 3055,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_inst_lights",
+      "label": "CB Inst Lights",
+      "dev": 3,
+      "cmd": 3031,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_jettison_control",
+      "label": "CB Jettison Control",
+      "dev": 3,
+      "cmd": 3026,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_l_boost_cl_tip_tank_fuel_cont",
+      "label": "CB L Boost CL & Tip Tank Fuel Cont",
+      "dev": 3,
+      "cmd": 3054,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_l_eng_aux_door",
+      "label": "CB L Eng Aux Door",
+      "dev": 3,
+      "cmd": 3048,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_l_eng_start_ab_cont",
+      "label": "CB L Eng Start & AB Cont",
+      "dev": 3,
+      "cmd": 3056,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_ldg_taxi_lamp_pwr",
+      "label": "CB LDG-Taxi Lamp PWR",
+      "dev": 3,
+      "cmd": 3036,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_left_aim_9_cont",
+      "label": "CB Left AIM-9 Cont",
+      "dev": 3,
+      "cmd": 3024,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_left_aim_9_power",
+      "label": "CB Left AIM-9 Power",
+      "dev": 3,
+      "cmd": 3037,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_left_gun_firing",
+      "label": "CB Left Gun Firing",
+      "dev": 3,
+      "cmd": 3039,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_left_le_flap_cont",
+      "label": "CB Left LE Flap Cont",
+      "dev": 3,
+      "cmd": 3059,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_left_te_flap_cont",
+      "label": "CB Left TE Flap Cont",
+      "dev": 3,
+      "cmd": 3061,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_oxy_qty_canopy_seal",
+      "label": "CB OXY QTY & Canopy Seal",
+      "dev": 3,
+      "cmd": 3035,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_pitot_heater",
+      "label": "CB Pitot Heater",
+      "dev": 3,
+      "cmd": 3028,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_pylon_tank_fuel_cont",
+      "label": "CB Pylon Tank Fuel Cont",
+      "dev": 3,
+      "cmd": 3053,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_r_eng_aux_doors",
+      "label": "CB R Eng Aux Doors",
+      "dev": 3,
+      "cmd": 3032,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_r_eng_start_ab_cont",
+      "label": "CB R Eng Start & AB Cont",
+      "dev": 3,
+      "cmd": 3057,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_r_oil_hyd_ind_fuel_qty_sel",
+      "label": "CB R Oil & HYD IND Fuel QTY Sel",
+      "dev": 3,
+      "cmd": 3029,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_right_aim_9_cont",
+      "label": "CB Right AIM-9 Cont",
+      "dev": 3,
+      "cmd": 3025,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_right_aim_9_power",
+      "label": "CB Right AIM-9 Power",
+      "dev": 3,
+      "cmd": 3038,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_right_gun_firing",
+      "label": "CB Right Gun Firing",
+      "dev": 3,
+      "cmd": 3040,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_right_le_flap_cont",
+      "label": "CB Right LE Flap Cont",
+      "dev": 3,
+      "cmd": 3060,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_right_te_flap_cont_ind",
+      "label": "CB Right TE Flap Cont & IND",
+      "dev": 3,
+      "cmd": 3062,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_tacan",
+      "label": "CB TACAN",
+      "dev": 3,
+      "cmd": 3052,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_total_temp_probe_htr",
+      "label": "CB Total Temp Probe HTR",
+      "dev": 3,
+      "cmd": 3047,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_trim_control",
+      "label": "CB Trim Control",
+      "dev": 3,
+      "cmd": 3045,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_uhf_command_radio",
+      "label": "CB UHF Command Radio",
+      "dev": 3,
+      "cmd": 3058,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_wpn_arming",
+      "label": "CB WPN Arming",
+      "dev": 3,
+      "cmd": 3021,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_wpn_mode_sel_aim_9_intlk",
+      "label": "CB WPN Mode Sel & AIM-9 Intlk",
+      "dev": 3,
+      "cmd": 3023,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_wpn_pwr_center_line",
+      "label": "CB WPN PWR Center Line",
+      "dev": 3,
+      "cmd": 3018,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_wpn_pwr_left_inbd",
+      "label": "CB WPN PWR Left Inbd",
+      "dev": 3,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_wpn_pwr_left_outbd",
+      "label": "CB WPN PWR Left Outbd",
+      "dev": 3,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_wpn_pwr_right_inbd",
+      "label": "CB WPN PWR Right Inbd",
+      "dev": 3,
+      "cmd": 3019,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_wpn_pwr_right_outbd",
+      "label": "CB WPN PWR Right Outbd",
+      "dev": 3,
+      "cmd": 3020,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
+      "id": "cb_wpn_release",
+      "label": "CB WPN Release",
+      "dev": 3,
+      "cmd": 3022,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
+        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+      ]
+    },
+
+    {
       "id": "chaff_mode_selector",
       "label": "Chaff Mode Selector",
       "dev": 13,
@@ -204,10 +802,10 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "SINGLE", "delta": 0.1, "is_default": false, "weight":  7 },
-        { "label": "PRGM", "delta": 0.2, "is_default": false, "weight":  3 },
-        { "label": "MULT", "delta": 0.3, "is_default": false, "weight":  2 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "SINGLE", "is_default": false, "weight":  7 },
+        { "label": "PRGM", "is_default": false, "weight":  3 },
+        { "label": "MULT", "is_default": false, "weight":  2 }
       ]
     },
 
@@ -219,8 +817,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "MAG", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "DIR GYRO", "delta": 1, "is_default": false, "weight": 12 }
+        { "label": "MAG", "is_default": true, "weight": 88 },
+        { "label": "DIR GYRO", "is_default": false, "weight": 12 }
       ]
     },
 
@@ -241,8 +839,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "OPEN", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "CLOSED", "is_default": true, "weight": 90 },
+        { "label": "OPEN", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -254,8 +852,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ENGINE", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ENGINE", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -276,8 +874,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "ON", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -289,8 +887,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "ON", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -302,8 +900,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "BEACON", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "BEACON", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -333,10 +931,10 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "SAFE", "delta": 0.0, "is_default": true, "weight": 70 },
-        { "label": "BOMB", "delta": -0.1, "is_default": false, "weight": 10 },
-        { "label": "RKT DISP", "delta": 0.1, "is_default": false, "weight": 10 },
-        { "label": "RIPL", "delta": -0.2, "is_default": false, "weight": 10 }
+        { "label": "SAFE", "is_default": true, "weight": 70 },
+        { "label": "BOMB", "is_default": false, "weight": 10 },
+        { "label": "RKT DISP", "is_default": false, "weight": 10 },
+        { "label": "RIPL", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -348,9 +946,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "THUMB SW", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "EMER UP", "delta": -1, "is_default": false, "weight":  6 },
-        { "label": "FULL", "delta": 1, "is_default": false, "weight":  6 }
+        { "label": "THUMB SW", "is_default": true, "weight": 88 },
+        { "label": "EMER UP", "is_default": false, "weight":  6 },
+        { "label": "FULL", "is_default": false, "weight":  6 }
       ]
     },
 
@@ -362,8 +960,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "OPEN", "delta": 1, "is_default": false, "weight": 10 }
+        { "label": "CLOSED", "is_default": true, "weight": 90 },
+        { "label": "OPEN", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -375,9 +973,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "SINGLE", "delta": 0.1, "is_default": false, "weight":  8 },
-        { "label": "PRGM", "delta": 0.2, "is_default": false, "weight":  4 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "SINGLE", "is_default": false, "weight":  8 },
+        { "label": "PRGM", "is_default": false, "weight":  4 }
       ]
     },
 
@@ -407,8 +1005,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "OPEN", "delta": 1, "is_default": false, "weight": 10 }
+        { "label": "CLOSED", "is_default": true, "weight": 90 },
+        { "label": "OPEN", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -420,11 +1018,11 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "STBY", "delta": 0.1, "is_default": false, "weight":  7 },
-        { "label": "LOW", "delta": 0.2, "is_default": false, "weight":  1 },
-        { "label": "NORM", "delta": 0.3, "is_default": false, "weight":  3 },
-        { "label": "EMER", "delta": 0.4, "is_default": false, "weight":  1 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "STBY", "is_default": false, "weight":  7 },
+        { "label": "LOW", "is_default": false, "weight":  1 },
+        { "label": "NORM", "is_default": false, "weight":  3 },
+        { "label": "EMER", "is_default": false, "weight":  1 }
       ]
     },
 
@@ -436,14 +1034,14 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "delta": 0.0, "is_default": true, "weight": 13 },
-        { "label": "1", "delta": 0.1, "is_default": false, "weight": 13 },
-        { "label": "2", "delta": 0.2, "is_default": false, "weight": 12 },
-        { "label": "3", "delta": 0.3, "is_default": false, "weight": 12 },
-        { "label": "4", "delta": 0.4, "is_default": false, "weight": 12 },
-        { "label": "5", "delta": 0.5, "is_default": false, "weight": 12 },
-        { "label": "6", "delta": 0.6, "is_default": false, "weight": 13 },
-        { "label": "7", "delta": 0.7, "is_default": false, "weight": 13 }
+        { "label": "0", "is_default": true, "weight": 13 },
+        { "label": "1", "is_default": false, "weight": 13 },
+        { "label": "2", "is_default": false, "weight": 12 },
+        { "label": "3", "is_default": false, "weight": 12 },
+        { "label": "4", "is_default": false, "weight": 12 },
+        { "label": "5", "is_default": false, "weight": 12 },
+        { "label": "6", "is_default": false, "weight": 13 },
+        { "label": "7", "is_default": false, "weight": 13 }
       ]
     },
 
@@ -455,10 +1053,10 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "delta": 0.0, "is_default": true, "weight": 25 },
-        { "label": "1", "delta": 0.1, "is_default": false, "weight": 25 },
-        { "label": "2", "delta": 0.2, "is_default": false, "weight": 25 },
-        { "label": "3", "delta": 0.3, "is_default": false, "weight": 25 }
+        { "label": "0", "is_default": true, "weight": 25 },
+        { "label": "1", "is_default": false, "weight": 25 },
+        { "label": "2", "is_default": false, "weight": 25 },
+        { "label": "3", "is_default": false, "weight": 25 }
       ]
     },
 
@@ -470,14 +1068,14 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "delta": 0.0, "is_default": true, "weight": 13 },
-        { "label": "1", "delta": 0.1, "is_default": false, "weight": 13 },
-        { "label": "2", "delta": 0.2, "is_default": false, "weight": 12 },
-        { "label": "3", "delta": 0.3, "is_default": false, "weight": 12 },
-        { "label": "4", "delta": 0.4, "is_default": false, "weight": 12 },
-        { "label": "5", "delta": 0.5, "is_default": false, "weight": 12 },
-        { "label": "6", "delta": 0.6, "is_default": false, "weight": 13 },
-        { "label": "7", "delta": 0.7, "is_default": false, "weight": 13 }
+        { "label": "0", "is_default": true, "weight": 13 },
+        { "label": "1", "is_default": false, "weight": 13 },
+        { "label": "2", "is_default": false, "weight": 12 },
+        { "label": "3", "is_default": false, "weight": 12 },
+        { "label": "4", "is_default": false, "weight": 12 },
+        { "label": "5", "is_default": false, "weight": 12 },
+        { "label": "6", "is_default": false, "weight": 13 },
+        { "label": "7", "is_default": false, "weight": 13 }
       ]
     },
 
@@ -489,14 +1087,14 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "delta": 0.0, "is_default": true, "weight": 13 },
-        { "label": "1", "delta": 0.1, "is_default": false, "weight": 13 },
-        { "label": "2", "delta": 0.2, "is_default": false, "weight": 12 },
-        { "label": "3", "delta": 0.3, "is_default": false, "weight": 12 },
-        { "label": "4", "delta": 0.4, "is_default": false, "weight": 12 },
-        { "label": "5", "delta": 0.5, "is_default": false, "weight": 12 },
-        { "label": "6", "delta": 0.6, "is_default": false, "weight": 13 },
-        { "label": "7", "delta": 0.7, "is_default": false, "weight": 13 }
+        { "label": "0", "is_default": true, "weight": 13 },
+        { "label": "1", "is_default": false, "weight": 13 },
+        { "label": "2", "is_default": false, "weight": 12 },
+        { "label": "3", "is_default": false, "weight": 12 },
+        { "label": "4", "is_default": false, "weight": 12 },
+        { "label": "5", "is_default": false, "weight": 12 },
+        { "label": "6", "is_default": false, "weight": 13 },
+        { "label": "7", "is_default": false, "weight": 13 }
       ]
     },
 
@@ -508,14 +1106,14 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "delta": 0.0, "is_default": true, "weight": 13 },
-        { "label": "1", "delta": 0.1, "is_default": false, "weight": 13 },
-        { "label": "2", "delta": 0.2, "is_default": false, "weight": 12 },
-        { "label": "3", "delta": 0.3, "is_default": false, "weight": 12 },
-        { "label": "4", "delta": 0.4, "is_default": false, "weight": 12 },
-        { "label": "5", "delta": 0.5, "is_default": false, "weight": 12 },
-        { "label": "6", "delta": 0.6, "is_default": false, "weight": 13 },
-        { "label": "7", "delta": 0.7, "is_default": false, "weight": 13 }
+        { "label": "0", "is_default": true, "weight": 13 },
+        { "label": "1", "is_default": false, "weight": 13 },
+        { "label": "2", "is_default": false, "weight": 12 },
+        { "label": "3", "is_default": false, "weight": 12 },
+        { "label": "4", "is_default": false, "weight": 12 },
+        { "label": "5", "is_default": false, "weight": 12 },
+        { "label": "6", "is_default": false, "weight": 13 },
+        { "label": "7", "is_default": false, "weight": 13 }
       ]
     },
 
@@ -527,14 +1125,14 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "delta": 0.0, "is_default": true, "weight": 13 },
-        { "label": "1", "delta": 0.1, "is_default": false, "weight": 13 },
-        { "label": "2", "delta": 0.2, "is_default": false, "weight": 12 },
-        { "label": "3", "delta": 0.3, "is_default": false, "weight": 12 },
-        { "label": "4", "delta": 0.4, "is_default": false, "weight": 12 },
-        { "label": "5", "delta": 0.5, "is_default": false, "weight": 12 },
-        { "label": "6", "delta": 0.6, "is_default": false, "weight": 13 },
-        { "label": "7", "delta": 0.7, "is_default": false, "weight": 13 }
+        { "label": "0", "is_default": true, "weight": 13 },
+        { "label": "1", "is_default": false, "weight": 13 },
+        { "label": "2", "is_default": false, "weight": 12 },
+        { "label": "3", "is_default": false, "weight": 12 },
+        { "label": "4", "is_default": false, "weight": 12 },
+        { "label": "5", "is_default": false, "weight": 12 },
+        { "label": "6", "is_default": false, "weight": 13 },
+        { "label": "7", "is_default": false, "weight": 13 }
       ]
     },
 
@@ -546,8 +1144,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OUT", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OUT", "is_default": true, "weight": 90 },
+        { "label": "ON", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -559,9 +1157,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OUT", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "AUDIO", "delta": -1, "is_default": false, "weight":  6 },
-        { "label": "LIGHT", "delta": 1, "is_default": false, "weight":  6 }
+        { "label": "OUT", "is_default": true, "weight": 88 },
+        { "label": "AUDIO", "is_default": false, "weight":  6 },
+        { "label": "LIGHT", "is_default": false, "weight":  6 }
       ]
     },
 
@@ -573,9 +1171,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": ".10", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": ".06", "delta": -1, "is_default": false, "weight":  6 },
-        { "label": ".14", "delta": 1, "is_default": false, "weight":  6 }
+        { "label": ".10", "is_default": true, "weight": 88 },
+        { "label": ".06", "is_default": false, "weight":  6 },
+        { "label": ".14", "is_default": false, "weight":  6 }
       ]
     },
 
@@ -587,8 +1185,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "ON", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -600,8 +1198,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "ON", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -613,8 +1211,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "OPEN", "delta": 1, "is_default": false, "weight":  5 }
+        { "label": "CLOSED", "is_default": true, "weight": 95 },
+        { "label": "OPEN", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -626,8 +1224,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "LIGHT", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "LIGHT", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -648,8 +1246,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "DF", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "TACAN", "delta": 1, "is_default": false, "weight": 12 }
+        { "label": "DF", "is_default": true, "weight": 88 },
+        { "label": "TACAN", "is_default": false, "weight": 12 }
       ]
     },
 
@@ -661,8 +1259,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORM", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "100%", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "NORM", "is_default": true, "weight": 90 },
+        { "label": "100%", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -674,8 +1272,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORMAL", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "EMERGENCY", "delta": 1, "is_default": false, "weight": 10 }
+        { "label": "NORMAL", "is_default": true, "weight": 90 },
+        { "label": "EMERGENCY", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -687,8 +1285,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 1, "is_default": false, "weight": 10 }
+        { "label": "ON", "is_default": true, "weight": 90 },
+        { "label": "OFF", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -700,8 +1298,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "PITCH", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "PITCH", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -713,8 +1311,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "PITOT", "delta": -1, "is_default": false, "weight":  5 }
+        { "label": "OFF", "is_default": true, "weight": 95 },
+        { "label": "PITOT", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -735,10 +1333,10 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "STBY", "delta": 0.1, "is_default": false, "weight":  7 },
-        { "label": "OPER", "delta": 0.2, "is_default": false, "weight":  4 },
-        { "label": "TEST", "delta": 0.3, "is_default": false, "weight":  1 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "STBY", "is_default": false, "weight":  7 },
+        { "label": "OPER", "is_default": false, "weight":  4 },
+        { "label": "TEST", "is_default": false, "weight":  1 }
       ]
     },
 
@@ -759,10 +1357,10 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "5nm", "delta": 0.0, "is_default": true, "weight": 25 },
-        { "label": "10nm", "delta": 0.1, "is_default": false, "weight": 25 },
-        { "label": "20nm", "delta": 0.2, "is_default": false, "weight": 25 },
-        { "label": "40nm", "delta": 0.3, "is_default": false, "weight": 25 }
+        { "label": "5nm", "is_default": true, "weight": 25 },
+        { "label": "10nm", "is_default": false, "weight": 25 },
+        { "label": "20nm", "is_default": false, "weight": 25 },
+        { "label": "40nm", "is_default": false, "weight": 25 }
       ]
     },
 
@@ -792,8 +1390,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "ON", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -805,8 +1403,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 95 },
-        { "label": "OPEN", "delta": 1, "is_default": false, "weight":  5 }
+        { "label": "CLOSED", "is_default": true, "weight": 95 },
+        { "label": "OPEN", "is_default": false, "weight":  5 }
       ]
     },
 
@@ -827,8 +1425,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 12 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "ON", "is_default": false, "weight": 12 }
       ]
     },
 
@@ -867,8 +1465,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 12 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "ON", "is_default": false, "weight": 12 }
       ]
     },
 
@@ -880,9 +1478,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "BIT 1", "delta": -1, "is_default": false, "weight":  6 },
-        { "label": "BIT 2", "delta": 1, "is_default": false, "weight":  6 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "BIT 1", "is_default": false, "weight":  6 },
+        { "label": "BIT 2", "is_default": false, "weight":  6 }
       ]
     },
 
@@ -894,8 +1492,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "24fps", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "48fps", "delta": 1, "is_default": false, "weight": 12 }
+        { "label": "24fps", "is_default": true, "weight": 88 },
+        { "label": "48fps", "is_default": false, "weight": 12 }
       ]
     },
 
@@ -907,10 +1505,10 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0s", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "3s", "delta": -0.1, "is_default": false, "weight":  6 },
-        { "label": "10s", "delta": -0.2, "is_default": false, "weight":  4 },
-        { "label": "20s", "delta": -0.3, "is_default": false, "weight":  2 }
+        { "label": "0s", "is_default": true, "weight": 88 },
+        { "label": "3s", "is_default": false, "weight":  6 },
+        { "label": "10s", "is_default": false, "weight":  4 },
+        { "label": "20s", "is_default": false, "weight":  2 }
       ]
     },
 
@@ -922,11 +1520,11 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "MSL", "delta": 0.1, "is_default": false, "weight":  6 },
-        { "label": "A/A1 GUNS", "delta": 0.2, "is_default": false, "weight":  3 },
-        { "label": "A/A2 GUNS", "delta": 0.3, "is_default": false, "weight":  2 },
-        { "label": "MAN", "delta": 0.4, "is_default": false, "weight":  1 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "MSL", "is_default": false, "weight":  6 },
+        { "label": "A/A1 GUNS", "is_default": false, "weight":  3 },
+        { "label": "A/A2 GUNS", "is_default": false, "weight":  2 },
+        { "label": "MAN", "is_default": false, "weight":  1 }
       ]
     },
 
@@ -938,9 +1536,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 88 },
-        { "label": "OUT", "delta": -1, "is_default": false, "weight":  6 },
-        { "label": "IN", "delta": 1, "is_default": false, "weight":  6 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "OUT", "is_default": false, "weight":  6 },
+        { "label": "IN", "is_default": false, "weight":  6 }
       ]
     },
 
@@ -952,11 +1550,11 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "REC", "delta": 0.1, "is_default": false, "weight":  6 },
-        { "label": "T/R", "delta": 0.2, "is_default": false, "weight":  3 },
-        { "label": "A/A", "delta": 0.3, "is_default": false, "weight":  2 },
-        { "label": "BCN", "delta": 0.4, "is_default": false, "weight":  1 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "REC", "is_default": false, "weight":  6 },
+        { "label": "T/R", "is_default": false, "weight":  3 },
+        { "label": "A/A", "is_default": false, "weight":  2 },
+        { "label": "BCN", "is_default": false, "weight":  1 }
       ]
     },
 
@@ -977,9 +1575,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "AUTO", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "UPPER", "delta": -0.5, "is_default": false, "weight":  6 },
-        { "label": "LOWER", "delta": 0.5, "is_default": false, "weight":  6 }
+        { "label": "AUTO", "is_default": true, "weight": 88 },
+        { "label": "UPPER", "is_default": false, "weight":  6 },
+        { "label": "LOWER", "is_default": false, "weight":  6 }
       ]
     },
 
@@ -991,9 +1589,9 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "PRESET", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "MANUAL", "delta": -0.1, "is_default": false, "weight":  8 },
-        { "label": "GUARD", "delta": 0.1, "is_default": false, "weight":  4 }
+        { "label": "PRESET", "is_default": true, "weight": 88 },
+        { "label": "MANUAL", "is_default": false, "weight":  8 },
+        { "label": "GUARD", "is_default": false, "weight":  4 }
       ]
     },
 
@@ -1005,10 +1603,10 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0.0, "is_default": true, "weight": 88 },
-        { "label": "MAIN", "delta": 0.1, "is_default": false, "weight":  7 },
-        { "label": "BOTH", "delta": 0.2, "is_default": false, "weight":  3 },
-        { "label": "ADF", "delta": 0.3, "is_default": false, "weight":  2 }
+        { "label": "OFF", "is_default": true, "weight": 88 },
+        { "label": "MAIN", "is_default": false, "weight":  7 },
+        { "label": "BOTH", "is_default": false, "weight":  3 },
+        { "label": "ADF", "is_default": false, "weight":  2 }
       ]
     },
 
@@ -1020,8 +1618,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "ON", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "ON", "is_default": false, "weight": 10 }
       ]
     },
 
@@ -1042,8 +1640,8 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 },
-        { "label": "YAW", "delta": -1, "is_default": false, "weight": 10 }
+        { "label": "OFF", "is_default": true, "weight": 90 },
+        { "label": "YAW", "is_default": false, "weight": 10 }
       ]
     }
 
