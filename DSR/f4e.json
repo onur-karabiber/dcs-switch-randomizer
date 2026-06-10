@@ -40,7 +40,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -106,7 +106,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -273,6 +273,14 @@
       "enabled": true,
       "type": "continuous"
     },
+	{
+  "id": "change_instrument_panel_brightness",
+  "label": "Change Instrument Panel Brightness",
+  "dev": 72,
+  "cmd": 3010,
+  "enabled": true,
+  "type": "continuous"
+},
     {
       "id": "change_intercom_volume",
       "label": "Change Intercom Volume",
@@ -364,25 +372,25 @@
       "type": "discrete",
       "positions": [
         {
-          "label": "MONITOR",
+          "label": "OFF",
           "delta": 0,
           "is_default": true,
           "weight": 50
         },
         {
-          "label": "STBY",
+          "label": "SAFE",
           "delta": 0.333,
           "is_default": false,
           "weight": 20
         },
         {
-          "label": "LAUNCH",
+          "label": "BOMB GRD MSL-HI",
           "delta": 0.667,
           "is_default": false,
           "weight": 20
         },
         {
-          "label": "AUT REL",
+          "label": "BOMB AIR MSL-LO",
           "delta": 1.0,
           "is_default": false,
           "weight": 10
@@ -442,7 +450,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -584,7 +592,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -600,14 +608,14 @@
       "type": "discrete",
       "positions": [
         {
-          "label": "OFF",
+          "label": "ON",
           "delta": 0,
           "is_default": true,
           "weight": 70
         },
         {
-          "label": "ON",
-          "delta": 1,
+          "label": "Out",
+          "delta": -1,
           "is_default": false,
           "weight": 30
         }
@@ -622,14 +630,14 @@
       "type": "discrete",
       "positions": [
         {
-          "label": "OFF",
+          "label": "ON",
           "delta": 0,
           "is_default": true,
           "weight": 70
         },
         {
-          "label": "ON",
-          "delta": 1,
+          "label": "OUT",
+          "delta": -1,
           "is_default": false,
           "weight": 30
         }
@@ -644,14 +652,14 @@
       "type": "discrete",
       "positions": [
         {
-          "label": "OFF",
+          "label": "ON",
           "delta": 0,
           "is_default": true,
           "weight": 70
         },
         {
-          "label": "ON",
-          "delta": 1,
+          "label": "OUT",
+          "delta": -1,
           "is_default": false,
           "weight": 30
         }
@@ -666,14 +674,14 @@
       "type": "discrete",
       "positions": [
         {
-          "label": "OFF",
+          "label": "ON",
           "delta": 0,
           "is_default": true,
           "weight": 70
         },
         {
-          "label": "ON",
-          "delta": 1,
+          "label": "OUT",
+          "delta": -1,
           "is_default": false,
           "weight": 30
         }
@@ -694,7 +702,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -716,7 +724,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -1201,6 +1209,19 @@
         }
       ]
     },
+	{
+  "id": "select_mode_4_indication",
+  "label": "Select Mode 4 Indication",
+  "dev": 4,
+  "cmd": 3009,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    {"label": "AUDIO", "delta": 1, "is_default": false, "weight": 10},
+    {"label": "OUT",   "delta": 0, "is_default": true,  "weight": 70},
+    {"label": "LIGHT", "delta": -1, "is_default": false, "weight": 20}
+  ]
+},
     {
       "id": "select_navigation_input",
       "label": "Select Navigation Input",
@@ -1562,7 +1583,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -1650,7 +1671,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
@@ -1792,7 +1813,7 @@
           "weight": 90
         },
         {
-          "label": "PULL",
+          "label": "OUT",
           "delta": 1,
           "is_default": false,
           "weight": 10
