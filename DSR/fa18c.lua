@@ -176,7 +176,7 @@ CR.register("FA-18C_hornet", {
 
     -- ILS Channel Selector
     -- 1=5%(default) / 2=5% / 3=5% / 4=5% / 5=5% / 6=5% / 7=5% / 8=5% / 9=5% / 10=5% / 11=5% / 12=5% / 13=5% / 14=5% / 15=5% / 16=5% / 17=5% / 18=5% / 19=5% / 20=5%
-    { dev=40, cmd=3017, vals={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9}, label="ILS Channel Selector" },
+    { dev=40, cmd=3017, vals={0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95}, label="ILS Channel Selector" },
 
     -- ILS UFC/MAN Switch
     -- UFC=89%(default) / MAN=11%
@@ -285,6 +285,36 @@ CR.register("FA-18C_hornet", {
 
     -- WARN/CAUTION Dimmer
     { dev=9, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="WARN/CAUTION Dimmer" },
+
+    -- AOA Indexer Control Knob
+    { dev=34, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="AOA Indexer Control Knob" },
+
+    -- AUX Volume Control Knob
+    { dev=40, cmd=3009, vals={0, 0.25, 0.5, 0.75, 1.0}, label="AUX Volume Control Knob" },
+
+    -- Black Level Control Knob
+    { dev=34, cmd=3004, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Black Level Control Knob" },
+
+    -- HUD Symbology Brightness Knob
+    { dev=34, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="HUD Symbology Brightness Knob" },
+
+    -- ICS Volume Control Knob
+    { dev=40, cmd=3003, vals={0, 0.25, 0.5, 0.75, 1.0}, label="ICS Volume Control Knob" },
+
+    -- MIDS A Volume Control Knob
+    { dev=40, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="MIDS A Volume Control Knob" },
+
+    -- MIDS B Volume Control Knob
+    { dev=40, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="MIDS B Volume Control Knob" },
+
+    -- RWR Volume Control Knob
+    { dev=40, cmd=3004, vals={0, 0.25, 0.5, 0.75, 1.0}, label="RWR Volume Control Knob" },
+
+    -- VOX Volume Control Knob
+    { dev=40, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="VOX Volume Control Knob" },
+
+    -- WPN Volume Control Knob
+    { dev=40, cmd=3005, vals={0, 0.25, 0.5, 0.75, 1.0}, label="WPN Volume Control Knob" },
 
     -- Windshield Anti-Ice/Rain Switch
     -- ANTI ICE=2% / OFF=95%(default) / RAIN=3%

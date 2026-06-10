@@ -12,6 +12,22 @@
       "type": "continuous"
     },
     {
+      "id": "aoa_indexer",
+      "label": "AOA Indexer Control Knob",
+      "dev": 34,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "aux_volume",
+      "label": "AUX Volume Control Knob",
+      "dev": 40,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "anti_skid_switch",
       "label": "Anti Skid Switch",
       "dev": 5,
@@ -82,6 +98,14 @@
           "weight": 96
         }
       ]
+    },
+    {
+      "id": "black_level",
+      "label": "Black Level Control Knob",
+      "dev": 34,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "hud_balance_knob",
@@ -971,115 +995,115 @@
         },
         {
           "label": "2",
-          "delta": 0.1,
+          "delta": 0.05,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "3",
-          "delta": 0.2,
+          "delta": 0.1,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "4",
-          "delta": 0.3,
+          "delta": 0.15,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "5",
-          "delta": 0.4,
+          "delta": 0.2,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "6",
-          "delta": 0.5,
+          "delta": 0.25,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "7",
-          "delta": 0.6,
+          "delta": 0.3,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "8",
-          "delta": 0.7,
+          "delta": 0.35,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "9",
-          "delta": 0.8,
+          "delta": 0.4,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "10",
-          "delta": 0.9,
+          "delta": 0.45,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "11",
-          "delta": 1.0,
+          "delta": 0.5,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "12",
-          "delta": 1.1,
+          "delta": 0.55,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "13",
-          "delta": 1.2,
+          "delta": 0.6,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "14",
-          "delta": 1.3,
+          "delta": 0.65,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "15",
-          "delta": 1.4,
+          "delta": 0.7,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "16",
-          "delta": 1.5,
+          "delta": 0.75,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "17",
-          "delta": 1.6,
+          "delta": 0.8,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "18",
-          "delta": 1.7,
+          "delta": 0.85,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "19",
-          "delta": 1.8,
+          "delta": 0.9,
           "is_default": false,
           "weight": 5
         },
         {
           "label": "20",
-          "delta": 1.9,
+          "delta": 0.95,
           "is_default": false,
           "weight": 5
         }
@@ -1728,6 +1752,62 @@
       "label": "WARN/CAUTION Dimmer",
       "dev": 9,
       "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "hud_symb_bright",
+      "label": "HUD Symbology Brightness Knob",
+      "dev": 34,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "ics_volume",
+      "label": "ICS Volume Control Knob",
+      "dev": 40,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "mids_a_volume",
+      "label": "MIDS A Volume Control Knob",
+      "dev": 40,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "mids_b_volume",
+      "label": "MIDS B Volume Control Knob",
+      "dev": 40,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "rwr_volume",
+      "label": "RWR Volume Control Knob",
+      "dev": 40,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "vox_volume",
+      "label": "VOX Volume Control Knob",
+      "dev": 40,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "wpn_volume",
+      "label": "WPN Volume Control Knob",
+      "dev": 40,
+      "cmd": 3005,
       "enabled": true,
       "type": "continuous"
     },
