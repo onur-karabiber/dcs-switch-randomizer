@@ -4,6 +4,14 @@
   "delay": 3.0,
   "controls": [
     {
+      "id": "ampcd_off_brt_knob",
+      "label": "AMPCD Off/Brightness Knob",
+      "dev": 37,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "anti_skid_switch",
       "label": "Anti Skid Switch",
       "dev": 5,
@@ -65,93 +73,57 @@
           "label": "ENABLE",
           "delta": 1,
           "is_default": false,
-          "weight": 6
+          "weight": 4
         },
         {
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 94
+          "weight": 96
         }
       ]
     },
-	{
-  "id": "cabin_pressure_switch",
-  "label": "Cabin Pressure Switch",
-  "dev": 11,
-  "cmd": 3004,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "NORM",
-      "delta": 1,
-      "is_default": true,
-      "weight": 100
+      "id": "hud_balance_knob",
+      "label": "Balance Control Knob",
+      "dev": 34,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
     },
     {
-      "label": "DUMP",
-      "delta": 0,
-      "is_default": false,
-      "weight": 0
+      "id": "cabin_pressure_switch",
+      "label": "Cabin Pressure Switch",
+      "dev": 11,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 98
+        },
+        {
+          "label": "DUMP",
+          "delta": 0,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "RAM/DUMP",
+          "delta": -1,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
     },
-    {
-      "label": "RAM/DUMP",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
     {
       "id": "cb_fcs_chan1",
       "label": "CB FCS CHAN 1",
       "dev": 3,
       "cmd": 3017,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "IN",
-          "delta": 0,
-          "is_default": true,
-          "weight": 92
-        },
-        {
-          "label": "OUT",
-          "delta": 1,
-          "is_default": false,
-          "weight": 8
-        }
-      ]
-    },
-    {
-      "id": "cb_fcs_chan2",
-      "label": "CB FCS CHAN 2",
-      "dev": 3,
-      "cmd": 3018,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "IN",
-          "delta": 0,
-          "is_default": true,
-          "weight": 91
-        },
-        {
-          "label": "OUT",
-          "delta": 1,
-          "is_default": false,
-          "weight": 9
-        }
-      ]
-    },
-    {
-      "id": "cb_fcs_chan3",
-      "label": "CB FCS CHAN 3",
-      "dev": 3,
-      "cmd": 3021,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -170,10 +142,10 @@
       ]
     },
     {
-      "id": "cb_fcs_chan4",
-      "label": "CB FCS CHAN 4",
+      "id": "cb_fcs_chan2",
+      "label": "CB FCS CHAN 2",
       "dev": 3,
-      "cmd": 3022,
+      "cmd": 3018,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -188,6 +160,50 @@
           "delta": 1,
           "is_default": false,
           "weight": 8
+        }
+      ]
+    },
+    {
+      "id": "cb_fcs_chan3",
+      "label": "CB FCS CHAN 3",
+      "dev": 3,
+      "cmd": 3021,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "IN",
+          "delta": 0,
+          "is_default": true,
+          "weight": 94
+        },
+        {
+          "label": "OUT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 6
+        }
+      ]
+    },
+    {
+      "id": "cb_fcs_chan4",
+      "label": "CB FCS CHAN 4",
+      "dev": 3,
+      "cmd": 3022,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "IN",
+          "delta": 0,
+          "is_default": true,
+          "weight": 93
+        },
+        {
+          "label": "OUT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
         }
       ]
     },
@@ -203,13 +219,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 92
+          "weight": 93
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 8
+          "weight": 7
         }
       ]
     },
@@ -225,13 +241,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 88
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 12
         }
       ]
     },
@@ -247,13 +263,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 92
+          "weight": 93
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 8
+          "weight": 7
         }
       ]
     },
@@ -269,15 +285,39 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 89
+          "weight": 91
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 11
+          "weight": 9
         }
       ]
+    },
+    {
+      "id": "chart_dimmer",
+      "label": "CHART Dimmer",
+      "dev": 9,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "comm1_volume",
+      "label": "COMM 1 Volume",
+      "dev": 25,
+      "cmd": 3030,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "comm2_volume",
+      "label": "COMM 2 Volume",
+      "dev": 25,
+      "cmd": 3031,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "comm_g_xmt_switch",
@@ -291,19 +331,19 @@
           "label": "COMM 1",
           "delta": 1,
           "is_default": false,
-          "weight": 7
+          "weight": 6
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 88
+          "weight": 90
         },
         {
           "label": "COMM 2",
           "delta": -1,
           "is_default": false,
-          "weight": 5
+          "weight": 4
         }
       ]
     },
@@ -319,21 +359,37 @@
           "label": "CIPHER",
           "delta": 1,
           "is_default": false,
-          "weight": 5
+          "weight": 4
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 88
+          "weight": 90
         },
         {
           "label": "PLAIN",
           "delta": -1,
           "is_default": false,
-          "weight": 7
+          "weight": 6
         }
       ]
+    },
+    {
+      "id": "consoles_dimmer",
+      "label": "CONSOLES Dimmer",
+      "dev": 9,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "defog_handle",
+      "label": "Defog Handle",
+      "dev": 11,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "dispenser_switch",
@@ -421,94 +477,94 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 94
+          "weight": 95
         },
         {
           "label": "TEST",
           "delta": -1,
           "is_default": false,
-          "weight": 5
+          "weight": 4
         }
       ]
     },
-	{
-  "id": "ext_ctr_tank_switch",
-  "label": "External Centerline Tank Fuel Control Switch",
-  "dev": 6,
-  "cmd": 3004,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "STOP",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
+      "id": "ext_ctr_tank_switch",
+      "label": "External Centerline Tank Fuel Control Switch",
+      "dev": 6,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "STOP",
+          "delta": -1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 97
+        },
+        {
+          "label": "ORIDE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
     },
     {
-      "label": "NORM",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
+      "id": "ext_pwr_switch",
+      "label": "External Power Switch",
+      "dev": 3,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
     },
     {
-      "label": "ORIDE",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "ext_pwr_switch",
-  "label": "External Power Switch",
-  "dev": 3,
-  "cmd": 3004,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "NORM",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
+      "id": "ext_wing_tanks_switch",
+      "label": "External Wing Tanks Fuel Control Switch",
+      "dev": 6,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "STOP",
+          "delta": -1,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 97
+        },
+        {
+          "label": "ORIDE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
     },
-    {
-      "label": "OFF",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-	{
-  "id": "ext_wing_tanks_switch",
-  "label": "External Wing Tanks Fuel Control Switch",
-  "dev": 6,
-  "cmd": 3005,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "STOP",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "NORM",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
-    },
-    {
-      "label": "ORIDE",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
     {
       "id": "flap_switch",
       "label": "FLAP Switch",
@@ -565,28 +621,44 @@
         }
       ]
     },
-	{
-  "id": "gain_switch",
-  "label": "GAIN Switch",
-  "dev": 2,
-  "cmd": 3006,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "NORM",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
+      "id": "flood_dimmer",
+      "label": "FLOOD Dimmer",
+      "dev": 9,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "continuous"
     },
     {
-      "label": "ORIDE",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
+      "id": "formation_dimmer",
+      "label": "FORMATION Lights Dimmer",
+      "dev": 8,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "gain_switch",
+      "label": "GAIN Switch",
+      "dev": 2,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "ORIDE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
+    },
     {
       "id": "gain_switch_cover",
       "label": "GAIN Switch Cover",
@@ -609,28 +681,28 @@
         }
       ]
     },
-	{
-  "id": "gen_tie_control_switch",
-  "label": "Generator TIE Control Switch",
-  "dev": 3,
-  "cmd": 3006,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "NORM",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
+      "id": "gen_tie_control_switch",
+      "label": "Generator TIE Control Switch",
+      "dev": 3,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "RESET",
+          "delta": 1,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
     },
-    {
-      "label": "RESET",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
     {
       "id": "gen_tie_sw_cover",
       "label": "Generator TIE Control Switch Cover",
@@ -775,106 +847,114 @@
         }
       ]
     },
-	{
-  "id": "hyd_isolate_override_switch",
-  "label": "Hydraulic Isolate Override Switch",
-  "dev": 4,
-  "cmd": 3001,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "NORM",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
+      "id": "hyd_isolate_override_switch",
+      "label": "Hydraulic Isolate Override Switch",
+      "dev": 4,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "ORIDE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
     },
     {
-      "label": "ORIDE",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "iff_antenna_selector",
-  "label": "IFF Antenna Selector Switch",
-  "dev": 50,
-  "cmd": 3002,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "UPPER",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
+      "id": "ifei_brightness_knob",
+      "label": "IFEI Brightness Control Knob",
+      "dev": 33,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
     },
     {
-      "label": "BOTH",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
+      "id": "iff_antenna_selector",
+      "label": "IFF Antenna Selector Switch",
+      "dev": 50,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "UPPER",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "BOTH",
+          "delta": 0,
+          "is_default": true,
+          "weight": 91
+        },
+        {
+          "label": "LOWER",
+          "delta": -1,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
     },
     {
-      "label": "LOWER",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-{
-  "id": "iff_master_switch",
-  "label": "IFF Master Switch",
-  "dev": 40,
-  "cmd": 3012,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "EMER",
-      "delta": 0,
-      "is_default": false,
-      "weight": 0
+      "id": "iff_master_switch",
+      "label": "IFF Master Switch",
+      "dev": 40,
+      "cmd": 3012,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "EMER",
+          "delta": 0,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 98
+        }
+      ]
     },
     {
-      "label": "NORM",
-      "delta": 1,
-      "is_default": true,
-      "weight": 100
-    }
-  ]
-},
-{
-  "id": "iff_mode4_switch",
-  "label": "IFF Mode 4 Switch",
-  "dev": 40,
-  "cmd": 3013,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "AUD/DIS",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
+      "id": "iff_mode4_switch",
+      "label": "IFF Mode 4 Switch",
+      "dev": 40,
+      "cmd": 3013,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUD/DIS",
+          "delta": 1,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "DIS",
+          "delta": 0,
+          "is_default": true,
+          "weight": 93
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
     },
-    {
-      "label": "DIS",
-      "delta": 0,
-      "is_default": true,
-      "weight": 0
-    },
-    {
-      "label": "OFF",
-      "delta": -1,
-      "is_default": false,
-      "weight": 100
-    }
-  ]
-},
     {
       "id": "ils_channel_selector",
       "label": "ILS Channel Selector",
@@ -1085,34 +1165,42 @@
         }
       ]
     },
-	{
-  "id": "ir_cooling_switch",
-  "label": "IR Cooling Switch",
-  "dev": 23,
-  "cmd": 3013,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "ORIDE",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
+      "id": "inst_pnl_dimmer",
+      "label": "INST PNL Dimmer",
+      "dev": 9,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
     },
     {
-      "label": "NORM",
-      "delta": 0,
-      "is_default": false,
-      "weight": 100
+      "id": "ir_cooling_switch",
+      "label": "IR Cooling Switch",
+      "dev": 23,
+      "cmd": 3013,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ORIDE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": true,
+          "weight": 98
+        }
+      ]
     },
-    {
-      "label": "OFF",
-      "delta": -1,
-      "is_default": true,
-      "weight": 0
-    }
-  ]
-},
     {
       "id": "ky58_fill_select",
       "label": "KY-58 Fill Select",
@@ -1222,6 +1310,14 @@
       ]
     },
     {
+      "id": "ky58_volume",
+      "label": "KY-58 Volume Control",
+      "dev": 41,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "ldg_taxi_light",
       "label": "LDG/TAXI LIGHT Switch",
       "dev": 8,
@@ -1277,19 +1373,19 @@
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 100
+          "weight": 91
         },
         {
           "label": "NIGHT",
           "delta": 0.1,
           "is_default": false,
-          "weight": 0
+          "weight": 4
         },
         {
           "label": "DAY",
           "delta": 0.2,
           "is_default": false,
-          "weight": 0
+          "weight": 5
         }
       ]
     },
@@ -1377,15 +1473,31 @@
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 17
+          "weight": 13
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 83
+          "weight": 87
         }
       ]
+    },
+    {
+      "id": "oxy_flow_knob",
+      "label": "OXY Flow Knob",
+      "dev": 10,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "position_dimmer",
+      "label": "POSITION Lights Dimmer",
+      "dev": 8,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "radar_switch",
@@ -1449,19 +1561,19 @@
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 97
+          "weight": 93
         },
         {
           "label": "NIGHT",
           "delta": 0.1,
           "is_default": false,
-          "weight": 1
+          "weight": 3
         },
         {
           "label": "DAY",
           "delta": 0.2,
           "is_default": false,
-          "weight": 2
+          "weight": 4
         }
       ]
     },
@@ -1487,28 +1599,28 @@
         }
       ]
     },
-	{
-  "id": "spin_recovery_switch",
-  "label": "Spin Recovery Switch",
-  "dev": 2,
-  "cmd": 3009,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "RCVY",
-      "delta": 0,
-      "is_default": false,
-      "weight": 0
+      "id": "spin_recovery_switch",
+      "label": "Spin Recovery Switch",
+      "dev": 2,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "RCVY",
+          "delta": 0,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 99
+        }
+      ]
     },
-    {
-      "label": "NORM",
-      "delta": 1,
-      "is_default": true,
-      "weight": 100
-    }
-  ]
-},
     {
       "id": "spin_rec_cover",
       "label": "Spin Recovery Switch Cover",
@@ -1531,34 +1643,50 @@
         }
       ]
     },
-	{
-  "id": "strobe_lights_switch",
-  "label": "STROBE Lights Switch",
-  "dev": 8,
-  "cmd": 3003,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
     {
-      "label": "OFF",
-      "delta": 0,
-      "is_default": false,
-      "weight": 0
+      "id": "strobe_lights_switch",
+      "label": "STROBE Lights Switch",
+      "dev": 8,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": false,
+          "weight": 8
+        },
+        {
+          "label": "BRT",
+          "delta": 1,
+          "is_default": true,
+          "weight": 84
+        },
+        {
+          "label": "DIM",
+          "delta": -1,
+          "is_default": false,
+          "weight": 8
+        }
+      ]
     },
     {
-      "label": "BRT",
-      "delta": 1,
-      "is_default": true,
-      "weight": 100
+      "id": "tacan_volume_knob",
+      "label": "TACAN Volume Knob",
+      "dev": 40,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "continuous"
     },
     {
-      "label": "DIM",
-      "delta": -1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
+      "id": "throttles_friction_lever",
+      "label": "Throttles Friction Adjusting Lever",
+      "dev": 2,
+      "cmd": 3012,
+      "enabled": true,
+      "type": "continuous"
+    },
     {
       "id": "ufc_adf_switch",
       "label": "UFC ADF Function Select Switch",
@@ -1587,162 +1715,6 @@
         }
       ]
     },
-	{
-  "id": "windshield_anti_ice_switch",
-  "label": "Windshield Anti-Ice/Rain Switch",
-  "dev": 11,
-  "cmd": 3009,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {
-      "label": "ANTI ICE",
-      "delta": 1,
-      "is_default": false,
-      "weight": 0
-    },
-    {
-      "label": "OFF",
-      "delta": 0,
-      "is_default": true,
-      "weight": 100
-    },
-    {
-      "label": "RAIN",
-      "delta":-1,
-      "is_default": false,
-      "weight": 0
-    }
-  ]
-},
-    {
-      "id": "ampcd_off_brt_knob",
-      "label": "AMPCD Off/Brightness Knob",
-      "dev": 37,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "hud_balance_knob",
-      "label": "Balance Control Knob",
-      "dev": 34,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "chart_dimmer",
-      "label": "CHART Dimmer",
-      "dev": 9,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "comm1_volume",
-      "label": "COMM 1 Volume",
-      "dev": 25,
-      "cmd": 3030,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "comm2_volume",
-      "label": "COMM 2 Volume",
-      "dev": 25,
-      "cmd": 3031,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "consoles_dimmer",
-      "label": "CONSOLES Dimmer",
-      "dev": 9,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "defog_handle",
-      "label": "Defog Handle",
-      "dev": 11,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "flood_dimmer",
-      "label": "FLOOD Dimmer",
-      "dev": 9,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "formation_dimmer",
-      "label": "FORMATION Lights Dimmer",
-      "dev": 8,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "ifei_brightness_knob",
-      "label": "IFEI Brightness Control Knob",
-      "dev": 33,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "inst_pnl_dimmer",
-      "label": "INST PNL Dimmer",
-      "dev": 9,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "ky58_volume",
-      "label": "KY-58 Volume Control",
-      "dev": 41,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "oxy_flow_knob",
-      "label": "OXY Flow Knob",
-      "dev": 10,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "position_dimmer",
-      "label": "POSITION Lights Dimmer",
-      "dev": 8,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "tacan_volume_knob",
-      "label": "TACAN Volume Knob",
-      "dev": 40,
-      "cmd": 3008,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "throttles_friction_lever",
-      "label": "Throttles Friction Adjusting Lever",
-      "dev": 2,
-      "cmd": 3012,
-      "enabled": true,
-      "type": "continuous"
-    },
     {
       "id": "ufc_brightness_knob",
       "label": "UFC Brightness Control Knob",
@@ -1758,6 +1730,34 @@
       "cmd": 3006,
       "enabled": true,
       "type": "continuous"
+    },
+    {
+      "id": "windshield_anti_ice_switch",
+      "label": "Windshield Anti-Ice/Rain Switch",
+      "dev": 11,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ANTI ICE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 97
+        },
+        {
+          "label": "RAIN",
+          "delta": -1,
+          "is_default": false,
+          "weight": 2
+        }
+      ]
     }
   ]
 }

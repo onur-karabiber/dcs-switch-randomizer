@@ -4,6 +4,46 @@
   "delay": 3.0,
   "controls": [
     {
+      "id": "aerial_refueling_knob",
+      "label": "AERIAL REFUELING Knob",
+      "dev": 11,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous",
+      "positions": [
+        {
+          "label": "0%",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 20
+        },
+        {
+          "label": "25%",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "50%",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "75%",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "100%",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
       "id": "air_refuel_switch",
       "label": "AIR REFUELING Switch",
       "dev": 4,
@@ -15,13 +55,13 @@
           "label": "CLOSE",
           "delta": 0,
           "is_default": true,
-          "weight": 91
+          "weight": 93
         },
         {
           "label": "OPEN",
           "delta": 1,
           "is_default": false,
-          "weight": 9
+          "weight": 7
         }
       ]
     },
@@ -82,6 +122,14 @@
       ]
     },
     {
+      "id": "anti_coll_knob",
+      "label": "ANTI-COLL Knob",
+      "dev": 11,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "anti_skid_switch",
       "label": "ANTI-SKID Switch",
       "dev": 7,
@@ -92,14 +140,14 @@
         {
           "label": "OFF",
           "delta": 0,
-          "is_default": true,
-          "weight": 10
+          "is_default": false,
+          "weight": 72
         },
         {
           "label": "ANTI-SKID",
           "delta": 1,
-          "is_default": false,
-          "weight": 90
+          "is_default": true,
+          "weight": 28
         }
       ]
     },
@@ -165,13 +213,13 @@
           "label": "UP",
           "delta": 1,
           "is_default": true,
-          "weight": 90
+          "weight": 94
         },
         {
           "label": "DN",
           "delta": 0,
           "is_default": false,
-          "weight": 10
+          "weight": 6
         }
       ]
     },
@@ -187,13 +235,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 97
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 3
         }
       ]
     },
@@ -218,6 +266,22 @@
           "weight": 10
         }
       ]
+    },
+    {
+      "id": "comm1_power_knob",
+      "label": "COMM 1 Power Knob",
+      "dev": 39,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "comm2_power_knob",
+      "label": "COMM 2 Power Knob",
+      "dev": 39,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "digital_backup_switch",
@@ -264,6 +328,46 @@
       ]
     },
     {
+      "id": "ecm_dim_knob",
+      "label": "ECM DIM Knob",
+      "dev": 66,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "continuous",
+      "positions": [
+        {
+          "label": "0%",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 20
+        },
+        {
+          "label": "25%",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "50%",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "75%",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "100%",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
       "id": "ecm_power_switch",
       "label": "ECM Power Switch",
       "dev": 66,
@@ -303,19 +407,19 @@
           "label": "Auto",
           "delta": 0,
           "is_default": true,
-          "weight": 85
+          "weight": 89
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         },
         {
           "label": "OFF",
           "delta": -1,
           "is_default": false,
-          "weight": 5
+          "weight": 4
         }
       ]
     },
@@ -376,6 +480,16 @@
       ]
     },
     {
+      "id": "epu_system",
+      "label": "EPU SYSTEM",
+      "dev": 6,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "run",
+      "run_note": "EPU covers + switch. Six scenarios with correct mechanical interlock. ON cover=3001, OFF cover=3002, EPU switch=3003.",
+      "lua_body": "            local r = math.random(10)\n            local function click(cmd, val) device:performClickableAction(cmd, val) end\n            click(3001, -1)\n            click(3002, -1)\n            if r == 1 then\n                click(3001, 1)\n                click(3002, 1)\n            elseif r == 2 then\n                click(3001, 1)\n                click(3002, 1)\n                click(3003, -0.5)\n            elseif r == 3 then\n                click(3002, 1)\n            elseif r == 4 then\n                click(3002, 1)\n                click(3003, -0.5)\n            elseif r == 5 then\n                click(3001, 1)\n            end"
+    },
+    {
       "id": "ext_fuel_transfer_switch",
       "label": "External Fuel Transfer Switch",
       "dev": 4,
@@ -387,13 +501,13 @@
           "label": "NORM",
           "delta": 1,
           "is_default": true,
-          "weight": 10
+          "weight": 92
         },
         {
           "label": "WING FIRST",
           "delta": 0,
           "is_default": false,
-          "weight": 90
+          "weight": 8
         }
       ]
     },
@@ -409,13 +523,13 @@
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 70
+          "weight": 6
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 30
+          "weight": 94
         }
       ]
     },
@@ -431,13 +545,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -453,13 +567,13 @@
           "label": "STEADY",
           "delta": 0,
           "is_default": false,
-          "weight": 85
+          "weight": 48
         },
         {
           "label": "FLASH",
           "delta": 1,
           "is_default": true,
-          "weight": 15
+          "weight": 52
         }
       ]
     },
@@ -475,15 +589,39 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 93
         },
         {
           "label": "MAINT",
           "delta": -1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         }
       ]
+    },
+    {
+      "id": "flood_consoles_brt",
+      "label": "FLOOD CONSOLES BRT Knob",
+      "dev": 12,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "flood_inst_pnl",
+      "label": "FLOOD INST PNL Knob",
+      "dev": 12,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "form_knob",
+      "label": "FORM Knob",
+      "dev": 11,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "fuel_master_cover",
@@ -497,13 +635,13 @@
           "label": "CLOSE",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 94
         },
         {
           "label": "OPEN",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 6
         }
       ]
     },
@@ -587,13 +725,13 @@
           "label": "ENABLE",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 93
         }
       ]
     },
@@ -609,15 +747,23 @@
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 85
+          "weight": 7
         },
         {
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 15
+          "weight": 93
         }
       ]
+    },
+    {
+      "id": "hmcs_int_knob",
+      "label": "HMCS SYMBOLOGY INT Knob",
+      "dev": 30,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "hook_switch",
@@ -631,13 +777,13 @@
           "label": "UP",
           "delta": 1,
           "is_default": true,
-          "weight": 90
+          "weight": 98
         },
         {
           "label": "DN",
           "delta": 0,
           "is_default": false,
-          "weight": 10
+          "weight": 2
         }
       ]
     },
@@ -709,7 +855,7 @@
           "label": "PFL",
           "delta": 0,
           "is_default": false,
-          "weight": 86
+          "weight": 7
         },
         {
           "label": "DED",
@@ -721,7 +867,7 @@
           "label": "OFF",
           "delta": -1,
           "is_default": true,
-          "weight": 7
+          "weight": 86
         }
       ]
     },
@@ -737,13 +883,13 @@
           "label": "OFF",
           "delta": -1,
           "is_default": true,
-          "weight": 85
+          "weight": 87
         },
         {
           "label": "PRI",
           "delta": 0,
           "is_default": false,
-          "weight": 10
+          "weight": 8
         },
         {
           "label": "STBY",
@@ -765,19 +911,19 @@
           "label": "ATT/FPM",
           "delta": 1,
           "is_default": true,
-          "weight": 10
+          "weight": 87
         },
         {
           "label": "FPM",
           "delta": 0,
-          "is_default": true,
-          "weight": 90
+          "is_default": false,
+          "weight": 6
         },
         {
           "label": "OFF",
           "delta": -1,
           "is_default": false,
-          "weight": 0
+          "weight": 7
         }
       ]
     },
@@ -821,13 +967,13 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 93
         },
         {
           "label": "DRIFT C/O",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         }
       ]
     },
@@ -898,20 +1044,20 @@
         {
           "label": "OFF",
           "delta": 0,
-          "is_default": true,
-          "weight": 85
+          "is_default": false,
+          "weight": 3
         },
         {
           "label": "M1/M3",
           "delta": -1,
           "is_default": false,
-          "weight": 10
+          "weight": 2
         },
         {
           "label": "M3/MS",
           "delta": 1,
-          "is_default": false,
-          "weight": 5
+          "is_default": true,
+          "weight": 95
         }
       ]
     },
@@ -927,13 +1073,13 @@
           "label": "A/B",
           "delta": 0,
           "is_default": true,
-          "weight": 85
+          "weight": 88
         },
         {
           "label": "Hold",
           "delta": -1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         },
         {
           "label": "Zero",
@@ -977,13 +1123,13 @@
           "label": "A",
           "delta": 0,
           "is_default": true,
-          "weight": 85
+          "weight": 88
         },
         {
           "label": "AUT",
           "delta": -1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         },
         {
           "label": "B",
@@ -1030,6 +1176,46 @@
           "delta": 0.3,
           "is_default": false,
           "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "ils_power_knob",
+      "label": "ILS Power Knob",
+      "dev": 39,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "continuous",
+      "positions": [
+        {
+          "label": "0%",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 20
+        },
+        {
+          "label": "25%",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "50%",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "75%",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "100%",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
         }
       ]
     },
@@ -1086,6 +1272,46 @@
       ]
     },
     {
+      "id": "intercom_knob",
+      "label": "INTERCOM Knob",
+      "dev": 39,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "continuous",
+      "positions": [
+        {
+          "label": "0%",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 20
+        },
+        {
+          "label": "25%",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "50%",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "75%",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "100%",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
       "id": "jammer_source_switch",
       "label": "Jammer Source Switch",
       "dev": 32,
@@ -1119,25 +1345,25 @@
           "label": "Z 1.5",
           "delta": 0.0,
           "is_default": true,
-          "weight": 50
+          "weight": 65
         },
         {
           "label": "1",
           "delta": 0.1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         },
         {
           "label": "2",
           "delta": 0.2,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         },
         {
           "label": "3",
           "delta": 0.3,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         },
         {
           "label": "4",
@@ -1177,25 +1403,25 @@
           "label": "P",
           "delta": 0.0,
           "is_default": true,
-          "weight": 70
+          "weight": 85
         },
         {
           "label": "C",
           "delta": 0.1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         },
         {
           "label": "LD",
           "delta": 0.2,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         },
         {
           "label": "RV",
           "delta": 0.3,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -1211,19 +1437,59 @@
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 85
+          "weight": 88
         },
         {
           "label": "ON",
           "delta": 0.1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         },
         {
           "label": "TD",
           "delta": 0.2,
           "is_default": false,
           "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "ky58_volume_knob",
+      "label": "KY-58 VOLUME Knob",
+      "dev": 42,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous",
+      "positions": [
+        {
+          "label": "0%",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 20
+        },
+        {
+          "label": "25%",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "50%",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "75%",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "100%",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
         }
       ]
     },
@@ -1289,13 +1555,13 @@
           "label": "AUTO",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 96
         },
         {
           "label": "LOCK",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 4
         }
       ]
     },
@@ -1311,13 +1577,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 94
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 6
         }
       ]
     },
@@ -1333,13 +1599,13 @@
           "label": "DISABLE",
           "delta": 1,
           "is_default": true,
-          "weight": 90
+          "weight": 94
         },
         {
           "label": "ENABLE",
           "delta": 0,
           "is_default": false,
-          "weight": 10
+          "weight": 6
         }
       ]
     },
@@ -1355,13 +1621,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 85
+          "weight": 93
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 15
+          "weight": 7
         }
       ]
     },
@@ -1377,19 +1643,19 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 97
         },
         {
           "label": "MASTER ARM",
           "delta": 1,
           "is_default": false,
-          "weight": 5
+          "weight": 1
         },
         {
           "label": "SIMULATE",
           "delta": -1,
           "is_default": false,
-          "weight": 5
+          "weight": 2
         }
       ]
     },
@@ -1405,7 +1671,7 @@
           "label": "OFF",
           "delta": 0.0,
           "is_default": true,
-          "weight": 85
+          "weight": 80
         },
         {
           "label": "ALL",
@@ -1423,13 +1689,13 @@
           "label": "FORM",
           "delta": 0.3,
           "is_default": false,
-          "weight": 3
+          "weight": 5
         },
         {
           "label": "NORM",
           "delta": 0.4,
           "is_default": false,
-          "weight": 2
+          "weight": 5
         }
       ]
     },
@@ -1445,13 +1711,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 95
+          "weight": 99
         },
         {
           "label": "Max Power",
           "delta": 1,
           "is_default": false,
-          "weight": 5
+          "weight": 1
         }
       ]
     },
@@ -1517,13 +1783,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 85
+          "weight": 93
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 15
+          "weight": 7
         }
       ]
     },
@@ -1574,6 +1840,46 @@
       ]
     },
     {
+      "id": "msl_tone_knob",
+      "label": "MSL Tone Knob",
+      "dev": 39,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous",
+      "positions": [
+        {
+          "label": "0%",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 20
+        },
+        {
+          "label": "25%",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "50%",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "75%",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "100%",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
       "id": "mws_source_switch",
       "label": "MWS Source Switch",
       "dev": 32,
@@ -1585,13 +1891,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 93
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         }
       ]
     },
@@ -1607,13 +1913,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 93
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         }
       ]
     },
@@ -1629,13 +1935,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 93
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 7
         }
       ]
     },
@@ -1651,13 +1957,13 @@
           "label": "PLAIN",
           "delta": 0,
           "is_default": true,
-          "weight": 85
+          "weight": 90
         },
         {
           "label": "CRAD 2",
           "delta": -1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         },
         {
           "label": "CRAD 1",
@@ -1666,6 +1972,30 @@
           "weight": 5
         }
       ]
+    },
+    {
+      "id": "primary_consoles_brt",
+      "label": "PRIMARY CONSOLES BRT Knob",
+      "dev": 12,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "primary_ded_brt",
+      "label": "PRIMARY DATA ENTRY DISPLAY BRT Knob",
+      "dev": 12,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "primary_inst_pnl",
+      "label": "PRIMARY INST PNL Knob",
+      "dev": 12,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "probe_heat_switch",
@@ -1679,13 +2009,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "PROBE HEAT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -1769,13 +2099,13 @@
           "label": "NORM",
           "delta": 1,
           "is_default": true,
-          "weight": 85
+          "weight": 91
         },
         {
           "label": "QUIET",
           "delta": 0,
           "is_default": false,
-          "weight": 10
+          "weight": 4
         },
         {
           "label": "SILENT",
@@ -1797,877 +2127,15 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 93
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "rwr_source_switch",
-      "label": "RWR Source Switch",
-      "dev": 32,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "SEARCH",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "HANDOFF",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "st_sta_switch",
-      "label": "ST STA Switch",
-      "dev": 22,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ST STA",
-          "delta": 1,
-          "is_default": false,
-          "weight": 90
-        },
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "stores_config_switch",
-      "label": "STORES CONFIG Switch",
-      "dev": 2,
-      "cmd": 3011,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "CAT III",
-          "delta": 0,
-          "is_default": true,
-          "weight": 40
-        },
-        {
-          "label": "CAT I",
-          "delta": 1,
-          "is_default": false,
-          "weight": 60
-        }
-      ]
-    },
-    {
-      "id": "supply_lever",
-      "label": "Supply Lever",
-      "dev": 8,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 65
-        },
-        {
-          "label": "PBG",
-          "delta": 1,
-          "is_default": false,
-          "weight": 3
-        },
-        {
-          "label": "OFF",
-          "delta": -1,
-          "is_default": false,
-          "weight": 32
-        }
-      ]
-    },
-    {
-      "id": "tank_inerting_switch",
-      "label": "TANK INERTING Switch",
-      "dev": 4,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 95
-        },
-        {
-          "label": "TANK INERTING",
-          "delta": 1,
-          "is_default": false,
-          "weight": 5
-        }
-      ]
-    },
-    {
-      "id": "trim_ap_disc_switch",
-      "label": "TRIM/AP DISC Switch",
-      "dev": 2,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "DISC",
-          "delta": 0,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "NORM",
-          "delta": 1,
-          "is_default": true,
-          "weight": 90
-        }
-      ]
-    },
-    {
-      "id": "ufc_switch",
-      "label": "UFC Switch",
-      "dev": 17,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 85
-        },
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 15
-        }
-      ]
-    },
-    {
-      "id": "uhf_ant_sel_switch",
-      "label": "UHF ANT SEL Switch",
-      "dev": 39,
-      "cmd": 3014,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "Norm",
-          "delta": 0,
-          "is_default": true,
-          "weight": 86
-        },
-        {
-          "label": "Lower",
-          "delta": -1,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "Upper",
-          "delta": 1,
-          "is_default": false,
           "weight": 7
         }
       ]
-    },
-    {
-      "id": "uhf_freq_0025mhz",
-      "label": "UHF Manual Frequency Knob 0.025 MHz",
-      "dev": 37,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "0",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 25
-        },
-        {
-          "label": "1",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 25
-        },
-        {
-          "label": "2",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 25
-        },
-        {
-          "label": "3",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 25
-        }
-      ]
-    },
-    {
-      "id": "uhf_freq_01mhz",
-      "label": "UHF Manual Frequency Knob 0.1 MHz",
-      "dev": 37,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "0",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 10
-        },
-        {
-          "label": "1",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "2",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "3",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "4",
-          "delta": 0.4,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "5",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "6",
-          "delta": 0.6,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "7",
-          "delta": 0.7,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "8",
-          "delta": 0.8,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "9",
-          "delta": 0.9,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "uhf_freq_100mhz",
-      "label": "UHF Manual Frequency Knob 100 MHz",
-      "dev": 37,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "2",
-          "delta": 0.0,
-          "is_default": false,
-          "weight": 33
-        },
-        {
-          "label": "3",
-          "delta": 0.1,
-          "is_default": true,
-          "weight": 34
-        },
-        {
-          "label": "A",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 33
-        }
-      ]
-    },
-    {
-      "id": "uhf_freq_10mhz",
-      "label": "UHF Manual Frequency Knob 10 MHz",
-      "dev": 37,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "0",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 10
-        },
-        {
-          "label": "1",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "2",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "3",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "4",
-          "delta": 0.4,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "5",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "6",
-          "delta": 0.6,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "7",
-          "delta": 0.7,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "8",
-          "delta": 0.8,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "9",
-          "delta": 0.9,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "uhf_freq_1mhz",
-      "label": "UHF Manual Frequency Knob 1 MHz",
-      "dev": 37,
-      "cmd": 3004,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "0",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 10
-        },
-        {
-          "label": "1",
-          "delta": 0.1,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "2",
-          "delta": 0.2,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "3",
-          "delta": 0.3,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "4",
-          "delta": 0.4,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "5",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "6",
-          "delta": 0.6,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "7",
-          "delta": 0.7,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "8",
-          "delta": 0.8,
-          "is_default": false,
-          "weight": 10
-        },
-        {
-          "label": "9",
-          "delta": 0.9,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "voice_message_inhibit_switch",
-      "label": "Voice Message Inhibit Switch",
-      "dev": 39,
-      "cmd": 3015,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "Voice Message",
-          "delta": 1,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "Inhibit",
-          "delta": 0,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "wing_tail_switch",
-      "label": "WING/TAIL Switch",
-      "dev": 11,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 86
-        },
-        {
-          "label": "BRT",
-          "delta": 1,
-          "is_default": false,
-          "weight": 7
-        },
-        {
-          "label": "DIM",
-          "delta": -1,
-          "is_default": false,
-          "weight": 7
-        }
-      ]
-    },
-    {
-      "id": "zeroize_switch_cover",
-      "label": "Zeroize Switch Cover",
-      "dev": 39,
-      "cmd": 3017,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "CLOSE",
-          "delta": 0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OPEN",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "epu_system",
-      "label": "EPU SYSTEM",
-      "dev": 6,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "run",
-      "run_note": "EPU covers + switch. Six scenarios with correct mechanical interlock. ON cover=3001, OFF cover=3002, EPU switch=3003.",
-      "lua_body": "            local r = math.random(10)\n            local function click(cmd, val) dev:performClickableAction(cmd, val) end\n            click(3001, -1)\n            click(3002, -1)\n            if r == 1 then\n                click(3001, 1)\n                click(3002, 1)\n            elseif r == 2 then\n                click(3001, 1)\n                click(3002, 1)\n                click(3003, -0.5)\n            elseif r == 3 then\n                click(3002, 1)\n            elseif r == 4 then\n                click(3002, 1)\n                click(3003, -0.5)\n            elseif r == 5 then\n                click(3001, 1)\n            end"
-    },
-    {
-      "id": "aerial_refueling_knob",
-      "label": "AERIAL REFUELING Knob",
-      "dev": 11,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "continuous",
-      "positions": [
-        {
-          "label": "0%",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 20
-        },
-        {
-          "label": "25%",
-          "delta": 0.25,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "50%",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "75%",
-          "delta": 0.75,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "100%",
-          "delta": 1.0,
-          "is_default": false,
-          "weight": 20
-        }
-      ]
-    },
-    {
-      "id": "anti_coll_knob",
-      "label": "ANTI-COLL Knob",
-      "dev": 11,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "comm1_power_knob",
-      "label": "COMM 1 Power Knob",
-      "dev": 39,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "comm2_power_knob",
-      "label": "COMM 2 Power Knob",
-      "dev": 39,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "ecm_dim_knob",
-      "label": "ECM DIM Knob",
-      "dev": 66,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "continuous",
-      "positions": [
-        {
-          "label": "0%",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 20
-        },
-        {
-          "label": "25%",
-          "delta": 0.25,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "50%",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "75%",
-          "delta": 0.75,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "100%",
-          "delta": 1.0,
-          "is_default": false,
-          "weight": 20
-        }
-      ]
-    },
-    {
-      "id": "flood_consoles_brt",
-      "label": "FLOOD CONSOLES BRT Knob",
-      "dev": 12,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "flood_inst_pnl",
-      "label": "FLOOD INST PNL Knob",
-      "dev": 12,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "form_knob",
-      "label": "FORM Knob",
-      "dev": 11,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "hmcs_int_knob",
-      "label": "HMCS SYMBOLOGY INT Knob",
-      "dev": 30,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "ils_power_knob",
-      "label": "ILS Power Knob",
-      "dev": 39,
-      "cmd": 3009,
-      "enabled": true,
-      "type": "continuous",
-      "positions": [
-        {
-          "label": "0%",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 20
-        },
-        {
-          "label": "25%",
-          "delta": 0.25,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "50%",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "75%",
-          "delta": 0.75,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "100%",
-          "delta": 1.0,
-          "is_default": false,
-          "weight": 20
-        }
-      ]
-    },
-    {
-      "id": "intercom_knob",
-      "label": "INTERCOM Knob",
-      "dev": 39,
-      "cmd": 3011,
-      "enabled": true,
-      "type": "continuous",
-      "positions": [
-        {
-          "label": "0%",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 20
-        },
-        {
-          "label": "25%",
-          "delta": 0.25,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "50%",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "75%",
-          "delta": 0.75,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "100%",
-          "delta": 1.0,
-          "is_default": false,
-          "weight": 20
-        }
-      ]
-    },
-    {
-      "id": "ky58_volume_knob",
-      "label": "KY-58 VOLUME Knob",
-      "dev": 42,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous",
-      "positions": [
-        {
-          "label": "0%",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 20
-        },
-        {
-          "label": "25%",
-          "delta": 0.25,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "50%",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "75%",
-          "delta": 0.75,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "100%",
-          "delta": 1.0,
-          "is_default": false,
-          "weight": 20
-        }
-      ]
-    },
-    {
-      "id": "msl_tone_knob",
-      "label": "MSL Tone Knob",
-      "dev": 39,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "continuous",
-      "positions": [
-        {
-          "label": "0%",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 20
-        },
-        {
-          "label": "25%",
-          "delta": 0.25,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "50%",
-          "delta": 0.5,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "75%",
-          "delta": 0.75,
-          "is_default": false,
-          "weight": 20
-        },
-        {
-          "label": "100%",
-          "delta": 1.0,
-          "is_default": false,
-          "weight": 20
-        }
-      ]
-    },
-    {
-      "id": "primary_consoles_brt",
-      "label": "PRIMARY CONSOLES BRT Knob",
-      "dev": 12,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "primary_ded_brt",
-      "label": "PRIMARY DATA ENTRY DISPLAY BRT Knob",
-      "dev": 12,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "primary_inst_pnl",
-      "label": "PRIMARY INST PNL Knob",
-      "dev": 12,
-      "cmd": 3004,
-      "enabled": true,
-      "type": "continuous"
     },
     {
       "id": "rwr_indicator_control_dim_knob",
@@ -2710,6 +2178,28 @@
       ]
     },
     {
+      "id": "rwr_source_switch",
+      "label": "RWR Source Switch",
+      "dev": 32,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "SEARCH",
+          "delta": 0,
+          "is_default": true,
+          "weight": 96
+        },
+        {
+          "label": "HANDOFF",
+          "delta": 1,
+          "is_default": false,
+          "weight": 4
+        }
+      ]
+    },
+    {
       "id": "secure_voice_knob",
       "label": "SECURE VOICE Knob",
       "dev": 39,
@@ -2746,6 +2236,100 @@
           "delta": 1.0,
           "is_default": false,
           "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "st_sta_switch",
+      "label": "ST STA Switch",
+      "dev": 22,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ST STA",
+          "delta": 1,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 94
+        }
+      ]
+    },
+    {
+      "id": "stores_config_switch",
+      "label": "STORES CONFIG Switch",
+      "dev": 2,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CAT III",
+          "delta": 0,
+          "is_default": true,
+          "weight": 60
+        },
+        {
+          "label": "CAT I",
+          "delta": 1,
+          "is_default": false,
+          "weight": 40
+        }
+      ]
+    },
+    {
+      "id": "supply_lever",
+      "label": "Supply Lever",
+      "dev": 8,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 83
+        },
+        {
+          "label": "PBG",
+          "delta": 1,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 14
+        }
+      ]
+    },
+    {
+      "id": "tank_inerting_switch",
+      "label": "TANK INERTING Switch",
+      "dev": 4,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "TANK INERTING",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
         }
       ]
     },
@@ -2866,6 +2450,676 @@
           "delta": 1.0,
           "is_default": false,
           "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "trim_ap_disc_switch",
+      "label": "TRIM/AP DISC Switch",
+      "dev": 2,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DISC",
+          "delta": 0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "NORM",
+          "delta": 1,
+          "is_default": true,
+          "weight": 94
+        }
+      ]
+    },
+    {
+      "id": "ufc_switch",
+      "label": "UFC Switch",
+      "dev": 17,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 12
+        }
+      ]
+    },
+    {
+      "id": "uhf_ant_sel_switch",
+      "label": "UHF ANT SEL Switch",
+      "dev": 39,
+      "cmd": 3014,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "Norm",
+          "delta": 0,
+          "is_default": true,
+          "weight": 86
+        },
+        {
+          "label": "Lower",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "Upper",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "id": "uhf_chan_knob",
+      "label": "UHF CHAN Knob",
+      "dev": 37,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 5
+        },
+        {
+          "label": "2",
+          "delta": 0.05,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "3",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "4",
+          "delta": 0.15,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "5",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "6",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "7",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "8",
+          "delta": 0.35,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "9",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "10",
+          "delta": 0.45,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "11",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "12",
+          "delta": 0.55,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "13",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "14",
+          "delta": 0.65,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "15",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "16",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "17",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "18",
+          "delta": 0.85,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "19",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "20",
+          "delta": 0.95,
+          "is_default": false,
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "id": "uhf_freq_0025mhz",
+      "label": "UHF Manual Frequency Knob 0.025 MHz",
+      "dev": 37,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 91
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "id": "uhf_freq_01mhz",
+      "label": "UHF Manual Frequency Knob 0.1 MHz",
+      "dev": 37,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 83
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "8",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "9",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "uhf_freq_100mhz",
+      "label": "UHF Manual Frequency Knob 100 MHz",
+      "dev": 37,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "2",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "3",
+          "delta": 0.1,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "A",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "id": "uhf_freq_10mhz",
+      "label": "UHF Manual Frequency Knob 10 MHz",
+      "dev": 37,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "8",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "9",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "uhf_freq_1mhz",
+      "label": "UHF Manual Frequency Knob 1 MHz",
+      "dev": 37,
+      "cmd": 3004,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 89
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "8",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "9",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "uhf_function_knob",
+      "label": "UHF Function Knob",
+      "dev": 37,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 91
+        },
+        {
+          "label": "MAIN",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "BOTH",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "ADF",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "id": "uhf_mode_knob",
+      "label": "UHF Mode Knob",
+      "dev": 37,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MNL",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 85
+        },
+        {
+          "label": "PRESET",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "GRD",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 8
+        }
+      ]
+    },
+    {
+      "id": "uhf_squelch_switch",
+      "label": "UHF SQUELCH Switch",
+      "dev": 37,
+      "cmd": 3012,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 74
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 26
+        }
+      ]
+    },
+    {
+      "id": "uhf_vol_knob",
+      "label": "UHF VOL Knob",
+      "dev": 37,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "continuous",
+      "positions": [
+        {
+          "label": "0%",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 20
+        },
+        {
+          "label": "25%",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "50%",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "75%",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 20
+        },
+        {
+          "label": "100%",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "id": "voice_message_inhibit_switch",
+      "label": "Voice Message Inhibit Switch",
+      "dev": 39,
+      "cmd": 3015,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "Voice Message",
+          "delta": 1,
+          "is_default": true,
+          "weight": 93
+        },
+        {
+          "label": "Inhibit",
+          "delta": 0,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "id": "wing_tail_switch",
+      "label": "WING/TAIL Switch",
+      "dev": 11,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 86
+        },
+        {
+          "label": "BRT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "DIM",
+          "delta": -1,
+          "is_default": false,
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "id": "zeroize_switch_cover",
+      "label": "Zeroize Switch Cover",
+      "dev": 39,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CLOSE",
+          "delta": 0,
+          "is_default": true,
+          "weight": 93
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 7
         }
       ]
     }
