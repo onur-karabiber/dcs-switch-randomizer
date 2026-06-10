@@ -3,7 +3,6 @@
   "display_name": "F-5E Tiger II",
   "delay": 3.0,
   "controls": [
-
     {
       "id": "armament_panel_lights_knob",
       "label": "Armament Panel Lights Knob",
@@ -12,7 +11,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "armament_selector_centerline",
       "label": "Armament Selector - Centerline",
@@ -21,11 +19,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ON", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "armament_selector_left_inbd",
       "label": "Armament Selector - Left Inbd",
@@ -34,11 +41,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ON", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "armament_selector_left_outbd",
       "label": "Armament Selector - Left Outbd",
@@ -47,11 +63,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ON", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "armament_selector_left_wingtip",
       "label": "Armament Selector - Left Wingtip",
@@ -60,11 +85,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ON", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "armament_selector_right_inbd",
       "label": "Armament Selector - Right Inbd",
@@ -73,11 +107,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ON", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "armament_selector_right_outbd",
       "label": "Armament Selector - Right Outbd",
@@ -86,11 +129,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ON", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "armament_selector_right_wingtip",
       "label": "Armament Selector - Right Wingtip",
@@ -99,11 +151,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ON", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 0
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 100
+        }
       ]
     },
-
     {
       "id": "auto_flap_thumb_switch",
       "label": "Auto Flap System Thumb Switch",
@@ -112,12 +173,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "FIXED", "is_default": true, "weight": 88 },
-        { "label": "UP", "is_default": false, "weight":  6 },
-        { "label": "AUTO", "is_default": false, "weight":  6 }
+        {
+          "label": "FIXED",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "UP",
+          "delta": -1.0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "AUTO",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "bombs_arm_switch",
       "label": "Bombs Arm Switch",
@@ -126,13 +201,32 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "SAFE", "is_default": true, "weight": 88 },
-        { "label": "TAIL", "is_default": false, "weight":  7 },
-        { "label": "NOSE&TAIL", "is_default": false, "weight":  3 },
-        { "label": "NOSE", "is_default": false, "weight":  2 }
+        {
+          "label": "SAFE",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "TAIL",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "NOSE&TAIL",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "NOSE",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 2
+        }
       ]
     },
-
     {
       "id": "cabin_press_switch",
       "label": "Cabin Press Switch",
@@ -141,12 +235,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORMAL", "is_default": true, "weight": 88 },
-        { "label": "DEFOG", "is_default": false, "weight":  6 },
-        { "label": "RAM DUMP", "is_default": false, "weight":  6 }
+        {
+          "label": "NORMAL",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "DEFOG",
+          "delta": -0.5,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "RAM DUMP",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "cabin_press_cover",
       "label": "Cabin Press Switch Cover",
@@ -155,11 +263,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "is_default": true, "weight": 90 },
-        { "label": "OPEN", "is_default": false, "weight": 10 }
+        {
+          "label": "CLOSED",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "cabin_temp_switch",
       "label": "Cabin Temp Switch",
@@ -168,16 +285,50 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "AUTO", "is_default": true, "weight": 88 },
-        { "label": "P1", "is_default": false, "weight":  4 },
-        { "label": "P2", "is_default": false, "weight":  3 },
-        { "label": "P3", "is_default": false, "weight":  2 },
-        { "label": "P4", "is_default": false, "weight":  1 },
-        { "label": "P5", "is_default": false, "weight":  1 },
-        { "label": "P6", "is_default": false, "weight":  1 }
+        {
+          "label": "AUTO",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "P1",
+          "delta": -0.1,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "P2",
+          "delta": -0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "P3",
+          "delta": -0.3,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "P4",
+          "delta": -0.4,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "P5",
+          "delta": -0.5,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "P6",
+          "delta": -0.6,
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cabin_temperature_knob",
       "label": "Cabin Temperature Knob",
@@ -186,7 +337,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "canopy_defog_knob",
       "label": "Canopy Defog Knob",
@@ -195,7 +345,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "cb_26_volt_ac_power",
       "label": "CB 26 Volt AC Power",
@@ -204,11 +353,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_attd_hdg_ref_sys_a",
       "label": "CB ATTD & HDG Ref Sys A",
@@ -217,11 +376,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_attd_hdg_ref_sys_b",
       "label": "CB ATTD & HDG Ref Sys B",
@@ -230,11 +399,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_attd_hdg_ref_sys_c",
       "label": "CB ATTD & HDG Ref Sys C",
@@ -243,11 +422,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_cabin_air_valves",
       "label": "CB Cabin Air Valves",
@@ -256,11 +445,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_cabin_cond",
       "label": "CB Cabin Cond",
@@ -269,11 +468,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_caution_warn_lights_dim",
       "label": "CB Caution & Warn Lights-DIM",
@@ -282,11 +491,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_central_air_data_computer",
       "label": "CB Central Air Data Computer",
@@ -295,11 +514,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_emergency_all_jettison",
       "label": "CB Emergency All Jettison",
@@ -308,11 +537,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_eng_ign_l_eng_inst_hyd_ind",
       "label": "CB Eng IGN L Eng Inst & HYD IND",
@@ -321,11 +560,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_fuel_qty_primary",
       "label": "CB Fuel QTY Primary",
@@ -334,11 +583,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_ignition_inverter_power",
       "label": "CB Ignition Inverter Power",
@@ -347,11 +606,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_inst_lights",
       "label": "CB Inst Lights",
@@ -360,11 +629,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_jettison_control",
       "label": "CB Jettison Control",
@@ -373,11 +652,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_l_boost_cl_tip_tank_fuel_cont",
       "label": "CB L Boost CL & Tip Tank Fuel Cont",
@@ -386,11 +675,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_l_eng_aux_door",
       "label": "CB L Eng Aux Door",
@@ -399,11 +698,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_l_eng_start_ab_cont",
       "label": "CB L Eng Start & AB Cont",
@@ -412,11 +721,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_ldg_taxi_lamp_pwr",
       "label": "CB LDG-Taxi Lamp PWR",
@@ -425,11 +744,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_left_aim_9_cont",
       "label": "CB Left AIM-9 Cont",
@@ -438,11 +767,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_left_aim_9_power",
       "label": "CB Left AIM-9 Power",
@@ -451,11 +790,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_left_gun_firing",
       "label": "CB Left Gun Firing",
@@ -464,11 +813,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_left_le_flap_cont",
       "label": "CB Left LE Flap Cont",
@@ -477,11 +836,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_left_te_flap_cont",
       "label": "CB Left TE Flap Cont",
@@ -490,11 +859,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_oxy_qty_canopy_seal",
       "label": "CB OXY QTY & Canopy Seal",
@@ -503,11 +882,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_pitot_heater",
       "label": "CB Pitot Heater",
@@ -516,11 +905,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_pylon_tank_fuel_cont",
       "label": "CB Pylon Tank Fuel Cont",
@@ -529,11 +928,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_r_eng_aux_doors",
       "label": "CB R Eng Aux Doors",
@@ -542,11 +951,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_r_eng_start_ab_cont",
       "label": "CB R Eng Start & AB Cont",
@@ -555,11 +974,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_r_oil_hyd_ind_fuel_qty_sel",
       "label": "CB R Oil & HYD IND Fuel QTY Sel",
@@ -568,11 +997,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_right_aim_9_cont",
       "label": "CB Right AIM-9 Cont",
@@ -581,11 +1020,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_right_aim_9_power",
       "label": "CB Right AIM-9 Power",
@@ -594,11 +1043,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_right_gun_firing",
       "label": "CB Right Gun Firing",
@@ -607,11 +1066,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_right_le_flap_cont",
       "label": "CB Right LE Flap Cont",
@@ -620,11 +1089,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_right_te_flap_cont_ind",
       "label": "CB Right TE Flap Cont & IND",
@@ -633,11 +1112,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_tacan",
       "label": "CB TACAN",
@@ -646,11 +1135,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_total_temp_probe_htr",
       "label": "CB Total Temp Probe HTR",
@@ -659,11 +1158,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_trim_control",
       "label": "CB Trim Control",
@@ -672,11 +1181,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_uhf_command_radio",
       "label": "CB UHF Command Radio",
@@ -685,11 +1204,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_wpn_arming",
       "label": "CB WPN Arming",
@@ -698,11 +1227,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_wpn_mode_sel_aim_9_intlk",
       "label": "CB WPN Mode Sel & AIM-9 Intlk",
@@ -711,11 +1250,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_wpn_pwr_center_line",
       "label": "CB WPN PWR Center Line",
@@ -724,11 +1273,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_wpn_pwr_left_inbd",
       "label": "CB WPN PWR Left Inbd",
@@ -737,11 +1296,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_wpn_pwr_left_outbd",
       "label": "CB WPN PWR Left Outbd",
@@ -750,11 +1319,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_wpn_pwr_right_inbd",
       "label": "CB WPN PWR Right Inbd",
@@ -763,11 +1342,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_wpn_pwr_right_outbd",
       "label": "CB WPN PWR Right Outbd",
@@ -776,11 +1365,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "cb_wpn_release",
       "label": "CB WPN Release",
@@ -789,11 +1388,21 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": "false", "skip_command": true, "is_default": true, "weight": 99 },
-        { "label": "OFF", "delta": "true", "is_default": false, "weight":  1 }
+        {
+          "label": "ON",
+          "delta": "false",
+          "skip_command": true,
+          "is_default": true,
+          "weight": 99
+        },
+        {
+          "label": "OFF",
+          "delta": "true",
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "chaff_mode_selector",
       "label": "Chaff Mode Selector",
@@ -802,13 +1411,32 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "SINGLE", "is_default": false, "weight":  7 },
-        { "label": "PRGM", "is_default": false, "weight":  3 },
-        { "label": "MULT", "is_default": false, "weight":  2 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "SINGLE",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "PRGM",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "MULT",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 2
+        }
       ]
     },
-
     {
       "id": "compass_switch",
       "label": "Compass Switch",
@@ -817,11 +1445,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "MAG", "is_default": true, "weight": 88 },
-        { "label": "DIR GYRO", "is_default": false, "weight": 12 }
+        {
+          "label": "MAG",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "DIR GYRO",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 12
+        }
       ]
     },
-
     {
       "id": "console_lights_knob",
       "label": "Console Lights Knob",
@@ -830,7 +1467,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "crossfeed_switch",
       "label": "Crossfeed Switch",
@@ -839,11 +1475,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "is_default": true, "weight": 90 },
-        { "label": "OPEN", "is_default": false, "weight": 10 }
+        {
+          "label": "CLOSED",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "engine_anti_ice_switch",
       "label": "Engine Anti-Ice Switch",
@@ -852,11 +1497,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ENGINE", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "ENGINE",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "engine_instruments_lights_knob",
       "label": "Engine Instruments Lights Knob",
@@ -865,7 +1519,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "ext_fuel_cl_switch",
       "label": "Ext Fuel Cl Switch",
@@ -874,11 +1527,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "ON", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "ext_fuel_pylons_switch",
       "label": "Ext Fuel Pylons Switch",
@@ -887,11 +1549,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "ON", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "ext_lights_beacon_switch",
       "label": "Exterior Lights Beacon Switch",
@@ -900,11 +1571,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "BEACON", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "BEACON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "ext_lights_formation_knob",
       "label": "Exterior Lights Formation Knob",
@@ -913,7 +1593,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "ext_lights_nav_knob",
       "label": "Exterior Lights Nav Knob",
@@ -922,7 +1601,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "external_stores_selector",
       "label": "External Stores Selector",
@@ -931,13 +1609,32 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "SAFE", "is_default": true, "weight": 70 },
-        { "label": "BOMB", "is_default": false, "weight": 10 },
-        { "label": "RKT DISP", "is_default": false, "weight": 10 },
-        { "label": "RIPL", "is_default": false, "weight": 10 }
+        {
+          "label": "SAFE",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "BOMB",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "RKT DISP",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "RIPL",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "flaps_lever",
       "label": "Flaps Lever",
@@ -946,12 +1643,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "THUMB SW", "is_default": true, "weight": 88 },
-        { "label": "EMER UP", "is_default": false, "weight":  6 },
-        { "label": "FULL", "is_default": false, "weight":  6 }
+        {
+          "label": "THUMB SW",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "EMER UP",
+          "delta": -1.0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "FULL",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "flare_jettison_cover",
       "label": "Flare Jettison Switch Cover",
@@ -960,11 +1671,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "is_default": true, "weight": 90 },
-        { "label": "OPEN", "is_default": false, "weight": 10 }
+        {
+          "label": "CLOSED",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "flare_mode_selector",
       "label": "Flare Mode Selector",
@@ -973,12 +1693,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "SINGLE", "is_default": false, "weight":  8 },
-        { "label": "PRGM", "is_default": false, "weight":  4 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "SINGLE",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 8
+        },
+        {
+          "label": "PRGM",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 4
+        }
       ]
     },
-
     {
       "id": "flight_instruments_lights_knob",
       "label": "Flight Instruments Lights Knob",
@@ -987,7 +1721,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "flood_lights_knob",
       "label": "Flood Lights Knob",
@@ -996,7 +1729,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "guns_missile_camera_cover",
       "label": "Guns/Missile/Camera Switch Cover",
@@ -1005,11 +1737,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "is_default": true, "weight": 90 },
-        { "label": "OPEN", "is_default": false, "weight": 10 }
+        {
+          "label": "CLOSED",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OPEN",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "iff_master_selector",
       "label": "IFF Master Control Selector",
@@ -1018,14 +1759,38 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "STBY", "is_default": false, "weight":  7 },
-        { "label": "LOW", "is_default": false, "weight":  1 },
-        { "label": "NORM", "is_default": false, "weight":  3 },
-        { "label": "EMER", "is_default": false, "weight":  1 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "STBY",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "LOW",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 1
+        },
+        {
+          "label": "NORM",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "EMER",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "iff_mode1_code_wheel_1",
       "label": "IFF MODE 1 Code Wheel 1",
@@ -1034,17 +1799,56 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "is_default": true, "weight": 13 },
-        { "label": "1", "is_default": false, "weight": 13 },
-        { "label": "2", "is_default": false, "weight": 12 },
-        { "label": "3", "is_default": false, "weight": 12 },
-        { "label": "4", "is_default": false, "weight": 12 },
-        { "label": "5", "is_default": false, "weight": 12 },
-        { "label": "6", "is_default": false, "weight": 13 },
-        { "label": "7", "is_default": false, "weight": 13 }
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 13
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "iff_mode1_code_wheel_2",
       "label": "IFF MODE 1 Code Wheel 2",
@@ -1053,13 +1857,32 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "is_default": true, "weight": 25 },
-        { "label": "1", "is_default": false, "weight": 25 },
-        { "label": "2", "is_default": false, "weight": 25 },
-        { "label": "3", "is_default": false, "weight": 25 }
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 25
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 25
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 25
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 25
+        }
       ]
     },
-
     {
       "id": "iff_mode3a_code_wheel_1",
       "label": "IFF MODE 3/A Code Wheel 1",
@@ -1068,17 +1891,56 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "is_default": true, "weight": 13 },
-        { "label": "1", "is_default": false, "weight": 13 },
-        { "label": "2", "is_default": false, "weight": 12 },
-        { "label": "3", "is_default": false, "weight": 12 },
-        { "label": "4", "is_default": false, "weight": 12 },
-        { "label": "5", "is_default": false, "weight": 12 },
-        { "label": "6", "is_default": false, "weight": 13 },
-        { "label": "7", "is_default": false, "weight": 13 }
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 13
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "iff_mode3a_code_wheel_2",
       "label": "IFF MODE 3/A Code Wheel 2",
@@ -1087,17 +1949,56 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "is_default": true, "weight": 13 },
-        { "label": "1", "is_default": false, "weight": 13 },
-        { "label": "2", "is_default": false, "weight": 12 },
-        { "label": "3", "is_default": false, "weight": 12 },
-        { "label": "4", "is_default": false, "weight": 12 },
-        { "label": "5", "is_default": false, "weight": 12 },
-        { "label": "6", "is_default": false, "weight": 13 },
-        { "label": "7", "is_default": false, "weight": 13 }
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 13
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "iff_mode3a_code_wheel_3",
       "label": "IFF MODE 3/A Code Wheel 3",
@@ -1106,17 +2007,56 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "is_default": true, "weight": 13 },
-        { "label": "1", "is_default": false, "weight": 13 },
-        { "label": "2", "is_default": false, "weight": 12 },
-        { "label": "3", "is_default": false, "weight": 12 },
-        { "label": "4", "is_default": false, "weight": 12 },
-        { "label": "5", "is_default": false, "weight": 12 },
-        { "label": "6", "is_default": false, "weight": 13 },
-        { "label": "7", "is_default": false, "weight": 13 }
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 13
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "iff_mode3a_code_wheel_4",
       "label": "IFF MODE 3/A Code Wheel 4",
@@ -1125,17 +2065,56 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0", "is_default": true, "weight": 13 },
-        { "label": "1", "is_default": false, "weight": 13 },
-        { "label": "2", "is_default": false, "weight": 12 },
-        { "label": "3", "is_default": false, "weight": 12 },
-        { "label": "4", "is_default": false, "weight": 12 },
-        { "label": "5", "is_default": false, "weight": 12 },
-        { "label": "6", "is_default": false, "weight": 13 },
-        { "label": "7", "is_default": false, "weight": 13 }
+        {
+          "label": "0",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 13
+        },
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 12
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 13
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 13
+        }
       ]
     },
-
     {
       "id": "iff_mode4_control_switch",
       "label": "IFF MODE 4 Control Switch",
@@ -1144,11 +2123,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OUT", "is_default": true, "weight": 90 },
-        { "label": "ON", "is_default": false, "weight": 10 }
+        {
+          "label": "OUT",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "iff_mode4_monitor_switch",
       "label": "IFF MODE 4 Monitor Switch",
@@ -1157,12 +2145,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OUT", "is_default": true, "weight": 88 },
-        { "label": "AUDIO", "is_default": false, "weight":  6 },
-        { "label": "LIGHT", "is_default": false, "weight":  6 }
+        {
+          "label": "OUT",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "AUDIO",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "LIGHT",
+          "delta": -1.0,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "interval_switch",
       "label": "Interval Switch",
@@ -1171,12 +2173,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": ".10", "is_default": true, "weight": 88 },
-        { "label": ".06", "is_default": false, "weight":  6 },
-        { "label": ".14", "is_default": false, "weight":  6 }
+        {
+          "label": ".10",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": ".06",
+          "delta": -1.0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": ".14",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "landing_taxi_light_switch",
       "label": "Landing & Taxi Light Switch",
@@ -1185,11 +2201,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "ON", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "left_boost_pump_switch",
       "label": "Left Boost Pump Switch",
@@ -1198,11 +2223,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "ON", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "left_fuel_shutoff_cover",
       "label": "Left Fuel Shutoff Switch Cover",
@@ -1211,11 +2245,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "is_default": true, "weight": 95 },
-        { "label": "OPEN", "is_default": false, "weight":  5 }
+        {
+          "label": "CLOSED",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "OPEN",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "magnetic_compass_light_switch",
       "label": "Magnetic Compass Light Switch",
@@ -1224,11 +2267,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "LIGHT", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "LIGHT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "missile_volume_knob",
       "label": "Missile Volume Knob",
@@ -1237,7 +2289,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "nav_mode_selector",
       "label": "Nav Mode Selector Switch",
@@ -1246,11 +2297,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "DF", "is_default": true, "weight": 88 },
-        { "label": "TACAN", "is_default": false, "weight": 12 }
+        {
+          "label": "DF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "TACAN",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 12
+        }
       ]
     },
-
     {
       "id": "oxygen_diluter_lever",
       "label": "Oxygen Diluter Lever",
@@ -1259,11 +2319,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORM", "is_default": true, "weight": 90 },
-        { "label": "100%", "is_default": false, "weight": 10 }
+        {
+          "label": "NORM",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "100%",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "oxygen_emergency_lever",
       "label": "Oxygen Emergency Lever",
@@ -1272,11 +2341,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "NORMAL", "is_default": true, "weight": 90 },
-        { "label": "EMERGENCY", "is_default": false, "weight": 10 }
+        {
+          "label": "NORMAL",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "EMERGENCY",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "oxygen_supply_lever",
       "label": "Oxygen Supply Lever",
@@ -1285,11 +2363,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "is_default": true, "weight": 90 },
-        { "label": "OFF", "is_default": false, "weight": 10 }
+        {
+          "label": "ON",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "OFF",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "pitch_damper_switch",
       "label": "Pitch Damper Switch",
@@ -1298,11 +2385,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "PITCH", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "PITCH",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "pitot_anti_ice_switch",
       "label": "Pitot Anti-Ice Switch",
@@ -1311,11 +2407,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 95 },
-        { "label": "PITOT", "is_default": false, "weight":  5 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "PITOT",
+          "delta": 1,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "radar_bright_knob",
       "label": "Radar Bright Knob",
@@ -1324,7 +2429,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "radar_mode_selector",
       "label": "Radar Mode Selector",
@@ -1333,13 +2437,32 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "STBY", "is_default": false, "weight":  7 },
-        { "label": "OPER", "is_default": false, "weight":  4 },
-        { "label": "TEST", "is_default": false, "weight":  1 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "STBY",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "OPER",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "TEST",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "radar_persistence_knob",
       "label": "Radar Persistence Knob",
@@ -1348,7 +2471,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "radar_range_selector",
       "label": "Radar Range Selector",
@@ -1357,13 +2479,32 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "5nm", "is_default": true, "weight": 25 },
-        { "label": "10nm", "is_default": false, "weight": 25 },
-        { "label": "20nm", "is_default": false, "weight": 25 },
-        { "label": "40nm", "is_default": false, "weight": 25 }
+        {
+          "label": "5nm",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 25
+        },
+        {
+          "label": "10nm",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 25
+        },
+        {
+          "label": "20nm",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 25
+        },
+        {
+          "label": "40nm",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 25
+        }
       ]
     },
-
     {
       "id": "radar_video_knob",
       "label": "Radar Video Knob",
@@ -1372,7 +2513,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "reticle_intensity_knob",
       "label": "Reticle Intensity Knob",
@@ -1381,7 +2521,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "right_boost_pump_switch",
       "label": "Right Boost Pump Switch",
@@ -1390,11 +2529,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "ON", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "right_fuel_shutoff_cover",
       "label": "Right Fuel Shutoff Switch Cover",
@@ -1403,11 +2551,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "CLOSED", "is_default": true, "weight": 95 },
-        { "label": "OPEN", "is_default": false, "weight":  5 }
+        {
+          "label": "CLOSED",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 95
+        },
+        {
+          "label": "OPEN",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 5
+        }
       ]
     },
-
     {
       "id": "rudder_trim_knob",
       "label": "Rudder Trim Knob",
@@ -1416,7 +2573,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "rwr_altitude_button",
       "label": "RWR Altitude Button",
@@ -1425,11 +2581,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "ON", "is_default": false, "weight": 12 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "ON",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 12
+        }
       ]
     },
-
     {
       "id": "rwr_audio_knob",
       "label": "RWR Audio Knob",
@@ -1438,7 +2603,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "rwr_dim_knob",
       "label": "RWR DIM Knob",
@@ -1447,7 +2611,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "rwr_int_knob",
       "label": "RWR INT Knob",
@@ -1456,7 +2619,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "rwr_power_button",
       "label": "RWR Power Button",
@@ -1465,11 +2627,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "ON", "is_default": false, "weight": 12 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "ON",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 12
+        }
       ]
     },
-
     {
       "id": "sight_bit_switch",
       "label": "Sight BIT Switch",
@@ -1478,12 +2649,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "BIT 1", "is_default": false, "weight":  6 },
-        { "label": "BIT 2", "is_default": false, "weight":  6 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "BIT 1",
+          "delta": -1.0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "BIT 2",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "sight_camera_fps_switch",
       "label": "Sight Camera FPS Switch",
@@ -1492,11 +2677,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "24fps", "is_default": true, "weight": 88 },
-        { "label": "48fps", "is_default": false, "weight": 12 }
+        {
+          "label": "24fps",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "48fps",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 12
+        }
       ]
     },
-
     {
       "id": "sight_camera_overrun_selector",
       "label": "Sight Camera Overrun Selector",
@@ -1505,13 +2699,32 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "0s", "is_default": true, "weight": 88 },
-        { "label": "3s", "is_default": false, "weight":  6 },
-        { "label": "10s", "is_default": false, "weight":  4 },
-        { "label": "20s", "is_default": false, "weight":  2 }
+        {
+          "label": "0s",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "3s",
+          "delta": -0.1,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "10s",
+          "delta": -0.2,
+          "is_default": false,
+          "weight": 4
+        },
+        {
+          "label": "20s",
+          "delta": -0.3,
+          "is_default": false,
+          "weight": 2
+        }
       ]
     },
-
     {
       "id": "sight_mode_selector",
       "label": "Sight Mode Selector",
@@ -1520,14 +2733,38 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "MSL", "is_default": false, "weight":  6 },
-        { "label": "A/A1 GUNS", "is_default": false, "weight":  3 },
-        { "label": "A/A2 GUNS", "is_default": false, "weight":  2 },
-        { "label": "MAN", "is_default": false, "weight":  1 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "MSL",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "A/A1 GUNS",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "A/A2 GUNS",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "MAN",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "speed_brake_switch",
       "label": "Speed Brake Switch",
@@ -1536,12 +2773,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "OUT", "is_default": false, "weight":  6 },
-        { "label": "IN", "is_default": false, "weight":  6 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "OUT",
+          "delta": -1.0,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "IN",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "tacan_mode_selector",
       "label": "TACAN Mode Selector",
@@ -1550,14 +2801,38 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "REC", "is_default": false, "weight":  6 },
-        { "label": "T/R", "is_default": false, "weight":  3 },
-        { "label": "A/A", "is_default": false, "weight":  2 },
-        { "label": "BCN", "is_default": false, "weight":  1 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "REC",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "T/R",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "A/A",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 2
+        },
+        {
+          "label": "BCN",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 1
+        }
       ]
     },
-
     {
       "id": "tacan_volume_knob",
       "label": "TACAN Volume Knob",
@@ -1566,7 +2841,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "uhf_antenna_selector",
       "label": "UHF Antenna Selector",
@@ -1575,12 +2849,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "AUTO", "is_default": true, "weight": 88 },
-        { "label": "UPPER", "is_default": false, "weight":  6 },
-        { "label": "LOWER", "is_default": false, "weight":  6 }
+        {
+          "label": "AUTO",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "UPPER",
+          "delta": -0.5,
+          "is_default": false,
+          "weight": 6
+        },
+        {
+          "label": "LOWER",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 6
+        }
       ]
     },
-
     {
       "id": "uhf_freq_mode_selector",
       "label": "UHF Frequency Mode Selector",
@@ -1589,12 +2877,26 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "PRESET", "is_default": true, "weight": 88 },
-        { "label": "MANUAL", "is_default": false, "weight":  8 },
-        { "label": "GUARD", "is_default": false, "weight":  4 }
+        {
+          "label": "PRESET",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "MANUAL",
+          "delta": -0.1,
+          "is_default": false,
+          "weight": 8
+        },
+        {
+          "label": "GUARD",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 4
+        }
       ]
     },
-
     {
       "id": "uhf_function_selector",
       "label": "UHF Function Selector",
@@ -1603,13 +2905,32 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 88 },
-        { "label": "MAIN", "is_default": false, "weight":  7 },
-        { "label": "BOTH", "is_default": false, "weight":  3 },
-        { "label": "ADF", "is_default": false, "weight":  2 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 88
+        },
+        {
+          "label": "MAIN",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 7
+        },
+        {
+          "label": "BOTH",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 3
+        },
+        {
+          "label": "ADF",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 2
+        }
       ]
     },
-
     {
       "id": "uhf_squelch_switch",
       "label": "UHF Squelch Switch",
@@ -1618,11 +2939,20 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "ON", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     },
-
     {
       "id": "uhf_volume_knob",
       "label": "UHF Volume Knob",
@@ -1631,7 +2961,6 @@
       "enabled": true,
       "type": "continuous"
     },
-
     {
       "id": "yaw_damper_switch",
       "label": "Yaw Damper Switch",
@@ -1640,10 +2969,19 @@
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "OFF", "is_default": true, "weight": 90 },
-        { "label": "YAW", "is_default": false, "weight": 10 }
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
+          "label": "YAW",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        }
       ]
     }
-
   ]
 }
