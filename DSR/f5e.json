@@ -3,6 +3,18 @@
   "display_name": "F-5E Tiger II",
   "delay": 3.0,
   "controls": [
+  {
+  "id": "asg31_sight_panel_light_button",
+  "label": "AN/ASG-31 Sight Panel Light Button",
+  "dev": 12,
+  "cmd": 3001,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    { "label": "OFF", "delta": 0, "is_default": true,  "weight": 88 },
+    { "label": "ON",  "delta": 1, "is_default": false, "weight": 12 }
+  ]
+}
     {
       "id": "armament_panel_lights_knob",
       "label": "Armament Panel Lights Knob",
@@ -193,6 +205,18 @@
         }
       ]
     },
+	{
+  "id": "battery_switch",
+  "label": "Battery Switch",
+  "dev": 3,
+  "cmd": 3001,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    { "label": "BATT", "delta": 1, "is_default": false, "weight": 10 },
+    { "label": "OFF",  "delta": 0, "is_default": true,  "weight": 90 }
+  ]
+},
     {
       "id": "bombs_arm_switch",
       "label": "Bombs Arm Switch",
@@ -209,19 +233,19 @@
         },
         {
           "label": "TAIL",
-          "delta": 0.2,
+          "delta": 0.8,
           "is_default": false,
           "weight": 7
         },
         {
           "label": "NOSE&TAIL",
-          "delta": 0.4,
+          "delta": 0.6,
           "is_default": false,
           "weight": 3
         },
         {
           "label": "NOSE",
-          "delta": 0.6,
+          "delta": 0.4,
           "is_default": false,
           "weight": 2
         }
@@ -511,29 +535,6 @@
       "label": "CB Central Air Data Computer",
       "dev": 3,
       "cmd": 3043,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "ON",
-          "delta": "false",
-          "skip_command": true,
-          "is_default": true,
-          "weight": 99
-        },
-        {
-          "label": "OFF",
-          "delta": "true",
-          "is_default": false,
-          "weight": 1
-        }
-      ]
-    },
-    {
-      "id": "cb_emergency_all_jettison",
-      "label": "CB Emergency All Jettison",
-      "dev": 3,
-      "cmd": 3027,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -1651,13 +1652,13 @@
         },
         {
           "label": "EMER UP",
-          "delta": -1.0,
+          "delta": 1.0,
           "is_default": false,
           "weight": 6
         },
         {
           "label": "FULL",
-          "delta": 1.0,
+          "delta": -1.0,
           "is_default": false,
           "weight": 6
         }
@@ -1773,21 +1774,15 @@
         },
         {
           "label": "LOW",
-          "delta": 0.3,
+          "delta": 0.2,
           "is_default": false,
           "weight": 1
         },
         {
           "label": "NORM",
-          "delta": 0.2,
+          "delta": 0.3,
           "is_default": false,
           "weight": 3
-        },
-        {
-          "label": "EMER",
-          "delta": 0.4,
-          "is_default": false,
-          "weight": 1
         }
       ]
     },
@@ -2181,13 +2176,13 @@
         },
         {
           "label": ".06",
-          "delta": -1.0,
+          "delta": 1.0,
           "is_default": false,
           "weight": 6
         },
         {
           "label": ".14",
-          "delta": 1.0,
+          "delta": -1.0,
           "is_default": false,
           "weight": 6
         }
@@ -2259,6 +2254,18 @@
         }
       ]
     },
+	{
+  "id": "left_generator_switch",
+  "label": "Left Generator Switch",
+  "dev": 3,
+  "cmd": 3002,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    { "label": "OFF",   "delta":  0, "is_default": true,  "weight": 90 },
+    { "label": "L GEN", "delta":  1, "is_default": false, "weight": 10 }
+  ]
+},
     {
       "id": "magnetic_compass_light_switch",
       "label": "Magnetic Compass Light Switch",
@@ -2322,13 +2329,13 @@
         {
           "label": "NORM",
           "delta": 0.0,
-          "is_default": true,
+          "is_default": false,
           "weight": 90
         },
         {
           "label": "100%",
           "delta": 1,
-          "is_default": false,
+          "is_default": true,
           "weight": 10
         }
       ]
@@ -2364,36 +2371,14 @@
       "type": "discrete",
       "positions": [
         {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 90
+        },
+        {
           "label": "ON",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "OFF",
           "delta": 1.0,
-          "is_default": false,
-          "weight": 10
-        }
-      ]
-    },
-    {
-      "id": "pitch_damper_switch",
-      "label": "Pitch Damper Switch",
-      "dev": 2,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "PITCH",
-          "delta": 1,
           "is_default": false,
           "weight": 10
         }
@@ -2433,7 +2418,7 @@
       "id": "radar_mode_selector",
       "label": "Radar Mode Selector",
       "dev": 17,
-      "cmd": 3004,
+      "cmd": 3005,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -2475,7 +2460,7 @@
       "id": "radar_range_selector",
       "label": "Radar Range Selector",
       "dev": 17,
-      "cmd": 3003,
+      "cmd": 3004,
       "enabled": true,
       "type": "discrete",
       "positions": [
@@ -2565,6 +2550,18 @@
         }
       ]
     },
+	{
+  "id": "right_generator_switch",
+  "label": "Right Generator Switch",
+  "dev": 3,
+  "cmd": 3004,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    { "label": "OFF",   "delta":  0, "is_default": true,  "weight": 90 },
+    { "label": "R GEN", "delta":  1, "is_default": false, "weight": 10 }
+  ]
+},
     {
       "id": "rudder_trim_knob",
       "label": "Rudder Trim Knob",
@@ -2641,6 +2638,19 @@
         }
       ]
     },
+	{
+  "id": "select_jettison_switch",
+  "label": "Select Jettison Switch",
+  "dev": 14,
+  "cmd": 3003,
+  "enabled": true,
+  "type": "discrete",
+  "positions": [
+    { "label": "SELECT POSITION", "delta": 1, "is_default": false, "weight": 6  },
+    { "label": "OFF",             "delta": 0, "is_default": true,  "weight": 88 },
+    { "label": "ALL PYLONS",      "delta": -1, "is_default": false, "weight": 6  }
+  ]
+},
     {
       "id": "sight_bit_switch",
       "label": "Sight BIT Switch",
@@ -2857,13 +2867,13 @@
         },
         {
           "label": "UPPER",
-          "delta": -0.5,
+          "delta": 0.5,
           "is_default": false,
           "weight": 6
         },
         {
           "label": "LOWER",
-          "delta": 0.5,
+          "delta": -0.5,
           "is_default": false,
           "weight": 6
         }
@@ -2879,19 +2889,19 @@
       "positions": [
         {
           "label": "PRESET",
-          "delta": 0.0,
+          "delta": 0.1,
           "is_default": true,
           "weight": 88
         },
         {
           "label": "MANUAL",
-          "delta": -0.1,
+          "delta": 0.0,
           "is_default": false,
           "weight": 8
         },
         {
           "label": "GUARD",
-          "delta": 0.1,
+          "delta": 0.2,
           "is_default": false,
           "weight": 4
         }
@@ -2942,13 +2952,13 @@
         {
           "label": "OFF",
           "delta": 0.0,
-          "is_default": true,
+          "is_default": false,
           "weight": 90
         },
         {
           "label": "ON",
           "delta": 1,
-          "is_default": false,
+          "is_default": true,
           "weight": 10
         }
       ]
@@ -2960,27 +2970,7 @@
       "cmd": 3011,
       "enabled": true,
       "type": "continuous"
-    },
-    {
-      "id": "yaw_damper_switch",
-      "label": "Yaw Damper Switch",
-      "dev": 2,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0.0,
-          "is_default": true,
-          "weight": 90
-        },
-        {
-          "label": "YAW",
-          "delta": 1,
-          "is_default": false,
-          "weight": 10
-        }
+    }
       ]
     }
   ]

@@ -729,8 +729,7 @@ class AircraftSettingsDialog(QDialog):
         status_title.setAlignment(Qt.AlignCenter)
 
         notice = QLabel(
-            'Second-stage testing for the F/A-18C has been completed.<br>'
-            'First-stage testing for the F-16C, F-5E, F-4E, and F-14B has been completed.<br><br>'
+            'Second-stage testing for the F/A-18C, F-16C and F-5E has been completed. First-stage testing for the F-4E, and F-14B has been completed.<br><br>'
             '<span style="color:#ffd255;">All other aircraft are still undergoing first-stage testing.</span><br><br>'
             'As a result, you may occasionally encounter switches or knobs that are '
             'randomized contrary to your settings, incorrectly named, or otherwise '
