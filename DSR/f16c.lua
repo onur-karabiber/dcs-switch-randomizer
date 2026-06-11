@@ -79,33 +79,6 @@ CR.register("F-16C_50", {
     -- NORM=90%(default) / OFF=7% / AFT=2% / FWD=1%
     { dev=4, cmd=3004, vals={0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0, 0, 0.2, 0.2, 0.3}, label="Engine Feed Knob" },
 
-    -- EPU SYSTEM
-    -- EPU covers + switch. Six scenarios with correct mechanical interlock. ON cover=3001, OFF cover=3002, EPU switch=3003.
-    {
-        dev=6, cmd=3001, label="EPU SYSTEM",
-        run=function(device)
-            local r = math.random(10)
-            local function click(cmd, val) dev:performClickableAction(cmd, val) end
-            click(3001, -1)
-            click(3002, -1)
-            if r == 1 then
-                click(3001, 1)
-                click(3002, 1)
-            elseif r == 2 then
-                click(3001, 1)
-                click(3002, 1)
-                click(3003, -0.5)
-            elseif r == 3 then
-                click(3002, 1)
-            elseif r == 4 then
-                click(3002, 1)
-                click(3003, -0.5)
-            elseif r == 5 then
-                click(3001, 1)
-            end
-        end
-    },
-
     -- External Fuel Transfer Switch
     -- NORM=10%(default) / WING FIRST=90%
     { dev=4, cmd=3003, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, label="External Fuel Transfer Switch" },

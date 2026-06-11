@@ -273,14 +273,14 @@
       "enabled": true,
       "type": "continuous"
     },
-	{
-  "id": "change_instrument_panel_brightness",
-  "label": "Change Instrument Panel Brightness",
-  "dev": 72,
-  "cmd": 3010,
-  "enabled": true,
-  "type": "continuous"
-},
+    {
+      "id": "change_instrument_panel_brightness",
+      "label": "Change Instrument Panel Brightness",
+      "dev": 72,
+      "cmd": 3010,
+      "enabled": true,
+      "type": "continuous"
+    },
     {
       "id": "change_intercom_volume",
       "label": "Change Intercom Volume",
@@ -436,6 +436,34 @@
       "type": "continuous"
     },
     {
+      "id": "external_tanks_feed",
+      "label": "External Tanks Feed",
+      "dev": 60,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": -1,
+          "is_default": false,
+          "weight": 5
+        },
+        {
+          "label": "NORM",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "TRANS",
+          "delta": 1,
+          "is_default": false,
+          "weight": 8
+        }
+      ]
+    },
+    {
       "id": "flaps_cb",
       "label": "Flaps CB",
       "dev": 84,
@@ -482,6 +510,28 @@
         {
           "label": "BRT",
           "delta": 0.5,
+          "is_default": false,
+          "weight": 13
+        }
+      ]
+    },
+    {
+      "id": "gun_camera_switch",
+      "label": "Gun Camera Switch",
+      "dev": 87,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
           "is_default": false,
           "weight": 13
         }
@@ -570,7 +620,7 @@
           "weight": 87
         },
         {
-          "label": "TRANSFER",
+          "label": "STOP TRANSFER",
           "delta": 1,
           "is_default": false,
           "weight": 13
@@ -710,6 +760,22 @@
       ]
     },
     {
+      "id": "rwr_missile_launch_audio_volume",
+      "label": "RWR Missile Launch Audio Volume",
+      "dev": 67,
+      "cmd": 3055,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "sai_brightness",
+      "label": "SAI Brightness",
+      "dev": 72,
+      "cmd": 3039,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "sai_cb",
       "label": "SAI CB",
       "dev": 84,
@@ -747,13 +813,13 @@
         },
         {
           "label": "EMER",
-          "delta": 0.5,
+          "delta": 1,
           "is_default": false,
           "weight": 15
         },
         {
           "label": "HOT MIC EMERG",
-          "delta": 1.0,
+          "delta": -1,
           "is_default": false,
           "weight": 5
         }
@@ -1136,6 +1202,28 @@
       ]
     },
     {
+      "id": "select_lcoss",
+      "label": "Select LCOSS",
+      "dev": 87,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 87
+        },
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 13
+        }
+      ]
+    },
+    {
       "id": "select_master_mode",
       "label": "Select Master Mode",
       "dev": 4,
@@ -1209,19 +1297,34 @@
         }
       ]
     },
-	{
-  "id": "select_mode_4_indication",
-  "label": "Select Mode 4 Indication",
-  "dev": 4,
-  "cmd": 3009,
-  "enabled": true,
-  "type": "discrete",
-  "positions": [
-    {"label": "AUDIO", "delta": 1, "is_default": false, "weight": 10},
-    {"label": "OUT",   "delta": 0, "is_default": true,  "weight": 70},
-    {"label": "LIGHT", "delta": -1, "is_default": false, "weight": 20}
-  ]
-},
+    {
+      "id": "select_mode_4_indication",
+      "label": "Select Mode 4 Indication",
+      "dev": 4,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUDIO",
+          "delta": 1,
+          "is_default": false,
+          "weight": 10
+        },
+        {
+          "label": "OUT",
+          "delta": 0,
+          "is_default": true,
+          "weight": 70
+        },
+        {
+          "label": "LIGHT",
+          "delta": -1,
+          "is_default": false,
+          "weight": 20
+        }
+      ]
+    },
     {
       "id": "select_navigation_input",
       "label": "Select Navigation Input",
