@@ -26,13 +26,13 @@ APP_VERSION_FALLBACK = "3.0.0"  # [6] v3.0.0
 AIRCRAFT = [
     ("F/A-18C Hornet",     "fa18c"),
     ("F-16C Viper",        "f16c"),
+    ("F-5E Tiger II",      "f5e"),
+    ("F-4E Phantom II",    "f4e"),
+    ("F-14B Tomcat",       "f14b"),
     ("A-10C II",           "a10cii"),
     ("UH-1H Huey",         "uh1h"),
     ("MiG-21bis",          "mig21bis"),   
     ("Spitfire LF Mk. IX", "spitfirelfmkix"),
-    ("F-5E Tiger II",      "f5e"),
-    ("F-4E Phantom II",    "f4e"),
-    ("F-14B Tomcat",       "f14b"),
 ]
 
 DCS_FOLDER_NAMES = ["DCS", "DCS.openbeta"]
@@ -171,7 +171,7 @@ def load_config(scripts_dir):
                 return json.load(f)
         except Exception:
             pass
-    return {"selected": [key for _, key in AIRCRAFT]}
+    return {"selected": [key for _, key in AIRCRAFT[:5]]}
 
 def save_config(scripts_dir, selected_keys):
     with open(config_path(scripts_dir), "w", encoding="utf-8") as f:
@@ -787,7 +787,7 @@ class MainWindow(QWidget):
             os.makedirs(scripts, exist_ok=True)
             copy_lua_files(scripts)
             save_json_defaults(scripts)
-            save_config(scripts, {key for _, key in AIRCRAFT})
+            save_config(scripts, {key for _, key in AIRCRAFT[:5]})
             self._show_main_screen()
             self.set_status("Initialization complete. Check the aircraft whose switch and knob positions you want randomized during cold starts, and uncheck those you want excluded. Then click Apply to activate the Randomizer.", color=GREEN)
             self._mark_pending(update_status=False)
