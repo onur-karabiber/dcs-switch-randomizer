@@ -1,47 +1,69 @@
 # DCS Switch Randomizer (DSR)
 
-A desktop application for DCS World that randomizes cockpit switch and knob positions on each cold start, forcing a proper interior check before you do anything else.
+A desktop application that randomizes DCS World cockpit switch and knob
+positions at mission start, forcing you to perform a proper interior check
+before doing anything else.
 
-Supports: **F/A-18C Hornet** · **F-16C Viper** · **A-10C II** · **UH-1H Huey** · **MiG-21bis** · **Spitfire LF Mk. IX** · **F-5E Tiger II** · **F-4E Phantom II** · **F-14B Tomcat**
+> **More than a randomizer.**  
+> Because you can control the probability of every individual switch position,
+> you can also use DSR to guarantee a fixed cockpit setup — finding the cockpit
+> exactly the way you want it, every time.
 
-> **Note:** Why these 9 aircraft? Because I do this as a hobby and I could only afford so many modules. :)
+> **Testing status:**  
+> Only **F/A-18C, F-16C, F-5E (Remastered), F-4E, and F-14B** have been
+> thoroughly tested so far. Other aircraft remain in the list by design — they
+> are there specifically for community testing. Some switches on untested
+> aircraft will likely not randomize correctly.
+
+Currently supported aircraft:
+
+- **F/A-18C Hornet**
+- **F-16C Viper** 
+- **F-5E Tiger II — Remastered**
+- **F-4E Phantom II** 
+- **F-14B Tomcat** 
+- **A-10C II Tank Killer** 
+- **UH-1H Huey** 
+- **MiG-21bis**
+- **Spitfire LF Mk. IX**
+
 ---
 
 ## Why this exists
 
-In DCS, every time you enter a cockpit the aircraft spawns with all switches in their factory-default positions. For taxi, runway hold, and in-flight slots this makes sense. For cold-start scenarios it breaks immersion: a real aircraft coming out of a previous sortie would have been left in whatever state the last crew left it in. Landing lights on, STAB AUG engaged, IFF in an unexpected mode — anything is possible.
+In DCS, every time you occupy a cockpit the aircraft spawns with all switches
+in their factory-default positions. For taxi, runway hold, and in-flight slots
+this makes sense. For cold-start scenarios it breaks immersion: a real aircraft
+coming out of a previous sortie would have been left in whatever state the last
+crew left it in. Landing lights on, STAB AUG engaged, IFF in an unexpected
+mode — anything is possible.
 
-DCS Switch Randomizer recreates that reality. Each cold start is different. You cannot skip the interior check.
+DSR recreates that reality. Each cold start is different. You cannot skip the
+interior check.
 
 ---
 
 ## Features
 
-**Randomization**
-- **Cold-start only.** The script reads both engine RPM values via `LoGetEngineInfo()`. If either engine is at or above 10% RPM the script silently does nothing. Taxi, runway, and in-flight slots are unaffected.
-- **Multi-aircraft.** A shared core engine detects the active aircraft and applies the correct switch table automatically. No configuration needed when switching between modules.
-- **Per-control probability.** Each switch has weighted probabilities for each position. Safety-critical switches are biased toward safe defaults, but nothing is guaranteed.
-- **Knob randomization.** Continuous controls (volume knobs, brightness dials, trim wheels, etc.) are sampled across their full range.
-- **Non-destructive.** Chains into any existing `LuaExport*` functions. Compatible with DCS-BIOS, SRS, Tacview, and similar Export.lua-based tools.
-- All activity is logged to `DCS.log` under the `DCS_SWITCH_RANDOMIZER` tag.
-
-**Application**
-- **GUI installer.** Install, update, and uninstall entirely through the application — no manual file editing required under normal use.
-- **Existing Export.lua support.** The installer detects and backs up your existing `Export.lua`. All operations restore it correctly on deactivation or uninstall.
-- **Per-aircraft control.** Enable or disable individual aircraft modules from the main screen with a single click.
-- **Settings dialog.** Adjust the randomization probability of each individual switch or knob per aircraft. Changes generate new Lua scripts automatically.
-- **Deactivate without uninstalling.** Temporarily removes DSR from your Export.lua and restores your original file. Reactivate at any time by pressing Apply.
-- **Factory defaults.** Reset any aircraft's switch settings back to the built-in defaults at any time.
-- **Settings backup and restore.** Export your current switch settings to a folder and import them later, or share them with others.
+- **Cold-start only**: reads engine RPM via `LoGetEngineInfo()`. If either
+  engine is at or above 10 % RPM the script does nothing. Taxi, runway, and
+  in-flight slots are unaffected.
+- **Per-aircraft control**: a shared core engine detects the active aircraft
+  and applies the correct switch table automatically.
+- **Weighted probabilities**: adjust how likely each switch position is — from
+  fully random to a fixed preset.
+- **Non-destructive**: chains into any existing `LuaExport*` functions.
+  Compatible with DCS-BIOS, SRS, Tacview, and similar Export.lua-based tools.
+- All activity is logged to `DCS.log` under the `DSR` tag.
 
 ---
 
 ## Requirements
 
-- Windows
 - DCS World (Steam or standalone)
 - One or more supported aircraft modules
-- No additional tools required
+- Python 3.10 or later
+- PyQt5
 
 ---
 
