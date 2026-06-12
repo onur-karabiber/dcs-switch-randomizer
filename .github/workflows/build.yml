@@ -43,23 +43,23 @@ jobs:
           pyinstaller `
             --onefile `
             --windowed `
-            --name "dcs-cockpit-randomizer-${{ steps.version.outputs.tag }}" `
+            --name "dcs-switch-randomizer-${{ steps.version.outputs.tag }}" `
             --clean `
-            dcs-cockpit-randomizer-qt.py
+            dcs-switch-randomizer-qt.py
 
       - name: Create ZIP
         shell: pwsh
         run: |
           $ver = "${{ steps.version.outputs.tag }}"
-          $zipName = "dcs-cockpit-randomizer-$ver"
+          $zipName = "dcs-switch-randomizer-$ver"
           New-Item -ItemType Directory -Path $zipName
-          Copy-Item "dist\dcs-cockpit-randomizer-$ver.exe" "$zipName\"
+          Copy-Item "dist\dcs-switch-randomizer-$ver.exe" "$zipName\"
           Copy-Item "version.txt" "$zipName\"
-          Copy-Item "CockpitRandomizer" "$zipName\" -Recurse
+          Copy-Item "DSR" "$zipName\" -Recurse
           Compress-Archive -Path "$zipName" -DestinationPath "$zipName.zip"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dcs-cockpit-randomizer-${{ steps.version.outputs.tag }}.zip
+          files: dcs-switch-randomizer-${{ steps.version.outputs.tag }}.zip
           generate_release_notes: true

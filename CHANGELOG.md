@@ -4,6 +4,68 @@ All notable changes to DCS Switch Randomizer (DSR) are documented here.
 
 ---
 
+## [v3.0.0] — 2026-06-12
+
+### Added
+
+**GUI application (dcs-switch-randomizer-qt.py + aircraft_settings.py)**
+A full PyQt5 desktop application replaces all manual file editing. The main window handles Install / Uninstall, per-aircraft Activate / Deactivate, and Export.lua hook chaining (DCS-BIOS, SRS, Tacview compatible). A persistent side-by-side settings window exposes per-switch probability sliders, weight editing, and defaults reset for each aircraft. All operations that previously required editing JSON or Lua files by hand are now accessible through the UI.
+
+**JSON control definition system**
+Each aircraft is now defined by a canonical `<key>.json` file. Lua files are generated from JSON via `generate_lua()` and are treated as derivative artifacts. User-modified settings live in `Saved Games\DCS\Scripts\DSR\<key>.json`; factory defaults are backed up to a `json_defaults\` subfolder on first install.
+
+**Four new aircraft modules**
+A-10C II Thunderbolt II (`a10cii`), UH-1H Huey (`uh1h`), MiG-21bis (`mig21bis`), and Spitfire LF Mk. IX (`spitfirelfmkix`) added, bringing the total to nine supported modules.
+
+**Pending-changes indicator**
+Both the main window and the settings dialog show an amber indicator whenever there are unsaved changes, preventing accidental loss of edits.
+
+**Export / Import Settings**
+Settings can be exported to a dated backup folder and restored from a previous export, without touching the factory defaults.
+
+**Reset to Defaults**
+Per-aircraft factory reset dialog resets only the selected aircraft, leaving others untouched.
+
+**`select_one` control type**
+Radio-group buttons (e.g., F-14B HUD Mode) where selecting one position deactivates the others are now modelled as `select_one`. UI renders identically to `discrete`.
+
+**`skip_command` flag**
+Cockpit covers that behave as toggles (e.g., Arm Ground Safety Override Cover, Zeroize Cover) are marked `skip_command: true`. The engine skips `performClickableAction` for these entries and relies on the cover's natural toggle behaviour.
+
+---
+
+### Changed
+
+**Project renamed to DCS Switch Randomizer (DSR)**
+Repository moved from `dcs-cockpit-randomizer` to `dcs-switch-randomizer`. All internal paths, log tags, block markers, and folder names updated accordingly (`CockpitRandomizer\` → `DSR\`, `COCKPIT_RANDOMIZER` → `DCS_SWITCH_RANDOMIZER`, `[CR:begin/end]` → `[DSR:begin/end]`).
+
+**Distribution format**
+Release artifact is now `dcs-switch-randomizer-<tag>.zip` containing `dcs-switch-randomizer-<tag>.exe` and the `DSR\` folder. No Python installation required.
+
+**Weight-based randomization**
+Control positions now carry explicit integer weights. The engine expands weights into a `vals` array at load time. Weight=0 removes a position from the pool entirely; the default (cold-start) position auto-adjusts to keep the total at 100 when other weights are edited through the UI.
+
+---
+
+### Known Limitations
+
+**F-16C — FUEL MASTER Switch**
+Switch state is controlled by the simulation engine and overrides any Export Lua command. Only the cover is randomized.
+
+**F-14B — TACAN Mode Selector / UHF ARC-159 Freq Mode / UHF ARC-159 Function**
+`multiposition_switch_limited` controls do not respond to `performClickableAction` via Export Lua regardless of command ID. Not randomized.
+
+**F-14B — Temperature knob**
+Device/command mapping unconfirmed. Not randomized pending verification.
+
+**F/A-18C — LST/NFLR Switch and FLIR Switch**
+TGP_INTERFACE is a C++ DLL device. Export Lua cannot reach it via `performClickableAction`. Neither switch is randomizable through this mechanism.
+
+**F/A-18C — Right-console CBs (standard command IDs)**
+CB FCS CHAN 3/4, CB HOOK, and CB LG are accessible only via `_EXT` trigger-based command IDs. `_EXT` commands fire unconditionally — the delta model does not apply.
+
+---
+
 ## [v0.2.0] — 2026-05-31
 
 ### Added
