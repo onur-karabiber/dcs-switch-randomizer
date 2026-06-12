@@ -26,7 +26,7 @@ APP_VERSION_FALLBACK = "3.0.0"  # [6] v3.0.0
 AIRCRAFT = [
     ("F/A-18C Hornet",     "fa18c"),
     ("F-16C Viper",        "f16c"),
-    ("F-5E Tiger II",      "f5e"),
+    ("F-5E (Remastered)",      "f5e"),
     ("F-4E Phantom II",    "f4e"),
     ("F-14B Tomcat",       "f14b"),
     ("A-10C II",           "a10cii"),
