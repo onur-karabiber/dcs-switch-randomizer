@@ -132,6 +132,12 @@ def copy_lua_files(dst_scripts):
     os.makedirs(dst, exist_ok=True)
     for fname in lua_files_in_src():
         shutil.copy2(os.path.join(LUA_SRC_DIR, fname), os.path.join(dst, fname))
+    # Copy aircraft JSON files (source of truth for load_metadata)
+    for fname in os.listdir(LUA_SRC_DIR):
+        if fname.endswith(".json") and fname != "gui_config.json":
+            dst_json = os.path.join(dst, fname)
+            if not os.path.isfile(dst_json):  # never overwrite user-modified settings
+                shutil.copy2(os.path.join(LUA_SRC_DIR, fname), dst_json)
     src_ver = os.path.join(THIS_DIR, "version.txt")
     if os.path.isfile(src_ver):
         shutil.copy2(src_ver, os.path.join(dst, "version.txt"))
