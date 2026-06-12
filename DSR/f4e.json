@@ -15,13 +15,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 95
         },
         {
           "label": "ENGAGE",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 5
         }
       ]
     },
@@ -37,13 +37,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -59,13 +59,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 95
         },
         {
           "label": "ENGAGE",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 5
         }
       ]
     },
@@ -81,13 +81,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 90
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 10
         }
       ]
     },
@@ -103,13 +103,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -125,13 +125,13 @@
           "label": "SAFE",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "ARMED",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -147,19 +147,19 @@
           "label": "SAFE",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 94
         },
         {
           "label": "NOSE",
           "delta": 0.25,
           "is_default": false,
-          "weight": 7
+          "weight": 2
         },
         {
           "label": "TAIL",
           "delta": 0.5,
           "is_default": false,
-          "weight": 4
+          "weight": 2
         },
         {
           "label": "NOSE&TAIL",
@@ -181,13 +181,13 @@
           "label": "SAFE",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 97
         },
         {
           "label": "ARMED",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 3
         }
       ]
     },
@@ -203,13 +203,13 @@
           "label": "SAFE",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 97
         },
         {
           "label": "ARMED",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 3
         }
       ]
     },
@@ -225,13 +225,13 @@
           "label": "SAFE",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 97
         },
         {
           "label": "ARMED",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 3
         }
       ]
     },
@@ -247,13 +247,13 @@
           "label": "SAFE",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 97
         },
         {
           "label": "ARMED",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 3
         }
       ]
     },
@@ -317,13 +317,13 @@
           "label": "UPR",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 93
         },
         {
           "label": "LWR",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 7
         }
       ]
     },
@@ -339,19 +339,19 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 60
         },
         {
           "label": "MED",
           "delta": -0.5,
           "is_default": false,
-          "weight": 7
+          "weight": 20
         },
         {
           "label": "BRT",
           "delta": 0.5,
           "is_default": false,
-          "weight": 6
+          "weight": 20
         }
       ]
     },
@@ -375,25 +375,25 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 50
+          "weight": 91
         },
         {
           "label": "SAFE",
           "delta": 0.333,
           "is_default": false,
-          "weight": 20
+          "weight": 5
         },
         {
           "label": "BOMB GRD MSL-HI",
           "delta": 0.667,
           "is_default": false,
-          "weight": 20
+          "weight": 2
         },
         {
           "label": "BOMB AIR MSL-LO",
           "delta": 1.0,
           "is_default": false,
-          "weight": 10
+          "weight": 2
         }
       ]
     },
@@ -417,13 +417,13 @@
           "label": "SEALED",
           "delta": 0,
           "is_default": true,
-          "weight": 95
+          "weight": 98
         },
         {
           "label": "VENT",
           "delta": 1,
           "is_default": false,
-          "weight": 5
+          "weight": 2
         }
       ]
     },
@@ -447,19 +447,19 @@
           "label": "OFF",
           "delta": -1,
           "is_default": false,
-          "weight": 5
+          "weight": 1
         },
         {
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 98
         },
         {
           "label": "TRANS",
           "delta": 1,
           "is_default": false,
-          "weight": 8
+          "weight": 1
         }
       ]
     },
@@ -475,13 +475,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -505,13 +505,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 75
         },
         {
           "label": "BRT",
           "delta": 0.5,
           "is_default": false,
-          "weight": 13
+          "weight": 25
         }
       ]
     },
@@ -527,13 +527,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 95
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 5
         }
       ]
     },
@@ -589,19 +589,19 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 60
         },
         {
           "label": "DIM",
           "delta": -0.5,
           "is_default": false,
-          "weight": 7
+          "weight": 20
         },
         {
           "label": "BRT",
           "delta": 0.5,
           "is_default": false,
-          "weight": 6
+          "weight": 20
         }
       ]
     },
@@ -617,13 +617,13 @@
           "label": "NORMAL",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 98
         },
         {
           "label": "STOP TRANSFER",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 2
         }
       ]
     },
@@ -639,13 +639,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -661,13 +661,13 @@
           "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 70
+          "weight": 95
         },
         {
           "label": "Out",
           "delta": -1,
           "is_default": false,
-          "weight": 30
+          "weight": 5
         }
       ]
     },
@@ -683,13 +683,13 @@
           "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 70
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": -1,
           "is_default": false,
-          "weight": 30
+          "weight": 5
         }
       ]
     },
@@ -705,13 +705,13 @@
           "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 70
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": -1,
           "is_default": false,
-          "weight": 30
+          "weight": 5
         }
       ]
     },
@@ -727,13 +727,13 @@
           "label": "ON",
           "delta": 0,
           "is_default": true,
-          "weight": 70
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": -1,
           "is_default": false,
-          "weight": 30
+          "weight": 5
         }
       ]
     },
@@ -749,13 +749,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -787,13 +787,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 96
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 4
         }
       ]
     },
@@ -809,19 +809,19 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 80
+          "weight": 95
         },
         {
           "label": "EMER",
           "delta": 1,
           "is_default": false,
-          "weight": 15
+          "weight": 2
         },
         {
           "label": "HOT MIC EMERG",
           "delta": -1,
           "is_default": false,
-          "weight": 5
+          "weight": 3
         }
       ]
     },
@@ -1009,25 +1009,25 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 85
         },
         {
           "label": "-1",
           "delta": -0.0833,
           "is_default": false,
-          "weight": 6
+          "weight": 5
         },
         {
           "label": "+1",
           "delta": 0.0833,
           "is_default": false,
-          "weight": 6
+          "weight": 5
         },
         {
           "label": "-2",
           "delta": -0.1666,
           "is_default": false,
-          "weight": 1
+          "weight": 5
         }
       ]
     },
@@ -1043,13 +1043,13 @@
           "label": "NORMAL",
           "delta": 0,
           "is_default": true,
-          "weight": 85
+          "weight": 90
         },
         {
           "label": "SALVO",
           "delta": 1,
           "is_default": false,
-          "weight": 15
+          "weight": 10
         }
       ]
     },
@@ -1145,13 +1145,13 @@
           "label": "PRESET",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 90
         },
         {
           "label": "MANUAL",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 10
         }
       ]
     },
@@ -1167,7 +1167,7 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 85
         },
         {
           "label": "NAV",
@@ -1179,7 +1179,7 @@
           "label": "ILS/NAV",
           "delta": 0.3332,
           "is_default": false,
-          "weight": 3
+          "weight": 4
         },
         {
           "label": "ILS/MAN",
@@ -1191,7 +1191,7 @@
           "label": "A/G",
           "delta": 0.6664,
           "is_default": false,
-          "weight": 1
+          "weight": 2
         },
         {
           "label": "A/A RDR",
@@ -1213,13 +1213,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 90
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 10
         }
       ]
     },
@@ -1275,25 +1275,25 @@
           "label": "HOLD",
           "delta": 0,
           "is_default": true,
-          "weight": 60
+          "weight": 93
         },
         {
           "label": "A",
           "delta": 0.333,
           "is_default": false,
-          "weight": 20
+          "weight": 3
         },
         {
           "label": "B",
           "delta": 0.667,
           "is_default": false,
-          "weight": 15
+          "weight": 3
         },
         {
           "label": "ZERO",
           "delta": 1.0,
           "is_default": false,
-          "weight": 5
+          "weight": 1
         }
       ]
     },
@@ -1309,19 +1309,19 @@
           "label": "AUDIO",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         },
         {
           "label": "OUT",
           "delta": 0,
           "is_default": true,
-          "weight": 70
+          "weight": 90
         },
         {
           "label": "LIGHT",
           "delta": -1,
           "is_default": false,
-          "weight": 20
+          "weight": 5
         }
       ]
     },
@@ -1405,13 +1405,13 @@
           "label": "NORMAL OXYGEN",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 95
         },
         {
           "label": "100% OXYGEN",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 5
         }
       ]
     },
@@ -1509,7 +1509,7 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 86
         },
         {
           "label": "T",
@@ -1521,7 +1521,7 @@
           "label": "T/R",
           "delta": 0.4,
           "is_default": false,
-          "weight": 4
+          "weight": 5
         },
         {
           "label": "A/G",
@@ -1633,13 +1633,13 @@
           "label": "HOT MIC",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 90
         },
         {
           "label": "COLD MIC",
           "delta": -1,
           "is_default": false,
-          "weight": 13
+          "weight": 10
         }
       ]
     },
@@ -1683,13 +1683,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -1705,13 +1705,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 93
         },
         {
           "label": "ENGAGE",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 7
         }
       ]
     },
@@ -1727,13 +1727,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 93
         },
         {
           "label": "ENGAGE",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 7
         }
       ]
     },
@@ -1749,13 +1749,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 93
         },
         {
           "label": "ENGAGE",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 7
         }
       ]
     },
@@ -1771,13 +1771,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -1869,13 +1869,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 94
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 6
         }
       ]
     },
@@ -1891,13 +1891,13 @@
           "label": "OFF",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 94
         },
         {
           "label": "ON",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 6
         }
       ]
     },
@@ -1913,13 +1913,13 @@
           "label": "IN",
           "delta": 0,
           "is_default": true,
-          "weight": 90
+          "weight": 95
         },
         {
           "label": "OUT",
           "delta": 1,
           "is_default": false,
-          "weight": 10
+          "weight": 5
         }
       ]
     },
@@ -1957,13 +1957,13 @@
           "label": "NORM",
           "delta": 0,
           "is_default": true,
-          "weight": 87
+          "weight": 99
         },
         {
           "label": "DUMP",
           "delta": 1,
           "is_default": false,
-          "weight": 13
+          "weight": 1
         }
       ]
     }

@@ -871,7 +871,7 @@ class AircraftSettingsDialog(QDialog):
         bot_lay.addStretch()
 
         for text, style, slot in [
-            ("Cancel",        "secbtn", self._cancel),
+            ("Close",         "secbtn", self._cancel),
             ("Save && Apply", "apply",  self._save),   # [3] && = literal &
         ]:
             btn = QPushButton(text)
@@ -917,7 +917,7 @@ class AircraftSettingsDialog(QDialog):
             """)
         cancel_btn = getattr(self, "_btn_cancel", None)
         if cancel_btn is not None:
-            cancel_btn.setText("Close")
+            cancel_btn.setText("Cancel")
         self._status("Click Save & Apply to save changes.", "#f0c040")
 
     def _clear_pending(self):

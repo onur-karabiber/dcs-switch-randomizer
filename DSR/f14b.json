@@ -92,28 +92,6 @@
       ]
     },
     {
-      "id": "ana_ara63_power",
-      "label": "ANA/ARA-63 Power Switch",
-      "dev": 50,
-      "cmd": 3322,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        {
-          "label": "OFF",
-          "delta": 0,
-          "is_default": true,
-          "weight": 87
-        },
-        {
-          "label": "ON",
-          "delta": 1,
-          "is_default": false,
-          "weight": 13
-        }
-      ]
-    },
-    {
       "id": "anti_collision_lights",
       "label": "Anti-Collision Lights",
       "dev": 12,
@@ -765,7 +743,7 @@
       "id": "vdi_landing_mode",
       "label": "VDI Landing Mode",
       "dev": 42,
-      "cmd": 3225,
+      "cmd": 3226,
       "enabled": true,
       "type": "discrete",
       "positions": [

@@ -51,8 +51,6 @@ CR.register("F-14B", {
     { dev=22, cmd=3035, vals={0,1,1}, label="AFCS Stability Augmentation - Roll" },
     { dev=22, cmd=3036, vals={0,1,1}, label="AFCS Stability Augmentation - Yaw" },
 
-    { dev=50, cmd=3322, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="ANA/ARA-63 Power Switch" },
-
     { dev=12, cmd=3177, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},   label="Anti-Collision Lights" },
 
     -- Anti-Skid Spoiler BK | cold start: BOTH. stay (87%) / OFF=+1 (10%) / SPOILER BK=+2 (3%)
@@ -171,7 +169,7 @@ CR.register("F-14B", {
     { dev=12, cmd=3171, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="Taxi Light" },
 
     -- VDI Landing Mode | cold start: OFF. OFF=stay (87%) / ON=+1 (13%)
-    { dev=42, cmd=3225, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="VDI Landing Mode" },
+    { dev=42, cmd=3226, vals={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}, label="VDI Landing Mode" },
 
     -- Power switches | cold start: ON. stay (90%) / OFF=-1 (10%)
     { dev=42, cmd=3214, vals={0,0,0,0,0,0,0,0,0,-1}, label="VDI Power On/Off" },
