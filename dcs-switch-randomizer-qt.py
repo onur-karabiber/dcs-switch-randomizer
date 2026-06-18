@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (
     QDialog, QCheckBox
 )
 from PyQt5.QtCore import Qt, QPoint, QPropertyAnimation, QEasingCurve, QTimer
-from PyQt5.QtGui import QColor, QFont, QPainter, QPixmap
+from PyQt5.QtGui import QColor, QFont, QPainter, QPixmap, QIcon
 
 # ── DPI awareness ─────────────────────────────────────────────────────────────
 try:
@@ -1303,6 +1303,9 @@ class MainWindow(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyleSheet(STYLE)
+    icon_path = os.path.join(THIS_DIR, "DSR", "dsricon.png")
+    if os.path.isfile(icon_path):
+        app.setWindowIcon(QIcon(icon_path))
     win = MainWindow()
     win.show()
     sys.exit(app.exec_())

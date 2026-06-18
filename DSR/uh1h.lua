@@ -340,6 +340,9 @@ CR.register("UH-1H", {
     -- MAN=70%(default) / PGRM=30%
     { dev=50, cmd=3009, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="Chaff Mode Switch, MAN/PGRM" },
 
+    -- Copilot Instrument Lights Brightness Rheostat
+    { dev=7, cmd=3019, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Copilot Instrument Lights Brightness Rheostat" },
+
     -- De-Ice Switch, ON/OFF
     -- OFF=85%(default) / ON=15%
     { dev=3, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="De-Ice Switch, ON/OFF" },
@@ -347,6 +350,9 @@ CR.register("UH-1H", {
     -- Dome Light Switch, WHITE/OFF/GREEN
     -- WHITE=15% / OFF=70%(default) / GREEN=15%
     { dev=7, cmd=3021, vals={1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1}, label="Dome Light Switch, WHITE/OFF/GREEN" },
+
+    -- Engine Instrument Lights Brightness Rheostat
+    { dev=7, cmd=3018, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Engine Instrument Lights Brightness Rheostat" },
 
     -- Force Trim Switch, ON/OFF
     -- ON=95%(default) / OFF=5%
@@ -380,6 +386,9 @@ CR.register("UH-1H", {
     -- ON=80%(default) / OFF=20%
     { dev=21, cmd=3005, vals={1, 1, 1, 1, 0}, label="INT Receiver Switch, ON/OFF" },
 
+    -- Intercom Volume Knob
+    { dev=21, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom Volume Knob" },
+
     -- Inverter Switch, MAIN/OFF/SPARE
     -- MAIN=90%(default) / OFF=5% / SPARE=5%
     { dev=1, cmd=3008, vals={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1}, label="Inverter Switch, MAIN/OFF/SPARE" },
@@ -412,6 +421,9 @@ CR.register("UH-1H", {
     -- HIGH=70%(default) / LOW=30%
     { dev=26, cmd=3002, vals={0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, label="Marker Beacon Sensing Switch, HIGH/LOW" },
 
+    -- Marker Beacon Volume Knob
+    { dev=26, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Marker Beacon Volume Knob" },
+
     -- Navigation Lights Switch, OFF/1/2/3/4/BRT
     -- OFF=50%(default) / 1=10% / 2=10% / 3=10% / 4=10% / BRT=10%
     { dev=7, cmd=3001, vals={0, 0, 0, 0, 0, 0.1, 0.2, 0.3, 0.4, 0.5}, label="Navigation Lights Switch, OFF/1/2/3/4/BRT" },
@@ -419,6 +431,18 @@ CR.register("UH-1H", {
     -- Non-Essential Bus Switch, NORMAL/MANUAL
     -- NORMAL=90%(default) / MANUAL=10%
     { dev=1, cmd=3005, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="Non-Essential Bus Switch, NORMAL/MANUAL" },
+
+    -- Overhead Console Panel Lights Brightness Rheostat
+    { dev=7, cmd=3015, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Overhead Console Panel Lights Brightness Rheostat" },
+
+    -- Pedestal Lights Brightness Rheostat
+    { dev=7, cmd=3016, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Pedestal Lights Brightness Rheostat" },
+
+    -- Pilot Instrument Lights Brightness Rheostat
+    { dev=7, cmd=3020, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Pilot Instrument Lights Brightness Rheostat" },
+
+    -- Pilot Sighting Station Intensity Knob
+    { dev=49, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Pilot Sighting Station Intensity Knob" },
 
     -- Pitot Heater Switch, ON/OFF
     -- OFF=80%(default) / ON=20%
@@ -431,6 +455,9 @@ CR.register("UH-1H", {
     -- Position Lights Switch, STEADY/OFF/FLASH
     -- STEADY=30% / OFF=40%(default) / FLASH=30%
     { dev=7, cmd=3002, vals={1, 1, 1, 0, 0, 0, 0, -1, -1, -1}, label="Position Lights Switch, STEADY/OFF/FLASH" },
+
+    -- Radar Altimeter Low Altitude Setting Knob
+    { dev=13, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Radar Altimeter Low Altitude Setting Knob" },
 
     -- Radar Altimeter Power Switch, ON/OFF
     -- ON=90%(default) / OFF=10%
@@ -456,6 +483,12 @@ CR.register("UH-1H", {
     -- ON=10% / OFF=80%(default) / STOW=10%
     { dev=7, cmd=3006, vals={1, 0, 0, 0, 0, 0, 0, 0, 0, -1}, label="Search Light Switch, ON/OFF/STOW" },
 
+    -- Secondary Instrument Lights Brightness Rheostat
+    { dev=7, cmd=3017, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Secondary Instrument Lights Brightness Rheostat" },
+
+    -- Sighting Station Intensity Knob
+    { dev=32, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Sighting Station Intensity Knob" },
+
     -- Starter/Stdby GEN Switch
     -- GENERATOR=90%(default) / STARTER=10%
     { dev=1, cmd=3003, vals={0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, label="Starter/Stdby GEN Switch" },
@@ -476,6 +509,9 @@ CR.register("UH-1H", {
     -- ON=80%(default) / OFF=20%
     { dev=22, cmd=3007, vals={0, 0, 0, 0, 1}, label="UHF Squelch Disable Switch, ON/OFF" },
 
+    -- UHF Volume Knob
+    { dev=22, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="UHF Volume Knob" },
+
     -- VHF AM Radio Receiver Switch, ON/OFF
     -- ON=80%(default) / OFF=20%
     { dev=21, cmd=3003, vals={1, 1, 1, 1, 0}, label="VHF AM Radio Receiver Switch, ON/OFF" },
@@ -492,47 +528,11 @@ CR.register("UH-1H", {
     -- DIS=20% / CARR=60%(default) / TONE=20%
     { dev=23, cmd=3005, vals={0, 0.1, 0.1, 0.1, 0.2}, label="VHF FM Squelch Mode Switch, DIS/CARR/TONE" },
 
+    -- VHF FM Volume Knob
+    { dev=23, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="VHF FM Volume Knob" },
+
     -- Wiper Selector Switch, PILOT/BOTH/COPILOT
     -- PILOT=20% / BOTH=60%(default) / COPILOT=20%
     { dev=12, cmd=3002, vals={-1, 0, 0, 0, 1}, label="Wiper Selector Switch, PILOT/BOTH/COPILOT" },
-
-    -- Copilot Instrument Lights Brightness Rheostat
-    { dev=7, cmd=3019, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Copilot Instrument Lights Brightness Rheostat" },
-
-    -- Engine Instrument Lights Brightness Rheostat
-    { dev=7, cmd=3018, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Engine Instrument Lights Brightness Rheostat" },
-
-    -- Intercom Volume Knob
-    { dev=21, cmd=3007, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Intercom Volume Knob" },
-
-    -- Marker Beacon Volume Knob
-    { dev=26, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Marker Beacon Volume Knob" },
-
-    -- Overhead Console Panel Lights Brightness Rheostat
-    { dev=7, cmd=3015, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Overhead Console Panel Lights Brightness Rheostat" },
-
-    -- Pedestal Lights Brightness Rheostat
-    { dev=7, cmd=3016, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Pedestal Lights Brightness Rheostat" },
-
-    -- Pilot Instrument Lights Brightness Rheostat
-    { dev=7, cmd=3020, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Pilot Instrument Lights Brightness Rheostat" },
-
-    -- Pilot Sighting Station Intensity Knob
-    { dev=49, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Pilot Sighting Station Intensity Knob" },
-
-    -- Radar Altimeter Low Altitude Setting Knob
-    { dev=13, cmd=3002, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Radar Altimeter Low Altitude Setting Knob" },
-
-    -- Secondary Instrument Lights Brightness Rheostat
-    { dev=7, cmd=3017, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Secondary Instrument Lights Brightness Rheostat" },
-
-    -- Sighting Station Intensity Knob
-    { dev=32, cmd=3001, vals={0, 0.25, 0.5, 0.75, 1.0}, label="Sighting Station Intensity Knob" },
-
-    -- UHF Volume Knob
-    { dev=22, cmd=3008, vals={0, 0.25, 0.5, 0.75, 1.0}, label="UHF Volume Knob" },
-
-    -- VHF FM Volume Knob
-    { dev=23, cmd=3006, vals={0, 0.25, 0.5, 0.75, 1.0}, label="VHF FM Volume Knob" },
 
 }, 3.0)

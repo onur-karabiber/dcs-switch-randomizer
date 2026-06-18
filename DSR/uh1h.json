@@ -1882,6 +1882,14 @@
       ]
     },
     {
+      "id": "copilot_lights_rheostat",
+      "label": "Copilot Instrument Lights Brightness Rheostat",
+      "dev": 7,
+      "cmd": 3019,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "de_ice_switch",
       "label": "De-Ice Switch, ON/OFF",
       "dev": 3,
@@ -1930,6 +1938,14 @@
           "weight": 15
         }
       ]
+    },
+    {
+      "id": "engine_lights_rheostat",
+      "label": "Engine Instrument Lights Brightness Rheostat",
+      "dev": 7,
+      "cmd": 3018,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "force_trim_switch",
@@ -2132,6 +2148,14 @@
       ]
     },
     {
+      "id": "intercom_volume",
+      "label": "Intercom Volume Knob",
+      "dev": 21,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "inverter_switch",
       "label": "Inverter Switch, MAIN/OFF/SPARE",
       "dev": 1,
@@ -2320,6 +2344,14 @@
       ]
     },
     {
+      "id": "marker_beacon_volume",
+      "label": "Marker Beacon Volume Knob",
+      "dev": 26,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "nav_lights_switch",
       "label": "Navigation Lights Switch, OFF/1/2/3/4/BRT",
       "dev": 7,
@@ -2386,6 +2418,38 @@
           "weight": 10
         }
       ]
+    },
+    {
+      "id": "overhead_console_lights",
+      "label": "Overhead Console Panel Lights Brightness Rheostat",
+      "dev": 7,
+      "cmd": 3015,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "pedestal_lights_rheostat",
+      "label": "Pedestal Lights Brightness Rheostat",
+      "dev": 7,
+      "cmd": 3016,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "pilot_lights_rheostat",
+      "label": "Pilot Instrument Lights Brightness Rheostat",
+      "dev": 7,
+      "cmd": 3020,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "pilot_sight_intensity",
+      "label": "Pilot Sighting Station Intensity Knob",
+      "dev": 49,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "pitot_heater",
@@ -2458,6 +2522,14 @@
           "weight": 30
         }
       ]
+    },
+    {
+      "id": "radar_alt_lo_set",
+      "label": "Radar Altimeter Low Altitude Setting Knob",
+      "dev": 13,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "continuous"
     },
     {
       "id": "radar_alt_power",
@@ -2598,6 +2670,22 @@
       ]
     },
     {
+      "id": "sec_instrument_lights",
+      "label": "Secondary Instrument Lights Brightness Rheostat",
+      "dev": 7,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "flex_sight_intensity",
+      "label": "Sighting Station Intensity Knob",
+      "dev": 32,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "starter_gen_switch",
       "label": "Starter/Stdby GEN Switch",
       "dev": 1,
@@ -2726,6 +2814,14 @@
       ]
     },
     {
+      "id": "uhf_volume",
+      "label": "UHF Volume Knob",
+      "dev": 22,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "intercom_rcvr3",
       "label": "VHF AM Radio Receiver Switch, ON/OFF",
       "dev": 21,
@@ -2832,6 +2928,14 @@
       ]
     },
     {
+      "id": "vhf_fm_volume",
+      "label": "VHF FM Volume Knob",
+      "dev": 23,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
       "id": "wiper_selector",
       "label": "Wiper Selector Switch, PILOT/BOTH/COPILOT",
       "dev": 12,
@@ -2858,110 +2962,6 @@
           "weight": 20
         }
       ]
-    },
-    {
-      "id": "copilot_lights_rheostat",
-      "label": "Copilot Instrument Lights Brightness Rheostat",
-      "dev": 7,
-      "cmd": 3019,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "engine_lights_rheostat",
-      "label": "Engine Instrument Lights Brightness Rheostat",
-      "dev": 7,
-      "cmd": 3018,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "intercom_volume",
-      "label": "Intercom Volume Knob",
-      "dev": 21,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "marker_beacon_volume",
-      "label": "Marker Beacon Volume Knob",
-      "dev": 26,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "overhead_console_lights",
-      "label": "Overhead Console Panel Lights Brightness Rheostat",
-      "dev": 7,
-      "cmd": 3015,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "pedestal_lights_rheostat",
-      "label": "Pedestal Lights Brightness Rheostat",
-      "dev": 7,
-      "cmd": 3016,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "pilot_lights_rheostat",
-      "label": "Pilot Instrument Lights Brightness Rheostat",
-      "dev": 7,
-      "cmd": 3020,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "pilot_sight_intensity",
-      "label": "Pilot Sighting Station Intensity Knob",
-      "dev": 49,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "radar_alt_lo_set",
-      "label": "Radar Altimeter Low Altitude Setting Knob",
-      "dev": 13,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "sec_instrument_lights",
-      "label": "Secondary Instrument Lights Brightness Rheostat",
-      "dev": 7,
-      "cmd": 3017,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "flex_sight_intensity",
-      "label": "Sighting Station Intensity Knob",
-      "dev": 32,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "uhf_volume",
-      "label": "UHF Volume Knob",
-      "dev": 22,
-      "cmd": 3008,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "vhf_fm_volume",
-      "label": "VHF FM Volume Knob",
-      "dev": 23,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "continuous"
     }
   ]
 }

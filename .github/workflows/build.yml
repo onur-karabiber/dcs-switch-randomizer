@@ -43,6 +43,7 @@ jobs:
           pyinstaller `
             --onefile `
             --windowed `
+            --icon "DSR\dsricon.ico" `
             --name "dcs-switch-randomizer-${{ steps.version.outputs.tag }}" `
             --clean `
             dcs-switch-randomizer-qt.py
