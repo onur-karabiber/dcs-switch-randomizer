@@ -1,1401 +1,1518 @@
 {
   "aircraft": "MiG-21Bis",
-  "display_name": "MiG-21bis",
+  "display_name": "MiG-21Bis",
   "delay": 3.0,
   "controls": [
     {
       "id": "abs_on",
-      "label": "ABS Off/On",
+      "label": "ABS",
       "dev": 13,
       "cmd": 3117,
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
       ]
     },
     {
-      "id": "ac_generator",
-      "label": "AC Generator On/Off",
+      "id": "ac_gen",
+      "label": "AC Generator",
       "dev": 2,
       "cmd": 3004,
       "enabled": true,
       "type": "discrete",
       "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "fors_max",
-      "label": "Afterburner Maximum Off/On",
-      "dev": 6,
-      "cmd": 3023,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 15 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 85 }
-      ]
-    },
-    {
-      "id": "aileron_boosters",
-      "label": "Aileron Booster Off/On",
-      "dev": 44,
-      "cmd": 3138,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "airbrakes",
-      "label": "Airbrake Out/In",
-      "dev": 12,
-      "cmd": 3116,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OUT", "delta": 1, "is_default": false, "weight": 15 },
-        { "label": "IN", "delta": 0, "is_default": true, "weight": 85 }
-      ]
-    },
-    {
-      "id": "surge_doors",
-      "label": "Anti Surge Doors Auto/Manual",
-      "dev": 6,
-      "cmd": 3022,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "AUTO", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "MANUAL", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "apu",
-      "label": "APU On/Off",
-      "dev": 3,
-      "cmd": 3014,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "ark_ant_compass",
-      "label": "ARK Mode Antenna/Compass",
-      "dev": 24,
-      "cmd": 3052,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ANTENNA", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "COMPASS", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "ark_on",
-      "label": "ARK On/Off",
-      "dev": 24,
-      "cmd": 3047,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "aru_man_auto",
-      "label": "ARU System Manual/Auto",
-      "dev": 11,
-      "cmd": 3113,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "AUTO", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "MANUAL", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "asp_man_auto",
-      "label": "ASP Main Mode Manual/Auto",
-      "dev": 41,
-      "cmd": 3156,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "AUTO", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "MANUAL", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "asp_bomb_strelb",
-      "label": "ASP Mode Bombardment/Shooting",
-      "dev": 41,
-      "cmd": 3157,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "SHOOTING", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "BOMB", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "asp_ss_giro",
-      "label": "ASP Mode Giro/Missile",
-      "dev": 41,
-      "cmd": 3159,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "GIRO", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "MISSILE", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "asp_missile_gun",
-      "label": "ASP Mode Missiles-Rockets/Gun",
-      "dev": 41,
-      "cmd": 3158,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "GUN", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "MISSILES", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "asp_on",
-      "label": "ASP Optical Sight On/Off",
-      "dev": 41,
-      "cmd": 3155,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "battery_heat",
-      "label": "Battery Heat On/Off",
-      "dev": 1,
-      "cmd": 3002,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "battery_on",
-      "label": "Battery On/Off",
-      "dev": 1,
-      "cmd": 3001,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "iab_tormoz",
-      "label": "Brake Chute (IAB)",
-      "dev": 56,
-      "cmd": 3201,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 20 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 }
-      ]
-    },
-    {
-      "id": "air_cond_select",
-      "label": "Cockpit Air Condition Off/Cold/Auto/Warm",
-      "dev": 45,
-      "cmd": 3208,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 },
-        { "label": "COLD", "delta": 0.33, "is_default": false, "weight": 20 },
-        { "label": "AUTO", "delta": 0.66, "is_default": true, "weight": 40 },
-        { "label": "WARM", "delta": 1.0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "giro2",
-      "label": "DA-200 Signal Giro NPP SAU Power On/Off",
-      "dev": 21,
-      "cmd": 3009,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "dc_generator",
-      "label": "DC Generator On/Off",
-      "dev": 1,
-      "cmd": 3003,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "iab_vozduh",
-      "label": "Detonation Air/Ground",
-      "dev": 56,
-      "cmd": 3202,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "AIR", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "GROUND", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "pump_rashod",
-      "label": "Drain Fuel Tank Fuel Pump",
-      "dev": 4,
-      "cmd": 3012,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "chr",
-      "label": "Emergency Afterburner Off/On",
-      "dev": 6,
-      "cmd": 3024,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "nr27_on",
-      "label": "Emergency Hydraulic Pump On/Off",
-      "dev": 44,
-      "cmd": 3137,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 10 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 }
-      ]
-    },
-    {
-      "id": "emerg_inverter",
-      "label": "Emergency Inverter",
-      "dev": 2,
-      "cmd": 3007,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 10 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 }
-      ]
-    },
-    {
-      "id": "emerg_oxygen",
-      "label": "Emergency Oxygen Off/On",
-      "dev": 19,
-      "cmd": 3148,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "emerg_tx_cover",
-      "label": "Emergency Transmitter Cover",
-      "dev": 38,
-      "cmd": 3210,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OPEN", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "emerg_tx_on",
-      "label": "Emergency Transmitter On/Off",
-      "dev": 38,
-      "cmd": 3211,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "hot_start",
-      "label": "Engine Cold/Normal Start",
-      "dev": 3,
-      "cmd": 3015,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "NORMAL", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "COLD", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "air_start",
-      "label": "Engine Emergency Air Start",
-      "dev": 3,
-      "cmd": 3017,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "soplo_2pos",
-      "label": "Engine Nozzle 2 Position Emergency Control",
-      "dev": 18,
-      "cmd": 3136,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "fire_ext_on",
-      "label": "Fire Extinguisher Off/On",
-      "dev": 53,
-      "cmd": 3025,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 10 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 90 }
-      ]
-    },
-    {
-      "id": "asp_net_on",
-      "label": "Fix Net On/Off",
-      "dev": 41,
-      "cmd": 3161,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "flaps_landing",
-      "label": "Flaps Landing",
-      "dev": 15,
-      "cmd": 3126,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 15 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 85 }
-      ]
-    },
-    {
-      "id": "flaps_neutral",
-      "label": "Flaps Neutral",
-      "dev": 15,
-      "cmd": 3124,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 60 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 40 }
-      ]
-    },
-    {
-      "id": "flaps_takeoff",
-      "label": "Flaps Take-Off",
-      "dev": 15,
-      "cmd": 3125,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 30 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 70 }
-      ]
-    },
-    {
-      "id": "pump1",
-      "label": "Fuel Tanks 1st Group Fuel Pump",
-      "dev": 4,
-      "cmd": 3011,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "pump3",
-      "label": "Fuel Tanks 3rd Group Fuel Pump",
-      "dev": 4,
-      "cmd": 3010,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "gear_lever",
-      "label": "Gear Up/Neutral/Down",
-      "dev": 14,
-      "cmd": 3121,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "UP", "delta": -1, "is_default": false, "weight": 10 },
-        { "label": "NEUTRAL", "delta": 0, "is_default": true, "weight": 80 },
-        { "label": "DOWN", "delta": 1, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "giro1",
-      "label": "Giro NPP SAU RLS KPP Power On/Off",
-      "dev": 21,
-      "cmd": 3008,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "gs23",
-      "label": "GS-23 Gun On/Off",
-      "dev": 42,
-      "cmd": 3171,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 30 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 70 }
-      ]
-    },
-    {
-      "id": "fkp",
-      "label": "Guncam On/Off",
-      "dev": 42,
-      "cmd": 3172,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 30 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 70 }
-      ]
-    },
-    {
-      "id": "harness",
-      "label": "Harness Separation",
-      "dev": 51,
-      "cmd": 3270,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "helmet_air_cond",
-      "label": "Helmet Air Condition Off/On",
-      "dev": 19,
-      "cmd": 3147,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "helmet_heat_man_aut",
-      "label": "Helmet Heat Manual/Auto",
-      "dev": 45,
-      "cmd": 3205,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "AUTO", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "MANUAL", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "helmet_visor",
-      "label": "Helmet Visor Off/On",
-      "dev": 45,
-      "cmd": 3207,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "canopy_hermet",
-      "label": "Hermetize Canopy",
-      "dev": 43,
-      "cmd": 3150,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "srzo_on",
-      "label": "IFF System Type 81 On/Off",
-      "dev": 38,
-      "cmd": 3089,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "kpp_on",
-      "label": "KPP Main/Emergency",
-      "dev": 28,
-      "cmd": 3139,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "MAIN", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "EMERG", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "landing_lights",
-      "label": "Landing Lights Off/Taxi/Land",
-      "dev": 46,
-      "cmd": 3333,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 },
-        { "label": "TAXI", "delta": 0.5, "is_default": false, "weight": 10 },
-        { "label": "LAND", "delta": 1.0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "radar_fix_beam",
-      "label": "Locked Beam On/Off",
-      "dev": 40,
-      "cmd": 3096,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 20 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 }
-      ]
-    },
-    {
-      "id": "radar_low_alt",
-      "label": "Low Altitude Off/Comp/On",
-      "dev": 40,
-      "cmd": 3095,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 70 },
-        { "label": "COMP", "delta": 0.5, "is_default": false, "weight": 20 },
-        { "label": "ON", "delta": 1.0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "ark_far_near",
-      "label": "Marker Far/Near",
-      "dev": 24,
-      "cmd": 3053,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "FAR", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "NEAR", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "obogrev",
-      "label": "Missiles Rockets Heat On/Off",
-      "dev": 42,
-      "cmd": 3167,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 30 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 70 }
-      ]
-    },
-    {
-      "id": "pusk",
-      "label": "Missiles Rockets Launch On/Off",
-      "dev": 42,
-      "cmd": 3168,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 20 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 }
-      ]
-    },
-    {
-      "id": "mixture_oxygen",
-      "label": "Mixture/Oxygen",
-      "dev": 19,
-      "cmd": 3149,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OXYGEN", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "MIXTURE", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "nav_lights",
-      "label": "Navigation Lights Off/Min/Med/Max",
-      "dev": 46,
-      "cmd": 3032,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 60 },
-        { "label": "MIN", "delta": 0.33, "is_default": false, "weight": 15 },
-        { "label": "MED", "delta": 0.66, "is_default": false, "weight": 15 },
-        { "label": "MAX", "delta": 1.0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "konus_man_auto",
-      "label": "Nosecone Control Manual/Auto",
-      "dev": 17,
-      "cmd": 3134,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "AUTO", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "MANUAL", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "konus_on",
-      "label": "Nosecone On/Off",
-      "dev": 17,
-      "cmd": 3133,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "nosegear_brake",
-      "label": "Nosegear Brake Off/On",
-      "dev": 13,
-      "cmd": 3118,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 15 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 85 }
-      ]
-    },
-    {
-      "id": "npp_on",
-      "label": "NPP On/Off",
-      "dev": 23,
-      "cmd": 3142,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "asp_pipper_on",
-      "label": "Pipper On/Off",
-      "dev": 41,
-      "cmd": 3160,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "pito_select",
-      "label": "Pitot Tube Selector Main/Emergency",
-      "dev": 27,
-      "cmd": 3019,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "MAIN", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "EMERG", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "pito_heat_main",
-      "label": "Pitot Tube/Periscope/Clock Heat",
-      "dev": 27,
-      "cmd": 3020,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "po750_1",
-      "label": "PO-750 Inverter #1 On/Off",
-      "dev": 2,
-      "cmd": 3005,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "po750_2",
-      "label": "PO-750 Inverter #2 On/Off",
-      "dev": 2,
-      "cmd": 3006,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "pitanie12",
-      "label": "Pylon 1-2 Power On/Off",
-      "dev": 42,
-      "cmd": 3169,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 30 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 70 }
-      ]
-    },
-    {
-      "id": "pitanie34",
-      "label": "Pylon 3-4 Power On/Off",
-      "dev": 42,
-      "cmd": 3170,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 30 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 70 }
-      ]
-    },
-    {
-      "id": "radar_on",
-      "label": "Radar Off/Prep/On",
-      "dev": 40,
-      "cmd": 3094,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 },
-        { "label": "PREP", "delta": 0.5, "is_default": false, "weight": 15 },
-        { "label": "ON", "delta": 1.0, "is_default": false, "weight": 5 }
-      ]
-    },
-    {
-      "id": "radio_alt_on",
-      "label": "Radio Altimeter/Marker On/Off",
-      "dev": 33,
-      "cmd": 3145,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "radio_on",
-      "label": "Radio System On/Off",
-      "dev": 22,
-      "cmd": 3041,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "radio_compass",
-      "label": "Radio/Compass",
-      "dev": 22,
-      "cmd": 3042,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "RADIO", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "COMPASS", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "rsbn_bearing",
-      "label": "RSBN Bearing",
-      "dev": 25,
-      "cmd": 3062,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 20 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 }
-      ]
-    },
-    {
-      "id": "rsbn_far",
-      "label": "RSBN Distance",
-      "dev": 25,
-      "cmd": 3063,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 20 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 }
-      ]
-    },
-    {
-      "id": "rsbn_mode",
-      "label": "RSBN Mode Land/Navigation/Descend",
-      "dev": 25,
-      "cmd": 3055,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "LAND", "delta": 0, "is_default": true, "weight": 60 },
-        { "label": "NAV", "delta": 0.5, "is_default": false, "weight": 30 },
-        { "label": "DESCEND", "delta": 1.0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "rsbn_on",
-      "label": "RSBN On/Off",
-      "dev": 25,
-      "cmd": 3054,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 30 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 70 }
-      ]
-    },
-    {
-      "id": "rsbn_ark",
-      "label": "RSBN/ARK",
-      "dev": 25,
-      "cmd": 3056,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "RSBN", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "ARK", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "sarpp",
-      "label": "SARPP-12 Flight Data Recorder On/Off",
-      "dev": 49,
-      "cmd": 3209,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "sau_on",
-      "label": "SAU On/Off",
-      "dev": 8,
-      "cmd": 3064,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "sau_pitch",
-      "label": "SAU Pitch On/Off",
-      "dev": 8,
-      "cmd": 3065,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "sau_low_alt",
-      "label": "SAU Preset Limit Altitude",
-      "dev": 8,
-      "cmd": 3069,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 20 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 }
-      ]
-    },
-    {
-      "id": "pito_heat_aux",
-      "label": "Secondary Pitot Tube Heat",
-      "dev": 27,
-      "cmd": 3021,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "canopy_lock",
-      "label": "Secure Canopy",
-      "dev": 43,
-      "cmd": 3151,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "sod_on",
-      "label": "SOD IFF On/Off",
-      "dev": 39,
-      "cmd": 3090,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "sod_mode",
-      "label": "SOD Modes",
-      "dev": 39,
-      "cmd": 3093,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "1", "delta": 0, "is_default": true, "weight": 40 },
-        { "label": "2", "delta": 0.25, "is_default": false, "weight": 15 },
-        { "label": "3", "delta": 0.5, "is_default": false, "weight": 15 },
-        { "label": "4", "delta": 0.75, "is_default": false, "weight": 15 },
-        { "label": "5", "delta": 1.0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "sod_volni",
-      "label": "SOD Wave Selector 3/1/2",
-      "dev": 39,
-      "cmd": 3092,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "3", "delta": 0, "is_default": true, "weight": 50 },
-        { "label": "1", "delta": 0.5, "is_default": false, "weight": 30 },
-        { "label": "2", "delta": 1.0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "iab_spec_ab",
-      "label": "Special AB/Missile-Rocket-Bombs-Cannon",
-      "dev": 56,
-      "cmd": 3200,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "SPECIAL", "delta": 1, "is_default": false, "weight": 10 },
-        { "label": "NORMAL", "delta": 0, "is_default": true, "weight": 90 }
-      ]
-    },
-    {
-      "id": "spo_day_night",
-      "label": "SPO-10 Night/Day",
-      "dev": 37,
-      "cmd": 3085,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "DAY", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "NIGHT", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "spo_on",
-      "label": "SPO-10 RWR On/Off",
-      "dev": 37,
-      "cmd": 3083,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 90 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 10 }
-      ]
-    },
-    {
-      "id": "sprd_drop_cover",
-      "label": "SPRD RATO Drop Cover",
-      "dev": 48,
-      "cmd": 3109,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OPEN", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "sprd_drop_on",
-      "label": "SPRD RATO Drop System On/Off",
-      "dev": 48,
-      "cmd": 3107,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "sprd_start_cover",
-      "label": "SPRD RATO Start Cover",
-      "dev": 48,
-      "cmd": 3108,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OPEN", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "CLOSED", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "sprd_start_on",
-      "label": "SPRD RATO System On/Off",
-      "dev": 48,
-      "cmd": 3106,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 5 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 95 }
-      ]
-    },
-    {
-      "id": "sps_on",
-      "label": "SPS System Off/On",
-      "dev": 10,
-      "cmd": 3112,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "sps141_cont",
-      "label": "SPS-141 Continuous/Impulse",
-      "dev": 57,
-      "cmd": 3217,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "CONTINUOUS", "delta": 1, "is_default": true, "weight": 60 },
-        { "label": "IMPULSE", "delta": 0, "is_default": false, "weight": 40 }
-      ]
-    },
-    {
-      "id": "sps141_disp",
-      "label": "SPS-141 Dispenser Auto/Manual",
-      "dev": 57,
-      "cmd": 3219,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "AUTO", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "MANUAL", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "sps141_off_paral_full",
-      "label": "SPS-141 Off/Parallel/Full",
-      "dev": 57,
-      "cmd": 3220,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 60 },
-        { "label": "PARALLEL", "delta": 0.5, "is_default": false, "weight": 25 },
-        { "label": "FULL", "delta": 1.0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "sps141_on",
-      "label": "SPS-141 On/Off",
-      "dev": 57,
-      "cmd": 3214,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": false, "weight": 20 },
-        { "label": "OFF", "delta": 0, "is_default": true, "weight": 80 }
-      ]
-    },
-    {
-      "id": "sps141_prog",
-      "label": "SPS-141 Program I/II",
-      "dev": 57,
-      "cmd": 3216,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "I", "delta": 1, "is_default": true, "weight": 60 },
-        { "label": "II", "delta": 0, "is_default": false, "weight": 40 }
-      ]
-    },
-    {
-      "id": "sps141_tx",
-      "label": "SPS-141 Transmit/Receive",
-      "dev": 57,
-      "cmd": 3215,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "TRANSMIT", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "RECEIVE", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "squelch",
-      "label": "Squelch On/Off",
-      "dev": 22,
-      "cmd": 3043,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "srzo_vopros",
-      "label": "SRZO IFF Coder/Decoder On/Off",
-      "dev": 38,
-      "cmd": 3087,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "trimmer_on",
-      "label": "Trimmer On/Off",
-      "dev": 9,
-      "cmd": 3131,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "ON", "delta": 1, "is_default": true, "weight": 85 },
-        { "label": "OFF", "delta": 0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "uk2m_gskm",
-      "label": "UK-2M Mic Amplifier GS/KM",
-      "dev": 51,
-      "cmd": 3268,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "GS", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "KM", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "uk2m_ml",
-      "label": "UK-2M Mic Amplifier M/L",
-      "dev": 51,
-      "cmd": 3267,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "M", "delta": 1, "is_default": true, "weight": 70 },
-        { "label": "L", "delta": 0, "is_default": false, "weight": 30 }
-      ]
-    },
-    {
-      "id": "asp_air_ground",
-      "label": "Weapon Mode Air/Ground",
-      "dev": 42,
-      "cmd": 3183,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "AIR", "delta": 1, "is_default": true, "weight": 80 },
-        { "label": "GROUND", "delta": 0, "is_default": false, "weight": 20 }
-      ]
-    },
-    {
-      "id": "asp_ss_neutr_rns",
-      "label": "Weapon Mode IR Missile/Neutral/SAR Missile",
-      "dev": 42,
-      "cmd": 3184,
-      "enabled": true,
-      "type": "discrete",
-      "positions": [
-        { "label": "NEUTRAL", "delta": 0, "is_default": true, "weight": 60 },
-        { "label": "IR MISSILE", "delta": 0.5, "is_default": false, "weight": 25 },
-        { "label": "SAR MISSILE", "delta": 1.0, "is_default": false, "weight": 15 }
-      ]
-    },
-    {
-      "id": "altimeter_pressure",
-      "label": "Altimeter Pressure Knob",
-      "dev": 32,
-      "cmd": 3073,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "ark_channel",
-      "label": "ARK Channel",
-      "dev": 24,
-      "cmd": 3050,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "ark_sound",
-      "label": "ARK Sound",
-      "dev": 24,
-      "cmd": 3048,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "ark_zone",
-      "label": "ARK Zone",
-      "dev": 24,
-      "cmd": 3051,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "canopy_vent",
-      "label": "Canopy Ventilation System",
-      "dev": 43,
-      "cmd": 3272,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "text_backlight",
-      "label": "Cockpit Texts Back-light",
-      "dev": 46,
-      "cmd": 3231,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "dan_alt_select",
-      "label": "Dangerous Altitude Warning Set",
-      "dev": 33,
-      "cmd": 3146,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "asp_net_light",
-      "label": "Fix Net Light Control",
-      "dev": 41,
-      "cmd": 3666,
-      "enabled": true,
-      "type": "continuous"
-    },
-    {
-      "id": "fuel_qt_set",
-      "label": "Fuel Quantity Set",
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "fuel_qty_sel",
+      "label": "Adjust Fuel Quantity",
       "dev": 5,
       "cmd": 3013,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "gs_max_min",
-      "label": "G-Suit Max/Min Valve",
+      "id": "vari_set",
+      "label": "Adjust Variometer",
+      "dev": 34,
+      "cmd": 3203,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "afb_pwr",
+      "label": "Afterburner",
+      "dev": 6,
+      "cmd": 3023,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "ail_bst",
+      "label": "Aileron Boosters",
+      "dev": 44,
+      "cmd": 3138,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "cpt_air_cnd",
+      "label": "Air Conditioning Select",
+      "dev": 50,
+      "cmd": 3208,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "COLD",
+          "delta": 0.33,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "AUTO",
+          "delta": 0.66,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "WARM",
+          "delta": 0.99,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "air_brk",
+      "label": "Airbrakes",
+      "dev": 12,
+      "cmd": 3116,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "alt_press",
+      "label": "Altimeter Pressure Knob/Gauge",
+      "dev": 32,
+      "cmd": 3073,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "alt_warn",
+      "label": "Altitude Warning Alarm Adjust",
+      "dev": 33,
+      "cmd": 3146,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.14,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.28,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.42,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 0.56,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "6",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "7",
+          "delta": 0.84,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "8",
+          "delta": 0.98,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "apu_pwr",
+      "label": "APU",
+      "dev": 3,
+      "cmd": 3014,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "arc_pwr",
+      "label": "ARC",
+      "dev": 24,
+      "cmd": 3047,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "arc_cmp",
+      "label": "ARC Antenna/Compass",
+      "dev": 24,
+      "cmd": 3052,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ANTENNA",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "COMPASS",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "arc_chan",
+      "label": "ARC Channel",
+      "dev": 24,
+      "cmd": 3050,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "6",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "7",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "8",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "9",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "arc_mrk",
+      "label": "ARC Marker Far/Near",
+      "dev": 24,
+      "cmd": 3053,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "FAR",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "NEAR",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "arc_vol",
+      "label": "ARC Volume",
+      "dev": 24,
+      "cmd": 3048,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "arc_zone",
+      "label": "ARC Zones",
+      "dev": 24,
+      "cmd": 3051,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.14,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.28,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.42,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 0.56,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "6",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "7",
+          "delta": 0.84,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "8",
+          "delta": 0.98,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "aru_mode",
+      "label": "ARU Auto/Manual",
+      "dev": 11,
+      "cmd": 3113,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUTO",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "MANUAL",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "bat_pwr",
+      "label": "Battery",
+      "dev": 1,
+      "cmd": 3001,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "bat_htr",
+      "label": "Battery Heat",
+      "dev": 1,
+      "cmd": 3002,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "can_emr_rel",
+      "label": "Canopy Emergency Jettison",
+      "dev": 43,
+      "cmd": 3154,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "can_vent",
+      "label": "Canopy Ventilation",
+      "dev": 43,
+      "cmd": 3272,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "ctr_warn_lights_brt",
+      "label": "Center Warn Lights Brightness",
+      "dev": 47,
+      "cmd": 3076,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "clk_left_lvr_rot",
+      "label": "Clock Left Lever Rotate",
+      "dev": 26,
+      "cmd": 3251,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "clk_right_lvr_rot",
+      "label": "Clock Right Lever Rotate",
+      "dev": 26,
+      "cmd": 3253,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "gyro_2",
+      "label": "DA-200 Signal, Gyro, NPP, RLS, SAU Power",
+      "dev": 21,
+      "cmd": 3009,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "dc_gen",
+      "label": "DC Generator",
+      "dev": 1,
+      "cmd": 3003,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "drn_pump",
+      "label": "Drain Fuel Pump",
+      "dev": 4,
+      "cmd": 3012,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "chute_drop_cvr",
+      "label": "Drogue Chute Drop Cover",
+      "dev": 16,
+      "cmd": 3129,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "ejection_seat_emergency_oxygen",
+      "label": "Ejection Seat Emergency Oxygen",
+      "dev": 51,
+      "cmd": 3266,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "elec_bus_1",
+      "label": "Electrical Bus Nr. 1",
+      "dev": 51,
+      "cmd": 3258,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "elec_bus_1_cover",
+      "label": "Electrical Bus Nr. 1 Cover",
+      "dev": 51,
+      "cmd": 3257,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "elec_bus_2",
+      "label": "Electrical Bus Nr. 2",
+      "dev": 51,
+      "cmd": 3259,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "emr_afb_pwr",
+      "label": "Emergency Afterburner",
+      "dev": 6,
+      "cmd": 3024,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "em_brk",
+      "label": "Emergency Brake",
+      "dev": 13,
+      "cmd": 3119,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "em_gear_rel",
+      "label": "Emergency Gear Release",
+      "dev": 14,
+      "cmd": 3122,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "aux_inv",
+      "label": "Emergency Inverter",
+      "dev": 2,
+      "cmd": 3007,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "emr_hyd_pump",
+      "label": "Emergency Main Hydraulic Pump",
+      "dev": 44,
+      "cmd": 3137,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "em_msl_jet_cvr",
+      "label": "Emergency Missile/Rocket Launch Cover",
+      "dev": 42,
+      "cmd": 3175,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "em_nose_gear_rel",
+      "label": "Emergency Nose Gear Release",
+      "dev": 14,
+      "cmd": 3123,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "noz_pos",
+      "label": "Emergency Nozzle Position Control",
+      "dev": 18,
+      "cmd": 3136,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "emr_o2",
+      "label": "Emergency Oxygen",
+      "dev": 19,
+      "cmd": 3148,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "eng_air_start",
+      "label": "Engine Air Start",
+      "dev": 3,
+      "cmd": 3017,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "eng_start_type",
+      "label": "Engine Normal/Cold Start Select",
+      "dev": 3,
+      "cmd": 3015,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "NORMAL",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "COLD",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "eng_stop",
+      "label": "Engine Stop/Throttle Lock",
+      "dev": 3,
+      "cmd": 3238,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "fire_ext_pwr",
+      "label": "Fire Extinguisher",
+      "dev": 53,
+      "cmd": 3025,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "fire_ext_cvr",
+      "label": "Fire Extinguisher Cover",
+      "dev": 53,
+      "cmd": 3026,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "flaps_ldg",
+      "label": "Flaps Landing",
+      "dev": 15,
+      "cmd": 3126,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "flaps_neut",
+      "label": "Flaps Neutral",
+      "dev": 15,
+      "cmd": 3124,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "flaps_to",
+      "label": "Flaps Take-off",
+      "dev": 15,
+      "cmd": 3125,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "flt_dta_rec",
+      "label": "Flight Recorder",
+      "dev": 49,
+      "cmd": 3209,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "pump_gr1",
+      "label": "Fuel Pump Group 1",
+      "dev": 4,
+      "cmd": 3011,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "pump_gr3",
+      "label": "Fuel Pump Group 3",
+      "dev": 4,
+      "cmd": 3010,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "fuel_warn_lights_brt",
+      "label": "Fuel Warn Lights Brightness",
+      "dev": 47,
+      "cmd": 3074,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "g_suit_valve",
+      "label": "G Suit Min/Max Valve",
       "dev": 51,
       "cmd": 3256,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "harness_loose_tight",
+      "id": "gauge_light",
+      "label": "Gauge Backlights",
+      "dev": 46,
+      "cmd": 3232,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "gear_lvr",
+      "label": "Gear",
+      "dev": 14,
+      "cmd": 3121,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DOWN",
+          "delta": -1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "NEUTRAL",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "UP",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "gear_lock",
+      "label": "Gear Handle Lock",
+      "dev": 14,
+      "cmd": 3120,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "gear_warn_lights_brt",
+      "label": "Gear Warn Lights Brightness",
+      "dev": 47,
+      "cmd": 3079,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "gun_pwr",
+      "label": "GS-23 Gun",
+      "dev": 42,
+      "cmd": 3171,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "gun_cam",
+      "label": "Gun Camera",
+      "dev": 42,
+      "cmd": 3172,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sight_pwr",
+      "label": "Gunsight",
+      "dev": 41,
+      "cmd": 3155,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sight_man_auto",
+      "label": "Gunsight Auto/Manual",
+      "dev": 41,
+      "cmd": 3156,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUTO",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "MANUAL",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "sight_fix_net",
+      "label": "Gunsight Fixed Net",
+      "dev": 41,
+      "cmd": 3161,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "fix_net_brt",
+      "label": "Gunsight Fixed Net Brightness",
+      "dev": 41,
+      "cmd": 3166,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "sight_msl_gun",
+      "label": "Gunsight Gun/Missile Select",
+      "dev": 41,
+      "cmd": 3158,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "GUN",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "MISSILE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "sight_gyro_msl",
+      "label": "Gunsight Gyro/Missile Select",
+      "dev": 41,
+      "cmd": 3159,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "GYRO",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "MISSILE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "int_angle",
+      "label": "Gunsight Intercept Angle",
+      "dev": 41,
+      "cmd": 3163,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "sight_ppr",
+      "label": "Gunsight Pipper",
+      "dev": 41,
+      "cmd": 3160,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "ppr_brt",
+      "label": "Gunsight Pipper Brightness",
+      "dev": 41,
+      "cmd": 3165,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "scl_brt",
+      "label": "Gunsight Scale Brightness",
+      "dev": 41,
+      "cmd": 3164,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "sight_sht_bmb",
+      "label": "Gunsight Shoot/Bombard Select",
+      "dev": 41,
+      "cmd": 3157,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "SHOOT",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "BOMBARD",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "tgt_size",
+      "label": "Gunsight Target Size",
+      "dev": 41,
+      "cmd": 3162,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "gyro_1",
+      "label": "Gyro, NPP, SAU, RLS Signal, KPP Power",
+      "dev": 21,
+      "cmd": 3008,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "hrns_ls_tght",
       "label": "Harness Loose/Tight",
       "dev": 51,
       "cmd": 3273,
@@ -1403,87 +1520,1713 @@
       "type": "continuous"
     },
     {
-      "id": "instruments_backlight",
-      "label": "Instruments Back-light",
-      "dev": 46,
-      "cmd": 3232,
+      "id": "hrns_sep",
+      "label": "Harness Separation",
+      "dev": 51,
+      "cmd": 3270,
       "enabled": true,
-      "type": "continuous"
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
     },
     {
-      "id": "asp_intercept_angle",
-      "label": "Intercept Angle",
-      "dev": 41,
-      "cmd": 3663,
+      "id": "helm_air",
+      "label": "Helmet Air Conditioning",
+      "dev": 19,
+      "cmd": 3147,
       "enabled": true,
-      "type": "continuous"
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
     },
     {
-      "id": "red_lights_main",
-      "label": "Main Red Lights",
-      "dev": 46,
-      "cmd": 3428,
+      "id": "helm_heat_mode",
+      "label": "Helmet Heat Auto/Manual",
+      "dev": 45,
+      "cmd": 3205,
       "enabled": true,
-      "type": "continuous"
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUTO",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "MANUAL",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
     },
     {
-      "id": "white_lights_main",
-      "label": "Main White Lights",
-      "dev": 46,
-      "cmd": 3427,
+      "id": "helm_vsr",
+      "label": "Helmet Visor",
+      "dev": 45,
+      "cmd": 3207,
       "enabled": true,
-      "type": "continuous"
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
     },
     {
-      "id": "missile_sound",
-      "label": "Missile Seeker Sound",
+      "id": "inb_pyl_jet_cvr",
+      "label": "Inboard Pylon Jettison Cover",
+      "dev": 42,
+      "cmd": 3181,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "msl_vol",
+      "label": "IR Missile Seeker Volume",
       "dev": 42,
       "cmd": 3189,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "konus_button",
-      "label": "Nosecone Manual Position Controller",
+      "id": "ir_sar_neu",
+      "label": "IR/Neutral/SAR Missile Mode",
+      "dev": 42,
+      "cmd": 3184,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "IR MISSILE",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "NEUTRAL",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "SAR MISSILE",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "kpp_main_emr",
+      "label": "KPP Main/Emergency",
+      "dev": 28,
+      "cmd": 3139,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MAIN",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "EMERGENCY",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "kpp_set",
+      "label": "KPP Set Pitch",
+      "dev": 28,
+      "cmd": 3141,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "lnd_light",
+      "label": "Landing Lights",
+      "dev": 46,
+      "cmd": 3033,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "TAXI",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "LANDING",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "can_lck",
+      "label": "Lock Canopy",
+      "dev": 43,
+      "cmd": 3151,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "mach_test_cvr",
+      "label": "Mach Test Button Cover",
+      "dev": 17,
+      "cmd": 3260,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "main_warn_lights_brt",
+      "label": "Main Warn Lights Brightness",
+      "dev": 47,
+      "cmd": 3075,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "master_warn_light_brt",
+      "label": "Master Warn Light Brightness",
+      "dev": 47,
+      "cmd": 3277,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "msl_heat",
+      "label": "Missile/Rocket Heat",
+      "dev": 42,
+      "cmd": 3167,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "msl_lnch",
+      "label": "Missile/Rocket Launch",
+      "dev": 42,
+      "cmd": 3168,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "mix_o2",
+      "label": "Mixture/Oxygen",
+      "dev": 19,
+      "cmd": 3149,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MIXTURE",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "OXYGEN",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "nav_lights",
+      "label": "Nav Lights",
+      "dev": 46,
+      "cmd": 3032,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "DIM",
+          "delta": 0.33,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "MED",
+          "delta": 0.66,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "BRIGHT",
+          "delta": 0.99,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "cone_pwr",
+      "label": "Nosecone",
+      "dev": 17,
+      "cmd": 3133,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "cone_mode",
+      "label": "Nosecone Auto/Manual control",
+      "dev": 17,
+      "cmd": 3134,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUTO",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "MANUAL",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "cone_adj",
+      "label": "Nosecone Manual Adjust",
       "dev": 17,
       "cmd": 3135,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "asp_pipper_light",
-      "label": "Pipper Light Control",
-      "dev": 41,
-      "cmd": 3665,
+      "id": "nw_brk",
+      "label": "Nosegear Brake",
+      "dev": 13,
+      "cmd": 3118,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "npp_pwr",
+      "label": "NPP",
+      "dev": 23,
+      "cmd": 3142,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "npp_crs",
+      "label": "NPP Course Set",
+      "dev": 23,
+      "cmd": 3144,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "rsbn_land",
-      "label": "PRMG Landing",
+      "id": "nuk_air_brst",
+      "label": "Nuke Air/Ground Burst",
+      "dev": 56,
+      "cmd": 3202,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AIR",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "GROUND",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "nuk_brk_cht",
+      "label": "Nuke brake chute",
+      "dev": 56,
+      "cmd": 3201,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "nuk_emr_jet",
+      "label": "Nuke Emergency Jettison",
+      "dev": 56,
+      "cmd": 3197,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "nuk_emr_jet_arm",
+      "label": "Nuke Emergency Jettison - ARM",
+      "dev": 56,
+      "cmd": 3198,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "nuk_tac_jet",
+      "label": "Nuke Tactical Drop",
+      "dev": 56,
+      "cmd": 3199,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "obd_pyl_jet_cvr",
+      "label": "Outboard Pylon Jettison Cover",
+      "dev": 42,
+      "cmd": 3179,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "pit_sel",
+      "label": "Pitot Main/Emergency Select",
+      "dev": 27,
+      "cmd": 3019,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "MAIN",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "EMERGENCY",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "pit_heat_main",
+      "label": "Pitot, Clock, Periscope Heat",
+      "dev": 27,
+      "cmd": 3020,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "po7501",
+      "label": "PO-750 Inverter #1",
+      "dev": 2,
+      "cmd": 3006,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "po7502",
+      "label": "PO-750 Inverter #2",
+      "dev": 2,
+      "cmd": 3005,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "cab_pres",
+      "label": "Pressurize Canopy",
+      "dev": 43,
+      "cmd": 3150,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "prmg_chan",
+      "label": "PRMG Channel",
       "dev": 25,
       "cmd": 3060,
       "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.01,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.02,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.03,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 0.04,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "6",
+          "delta": 0.05,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "7",
+          "delta": 0.06,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "8",
+          "delta": 0.07,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "9",
+          "delta": 0.08,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "10",
+          "delta": 0.09,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "11",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "12",
+          "delta": 0.11,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "13",
+          "delta": 0.12,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "14",
+          "delta": 0.13,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "15",
+          "delta": 0.14,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "16",
+          "delta": 0.15,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "17",
+          "delta": 0.16,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "18",
+          "delta": 0.17,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "19",
+          "delta": 0.18,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "20",
+          "delta": 0.19,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "21",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "22",
+          "delta": 0.21,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "23",
+          "delta": 0.22,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "24",
+          "delta": 0.23,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "25",
+          "delta": 0.24,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "26",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "27",
+          "delta": 0.26,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "28",
+          "delta": 0.27,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "29",
+          "delta": 0.28,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "30",
+          "delta": 0.29,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "31",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "32",
+          "delta": 0.31,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "33",
+          "delta": 0.32,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "34",
+          "delta": 0.33,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "35",
+          "delta": 0.34,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "36",
+          "delta": 0.35,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "37",
+          "delta": 0.36,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "38",
+          "delta": 0.37,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "39",
+          "delta": 0.38,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "40",
+          "delta": 0.39,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "41",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "42",
+          "delta": 0.41,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "43",
+          "delta": 0.42,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "44",
+          "delta": 0.43,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "45",
+          "delta": 0.44,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "46",
+          "delta": 0.45,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "47",
+          "delta": 0.46,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "48",
+          "delta": 0.47,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "49",
+          "delta": 0.48,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "50",
+          "delta": 0.49,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "51",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "52",
+          "delta": 0.51,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "53",
+          "delta": 0.52,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "54",
+          "delta": 0.53,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "55",
+          "delta": 0.54,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "56",
+          "delta": 0.55,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "57",
+          "delta": 0.56,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "58",
+          "delta": 0.57,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "59",
+          "delta": 0.58,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "60",
+          "delta": 0.59,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "61",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "62",
+          "delta": 0.61,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "63",
+          "delta": 0.62,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "64",
+          "delta": 0.63,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "65",
+          "delta": 0.64,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "66",
+          "delta": 0.65,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "67",
+          "delta": 0.66,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "68",
+          "delta": 0.67,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "69",
+          "delta": 0.68,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "70",
+          "delta": 0.69,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "71",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "72",
+          "delta": 0.71,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "73",
+          "delta": 0.72,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "74",
+          "delta": 0.73,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "75",
+          "delta": 0.74,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "76",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "77",
+          "delta": 0.76,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "78",
+          "delta": 0.77,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "79",
+          "delta": 0.78,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "80",
+          "delta": 0.79,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "81",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "82",
+          "delta": 0.81,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "83",
+          "delta": 0.82,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "84",
+          "delta": 0.83,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "85",
+          "delta": 0.84,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "86",
+          "delta": 0.85,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "87",
+          "delta": 0.86,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "88",
+          "delta": 0.87,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "89",
+          "delta": 0.88,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "90",
+          "delta": 0.89,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "91",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "92",
+          "delta": 0.91,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "93",
+          "delta": 0.92,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "94",
+          "delta": 0.93,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "95",
+          "delta": 0.94,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "96",
+          "delta": 0.95,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "97",
+          "delta": 0.96,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "98",
+          "delta": 0.97,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "99",
+          "delta": 0.98,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "100",
+          "delta": 0.99,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "pyl_empty_warn_lights_brt",
+      "label": "Pylon Empty Warn Lights Brightness",
+      "dev": 47,
+      "cmd": 3077,
+      "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "radar_filter",
-      "label": "Radar Polar Filter",
+      "id": "pyl_ld_warn_lights_brt",
+      "label": "Pylon Loaded Warn Lights Brightness",
+      "dev": 47,
+      "cmd": 3078,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "inb_pyl_pwr",
+      "label": "Pylons 1-2",
+      "dev": 42,
+      "cmd": 3169,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "obd_pyl_pwr",
+      "label": "Pylons 3-4",
+      "dev": 42,
+      "cmd": 3170,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "radar_pwr",
+      "label": "RADAR",
+      "dev": 40,
+      "cmd": 3094,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 0.0,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "STANDBY",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 1.0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "radar_emis",
+      "label": "RADAR Emission Mode",
+      "dev": 40,
+      "cmd": 3255,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "radar_emis_cover",
+      "label": "RADAR Emission Mode Cover",
+      "dev": 40,
+      "cmd": 3254,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "radar_beam",
+      "label": "RADAR Fixed Beam",
+      "dev": 40,
+      "cmd": 3096,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "radar_low_alt",
+      "label": "RADAR Low Altitude",
+      "dev": 40,
+      "cmd": 3095,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "COMP",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "ON",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "radar_flt",
+      "label": "RADAR Polar Filter",
       "dev": 40,
       "cmd": 3239,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "radio_channel",
+      "id": "rad_pwr",
+      "label": "Radio",
+      "dev": 22,
+      "cmd": 3041,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "ralt_pwr",
+      "label": "Radio Altimeter On",
+      "dev": 33,
+      "cmd": 3145,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "rad_chan",
       "label": "Radio Channel",
       "dev": 22,
       "cmd": 3045,
       "enabled": true,
-      "type": "continuous"
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.05,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.15,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "6",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "7",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "8",
+          "delta": 0.35,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "9",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "10",
+          "delta": 0.45,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "11",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "12",
+          "delta": 0.55,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "13",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "14",
+          "delta": 0.65,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "15",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "16",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "17",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "18",
+          "delta": 0.85,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "19",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "20",
+          "delta": 0.95,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
     },
     {
-      "id": "radio_volume",
+      "id": "rad_sql",
+      "label": "Radio Squelch",
+      "dev": 22,
+      "cmd": 3043,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "rad_vol",
       "label": "Radio Volume",
       "dev": 22,
       "cmd": 3044,
@@ -1491,36 +3234,1460 @@
       "type": "continuous"
     },
     {
-      "id": "rsbn_nav",
-      "label": "RSBN Navigation",
-      "dev": 25,
-      "cmd": 3059,
+      "id": "rad_cps",
+      "label": "Radio/Compass Audio",
+      "dev": 22,
+      "cmd": 3042,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "RADIO",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "COMPASS",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "red_light",
+      "label": "Red Lights",
+      "dev": 46,
+      "cmd": 3233,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "rsbn_sound",
-      "label": "RSBN Sound",
+      "id": "rsbn_pwr",
+      "label": "RSBN",
+      "dev": 25,
+      "cmd": 3054,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "rsbn_brg",
+      "label": "RSBN Bearing",
+      "dev": 25,
+      "cmd": 3062,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "rsbn_chan",
+      "label": "RSBN Channel",
+      "dev": 25,
+      "cmd": 3059,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.01,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.02,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.03,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 0.04,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "6",
+          "delta": 0.05,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "7",
+          "delta": 0.06,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "8",
+          "delta": 0.07,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "9",
+          "delta": 0.08,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "10",
+          "delta": 0.09,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "11",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "12",
+          "delta": 0.11,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "13",
+          "delta": 0.12,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "14",
+          "delta": 0.13,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "15",
+          "delta": 0.14,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "16",
+          "delta": 0.15,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "17",
+          "delta": 0.16,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "18",
+          "delta": 0.17,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "19",
+          "delta": 0.18,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "20",
+          "delta": 0.19,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "21",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "22",
+          "delta": 0.21,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "23",
+          "delta": 0.22,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "24",
+          "delta": 0.23,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "25",
+          "delta": 0.24,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "26",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "27",
+          "delta": 0.26,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "28",
+          "delta": 0.27,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "29",
+          "delta": 0.28,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "30",
+          "delta": 0.29,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "31",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "32",
+          "delta": 0.31,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "33",
+          "delta": 0.32,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "34",
+          "delta": 0.33,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "35",
+          "delta": 0.34,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "36",
+          "delta": 0.35,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "37",
+          "delta": 0.36,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "38",
+          "delta": 0.37,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "39",
+          "delta": 0.38,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "40",
+          "delta": 0.39,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "41",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "42",
+          "delta": 0.41,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "43",
+          "delta": 0.42,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "44",
+          "delta": 0.43,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "45",
+          "delta": 0.44,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "46",
+          "delta": 0.45,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "47",
+          "delta": 0.46,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "48",
+          "delta": 0.47,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "49",
+          "delta": 0.48,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "50",
+          "delta": 0.49,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "51",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "52",
+          "delta": 0.51,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "53",
+          "delta": 0.52,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "54",
+          "delta": 0.53,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "55",
+          "delta": 0.54,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "56",
+          "delta": 0.55,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "57",
+          "delta": 0.56,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "58",
+          "delta": 0.57,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "59",
+          "delta": 0.58,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "60",
+          "delta": 0.59,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "61",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "62",
+          "delta": 0.61,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "63",
+          "delta": 0.62,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "64",
+          "delta": 0.63,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "65",
+          "delta": 0.64,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "66",
+          "delta": 0.65,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "67",
+          "delta": 0.66,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "68",
+          "delta": 0.67,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "69",
+          "delta": 0.68,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "70",
+          "delta": 0.69,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "71",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "72",
+          "delta": 0.71,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "73",
+          "delta": 0.72,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "74",
+          "delta": 0.73,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "75",
+          "delta": 0.74,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "76",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "77",
+          "delta": 0.76,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "78",
+          "delta": 0.77,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "79",
+          "delta": 0.78,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "80",
+          "delta": 0.79,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "81",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "82",
+          "delta": 0.81,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "83",
+          "delta": 0.82,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "84",
+          "delta": 0.83,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "85",
+          "delta": 0.84,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "86",
+          "delta": 0.85,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "87",
+          "delta": 0.86,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "88",
+          "delta": 0.87,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "89",
+          "delta": 0.88,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "90",
+          "delta": 0.89,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "91",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "92",
+          "delta": 0.91,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "93",
+          "delta": 0.92,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "94",
+          "delta": 0.93,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "95",
+          "delta": 0.94,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "96",
+          "delta": 0.95,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "97",
+          "delta": 0.96,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "98",
+          "delta": 0.97,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "99",
+          "delta": 0.98,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "100",
+          "delta": 0.99,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "rsbn_dist",
+      "label": "RSBN Distance",
+      "dev": 25,
+      "cmd": 3063,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "rsbn_mode",
+      "label": "RSBN Mode",
+      "dev": 25,
+      "cmd": 3055,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "LAND",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "NAVIGATION",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "DESCEND",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "rsbn_vol",
+      "label": "RSBN Volume",
       "dev": 25,
       "cmd": 3058,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "asp_scale_light",
-      "label": "Scale Backlights Control",
-      "dev": 41,
-      "cmd": 3664,
+      "id": "rsbn_arc_sel",
+      "label": "RSBN/ARC Select",
+      "dev": 25,
+      "cmd": 3056,
       "enabled": true,
-      "type": "continuous"
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "RSBN",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "ARC",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
     },
     {
-      "id": "spo_volume",
-      "label": "SPO-10 Volume",
+      "id": "sau_pwr",
+      "label": "SAU",
+      "dev": 8,
+      "cmd": 3064,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sau_low",
+      "label": "SAU Limit Altitude",
+      "dev": 8,
+      "cmd": 3069,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sau_pitch_pwr",
+      "label": "SAU Pitch",
+      "dev": 8,
+      "cmd": 3065,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "pit_heat_aux",
+      "label": "Secondary Pitot Heat",
+      "dev": 27,
+      "cmd": 3021,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sod_pwr",
+      "label": "SOD IFF",
+      "dev": 39,
+      "cmd": 3090,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sod_mode",
+      "label": "SOD Mode Select",
+      "dev": 39,
+      "cmd": 3093,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.25,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.75,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "sod_wave",
+      "label": "SOD Wave Selector",
+      "dev": 39,
+      "cmd": 3092,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "3",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "1",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "2",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "spo_pwr",
+      "label": "SPO",
+      "dev": 37,
+      "cmd": 3083,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "spo_day",
+      "label": "SPO Day/Night",
+      "dev": 37,
+      "cmd": 3085,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "DAY",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "NIGHT",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "spo_vol",
+      "label": "SPO Volume",
       "dev": 37,
       "cmd": 3086,
       "enabled": true,
       "type": "continuous"
+    },
+    {
+      "id": "sprd_pwr",
+      "label": "SPRD",
+      "dev": 48,
+      "cmd": 3106,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sprd_drop_pwr",
+      "label": "SPRD Drop System",
+      "dev": 48,
+      "cmd": 3107,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sprd_start_cover",
+      "label": "SPRD Start Cover",
+      "dev": 48,
+      "cmd": 3108,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sprd_drop_cover",
+      "label": "SPRD/Flare Drop Cover",
+      "dev": 48,
+      "cmd": 3109,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sps_pwr",
+      "label": "SPS System",
+      "dev": 10,
+      "cmd": 3112,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sps141_pwr",
+      "label": "SPS-141-100",
+      "dev": 57,
+      "cmd": 3214,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sps141_mode",
+      "label": "SPS-141-100",
+      "dev": 57,
+      "cmd": 3220,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "OFF",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "PARALLEL",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "FULL",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "sps141_auto",
+      "label": "SPS-141-100 Auto/Manual",
+      "dev": 57,
+      "cmd": 3219,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUTO",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "MANUAL",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "sps141_cont",
+      "label": "SPS-141-100 Continuous/Impulse",
+      "dev": 57,
+      "cmd": 3217,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "CONTINUOUS",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "IMPULSE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "sps141_cvr",
+      "label": "SPS-141-100 Manual Activation Cover",
+      "dev": 57,
+      "cmd": 3221,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "sps141_prog",
+      "label": "SPS-141-100 Program I/II",
+      "dev": 57,
+      "cmd": 3216,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "I",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "II",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "sps141_tx",
+      "label": "SPS-141-100 Transmit/Receive",
+      "dev": 57,
+      "cmd": 3215,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "TRANSMIT",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "RECEIVE",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "srzo_code",
+      "label": "SRZO Codes",
+      "dev": 38,
+      "cmd": 3088,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.08,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.16,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.24,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 0.32,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "6",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "7",
+          "delta": 0.48,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "8",
+          "delta": 0.56,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "9",
+          "delta": 0.64,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "10",
+          "delta": 0.72,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "11",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "12",
+          "delta": 0.88,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "srzo_em_tx",
+      "label": "SRZO Emergency Transmit",
+      "dev": 38,
+      "cmd": 3211,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "srzo_em_tx_cvr",
+      "label": "SRZO Emergency Transmit Cover",
+      "dev": 38,
+      "cmd": 3210,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "srzo_pwr",
+      "label": "SRZO IFF Coder/Decoder",
+      "dev": 38,
+      "cmd": 3087,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "srzo_dest_cvr",
+      "label": "SRZO Self Destruct Cover",
+      "dev": 38,
+      "cmd": 3229,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "srzo_81_pwr",
+      "label": "SRZO Type 81",
+      "dev": 38,
+      "cmd": 3089,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
     },
     {
       "id": "suit_vent",
@@ -1531,28 +4698,376 @@
       "type": "continuous"
     },
     {
-      "id": "asp_target_size",
-      "label": "Target Size",
+      "id": "surge_door",
+      "label": "Surge Doors Auto/Manual",
+      "dev": 6,
+      "cmd": 3022,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AUTO",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "MANUAL",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "bmb_fuz",
+      "label": "Tactical Drop",
+      "dev": 42,
+      "cmd": 3174,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "bmb_fuz_cvr",
+      "label": "Tactical Drop Cover",
+      "dev": 42,
+      "cmd": 3173,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "tdc_rge_span",
+      "label": "TDC Range/Pipper Span",
       "dev": 41,
-      "cmd": 3662,
+      "cmd": 3213,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "rud_oblog_axis",
-      "label": "TDC Range/Pipper Span Control",
-      "dev": 41,
-      "cmd": 3713,
+      "id": "txt_light",
+      "label": "Text Backlights",
+      "dev": 46,
+      "cmd": 3231,
       "enabled": true,
       "type": "continuous"
     },
     {
-      "id": "rud_fixator",
+      "id": "thr_fix",
       "label": "Throttle Fixation",
       "dev": 51,
       "cmd": 3274,
       "enabled": true,
       "type": "continuous"
+    },
+    {
+      "id": "trm_pwr",
+      "label": "Trimmer",
+      "dev": 9,
+      "cmd": 3131,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "uk2m_mic_amp_gskm",
+      "label": "UK-2M Mic Amplifier GS/KM",
+      "dev": 51,
+      "cmd": 3268,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "GS",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "KM",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "uk2m_mic_amp_ml",
+      "label": "UK-2M Mic Amplifier M/L",
+      "dev": 51,
+      "cmd": 3267,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "M",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "L",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "guv_pwr",
+      "label": "UPK-23-250-2",
+      "dev": 42,
+      "cmd": 3223,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "guv_sel",
+      "label": "UPK-23-250-2 Gun Select",
+      "dev": 42,
+      "cmd": 3224,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "nuk_wpn_sel",
+      "label": "Weapon Select Toggle",
+      "dev": 56,
+      "cmd": 3200,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "wpn_sel",
+      "label": "Weapon Selector",
+      "dev": 42,
+      "cmd": 3188,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "1",
+          "delta": 0.0,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "2",
+          "delta": 0.1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "3",
+          "delta": 0.2,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "4",
+          "delta": 0.3,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "5",
+          "delta": 0.4,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "6",
+          "delta": 0.5,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "7",
+          "delta": 0.6,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "8",
+          "delta": 0.7,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "9",
+          "delta": 0.8,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "10",
+          "delta": 0.9,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "11",
+          "delta": 1.0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "mode_aa_ag",
+      "label": "Weapons AA/AG Mode",
+      "dev": 42,
+      "cmd": 3183,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "AA",
+          "delta": 1,
+          "is_default": true,
+          "weight": 100
+        },
+        {
+          "label": "AG",
+          "delta": 0,
+          "is_default": false,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "wpn_rel_cvr",
+      "label": "Weapons Release Cover",
+      "dev": 42,
+      "cmd": 3192,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
+    },
+    {
+      "id": "white_light",
+      "label": "White Lights",
+      "dev": 46,
+      "cmd": 3234,
+      "enabled": true,
+      "type": "continuous"
+    },
+    {
+      "id": "wing_drp_tks_cvr",
+      "label": "Wing Drop Tank Jettison Cover",
+      "dev": 42,
+      "cmd": 3177,
+      "enabled": true,
+      "type": "discrete",
+      "positions": [
+        {
+          "label": "ON",
+          "delta": 1,
+          "is_default": false,
+          "weight": 0
+        },
+        {
+          "label": "OFF",
+          "delta": 0,
+          "is_default": true,
+          "weight": 100
+        }
+      ]
     }
   ]
 }
