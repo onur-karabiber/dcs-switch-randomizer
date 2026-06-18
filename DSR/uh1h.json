@@ -1423,7 +1423,7 @@
       "id": "cb_pressure_torque_n_f",
       "label": "CB Pressure Torque(N/F)",
       "dev": 1,
-      "cmd": 3095,
+      "cmd": 30295,
       "enabled": true,
       "type": "discrete",
       "positions": [
