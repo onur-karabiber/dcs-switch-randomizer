@@ -1,6 +1,6 @@
 # Project State
 
-> Last updated: 2026-06-17 — this file is a snapshot, not a history. Update it when work starts/ends on something; don't let it drift from reality. The append-only record of what shipped lives in `CHANGELOG.md` — this file should not duplicate that.
+> Last updated: 2026-06-18 — this file is a snapshot, not a history. Update it when work starts/ends on something; don't let it drift from reality. The append-only record of what shipped lives in `CHANGELOG.md` — this file should not duplicate that.
 
 ## What this project is
 
@@ -10,12 +10,12 @@ Repo: `github.com/onur-karabiber/dcs-switch-randomizer` (previously `dcs-cockpit
 
 ## Current release
 
-**v3.0.0.** The GUI application (`dcs-switch-randomizer-qt.py` + `aircraft_settings.py`) replaced manual file editing. Each aircraft is now defined by a canonical `<key>.json` file; the corresponding `.lua` is generated from it. Four aircraft were added this cycle (A-10C II, UH-1H, MiG-21bis, Spitfire LF Mk. IX), bringing the total to nine.
+**v3.0.1.** Application icon added (build + window/taskbar). A-10C II and MiG-21bis control sets substantially revised (relabeling to match in-sim names, new entries, weight retuning). UH-1H, A-10C II, and MiG-21bis each received at least one confirmed command-ID fix. Full detail in `CHANGELOG.md`.
 
 Key fixes shipped this cycle:
-- `copy_lua_files()` now copies both `.lua` and `.json` to the install directory (previously JSON was omitted, causing "No metadata found" errors)
-- 9 unused PNG files removed from `DSR/`
-- GitHub Actions workflow updated to reference `DSR\` (was `CockpitRandomizer\`)
+- A-10C II — UHF Volume corrected to `dev=58, cmd=3008` (was `dev=54, cmd=3011`)
+- MiG-21bis — Radio Channel rebuilt as a 20-position discrete control (was a non-functional `continuous` stub with no `positions`)
+- UH-1H — CB Pressure Torque(N/F) corrected to `cmd=30295` (was `cmd=3095`); `uh1h.lua` regenerated to match
 
 ## Supported aircraft & test status
 

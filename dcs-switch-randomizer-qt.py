@@ -1,4 +1,4 @@
-# dcs-switch-randomizer-qt.py v3.0.0
+# dcs-switch-randomizer-qt.py v3.0.1
 # PyQt5 port of DCS Switch Randomizer (DSR)
 # Place this file next to the DSR\ folder.
 
@@ -21,7 +21,7 @@ except Exception:
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 APP_TITLE            = "DCS Switch Randomizer"
-APP_VERSION_FALLBACK = "3.0.0"  # [6] v3.0.0
+APP_VERSION_FALLBACK = "3.0.1"  # [6] v3.0.1
 
 AIRCRAFT = [
     ("F/A-18C Hornet",     "fa18c"),

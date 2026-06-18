@@ -1,0 +1,100 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 97b669e..df6d623 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -4,6 +4,38 @@ All notable changes to DCS Switch Randomizer (DSR) are documented here.
+ 
+ ---
+ 
++## [v3.0.1] — 2026-06-18
++
++### Added
++
++**Application icon**
++`DSR/dsricon.ico` and `DSR/dsricon.png` added. The PyInstaller build now passes `--icon "DSR\dsricon.ico"` for the compiled executable, and `dcs-switch-randomizer-qt.py` sets the same image as the running window/taskbar icon via `QIcon`.
++
++---
++
++### Changed
++
++**A-10C II Thunderbolt II — control set revised**
++Defined controls grew from 120 to 212. Much of the change is relabeling existing entries to match exact in-sim control names (e.g. "CICU On/Off" → "Turn On/Off CICU", "Zeroize Cover" → "Zeroise Cover"); the remainder are new entries (radios, lighting, fire suppression, SAS, IFF, and others) not previously covered. Several existing controls also had their position weights retuned, e.g. APU On/Off: ON 20%→10%, OFF 80%→90%.
++
++**MiG-21bis — control set revised**
++Defined controls grew from 138 to 181, with the same pattern of relabeling toward in-sim terminology, new entries, and weight retuning (e.g. Flaps Landing: ON 15%→0%, now locked to OFF/cold-start).
++
++---
++
++### Fixed
++
++**A-10C II — UHF Volume device/command corrected**
++Was `dev=54, cmd=3011`. Corrected to `dev=58, cmd=3008`.
++
++**MiG-21bis — Radio Channel rebuilt as a discrete control**
++Was `type: "continuous"` with no `positions` array. Replaced with a 20-position `discrete` definition using `delta` steps of 0.05 per channel, matching the control's actual step size. Channels 2–20 are currently weighted 0; channel 1 (cold-start) is weighted 100.
++
++**UH-1H — CB Pressure Torque(N/F) command corrected**
++Was `cmd=3095`. Corrected to `cmd=30295`. `uh1h.lua` has been regenerated and no longer references the old value.
++
++---
++
+ ## [v3.0.0] — 2026-06-12
+ 
+ ### Added
+diff --git a/STATE.md b/STATE.md
+index 8096593..5cd9a5f 100644
+--- a/STATE.md
++++ b/STATE.md
+@@ -1,6 +1,6 @@
+ # Project State
+ 
+-> Last updated: 2026-06-17 — this file is a snapshot, not a history. Update it when work starts/ends on something; don't let it drift from reality. The append-only record of what shipped lives in `CHANGELOG.md` — this file should not duplicate that.
++> Last updated: 2026-06-18 — this file is a snapshot, not a history. Update it when work starts/ends on something; don't let it drift from reality. The append-only record of what shipped lives in `CHANGELOG.md` — this file should not duplicate that.
+ 
+ ## What this project is
+ 
+@@ -10,12 +10,12 @@ Repo: `github.com/onur-karabiber/dcs-switch-randomizer` (previously `dcs-cockpit
+ 
+ ## Current release
+ 
+-**v3.0.0.** The GUI application (`dcs-switch-randomizer-qt.py` + `aircraft_settings.py`) replaced manual file editing. Each aircraft is now defined by a canonical `<key>.json` file; the corresponding `.lua` is generated from it. Four aircraft were added this cycle (A-10C II, UH-1H, MiG-21bis, Spitfire LF Mk. IX), bringing the total to nine.
++**v3.0.1.** Application icon added (build + window/taskbar). A-10C II and MiG-21bis control sets substantially revised (relabeling to match in-sim names, new entries, weight retuning). UH-1H, A-10C II, and MiG-21bis each received at least one confirmed command-ID fix. Full detail in `CHANGELOG.md`.
+ 
+ Key fixes shipped this cycle:
+-- `copy_lua_files()` now copies both `.lua` and `.json` to the install directory (previously JSON was omitted, causing "No metadata found" errors)
+-- 9 unused PNG files removed from `DSR/`
+-- GitHub Actions workflow updated to reference `DSR\` (was `CockpitRandomizer\`)
++- A-10C II — UHF Volume corrected to `dev=58, cmd=3008` (was `dev=54, cmd=3011`)
++- MiG-21bis — Radio Channel rebuilt as a 20-position discrete control (was a non-functional `continuous` stub with no `positions`)
++- UH-1H — CB Pressure Torque(N/F) corrected to `cmd=30295` (was `cmd=3095`); `uh1h.lua` regenerated to match
+ 
+ ## Supported aircraft & test status
+ 
+diff --git a/dcs-switch-randomizer-qt.py b/dcs-switch-randomizer-qt.py
+index e6fcb56..f5a8cde 100644
+--- a/dcs-switch-randomizer-qt.py
++++ b/dcs-switch-randomizer-qt.py
+@@ -1,4 +1,4 @@
+-# dcs-switch-randomizer-qt.py v3.0.0
++# dcs-switch-randomizer-qt.py v3.0.1
+ # PyQt5 port of DCS Switch Randomizer (DSR)
+ # Place this file next to the DSR\ folder.
+ 
+@@ -21,7 +21,7 @@ except Exception:
+ 
+ # ── Constants ─────────────────────────────────────────────────────────────────
+ APP_TITLE            = "DCS Switch Randomizer"
+-APP_VERSION_FALLBACK = "3.0.0"  # [6] v3.0.0
++APP_VERSION_FALLBACK = "3.0.1"  # [6] v3.0.1
+ 
+ AIRCRAFT = [
+     ("F/A-18C Hornet",     "fa18c"),
+diff --git a/version.txt b/version.txt
+index 56fea8a..13d683c 100644
+--- a/version.txt
++++ b/version.txt
+@@ -1 +1 @@
+-3.0.0
+\ No newline at end of file
++3.0.1
+\ No newline at end of file

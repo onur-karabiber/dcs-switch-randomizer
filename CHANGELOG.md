@@ -4,6 +4,38 @@ All notable changes to DCS Switch Randomizer (DSR) are documented here.
 
 ---
 
+## [v3.0.1] — 2026-06-18
+
+### Added
+
+**Application icon**
+`DSR/dsricon.ico` and `DSR/dsricon.png` added. The PyInstaller build now passes `--icon "DSR\dsricon.ico"` for the compiled executable, and `dcs-switch-randomizer-qt.py` sets the same image as the running window/taskbar icon via `QIcon`.
+
+---
+
+### Changed
+
+**A-10C II Thunderbolt II — control set revised**
+Defined controls grew from 120 to 212. Much of the change is relabeling existing entries to match exact in-sim control names (e.g. "CICU On/Off" → "Turn On/Off CICU", "Zeroize Cover" → "Zeroise Cover"); the remainder are new entries (radios, lighting, fire suppression, SAS, IFF, and others) not previously covered. Several existing controls also had their position weights retuned, e.g. APU On/Off: ON 20%→10%, OFF 80%→90%.
+
+**MiG-21bis — control set revised**
+Defined controls grew from 138 to 181, with the same pattern of relabeling toward in-sim terminology, new entries, and weight retuning (e.g. Flaps Landing: ON 15%→0%, now locked to OFF/cold-start).
+
+---
+
+### Fixed
+
+**A-10C II — UHF Volume device/command corrected**
+Was `dev=54, cmd=3011`. Corrected to `dev=58, cmd=3008`.
+
+**MiG-21bis — Radio Channel rebuilt as a discrete control**
+Was `type: "continuous"` with no `positions` array. Replaced with a 20-position `discrete` definition using `delta` steps of 0.05 per channel, matching the control's actual step size. Channels 2–20 are currently weighted 0; channel 1 (cold-start) is weighted 100.
+
+**UH-1H — CB Pressure Torque(N/F) command corrected**
+Was `cmd=3095`. Corrected to `cmd=30295`. `uh1h.lua` has been regenerated and no longer references the old value.
+
+---
+
 ## [v3.0.0] — 2026-06-12
 
 ### Added
