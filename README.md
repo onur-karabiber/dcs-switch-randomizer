@@ -107,6 +107,8 @@ Knobs are randomized across a range and do not have per-position probabilities â
 
 Changes are saved immediately and take effect on the next cold start.
 
+[![Patreon](https://img.shields.io/badge/Patreon-Support-orange)]([https://www.patreon.com/kullaniciadi](https://www.patreon.com/16265834/join))
+
 ---
 
 ## Randomized controls
